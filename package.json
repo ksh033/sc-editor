@@ -31,11 +31,6 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
     "@babel/traverse": "^7.21.4",
-    "@micro-frame/plugin-microlayout": "alpha",
-    "@micro-frame/sc-runtime": "alpha",
-    "@scboson/client-plugin": "alpha",
-    "@scboson/sc-schema": "^2.0.0-alpha",
-    "@scboson/sc-utils": "alpha",
     "@types/classnames": "^2.3.1",
     "@types/copy-webpack-plugin": "^10.1.0",
     "@types/enzyme": "^3.10.3",
@@ -90,7 +85,6 @@
     "typescript": "~4.7.4",
     "umi": "^4.0.64",
     "umi-request": "^1.4.0"
-   
   },
   "packageManager": "pnpm@8.2.0",
   "name": "micro-frame"

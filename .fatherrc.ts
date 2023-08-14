@@ -15,24 +15,11 @@ export default {
     type: 'babel',
     importLibToEs: true,
   },
-  pkgs: ['element', 'editor-core', 'slave', 'runtime', 'plugin-microlayout'],
+  pkgs: ['element', 'editor-core'],
   extraBabelPlugins: [
     [
       'babel-plugin-import',
-      REACT_APP_ENV !== ''
-        ? {
-            libraryName: '@scboson/sc-element',
-            libraryDirectory: 'es',
-            style: true,
-          }
-        : [
-            { libraryName: 'antd', libraryDirectory: 'es', style: true },
-            {
-              libraryName: '@scboson/sc-element',
-              libraryDirectory: 'es',
-              style: true,
-            },
-          ],
+      { libraryName: 'antd', libraryDirectory: 'es', style: true },
       'antd',
     ],
     [require('./scripts/replaceLib')],
