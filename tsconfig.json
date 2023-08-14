@@ -13,7 +13,9 @@
     "declaration": true,
     "skipLibCheck": true,
     "paths": {
-      "@@/*": ["packages/web/src/.umi/*"]
+      "@@/*": ["packages/web/src/.umi/*"],
+      "@sceditor/element": ["./packages/element/src/index.ts"],
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
     },
   },
   "typings": "./typings.d.ts",

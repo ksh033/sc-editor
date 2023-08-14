@@ -14,7 +14,6 @@
   "author": "cth",
   "license": "MIT",
   "dependencies": {
-    "@sceditor/element": "beta",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout":"^7.10.3",
