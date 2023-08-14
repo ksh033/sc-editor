@@ -87,6 +87,8 @@
     "umi-request": "^1.4.0"
   },
   "packageManager": "pnpm@8.2.0",
-  "name": "micro-frame"
- 
+  "name": "micro-frame",
+  "dependencies": {
+    "babel-plugin-import": "^1.13.8"
+  }
 }

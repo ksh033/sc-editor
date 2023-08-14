@@ -19,7 +19,20 @@ export default {
   extraBabelPlugins: [
     [
       'babel-plugin-import',
-      { libraryName: 'antd', libraryDirectory: 'es', style: true },
+      REACT_APP_ENV !== ''
+        ? {
+            libraryName: '@scboson/sc-element',
+            libraryDirectory: 'es',
+            style: true,
+          }
+        : [
+            { libraryName: 'antd', libraryDirectory: 'es', style: true },
+            {
+              libraryName: '@scboson/sc-element',
+              libraryDirectory: 'es',
+              style: true,
+            },
+          ],
       'antd',
     ],
     [require('./scripts/replaceLib')],

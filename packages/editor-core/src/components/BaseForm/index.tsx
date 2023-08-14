@@ -16,7 +16,7 @@ const BaseForm: React.FC<any> = (props) => {
     const WarpCommponent = Components[cmpkey];
     // console.log('WarpCommponent', WarpCommponent);
     valueTypeMap[warpCom] = {
-      renderFormItem: (text, rprops) => {
+      renderFormItem: (_: any, rprops: { fieldProps: any }) => {
         return (
           <WarpCommponent
             {...rprops}
