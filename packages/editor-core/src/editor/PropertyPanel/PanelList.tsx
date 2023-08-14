@@ -1,16 +1,16 @@
+import { CopyOutlined, DeleteOutlined, MenuOutlined } from '@ant-design/icons';
+import { Button, Popconfirm, Space } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useStore } from '../../stores';
-import './PanelList.less';
 import {
   SortableContainer,
   SortableElement,
   SortEnd,
 } from 'react-sortable-hoc';
-import { Button, Popconfirm, Space } from 'antd';
-import { CopyOutlined, DeleteOutlined, MenuOutlined } from '@ant-design/icons';
+import { useStore } from '../../stores';
+import './PanelList.less';
 // @ts-ignore
-import { ComponentSchemaProps } from '@scvisual/element';
+import { ComponentSchemaProps } from '@sceditor/element';
 
 const SortableItem: any = SortableElement((props: any) => {
   const { value, onCopy, onDelete, indexNmu, changeEditCmp } = props;
@@ -68,7 +68,7 @@ const SortableList: any = SortableContainer(
         <div>{props.children}</div>
       </div>
     );
-  },
+  }
 );
 
 const PanelList: React.FC<any> = (props) => {

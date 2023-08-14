@@ -1,6 +1,6 @@
 {
   "name": "@sceditor/element",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-beta.1",
   "description": "基于ReactJS+Antd",
   "keywords": [
     "ant",

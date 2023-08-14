@@ -1,9 +1,9 @@
-import isNil from 'lodash/isNil';
 import cloneDeep from 'lodash/cloneDeep';
+import isNil from 'lodash/isNil';
 // @ts-ignore
-import { VdProFormColumnsType } from '@scvisual/element';
-import { Rules } from 'async-validator/dist-types/interface';
 import { ProFormColumnsType } from '@ant-design/pro-form';
+import { VdProFormColumnsType } from '@sceditor/element';
+import { Rules } from 'async-validator/dist-types/interface';
 import { valueTypelist } from '../index';
 
 const defaultFormItemProps = {

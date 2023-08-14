@@ -1,9 +1,9 @@
-import React from 'react';
 import { CaretDownOutlined } from '@ant-design/icons';
-import ComItem from './ComItem';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
+import ComItem from './ComItem';
 // @ts-ignore
-import { CompsGroup } from '@scvisual/element';
+import { CompsGroup } from '@sceditor/element';
 import { useStore } from '../../stores';
 
 const ComsPanel: React.FC<any> = (props) => {

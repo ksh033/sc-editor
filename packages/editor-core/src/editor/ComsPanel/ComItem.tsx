@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 // @ts-ignore
-import { CmpInfo } from '@scvisual/element';
+import { CmpInfo } from '@sceditor/element';
 import { useHover } from 'ahooks';
 import { observer } from 'mobx-react-lite';
 

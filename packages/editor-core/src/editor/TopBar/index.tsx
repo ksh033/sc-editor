@@ -1,5 +1,5 @@
 // @ts-ignore
-import { ComponentSchemaProps } from '@scvisual/element';
+import { ComponentSchemaProps } from '@sceditor/element';
 import { Button, message } from 'antd';
 import cloneDeep from 'lodash/cloneDeep';
 import { observer } from 'mobx-react-lite';

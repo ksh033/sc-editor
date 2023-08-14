@@ -1,5 +1,5 @@
 // @ts-ignore
-import { ComponentSchemaProps } from '@scvisual/element';
+import { ComponentSchemaProps } from '@sceditor/element';
 import { iframeId } from '../index';
 
 export const postMessage = (type: string, data: any, index?: number) => {
@@ -39,7 +39,7 @@ const addCmp = (item: ComponentSchemaProps, index?: number) => {
       values: item.values,
       id: item.id,
     },
-    index,
+    index
   );
 };
 
@@ -76,7 +76,7 @@ const copyCmp = (item: ComponentSchemaProps, index: number) => {
       values: item.values,
       id: item.id,
     },
-    index,
+    index
   );
 };
 

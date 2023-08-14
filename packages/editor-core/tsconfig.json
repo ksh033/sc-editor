@@ -9,13 +9,12 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "skipLibCheck": true,
     "paths": {
       "@@service": ["src/services/index.ts"],
-      "@scvisual/element": ["./packages/element/src/index.tsx"],
-      "@scvisual/editor-core": ["./packages/editor-core/src/index.tsx"]
+      "@sceditor/element": ["./packages/element/src/index.tsx"],
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
     }
   },
   "include": [

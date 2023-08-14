@@ -1,7 +1,7 @@
 import Frame from './editor/Frame';
 import { StoreProvider } from './stores/index';
 // @ts-ignore
-import * as Components from '@scvisual/element';
+import * as Components from '@sceditor/element';
 import './index.less';
 
 const valueTypelist: string[] = [];

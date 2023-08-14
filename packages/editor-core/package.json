@@ -1,6 +1,6 @@
 {
   "name": "@sceditor/editor-core",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0-beta.1",
   "description": "@sceditor/editor-core",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -17,7 +17,6 @@
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout":"^7.10.3",
-    "@sceditor/element": "beta",
     "@types/lodash": "^4.14.180",
     "PubSub": "^3.6.0",
     "ahooks": "^3.7.6",

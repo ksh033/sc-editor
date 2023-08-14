@@ -1,7 +1,7 @@
 // @ts-ignore
-import type { ComponentSchemaProps } from '@scvisual/element';
+import type { ComponentSchemaProps } from '@sceditor/element';
 // @ts-ignore
-import { BaseCompMap, ClassType, PageInfo } from '@scvisual/element';
+import { BaseCompMap, ClassType, PageInfo } from '@sceditor/element';
 import { arrayMoveImmutable } from 'array-move';
 import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';

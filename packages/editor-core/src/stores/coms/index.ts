@@ -1,8 +1,8 @@
-import { observable, action } from 'mobx';
+import { action, observable } from 'mobx';
 // @ts-ignore
-import { BaseCompGroup, BaseCompMap, CmpInfo } from '@scvisual/element';
+import { BaseCompGroup, BaseCompMap, CmpInfo } from '@sceditor/element';
 // @ts-ignore
-import type { ClassType, CompsGroup } from '@scvisual/element';
+import type { ClassType, CompsGroup } from '@sceditor/element';
 import { message } from 'antd';
 
 export type comsStoreType = {

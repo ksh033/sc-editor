@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
-import ProProvider from '@ant-design/pro-provider';
 import { BetaSchemaForm } from '@ant-design/pro-form';
-import { FormSchema } from '@ant-design/pro-form/es/components/SchemaForm';
+import ProProvider from '@ant-design/pro-provider';
+import React, { useContext } from 'react';
 // @ts-ignore
-import * as Components from '@scvisual/element';
 import { ProRenderFieldPropsType } from '@ant-design/pro-utils';
+import * as Components from '@sceditor/element';
 import { valueTypelist } from '../../index';
 
 const BaseForm: React.FC<any> = (props) => {
