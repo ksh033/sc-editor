@@ -1,6 +1,6 @@
 {
   "name": "@sceditor/editor-core",
-  "version": "2.0.0-beta.1",
+  "version": "0.0.1",
   "description": "@sceditor/editor-core",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -14,6 +14,7 @@
   "author": "cth",
   "license": "MIT",
   "dependencies": {
+    "@sceditor/element": "^0.0.1",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout":"^7.10.3",

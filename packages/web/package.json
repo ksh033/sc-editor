@@ -9,7 +9,8 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "@sceditor/editor-core": "beta",
+    "@sceditor/element": "^0.0.1",
+    "@sceditor/editor-core": "^0.0.1",
     "umi": "^4.0.75"
   },
   "devDependencies": {
