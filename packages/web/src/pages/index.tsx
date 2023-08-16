@@ -6,7 +6,7 @@ import React from 'react';
 export default function IndexPage() {
   document.domain = '192.168.31.182';
   useEffect(() => {
-    console.log(window.location);
+    console.log(window.location, '12');
   }, []);
   return (
     <Editor iframeUrl="http://192.168.31.182:10086/#/pages/preview/index" />

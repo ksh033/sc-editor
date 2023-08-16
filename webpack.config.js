@@ -7,7 +7,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const { readdirSync } = require('fs');
 
 const tailPkgs = readdirSync(path.join(__dirname, 'packages')).filter(
-  (pkg) => pkg.charAt(0) !== '.',
+  (pkg) => pkg.charAt(0) !== '.'
 );
 
 // const tailPkgs = ['table'];
@@ -39,7 +39,9 @@ tailPkgs.forEach((pkg) => {
     entry,
     output: {
       filename: '[name].js',
-      library: `Pro${pkg.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())}`,
+      library: `Pro${pkg
+        .toLowerCase()
+        .replace(/( |^)[a-z]/g, (L) => L.toUpperCase())}`,
       libraryTarget: 'umd',
       path: path.resolve(__dirname, 'packages', pkg, 'dist'),
       globalObject: 'this',

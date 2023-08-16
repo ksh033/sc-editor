@@ -4,9 +4,9 @@ import { iframeId } from '../index';
 
 export const postMessage = (type: string, data: any, index?: number) => {
   const frameObj = document.getElementById(iframeId) as HTMLIFrameElement;
+  const doc = frameObj.contentDocument || frameObj.contentWindow?.document;
   let addIndex = index;
   if (index == null) {
-    const doc = frameObj.contentDocument;
     if (doc) {
       const dropEle = doc?.getElementById('drop-box');
       const dropEleChild = [];

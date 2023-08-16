@@ -57,7 +57,7 @@ class Drag {
 
   //递归计算元素距离父元素的offset
   getRealOffset = (el: any) => {
-    if (el.getBoundingClientRect) {
+    if (el && el.getBoundingClientRect) {
       const { left, top } = el.getBoundingClientRect();
       return { offsetLeft: left, offsetTop: top };
     }
@@ -187,7 +187,7 @@ class Drag {
   removePlaceholderEle = () => {
     const iframe = this.getIframe();
     if (iframe) {
-      const doc = iframe.contentDocument;
+      const doc = iframe.contentDocument || iframe.contentWindow?.document;
       const removeEle = doc?.getElementById('drag-ele-placeholder');
       const { dropEle } = this.params;
       if (removeEle) {

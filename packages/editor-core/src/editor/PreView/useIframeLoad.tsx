@@ -4,7 +4,7 @@ import { iframeId } from '../../index';
 function useIframeLoad() {
   const [iframeState, setIframeState] = useState(false);
   const [windowState, setWindowState] = useState(
-    document.readyState === 'complete',
+    document.readyState === 'complete'
   );
 
   const iframeLoad = () => {

@@ -14,8 +14,8 @@
     "skipLibCheck": true,
     "paths": {
       "@@service": ["src/services/index.ts"],
-      "@sceditor/element": ["../element/src/index.ts"],
-      "@sceditor/editor-core": ["../editor-core/src/index.tsx"]
+      "@sceditor/element": ["./packages/element/src/index.ts"],
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
     }
   },
   "include": [

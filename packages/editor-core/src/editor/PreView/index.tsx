@@ -3,11 +3,11 @@ import { useEventListener } from 'ahooks';
 import { Button } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useRef, useState } from 'react';
+import { iframeId } from '../../index';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
-import { iframeId } from '../../index';
-import './index.less';
 import Drag from '../../utils/drag';
+import './index.less';
 import useIframeLoad from './useIframeLoad';
 
 const defaultHeight = 750;
@@ -70,14 +70,17 @@ const PreView: React.FC<any> = () => {
       'drag-item'
     ) as HTMLCollectionOf<HTMLElement>;
     const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
-    // console.log('drag-item', item);
+
+    const iframeDocument =
+      iframe.contentDocument || iframe.contentWindow?.document;
+
     Drag.init({
       iframeEle: iframe,
       dragEle: document.getElementById('drag-box'),
       dragItem: item,
       callback,
-      dropEle: iframe.contentDocument?.getElementById('drop-box'),
-      dropEleItems: iframe.contentDocument?.getElementsByClassName(
+      dropEle: iframeDocument?.getElementById('drop-box'),
+      dropEleItems: iframeDocument?.getElementsByClassName(
         'drop-item'
       ) as HTMLCollectionOf<HTMLElement>,
     });
