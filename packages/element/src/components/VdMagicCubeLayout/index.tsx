@@ -1,14 +1,13 @@
-import _ from 'lodash';
 import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { ExtendVdFormItemProps } from '../VdFormItem';
+import VdImgLink, { VdImgLinkState } from '../VdImgLink';
+import CubeTemplate from './CubeTemplate';
+import './index.less';
 import {
   CompontentItem,
   getDefaultTemplateCompontents,
   templateMap,
 } from './template';
-import './index.less';
-import CubeTemplate from './CubeTemplate';
-import VdImgLink, { VdImgLinkState } from '../VdImgLink';
 
 type ValueState = {
   sub_entry: CompontentItem[];
@@ -59,7 +58,7 @@ const VdMagicCubeLayout: React.FC<VdMagicCubeLayoutProps> = (props) => {
         return item;
       });
     }
-
+    console.log('templateId', templateId);
     onChange?.({
       width: templateItemMap.rowSpan,
       height: templateItemMap.colSpan,

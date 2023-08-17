@@ -1,13 +1,13 @@
-import { VdProFormColumnsType } from '../../interface';
+import { ProFormColumnsType } from '@ant-design/pro-form';
 import {
-  location,
-  fontSize,
-  fontWeight,
   color,
   date,
+  fontSize,
+  fontWeight,
+  location,
 } from '../../attrType/index';
-import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 
 class Title extends ParentSchemCmp {
   cmpKey: string = 'Title';
@@ -166,7 +166,7 @@ class Title extends ParentSchemCmp {
               let options = itemColumns.fieldProps['options'];
               options = Array.isArray(options) ? options : [];
               itemColumns.fieldProps['options'] = options.filter(
-                (it: any) => it.value !== 'right',
+                (it: any) => it.value !== 'right'
               );
             }
           }
@@ -187,10 +187,10 @@ class Title extends ParentSchemCmp {
       title: '',
       description: '',
       location: 'left',
-      fontSize: '16',
+      fontSize: 16,
       fontWeight: 'bold',
       color: '#323233',
-      descriptionFontSize: '16',
+      descriptionFontSize: 16,
       descriptionFontWeight: 'normal',
       descriptionColor: '#969799',
       backgroundColor: '#fff',

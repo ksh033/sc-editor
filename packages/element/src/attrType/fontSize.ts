@@ -7,17 +7,17 @@ const fontSize: VdProFormColumnsType = {
     options: [
       {
         text: '大(16号)',
-        value: '16',
+        value: 16,
         icon: 'deco-icon-font-x',
       },
       {
         text: '中(14号)',
-        value: '14',
+        value: 14,
         icon: 'deco-icon-font-m',
       },
       {
         text: '小(12号)',
-        value: '12',
+        value: 12,
         icon: 'deco-icon-font-s',
       },
     ],

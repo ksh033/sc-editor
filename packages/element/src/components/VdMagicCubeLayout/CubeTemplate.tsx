@@ -1,8 +1,10 @@
 import { useSetState } from 'ahooks';
 import { Select } from 'antd';
+import classnames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import VdFormItem from '../VdFormItem';
-import classnames from 'classnames';
+import VdIcon from '../VdIcon';
+import { MethodLength } from './index';
 import {
   baseWidth,
   CompontentItem,
@@ -12,10 +14,8 @@ import {
   getInitArray,
   getListItemBymatrixData,
 } from './template';
-import VdIcon from '../VdIcon';
-import { MethodLength } from './index';
 
-export type CustomTemplateProps = {
+export type CubeTemplateProps = {
   list: CompontentItem[];
   setList: (val: CompontentItem[]) => void;
   density: number;
@@ -38,7 +38,7 @@ export type ConfigState = {
   pointEnd: PointEv;
 };
 
-const CustomTemplate: React.FC<CustomTemplateProps> = (props) => {
+const CubeTemplate: React.FC<CubeTemplateProps> = (props) => {
   const {
     formItemName,
     density,
@@ -383,4 +383,4 @@ const CustomTemplate: React.FC<CustomTemplateProps> = (props) => {
   );
 };
 
-export default CustomTemplate;
+export default CubeTemplate;

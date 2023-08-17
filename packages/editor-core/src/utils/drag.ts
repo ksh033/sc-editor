@@ -224,6 +224,7 @@ class Drag {
     // @ts-ignore
     document.getElementsByClassName('drop-content')[0].style.zIndex = '0';
     const { callback } = this.params;
+    console.log(' this.index', this.index);
     this.locationCompare(ev) &&
       callback &&
       callback({
