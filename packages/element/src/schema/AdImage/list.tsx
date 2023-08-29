@@ -3,12 +3,13 @@ import Item from './Item';
 
 const propsConfig: VdProFormColumnsType[] = [
   {
-    title: '选择模板',
     dataIndex: 'show_method',
     valueType: 'VdRadioIcon',
     fieldProps: {
       block: true,
       lineBlock: true,
+      type: 'image',
+      showValue: false,
       options: [
         {
           text: '一行一个',
@@ -21,18 +22,8 @@ const propsConfig: VdProFormColumnsType[] = [
           icon: 'deco-icon-carousel',
         },
         {
-          text: '大图横向滑动',
+          text: '横向滑动',
           value: '3',
-          icon: 'deco-icon-carousel',
-        },
-        {
-          text: '小图横向滑动',
-          value: '4',
-          icon: 'deco-icon-carousel',
-        },
-        {
-          text: '导航横向滑动',
-          value: '5',
           icon: 'deco-icon-carousel',
         },
       ],
@@ -88,7 +79,7 @@ const propsConfig: VdProFormColumnsType[] = [
   },
   {
     dataIndex: 'count',
-    valueType: 'VdRadioGroup',
+    valueType: 'VdSelect',
     title: '一屏显示',
     formItemProps: {
       className: 'deco-control-group',
@@ -98,9 +89,44 @@ const propsConfig: VdProFormColumnsType[] = [
     },
     fieldProps: {
       options: [
-        { value: 4, label: '4张图片' },
-        { value: 5, label: '5张图片' },
-        { value: 6, label: '6张图片' },
+        { value: 1, label: '一张图片' },
+        { value: 2, label: '两张图片' },
+        { value: 4, label: '四张图片' },
+        { value: 5, label: '五张图片' },
+        { value: 6, label: '六张图片' },
+      ],
+    },
+  },
+  {
+    dataIndex: 'line',
+    valueType: 'divider',
+  },
+  {
+    dataIndex: 'indicator',
+    title: '指示器',
+    valueType: 'VdRadioIcon',
+    fieldProps: {
+      options: [
+        {
+          text: '样式一',
+          value: '1',
+          icon: 'deco-icon-indicator-1',
+        },
+        {
+          text: '样式二',
+          value: '2',
+          icon: 'deco-icon-indicator-2',
+        },
+        {
+          text: '样式三',
+          value: '3',
+          icon: 'deco-icon-indicator-3',
+        },
+        {
+          text: '样式四',
+          value: '4',
+          icon: 'deco-icon-indicator-4',
+        },
       ],
     },
   },
@@ -161,35 +187,7 @@ const propsConfig: VdProFormColumnsType[] = [
       ],
     },
   },
-  {
-    dataIndex: 'indicator',
-    title: '指示器',
-    valueType: 'VdRadioIcon',
-    fieldProps: {
-      options: [
-        {
-          text: '样式一',
-          value: '1',
-          icon: 'deco-icon-indicator-1',
-        },
-        {
-          text: '样式二',
-          value: '2',
-          icon: 'deco-icon-indicator-2',
-        },
-        {
-          text: '样式三',
-          value: '3',
-          icon: 'deco-icon-indicator-3',
-        },
-        {
-          text: '样式四',
-          value: '4',
-          icon: 'deco-icon-indicator-4',
-        },
-      ],
-    },
-  },
+
   {
     title: '页面边距',
     valueType: 'VdSlider',

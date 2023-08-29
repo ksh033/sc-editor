@@ -1,19 +1,25 @@
-import { Button, Radio, RadioGroupProps, Tooltip } from 'antd';
-import _ from 'lodash';
-import React, { useMemo } from 'react';
+import { Button, RadioGroupProps, Tooltip } from 'antd';
+import classnames from 'classnames';
+import React, { Fragment, useMemo } from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import VdIcon from '../VdIcon';
 import './index.less';
 
-type VdRadioIconProps = RadioGroupProps &
+type VdRadioOption = {
+  value: string | number;
+  text?: string;
+  icon?: string;
+  fontSize?: string | number;
+};
+
+type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
   ExtendVdFormItemProps & {
     lineBlock?: boolean;
+    /** button 按钮模式  image 图片模式*/
+    type?: 'button' | 'image';
+    onChange?: (value: string | number) => void;
+    options?: VdRadioOption[];
   };
-
-const style = {
-  fontSize: '20px',
-  verticalAlign: 'text-top',
-};
 
 const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
   const {
@@ -24,6 +30,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
     block = false,
     lineBlock = false,
     showValue = true,
+    type = 'button',
   } = props;
   const valueMap = useMemo(() => {
     const map = new Map();
@@ -35,10 +42,111 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
     return map;
   }, [JSON.stringify(options)]);
 
-  const style: React.CSSProperties = {};
-  if (lineBlock) {
-    style.width = Math.floor(100 / options.length) + '%';
-  }
+  const style: React.CSSProperties = useMemo(() => {
+    if (lineBlock) {
+      return {
+        width: Math.floor(100 / options.length) + '%',
+      };
+    }
+    return {};
+  }, [lineBlock, options.length]);
+
+  /** 按钮处理 */
+  const buttonRender = (list: VdRadioOption[]) => {
+    return list.map((it: VdRadioOption, index) => {
+      return (
+        <Fragment key={index}>
+          <Tooltip
+            title={it.text}
+            key={`tooltip-${it.value}`}
+            placement="bottom"
+            color="#fff"
+            mouseLeaveDelay={0.01}
+            overlayInnerStyle={{
+              color: '#323233',
+            }}
+            trigger={['hover', 'click']}
+          >
+            <Button
+              className={[
+                'deco-radio-button',
+                it.value === value ? 'deco-radio-button--active' : '',
+              ].join(' ')}
+              value={it.value}
+              key={it.value}
+              style={style}
+              onClick={() => {
+                onChange?.(it.value);
+              }}
+            >
+              {it.icon ? (
+                React.isValidElement(it.icon) ? (
+                  React.cloneElement<any>(it.icon, {
+                    style: style,
+                  })
+                ) : (
+                  <VdIcon
+                    type={it.icon}
+                    style={{
+                      fontSize: it.fontSize || '20px',
+                    }}
+                  ></VdIcon>
+                )
+              ) : (
+                <span className="deco-radio-text">{it.text}</span>
+              )}
+            </Button>
+          </Tooltip>
+        </Fragment>
+      );
+    });
+  };
+  /** 图片模式 */
+  const imageRender = (list: VdRadioOption[]) => {
+    return (
+      <div className="select-template">
+        {list.map((it: VdRadioOption, index) => {
+          return (
+            <div
+              className="select-template-item"
+              key={`template-image-${index}`}
+              onClick={() => {
+                onChange?.(it.value);
+              }}
+            >
+              <div
+                className={classnames('select-template-item-img', {
+                  'image-active': it.value === value,
+                })}
+              >
+                {it.icon &&
+                  (React.isValidElement(it.icon) ? (
+                    React.cloneElement<any>(it.icon, {
+                      style: style,
+                    })
+                  ) : (
+                    <VdIcon
+                      type={it.icon}
+                      style={{
+                        fontSize: it.fontSize || '20px',
+                      }}
+                    ></VdIcon>
+                  ))}
+              </div>
+
+              <div
+                className={classnames('select-template-text', {
+                  'text-active': it.value === value,
+                })}
+              >
+                {it.text}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <VdFormItem
@@ -48,51 +156,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
       block={block}
     >
       <div className="deco-radio-button-group">
-        {options.map((it: any) => {
-          return (
-            <Tooltip
-              title={it.text}
-              key={`tooltip-${it.value}`}
-              placement="bottom"
-              color="#fff"
-              mouseLeaveDelay={0.01}
-              overlayInnerStyle={{
-                color: '#323233',
-              }}
-              trigger={['hover', 'click']}
-            >
-              <Button
-                className={[
-                  'deco-radio-button',
-                  it.value === value ? 'deco-radio-button--active' : '',
-                ].join(' ')}
-                value={it.value}
-                key={it.value}
-                style={style}
-                onClick={() => {
-                  onChange?.(it.value);
-                }}
-              >
-                {it.icon ? (
-                  React.isValidElement(it.icon) ? (
-                    React.cloneElement(it.icon, {
-                      style,
-                    })
-                  ) : (
-                    <VdIcon
-                      type={it.icon}
-                      style={{
-                        fontSize: it.fontSize || '20px',
-                      }}
-                    ></VdIcon>
-                  )
-                ) : (
-                  <span className="deco-radio-text">{it.text}</span>
-                )}
-              </Button>
-            </Tooltip>
-          );
-        })}
+        {type === 'button' ? buttonRender(options) : imageRender(options)}
       </div>
     </VdFormItem>
   );

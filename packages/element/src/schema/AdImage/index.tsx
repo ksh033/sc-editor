@@ -1,7 +1,7 @@
-import { VdProFormColumnsType } from '../../interface';
-import { spellNamePath } from '../../utils';
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
+import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class AdImage extends ParentSchemCmp {
@@ -12,10 +12,16 @@ class AdImage extends ParentSchemCmp {
     const newC: any[] = columns
       .map((it) => {
         const dataIndex = spellNamePath(it.dataIndex);
-        if (record['show_method'] !== '5' && dataIndex === 'count') {
+        if (
+          record['show_method'] !== '3' &&
+          (dataIndex === 'count' || dataIndex === 'line')
+        ) {
           return null;
         }
-        if (record['show_method'] !== '2' && dataIndex === 'indicator') {
+        if (
+          record['show_method'] !== '2' &&
+          (dataIndex === 'indicator' || dataIndex === 'image_fill_style')
+        ) {
           return null;
         }
         return it;

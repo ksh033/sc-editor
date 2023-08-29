@@ -1,5 +1,4 @@
-import { Form, FormItemProps } from 'antd';
-import _ from 'lodash';
+import { FormItemProps } from 'antd';
 import React, { PropsWithChildren } from 'react';
 import './index.less';
 
@@ -12,8 +11,11 @@ export type VdFormItemProps = {
 };
 
 export type ExtendVdFormItemProps = {
+  /** formItem 的参数 */
   formItem?: FormItemProps;
+  /** 是否占据一行 */
   block?: boolean;
+  /** 是否显示值 */
   showValue?: boolean;
 };
 
