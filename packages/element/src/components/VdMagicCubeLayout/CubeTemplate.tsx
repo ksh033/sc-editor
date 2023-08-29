@@ -1,9 +1,9 @@
+import { CloseCircleFilled } from '@ant-design/icons';
 import { useSetState } from 'ahooks';
 import { Select } from 'antd';
 import classnames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import VdFormItem from '../VdFormItem';
-import VdIcon from '../VdIcon';
 import { MethodLength } from './index';
 import {
   baseWidth,
@@ -365,12 +365,12 @@ const CubeTemplate: React.FC<CubeTemplateProps> = (props) => {
                     )}
 
                     {templateId === MethodLength && (
-                      <VdIcon
-                        type="vd-closecircle"
+                      <CloseCircleFilled
+                        className="card-item-delete"
                         onClick={(e) => {
                           handleDeleteSubEntry(e);
                         }}
-                      ></VdIcon>
+                      />
                     )}
                   </div>
                 );
