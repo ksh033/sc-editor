@@ -2,7 +2,7 @@ import { CopyOutlined, HomeOutlined } from '@ant-design/icons';
 import { useEventListener } from 'ahooks';
 import { Button } from 'antd';
 import { observer } from 'mobx-react-lite';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { iframeId } from '../../index';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
@@ -69,6 +69,7 @@ const PreView: React.FC<any> = () => {
     const item: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName(
       'drag-item'
     ) as HTMLCollectionOf<HTMLElement>;
+    console.log('item', item);
     const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
 
     const iframeDocument =
@@ -85,7 +86,15 @@ const PreView: React.FC<any> = () => {
       ) as HTMLCollectionOf<HTMLElement>,
     });
   };
-  useIframeLoad() && init();
+  useIframeLoad();
+
+  useEffect(() => {
+    if (contentIFrameRef.current) {
+      setTimeout(() => {
+        init();
+      }, 100);
+    }
+  }, [contentIFrameRef.current]);
 
   return (
     <div className="preview-wrap">
