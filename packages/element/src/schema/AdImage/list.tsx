@@ -13,17 +13,17 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '一行一个',
-          value: '1',
+          value: 'single',
           icon: 'deco-icon-up2end',
         },
         {
           text: '轮播海报',
-          value: '2',
+          value: 'swiper',
           icon: 'deco-icon-carousel',
         },
         {
           text: '横向滑动',
-          value: '3',
+          value: 'scroll',
           icon: 'deco-icon-carousel',
         },
       ],
@@ -33,7 +33,7 @@ const propsConfig: VdProFormColumnsType[] = [
     valueType: 'divider',
   },
   {
-    dataIndex: 'sub_entry',
+    dataIndex: 'data',
     valueType: 'VdAddList',
     formItemProps: {
       rules: [
@@ -55,11 +55,11 @@ const propsConfig: VdProFormColumnsType[] = [
       addRecord: {
         image_id: '2129097438',
         image_url:
-          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
+          'https://img01.yzcdn.cn/upload_files/2020/07/10/FhpVJ83EAPCdYAf7C9mm903gbH1N.jpg!large.webp',
         image_thumb_url:
           'upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg!100x100.jpg',
-        image_width: 750,
-        image_height: 1106,
+        image_width: 800,
+        image_height: 800,
         link_url:
           'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
       },
@@ -138,12 +138,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '常规',
-          value: '1',
+          value: 'normal',
           icon: 'deco-icon-image-ad-normal',
         },
         {
           text: '投影',
-          value: '2',
+          value: 'shadow',
           icon: 'deco-icon-shadow',
         },
       ],
@@ -157,12 +157,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '填充',
-          value: '1',
+          value: 'cover',
           icon: 'deco-icon-img-cover',
         },
         {
           text: '周边留白',
-          value: '2',
+          value: 'contain',
           icon: 'deco-icon-img-contain',
         },
       ],
@@ -176,12 +176,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '直角',
-          value: '1',
+          value: 'straight',
           icon: 'deco-icon-corner-straight',
         },
         {
           text: '圆角',
-          value: '2',
+          value: 'round',
           icon: 'deco-icon-corner-round',
         },
       ],
@@ -192,6 +192,14 @@ const propsConfig: VdProFormColumnsType[] = [
     title: '页面边距',
     valueType: 'VdSlider',
     dataIndex: 'page_margin',
+    fieldProps: {
+      max: 30,
+    },
+  },
+  {
+    title: '图片边距',
+    valueType: 'VdSlider',
+    dataIndex: 'image_margin',
     fieldProps: {
       max: 30,
     },

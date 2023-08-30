@@ -37,34 +37,37 @@ const VdMagicCubeLayout: React.FC<VdMagicCubeLayoutProps> = (props) => {
     ...rest
   } = props;
   const templateId = rowData[templateDataIndex] || '0';
-  const templateItemMap = templateMap[templateId];
+
   const [subEntryIndex, setSubEntryIndex] = useState<number>(0);
 
   useLayoutEffect(() => {
-    let newList = getDefaultTemplateCompontents(templateId);
+    if (templateId != null) {
+      const templateItemMap = templateMap[templateId];
+      let newList = getDefaultTemplateCompontents(templateId);
 
-    if (Array.isArray(value.sub_entry) && value.sub_entry.length > 0) {
-      newList = newList.map((item, index) => {
-        const valitem: any = value.sub_entry[index];
-        if (valitem) {
-          return {
-            ...valitem,
-            x: item.x,
-            y: item.y,
-            width: item.width,
-            height: item.height,
-          };
-        }
-        return item;
+      if (Array.isArray(value.sub_entry) && value.sub_entry.length > 0) {
+        newList = newList.map((item, index) => {
+          const valitem: any = value.sub_entry[index];
+          if (valitem) {
+            return {
+              ...valitem,
+              x: item.x,
+              y: item.y,
+              width: item.width,
+              height: item.height,
+            };
+          }
+          return item;
+        });
+      }
+      console.log('templateId', templateId);
+      onChange?.({
+        width: templateItemMap.rowSpan,
+        height: templateItemMap.colSpan,
+        sub_entry: newList,
       });
     }
-    console.log('templateId', templateId);
-    onChange?.({
-      width: templateItemMap.rowSpan,
-      height: templateItemMap.colSpan,
-      sub_entry: newList,
-    });
-  }, [templateId]);
+  }, [templateId, JSON.stringify(value)]);
 
   const list = useMemo(() => {
     return Array.isArray(value.sub_entry) ? value.sub_entry : [];

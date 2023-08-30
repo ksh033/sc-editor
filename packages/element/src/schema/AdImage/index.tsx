@@ -13,13 +13,13 @@ class AdImage extends ParentSchemCmp {
       .map((it) => {
         const dataIndex = spellNamePath(it.dataIndex);
         if (
-          record['show_method'] !== '3' &&
+          record['show_method'] !== 'scroll' &&
           (dataIndex === 'count' || dataIndex === 'line')
         ) {
           return null;
         }
         if (
-          record['show_method'] !== '2' &&
+          record['show_method'] !== 'swiper' &&
           (dataIndex === 'indicator' || dataIndex === 'image_fill_style')
         ) {
           return null;
@@ -31,12 +31,12 @@ class AdImage extends ParentSchemCmp {
   }
   getInitialValue() {
     return {
-      show_method: '1',
-      image_style: '1',
-      corner_type: '1',
+      show_method: 'single',
+      image_style: 'normal',
+      corner_type: 'straight',
       indicator: '1',
       page_margin: 0,
-      image_fill_style: '1',
+      image_fill_style: 'cover',
       count: 4,
       sub_entry: [],
     };

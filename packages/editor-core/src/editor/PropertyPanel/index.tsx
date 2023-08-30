@@ -1,13 +1,12 @@
-import { observer } from 'mobx-react-lite';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Form } from 'antd';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import BaseForm from '../../components/BaseForm';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
+import { filterPageConfig } from '../../utils/common';
 import './index.less';
 import PanelList from './PanelList';
-import BaseForm from '../../components/BaseForm';
-import { filterPageConfig } from '../../utils/common';
-import { useUpdate } from 'ahooks';
 
 const PropertyPanel: React.FC<any> = (props) => {
   const { editorStore, comsStore } = useStore();
@@ -18,17 +17,19 @@ const PropertyPanel: React.FC<any> = (props) => {
     modalType === 'pageSet' ? editorStore.pageinfo : editorStore.currentEditCmp;
 
   const [form] = Form.useForm();
-  const update = useUpdate();
 
   const [values, setValues] = useState<any>(editCmp?.getFieldsValue() || {});
+  const oldEditCmoId = useRef<string>(editCmp?.id || '');
 
   const editCmpInfo = comsStore.getCompInfoByKey(editCmp?.cmpKey || '');
 
   useLayoutEffect(() => {
-    update();
-    const newValues = editCmp?.getFieldsValue() || {};
-    setValues(newValues);
-    form.setFieldsValue(newValues);
+    if (editCmp?.id) {
+      const newValues = editCmp?.getFieldsValue() || {};
+      setValues(newValues);
+      oldEditCmoId.current = editCmp?.id;
+      form.setFieldsValue(newValues);
+    }
   }, [editCmp?.id]);
 
   // 判读是否一进来就校验
@@ -79,6 +80,7 @@ const PropertyPanel: React.FC<any> = (props) => {
     const initialValues = editCmp?.getInitialValue
       ? editCmp?.getFieldsValue()
       : {};
+    console.log('initialValues', initialValues);
     if ((type === 'component' || type === 'pageSet') && editCmp) {
       const formProps = editCmp?.formProps || {};
       const baseProps = {
@@ -89,7 +91,8 @@ const PropertyPanel: React.FC<any> = (props) => {
         initialValues: initialValues,
         onValuesChange:
           type === 'component' ? onValuesChange : onPageValuesChange,
-        'data-row': values,
+        'data-row':
+          oldEditCmoId.current === editCmp?.id ? values : initialValues,
         ...formProps,
       };
 
