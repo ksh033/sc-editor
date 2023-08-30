@@ -74,7 +74,7 @@ const PreView: React.FC<any> = () => {
 
     const iframeDocument =
       iframe.contentDocument || iframe.contentWindow?.document;
-
+    console.log('iframeDocument', iframeDocument);
     Drag.init({
       iframeEle: iframe,
       dragEle: document.getElementById('drag-box'),
