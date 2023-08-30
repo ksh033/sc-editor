@@ -130,7 +130,7 @@ const PreView: React.FC<any> = () => {
           style={{
             width: '100%',
             border: 'none',
-            height: height + 'px',
+            height: '100%',
           }}
         ></iframe>
         {/* <div className="preview-head">
