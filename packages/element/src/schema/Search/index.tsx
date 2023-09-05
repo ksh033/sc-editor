@@ -1,7 +1,7 @@
-import { VdProFormColumnsType } from '../../interface';
-import { color } from '../../attrType/index';
 import { ProFormColumnsType } from '@ant-design/pro-form';
+import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 
 class Search extends ParentSchemCmp {
@@ -14,10 +14,14 @@ class Search extends ParentSchemCmp {
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
-          { text: '正常模式', value: '0', icon: 'deco-icon-search-normal' },
+          {
+            text: '正常模式',
+            value: 'normal',
+            icon: 'deco-icon-search-normal',
+          },
           {
             text: '滚动至顶部固定',
-            value: '1',
+            value: 'sticky',
             icon: 'deco-icon-search-sticky',
           },
         ],
@@ -29,10 +33,10 @@ class Search extends ParentSchemCmp {
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
-          { text: '常驻模式', value: '0', icon: 'deco-icon-search-fixed' },
+          { text: '常驻模式', value: 'fixed', icon: 'deco-icon-search-fixed' },
           {
             text: '上滑消失下滑出现',
-            value: '1',
+            value: 'scroll',
             icon: 'deco-icon-search-scroll',
           },
         ],
@@ -44,14 +48,14 @@ class Search extends ParentSchemCmp {
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
-          { text: '方形', value: '0', icon: 'deco-icon-search-square' },
-          { text: '圆形', value: '1', icon: 'deco-icon-search-round' },
+          { text: '方形', value: 'square', icon: 'deco-icon-search-square' },
+          { text: '圆形', value: 'round', icon: 'deco-icon-search-round' },
         ],
       },
     },
     {
       title: '文本位置',
-      dataIndex: 'text_align_method',
+      dataIndex: 'text_align',
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
@@ -63,7 +67,7 @@ class Search extends ParentSchemCmp {
     {
       title: '框体高度',
       valueType: 'VdSlider',
-      dataIndex: 'border_style_height',
+      dataIndex: 'height',
       fieldProps: {
         max: 60,
       },
@@ -112,14 +116,14 @@ class Search extends ParentSchemCmp {
   getInitialValue() {
     return {
       background_color: '#f9f9f9',
-      position_type: '0',
-      position_show_method: '0',
-      border_style_method: '0',
+      position_type: 'normal',
+      position_show_method: 'fixed',
+      border_style_method: 'round',
       border_style_color: '#fff',
       text_color: '#969799',
-      text_align_method: 'left',
+      text_align: 'left',
       show_search_component: '1',
-      border_style_height: 40,
+      height: 40,
     };
   }
 }

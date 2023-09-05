@@ -72,27 +72,30 @@ const PreView: React.FC<any> = () => {
     console.log('item', item);
     const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
 
-    const iframeDocument =
-      iframe.contentDocument || iframe.contentWindow?.document;
-    console.log('iframeDocument', iframeDocument);
-    Drag.init({
-      iframeEle: iframe,
-      dragEle: document.getElementById('drag-box'),
-      dragItem: item,
-      callback,
-      dropEle: iframeDocument?.getElementById('drop-box'),
-      dropEleItems: iframeDocument?.getElementsByClassName(
-        'drop-item'
-      ) as HTMLCollectionOf<HTMLElement>,
-    });
+    iframe.onload = function () {
+      console.log('加载成功回调');
+      const iframeDocument =
+        iframe.contentDocument || iframe.contentWindow?.document;
+      setTimeout(() => {
+        Drag.init({
+          iframeEle: iframe,
+          dragEle: document.getElementById('drag-box'),
+          dragItem: item,
+          callback,
+          dropEle: iframeDocument?.getElementById('drop-box'),
+          dropEleItems: iframeDocument?.getElementsByClassName(
+            'drop-item'
+          ) as HTMLCollectionOf<HTMLElement>,
+        });
+      }, 100);
+      console.log('iframeDocument', iframeDocument?.getElementById('drop-box'));
+    };
   };
   useIframeLoad();
 
   useEffect(() => {
     if (contentIFrameRef.current) {
-      setTimeout(() => {
-        init();
-      }, 100);
+      init();
     }
   }, [contentIFrameRef.current]);
 
@@ -126,6 +129,7 @@ const PreView: React.FC<any> = () => {
           id={iframeId}
           src={previewStore.iframeUrl}
           // sandbox="allow-scripts allow-same-origin allow-top-navigation allow-forms"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
           scrolling="auto"
           style={{
             width: '100%',
