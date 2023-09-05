@@ -69,6 +69,7 @@ class Search extends ParentSchemCmp {
       valueType: 'VdSlider',
       dataIndex: 'height',
       fieldProps: {
+        min: 28,
         max: 60,
       },
     },
@@ -103,7 +104,7 @@ class Search extends ParentSchemCmp {
       .map((it: any) => {
         const dataIndex = spellNamePath(it.dataIndex);
         if (
-          record['position_type'] === '0' &&
+          record['position_type'] === 'normal' &&
           dataIndex === 'position_show_method'
         ) {
           return null;
@@ -122,7 +123,6 @@ class Search extends ParentSchemCmp {
       border_style_color: '#fff',
       text_color: '#969799',
       text_align: 'left',
-      show_search_component: '1',
       height: 40,
     };
   }
