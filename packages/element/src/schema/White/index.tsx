@@ -1,7 +1,7 @@
-import { VdProFormColumnsType } from '../../interface';
-import { color } from '../../attrType/index';
 import { ProFormColumnsType } from '@ant-design/pro-form';
+import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 
 class White extends ParentSchemCmp {
@@ -21,7 +21,7 @@ class White extends ParentSchemCmp {
     },
     {
       title: '选择样式',
-      dataIndex: 'lineType',
+      dataIndex: 'line_type',
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
@@ -33,7 +33,7 @@ class White extends ParentSchemCmp {
     },
     {
       title: '左右边距',
-      dataIndex: 'hasPadding',
+      dataIndex: 'has_padding',
       valueType: 'VdRadioIcon',
       fieldProps: {
         options: [
@@ -56,6 +56,7 @@ class White extends ParentSchemCmp {
       dataIndex: 'height',
       fieldProps: {
         max: 100,
+        min: 8,
       },
     },
   ];
@@ -64,7 +65,7 @@ class White extends ParentSchemCmp {
     const newC: any[] = columns
       .map((it: any) => {
         const dataIndex = spellNamePath(it.dataIndex);
-        const whiteSet = new Set(['lineType', 'hasPadding', 'color']);
+        const whiteSet = new Set(['line_type', 'has_padding', 'color']);
         if (record['type'] === 'white' && whiteSet.has(dataIndex)) {
           return null;
         }
@@ -80,8 +81,8 @@ class White extends ParentSchemCmp {
     return {
       height: 30,
       type: 'white',
-      lineType: 'solid',
-      hasPadding: '0',
+      line_type: 'solid',
+      has_padding: '0',
       color: '#e5e5e5',
     };
   }
