@@ -1,4 +1,5 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
+import { SelectProps } from 'antd';
 import {
   color,
   date,
@@ -142,7 +143,7 @@ class Title extends ParentSchemCmp {
       newColumns.push(styleType);
     }
 
-    const styleTypeMap = {
+    const styleTypeMap: Record<string, string[]> = {
       old: [
         'title',
         'description',
@@ -163,8 +164,10 @@ class Title extends ParentSchemCmp {
         if (itemColumns) {
           if (record['styleType'] === 'old' && it === 'location') {
             if (itemColumns.fieldProps) {
-              let options = itemColumns.fieldProps['options'];
+              const fieldProps = itemColumns.fieldProps as SelectProps;
+              let options = fieldProps.options;
               options = Array.isArray(options) ? options : [];
+              // @ts-ignore
               itemColumns.fieldProps['options'] = options.filter(
                 (it: any) => it.value !== 'right'
               );

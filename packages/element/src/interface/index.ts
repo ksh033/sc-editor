@@ -1,4 +1,4 @@
-import type { FormInstance, ProFormColumnsType } from '@ant-design/pro-form';
+import type { ProFormColumnsType } from '@ant-design/pro-form';
 import React from 'react';
 import ParentSchemCmp from '../base/ParentSchemCmp';
 import { ComponentItemType } from './enum';

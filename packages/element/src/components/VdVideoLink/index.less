@@ -1,0 +1,33 @@
+.vd-video-link {
+  position: relative;
+  padding: 12px 0;
+
+  &-info {
+    position: relative;
+    margin-top: 6px;
+    color: #969799;
+    font-size: 12px;
+  }
+
+  &-video {
+    position: relative;
+    width: 344px;
+    height: 204px;
+    margin-top: 6px;
+    position: relative;
+    background-color: #000;
+
+    video {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: contain;
+      object-fit: contain;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+  }
+
+}

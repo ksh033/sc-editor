@@ -1,17 +1,16 @@
 import { Checkbox, CheckboxProps } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import _ from 'lodash';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 
 type VdRadioIconProps = Omit<CheckboxProps, 'onChange'> &
   ExtendVdFormItemProps & {
-    valueMap?: Record<any, string>;
+    valueMap?: Record<string, React.ReactNode>;
     onChange?: (val: string) => void;
     renderMsg?: () => React.ReactNode;
   };
 
-const defaultValueMap = {
+const defaultValueMap: Record<string, React.ReactNode> = {
   '1': '显示',
   '0': '不显示',
 };

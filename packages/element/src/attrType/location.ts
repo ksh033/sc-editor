@@ -1,6 +1,7 @@
+import { RadioProps } from 'antd';
 import { VdProFormColumnsType } from '../interface/index';
 
-const location: VdProFormColumnsType = {
+const location: VdProFormColumnsType<RadioProps> = {
   title: '显示位置',
   dataIndex: 'location',
   valueType: 'VdRadioIcon',

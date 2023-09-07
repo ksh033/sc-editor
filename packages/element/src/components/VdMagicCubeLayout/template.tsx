@@ -1,4 +1,3 @@
-import React from 'react';
 import { VdImgLinkState } from '../VdImgLink';
 
 export const designWidth = 750;
@@ -24,7 +23,7 @@ const baseTemplate = {
   isCustom: false,
 };
 
-export const templateMap = {
+export const templateMap: Record<string, any> = {
   '0': {
     rowSpan: 2,
     colSpan: 1,
@@ -49,7 +48,7 @@ export const templateMap = {
 export type TemplateId = keyof typeof templateMap;
 
 export const getDefaultTemplateCompontents = (
-  template_id: TemplateId,
+  template_id: TemplateId
 ): CompontentItem[] => {
   let compontents: CompontentItem[] = [];
   const mapitem = templateMap[template_id];

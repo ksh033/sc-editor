@@ -4,7 +4,9 @@ import React from 'react';
 import './Item.less';
 
 type ItemProps = {
-  record: FormListFieldData;
+  record: FormListFieldData & {
+    image_url?: string;
+  };
 };
 
 const Item: React.FC<ItemProps> = (props) => {

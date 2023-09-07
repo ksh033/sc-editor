@@ -1,18 +1,21 @@
 // vd 开头的组件 form.item nostyle 为 true
-import VdRadioIcon from './VdRadioIcon';
-import VdColor from './VdColor';
-import VdTabs from './VdTabs';
-import VdSlider from './VdSlider';
-import VdMagicCubeLayout from './VdMagicCubeLayout';
-import VdCheckBox from './VdCheckBox';
-import VdStyleRadio from './VdStyleRadio';
-import VdRadioGroup from './VdRadioGroup';
-import VdGoodsList from './VdGoodsList';
-import VdGoodsGroup from './VdGoodsGroup';
 import VdAddList from './VdAddList';
-import VdSelect from './VdSelect';
-import VdCouponSet from './VdCouponSet';
+import VdCheckBox from './VdCheckBox';
+import VdColor from './VdColor';
 import VdColorRadioGroup from './VdColorRadioGroup';
+import VdCouponSet from './VdCouponSet';
+import VdGoodsGroup from './VdGoodsGroup';
+import VdGoodsList from './VdGoodsList';
+import VdMagicCubeLayout from './VdMagicCubeLayout';
+import VdRadioGroup from './VdRadioGroup';
+import VdRadioIcon from './VdRadioIcon';
+import VdSelect from './VdSelect';
+import VdSlider from './VdSlider';
+import VdStyleRadio from './VdStyleRadio';
+import VdSwitch from './VdSwitch';
+import VdTabs from './VdTabs';
+import VdUpload from './VdUpload';
+import VdVideoLink from './VdVideoLink';
 
 export {
   VdRadioIcon,
@@ -29,4 +32,7 @@ export {
   VdSelect,
   VdCouponSet,
   VdColorRadioGroup,
+  VdSwitch,
+  VdUpload,
+  VdVideoLink,
 };

@@ -8,6 +8,7 @@ export type VdFormItemProps = {
   showValue?: boolean;
   block?: boolean;
   showFormItemTitle?: boolean;
+  styles?: React.CSSProperties;
 };
 
 export type ExtendVdFormItemProps = {
@@ -17,6 +18,7 @@ export type ExtendVdFormItemProps = {
   block?: boolean;
   /** 是否显示值 */
   showValue?: boolean;
+  styles?: React.CSSProperties;
 };
 
 const VdFormItem: React.FC<PropsWithChildren<VdFormItemProps>> = (props) => {
@@ -26,9 +28,11 @@ const VdFormItem: React.FC<PropsWithChildren<VdFormItemProps>> = (props) => {
     showValue = true,
     block = false,
     showFormItemTitle = true,
+    styles = {},
   } = props;
   return (
     <div
+      style={styles}
       className={
         block
           ? 'vd-component-warp vd-component-warp-block'

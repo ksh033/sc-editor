@@ -1,6 +1,6 @@
 import { color } from '../../attrType/index';
 import { VdProFormColumnsType } from '../../interface';
-import { imageRule, textImageRule, textRule } from './rules';
+import { textRule } from './rules';
 import TagItem from './TagItem';
 
 export const VdAddListProps = {
@@ -45,7 +45,7 @@ const propsConfig: VdProFormColumnsType[] = [
   {
     title: '添加标签',
     valueType: 'group',
-    fieldProps: { collapsible: true },
+    fieldProps: { collapsible: true, expandIconPosition: 'end' },
     columns: [
       {
         dataIndex: 'sub_entry',
@@ -89,7 +89,7 @@ const propsConfig: VdProFormColumnsType[] = [
   {
     title: '标签样式',
     valueType: 'group',
-    fieldProps: { collapsible: true },
+    fieldProps: { collapsible: true, expandIconPosition: 'end' },
     columns: [
       {
         title: '展示方式',

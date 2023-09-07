@@ -1,12 +1,9 @@
-import _ from 'lodash';
-import React, { useMemo } from 'react';
-import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import type { SketchPickerProps } from '@chenshuai2144/sketch-color';
 import { SketchPicker } from '@chenshuai2144/sketch-color';
+import { Button, Popover, PopoverProps, Space } from 'antd';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
-import { Button, PopoverProps, Space } from 'antd';
-import { ConfigProvider } from 'antd';
-import { Popover } from 'antd';
+import React from 'react';
+import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 
 export type VdColorProps = SketchPickerProps &
   ExtendVdFormItemProps & {
@@ -63,7 +60,10 @@ const VdColor: React.FC<VdColorProps> = (props) => {
   );
 
   return (
-    <VdFormItem formItem={formItem} valueName={color}>
+    <VdFormItem
+      formItem={formItem}
+      valueName={color === 'transparent' ? '透明色' : color}
+    >
       <Space>
         <Button type="link" onClick={handleClick}>
           重置

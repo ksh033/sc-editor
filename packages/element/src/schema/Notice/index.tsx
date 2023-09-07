@@ -1,6 +1,6 @@
-import { VdProFormColumnsType } from '../../interface';
 import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 
 class Notice extends ParentSchemCmp {
   cmpKey: string = 'Notice';
@@ -24,7 +24,7 @@ class Notice extends ParentSchemCmp {
     },
     {
       ...color,
-      dataIndex: 'bg_color',
+      dataIndex: 'background_color',
       title: '背景颜色',
       fieldProps: {
         defaultColor: '#fff8e9',
@@ -38,12 +38,68 @@ class Notice extends ParentSchemCmp {
         defaultColor: '#646566',
       },
     },
+    {
+      ...color,
+      dataIndex: 'card_background_color',
+      title: '卡片背景',
+      fieldProps: {
+        defaultColor: 'transparent',
+      },
+    },
+    {
+      dataIndex: 'corner_type',
+      title: '卡片倒角',
+      valueType: 'VdRadioIcon',
+      fieldProps: {
+        options: [
+          {
+            text: '直角',
+            value: 'straight',
+            icon: 'deco-icon-corner-straight',
+          },
+          {
+            text: '圆角',
+            value: 'round',
+            icon: 'deco-icon-corner-round',
+          },
+        ],
+      },
+    },
+
+    {
+      dataIndex: 'has_top_bottom_margin',
+      title: '上下边距',
+      valueType: 'VdRadioIcon',
+      fieldProps: {
+        options: [
+          {
+            text: '无边',
+            value: false,
+          },
+          {
+            text: '有边',
+            value: true,
+          },
+        ],
+      },
+    },
+    {
+      title: '页面边距',
+      valueType: 'VdSlider',
+      dataIndex: 'page_margin',
+      fieldProps: {
+        max: 30,
+      },
+    },
   ];
   getInitialValue() {
     return {
       content: '',
-      bg_color: '#fff8e9',
+      background_color: '#fff8e9',
       color: '#646566',
+      page_margin: 16,
+      corner_type: 'round',
+      has_top_bottom_margin: true,
     };
   }
 }
