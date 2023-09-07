@@ -15,6 +15,9 @@ class Video extends ParentSchemCmp {
         style: { marginBottom: 0 },
       },
       fieldProps: {
+        styles: {
+          padding: '12px 0',
+        },
         showValue: false,
         options: [
           { text: '选择视频', value: 'select' },
@@ -24,17 +27,19 @@ class Video extends ParentSchemCmp {
     },
     {
       title: '视频地址',
-      dataIndex: 'sub_list',
+      dataIndex: 'video_obj',
       valueType: 'VdUpload',
       formItemProps: {
         help: '建议上传清晰度在720P以上的视频',
         rules: [
           {
-            type: 'array',
             required: true,
             message: '请添加视频',
           },
         ],
+      },
+      fieldProps: {
+        accept: 'video/*',
       },
     },
     {
@@ -64,8 +69,8 @@ class Video extends ParentSchemCmp {
         },
         showValue: false,
         options: [
-          { text: '默认', value: 'default' },
-          { text: '选择图片', value: 'select' },
+          { text: '默认', value: false },
+          { text: '选择图片', value: true },
         ],
       },
     },
@@ -151,13 +156,12 @@ class Video extends ParentSchemCmp {
         if (record['type'] === 'select' && dataIndex === 'remote_url') {
           return null;
         }
-        if (record['type'] === 'link' && dataIndex === 'sub_list') {
+        if (record['type'] === 'link' && dataIndex === 'video_obj') {
           return null;
         }
-        if (record['show_cover'] === 'default' && dataIndex === 'cover_image') {
+        if (record['show_cover'] === false && dataIndex === 'cover_image') {
           return null;
         }
-
         return it;
       })
       .filter((it) => it != null);
@@ -166,7 +170,7 @@ class Video extends ParentSchemCmp {
   getInitialValue() {
     return {
       height: 30,
-      show_cover: 'default',
+      show_cover: false,
       type: 'select',
       show_progress: true,
       autoplay: true,

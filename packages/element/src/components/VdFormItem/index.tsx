@@ -1,4 +1,4 @@
-import { FormItemProps } from 'antd';
+import type { FormItemProps } from 'antd';
 import React, { PropsWithChildren } from 'react';
 import './index.less';
 

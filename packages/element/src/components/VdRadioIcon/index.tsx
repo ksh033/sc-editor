@@ -31,6 +31,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
     lineBlock = false,
     showValue = true,
     type = 'button',
+    styles = {},
   } = props;
   const valueMap = useMemo(() => {
     const map = new Map();
@@ -154,6 +155,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
       valueName={valueMap.get(value) ? valueMap.get(value) : ''}
       showValue={showValue}
       block={block}
+      styles={styles}
     >
       <div className="deco-radio-button-group">
         {type === 'button' ? buttonRender(options) : imageRender(options)}
