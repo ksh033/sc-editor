@@ -1,32 +1,22 @@
-import { Button, Input, Select, Space, Switch } from 'antd';
-import React, { useEffect, useState } from 'react';
-import useMergedState from 'rc-util/es/hooks/useMergedState';
-import './index.less';
 import { useUpdateEffect } from 'ahooks';
-// import { BsUpload } from '@micro-frame/sc-runtime';
-
-export type TagItemState = {
-  title?: string;
-  position_component?: string;
-  image_width?: number;
-  image_height?: number;
-  image_url?: string;
-  link_url?: string;
-  use_link?: boolean;
-  image_id?: string;
-  image_thumb_url?: string;
-};
+import { Button, Input, Select, Space, Switch } from 'antd';
+import type { DefaultOptionType } from 'antd/es/select';
+import useMergedState from 'rc-util/es/hooks/useMergedState';
+import React, { useState } from 'react';
+import type { SubEntryItem } from '../index';
+import './index.less';
 
 export type TagItemProps = {
   type?: 'text' | 'imageText' | 'image';
-  value?: TagItemState;
-  onChange?: (val: TagItemState) => void;
+  value?: SubEntryItem;
+  onChange?: (val: SubEntryItem) => void;
+  options?: DefaultOptionType[];
 };
 
 const TagItem: React.FC<TagItemProps> = (props) => {
-  const { type = 'text' } = props;
+  const { type = 'text', options = [] } = props;
 
-  const [value, setValue] = useMergedState(
+  const [value, setValue] = useMergedState<SubEntryItem>(
     {},
     {
       value: props.value,
@@ -34,22 +24,17 @@ const TagItem: React.FC<TagItemProps> = (props) => {
     }
   );
   const [switchVal, setSwitchVal] = useState<boolean>(
-    Boolean(value?.use_link) || false
+    Boolean(value?.useLink) || false
   );
 
   useUpdateEffect(() => {
-    setSwitchVal(Boolean(value?.use_link) || false);
-  }, [value?.use_link]);
+    setSwitchVal(Boolean(value?.useLink) || false);
+  }, [value?.useLink]);
 
   const onUploadChange = (val: any) => {
     const newVal = value || {};
     setValue({
       ...newVal,
-      image_id: val.fileId,
-      image_url: val.url,
-      image_thumb_url: val.thumb_url,
-      image_width: val.width,
-      image_height: val.height,
     });
   };
 
@@ -72,7 +57,7 @@ const TagItem: React.FC<TagItemProps> = (props) => {
     const newVal = value || {};
     setValue({
       ...newVal,
-      position_component: val,
+      cmpId: val,
     });
   };
 
@@ -80,7 +65,7 @@ const TagItem: React.FC<TagItemProps> = (props) => {
     const newVal = value || {};
     setValue({
       ...newVal,
-      use_link: val,
+      useLink: val,
     });
   };
 
@@ -88,7 +73,7 @@ const TagItem: React.FC<TagItemProps> = (props) => {
     <div className="tag-item-warp">
       {type === 'image' || type === 'imageText' ? (
         <div className="has-choosed-image">
-          <img src={value?.image_url} className="tag-item-image"></img>
+          <img src={value?.imageUrl} className="tag-item-image"></img>
         </div>
       ) : null}
 
@@ -124,7 +109,8 @@ const TagItem: React.FC<TagItemProps> = (props) => {
               <Select
                 className="tag-item-cmp"
                 onChange={onPositionComponent}
-                value={value?.position_component}
+                value={value?.cmpId}
+                options={options}
                 allowClear
               ></Select>
             </Space>

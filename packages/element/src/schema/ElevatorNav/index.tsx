@@ -1,6 +1,6 @@
-import { VdProFormColumnsType } from '../../interface';
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 import { imageRule, textImageRule, textRule } from './rules';
@@ -12,7 +12,7 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
         it.columns = getPropsConfig(it.columns, record);
       } else {
         const dataIndex = spellNamePath(it.dataIndex);
-        if (record['show_method'] === '0' && dataIndex === 'sub_entry') {
+        if (record['show_method'] === 'text' && dataIndex === 'sub_entry') {
           return {
             ...it,
             formItemProps: {
@@ -27,7 +27,10 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
             },
           };
         }
-        if (record['show_method'] === '1' && dataIndex === 'sub_entry') {
+        if (
+          record['show_method'] === 'imageText' &&
+          dataIndex === 'sub_entry'
+        ) {
           return {
             ...it,
             formItemProps: {
@@ -42,7 +45,7 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
             },
           };
         }
-        if (record['show_method'] === '2' && dataIndex === 'sub_entry') {
+        if (record['show_method'] === 'image' && dataIndex === 'sub_entry') {
           return {
             ...it,
             formItemProps: {
@@ -71,43 +74,14 @@ class ElevatorNav extends ParentSchemCmp {
   getPropsConfig = getPropsConfig;
   getInitialValue() {
     return {
-      show_method: '0',
-      slide_setting: '1',
-      sub_entry: [
-        {
-          key: '0',
-          title: '导航二',
-          position_component: '66b8cb3a-9b6c-4427-a481-0724949421df',
-          image_width: 750,
-          image_height: 1037,
-          image_url:
-            'https://img01.yzcdn.cn/upload_files/2020/07/10/FgHKhnGPpiiiUC5xyIzfqdLEQMXo.jpg',
-          link_url: null,
-          use_link: '',
-          image_id: '2129097636',
-          image_thumb_url:
-            'upload_files/2020/07/10/FgHKhnGPpiiiUC5xyIzfqdLEQMXo.jpg!100x100.jpg',
-        },
-        {
-          key: '1',
-          title: '导航四',
-          position_component: '66b8cb3a-9b6c-4427-a481-0724949421df',
-          image_width: 750,
-          image_height: 1106,
-          image_url:
-            'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
-          link_url: null,
-          use_link: '',
-          image_id: '2129097438',
-          image_thumb_url:
-            'upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg!100x100.jpg',
-        },
-      ],
-      navigation_type: '3',
+      show_method: 'text',
+      slide_setting: 'scroll',
+      sub_entry: [],
+      navigation_type: 'underline',
       font_default_color: '#969799',
       font_active_color: '#323233',
       background_color: '#FFFFFF',
-      type_color: '#EE0A24',
+      border_color: '#EE0A24',
     };
   }
 }

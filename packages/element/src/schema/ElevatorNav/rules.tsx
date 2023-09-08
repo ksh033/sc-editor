@@ -6,7 +6,7 @@ const textRule: any = {
       let nolink = false;
       let noTitle = false;
       value.forEach((it: any) => {
-        if (it['position_component'] == null && nolink === false) {
+        if (it['cmpId'] == null && nolink === false) {
           nolink = true;
         }
         if ((it['title'] == null || it['title'] == '') && noTitle === false) {
@@ -31,10 +31,10 @@ const textImageRule: any = {
       let noImage = false;
       let nolink = false;
       value.forEach((it: any) => {
-        if (it['image_url'] == null && noImage === false) {
+        if (it['imageUrl'] == null && noImage === false) {
           noImage = true;
         }
-        if (it['position_component'] == null && nolink === false) {
+        if (it['cmpId'] == null && nolink === false) {
           nolink = true;
         }
       });
@@ -58,15 +58,15 @@ const imageRule: any = {
       let noLink = false;
       let noCmp = false;
       value.forEach((it: any) => {
-        if (it['image_url'] == null && noImage === false) {
+        if (it['imageUrl'] == null && noImage === false) {
           noImage = true;
         }
-        if (Boolean(it['use_link'])) {
+        if (Boolean(it['useLink'])) {
           if (it['link_url'] == null && noLink === false) {
             noLink = true;
           }
         } else {
-          if (it['position_component'] == null && noCmp === false) {
+          if (it['cmpId'] == null && noCmp === false) {
             noCmp = true;
           }
         }

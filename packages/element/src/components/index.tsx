@@ -1,4 +1,5 @@
 // vd 开头的组件 form.item nostyle 为 true
+import VdAddElevatorNav from './VdAddElevatorNav';
 import VdAddList from './VdAddList';
 import VdCheckBox from './VdCheckBox';
 import VdColor from './VdColor';
@@ -35,4 +36,5 @@ export {
   VdSwitch,
   VdUpload,
   VdVideoLink,
+  VdAddElevatorNav,
 };

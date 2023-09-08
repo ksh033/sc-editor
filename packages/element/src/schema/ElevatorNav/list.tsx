@@ -1,16 +1,6 @@
 import { color } from '../../attrType/index';
 import { VdProFormColumnsType } from '../../interface';
 import { textRule } from './rules';
-import TagItem from './TagItem';
-
-export const VdAddListProps = {
-  title: '最多添加20个标签，鼠标拖拽调整标签顺序。图片建议尺寸100*100像素',
-  addBtnText: (list: any[]) => {
-    return `添加标签（${list.length}/20）`;
-  },
-  max: 20,
-  addRecord: {},
-};
 
 const propsConfig: VdProFormColumnsType[] = [
   {
@@ -23,17 +13,17 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '文字型',
-          value: '0',
+          value: 'text',
           icon: 'deco-icon-font-double',
         },
         {
           text: '图文型',
-          value: '1',
+          value: 'imageText',
           icon: 'deco-icon-img-text',
         },
         {
           text: '图片型',
-          value: '2',
+          value: 'image',
           icon: 'deco-icon-img',
         },
       ],
@@ -49,7 +39,7 @@ const propsConfig: VdProFormColumnsType[] = [
     columns: [
       {
         dataIndex: 'sub_entry',
-        valueType: 'VdAddList',
+        valueType: 'VdAddElevatorNav',
         formItemProps: {
           rules: [
             {
@@ -61,24 +51,6 @@ const propsConfig: VdProFormColumnsType[] = [
               ...textRule,
             },
           ],
-        },
-        fieldProps: (form) => {
-          let type = 'text';
-          if (form.getFieldValue('show_method') === '0') {
-            type = 'text';
-          }
-          if (form.getFieldValue('show_method') === '1') {
-            type = 'imageText';
-          }
-          if (form.getFieldValue('show_method') === '2') {
-            type = 'image';
-          }
-          return {
-            ...VdAddListProps,
-            renderItem: (props: any) => {
-              return <TagItem {...props} type={type}></TagItem>;
-            },
-          };
         },
       },
     ],
@@ -100,11 +72,11 @@ const propsConfig: VdProFormColumnsType[] = [
           options: [
             {
               text: '下拉展示',
-              value: '0',
+              value: 'select',
             },
             {
               text: '横向滚动',
-              value: '1',
+              value: 'scroll',
             },
           ],
         },
@@ -118,19 +90,19 @@ const propsConfig: VdProFormColumnsType[] = [
           options: [
             {
               text: '背景模式',
-              value: '0',
+              value: 'background',
             },
             {
               text: '圆框',
-              value: '1',
+              value: 'round',
             },
             {
               text: '方框',
-              value: '2',
+              value: 'box',
             },
             {
               text: '下划线',
-              value: '3',
+              value: 'underline',
             },
           ],
         },
@@ -153,7 +125,7 @@ const propsConfig: VdProFormColumnsType[] = [
       },
       {
         ...color,
-        dataIndex: 'type_color',
+        dataIndex: 'border_color',
         title: '圆框颜色',
         fieldProps: {
           defaultColor: '#EE0A24',

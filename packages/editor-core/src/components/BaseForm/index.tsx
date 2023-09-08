@@ -2,12 +2,13 @@ import { BetaSchemaForm } from '@ant-design/pro-form';
 import ProProvider from '@ant-design/pro-provider';
 import React, { useContext } from 'react';
 // @ts-ignore
-import { ProRenderFieldPropsType } from '@ant-design/pro-utils';
+import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
 import * as Components from '@sceditor/element';
 import { valueTypelist } from '../../index';
 
 const BaseForm: React.FC<any> = (props) => {
   const rowData = props['data-row'] || {};
+  const editList = Array.isArray(props['data-list']) ? props['data-list'] : [];
   const values = useContext(ProProvider);
 
   const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
@@ -22,6 +23,8 @@ const BaseForm: React.FC<any> = (props) => {
             {...rprops}
             {...rprops?.fieldProps}
             rowData={rowData}
+            editList={editList}
+            id={props.id}
           />
         );
       },

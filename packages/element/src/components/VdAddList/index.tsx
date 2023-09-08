@@ -1,35 +1,43 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { arrayMoveMutable } from 'array-move';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
-import React from 'react';
-import { VdFormItemProps } from '../VdFormItem';
+import React, { useMemo } from 'react';
 import {
   SortableContainer,
   SortableElement,
   SortEnd,
 } from 'react-sortable-hoc';
-import { arrayMoveMutable } from 'array-move';
+import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
 
 type typeNode = 'tag' | 'card';
 
-type VdAddListProps = VdFormItemProps & {
+type VdAddListProps<T> = VdFormItemProps & {
   addBtnText?: string | ((fields: any[]) => React.ReactNode);
   type?: typeNode;
   max?: number;
   groupTitle?: () => React.ReactNode;
   addRecord?: any;
+  /** 子项目格式化 */
   renderItem?: (it: any, index: number) => React.ReactNode;
-  value?: any[];
-  onChange?: (list: any[]) => void;
+  value?: T[];
+  onChange?: (list: T[]) => void;
   rowKey?: string;
   title?: string | React.ReactNode;
   content?: string | React.ReactNode;
 };
 
 const SortableItem: any = SortableElement((props: any) => {
-  const { it, index, getRowKey, onHandleDetele, renderItem, onItemChange } =
-    props;
+  const {
+    it,
+    index,
+    getRowKey,
+    onHandleDetele,
+    renderItem,
+    onItemChange,
+    editList = [],
+  } = props;
 
   const key = it.key || index;
   return (
@@ -46,6 +54,7 @@ const SortableItem: any = SortableElement((props: any) => {
           ? renderItem({
               value: it,
               onChange: onItemChange,
+              editList,
             })
           : null}
       </div>
@@ -57,7 +66,7 @@ const SortableList: any = SortableContainer((props: any) => {
   return <div>{props.children}</div>;
 });
 
-const VdAddList: React.FC<VdAddListProps> = (props) => {
+function VdAddList<T>(props: VdAddListProps<T>) {
   const {
     addBtnText = '新增',
     max = 999,
@@ -70,6 +79,10 @@ const VdAddList: React.FC<VdAddListProps> = (props) => {
     content,
     title,
   } = props;
+
+  const editList = useMemo(() => {
+    return props.editList;
+  }, [props.editList]);
 
   const getRowKey = React.useMemo<any>(() => {
     if (typeof rowKey === 'function') {
@@ -111,7 +124,7 @@ const VdAddList: React.FC<VdAddListProps> = (props) => {
     if (Array.isArray(list)) {
       const newList = JSON.parse(JSON.stringify(list));
       const index = newList.findIndex(
-        (it: any, index: number) => getRowKey(it, index) === getRowKey(record),
+        (it: any, index: number) => getRowKey(it, index) === getRowKey(record)
       );
       console.log(record);
       newList.splice(index, 1, record);
@@ -183,6 +196,7 @@ const VdAddList: React.FC<VdAddListProps> = (props) => {
                       index={index}
                       it={it}
                       getRowKey={getRowKey}
+                      editList={editList}
                       onHandleDetele={onHandleDetele}
                       renderItem={renderItem}
                       onItemChange={onItemChange}
@@ -208,6 +222,6 @@ const VdAddList: React.FC<VdAddListProps> = (props) => {
       </div>
     </>
   );
-};
+}
 
 export default VdAddList;

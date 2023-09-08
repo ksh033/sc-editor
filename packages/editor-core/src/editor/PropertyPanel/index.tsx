@@ -13,6 +13,10 @@ const PropertyPanel: React.FC<any> = (props) => {
 
   const modalType = editorStore.modalType;
 
+  const editList = editorStore.editList;
+
+  console.log('editList', editList);
+
   const editCmp =
     modalType === 'pageSet' ? editorStore.pageinfo : editorStore.currentEditCmp;
 
@@ -89,6 +93,7 @@ const PropertyPanel: React.FC<any> = (props) => {
         columns: columns,
         submitter: false,
         initialValues: initialValues,
+        'data-list': Array.from(editList),
         onValuesChange:
           type === 'component' ? onValuesChange : onPageValuesChange,
         'data-row':
