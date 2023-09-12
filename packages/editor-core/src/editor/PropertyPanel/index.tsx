@@ -114,7 +114,7 @@ const PropertyPanel: React.FC<any> = (props) => {
   };
 
   return (
-    <div className="right-wrapper">
+    <div className="right-wrapper" id="edit-property">
       <div className="deco-editor-wrap">
         <div className="deco-component-title">
           <div className="deco-component-title__header">

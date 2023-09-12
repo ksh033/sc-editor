@@ -1,12 +1,12 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
+import { useDebounceFn } from 'ahooks';
 import { Button } from 'antd';
-import { arrayMoveMutable } from 'array-move';
-import useMergedState from 'rc-util/es/hooks/useMergedState';
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
+import type { SortEnd } from 'react-sortable-hoc';
 import {
+  arrayMove,
   SortableContainer,
   SortableElement,
-  SortEnd,
 } from 'react-sortable-hoc';
 import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
@@ -29,9 +29,10 @@ type VdAddListProps<T> = VdFormItemProps & {
 };
 
 const SortableItem: any = SortableElement((props: any) => {
+  console.log('SortableItem', props);
   const {
     it,
-    index,
+    idx,
     getRowKey,
     onHandleDetele,
     renderItem,
@@ -39,31 +40,27 @@ const SortableItem: any = SortableElement((props: any) => {
     editList = [],
   } = props;
 
-  const key = it.key || index;
   return (
-    <div>
-      <div className="add-list-item" key={key}>
-        <CloseCircleFilled
-          className="card-item__delete"
-          key={`close-${key}`}
-          onClick={() => {
-            onHandleDetele(getRowKey(it, index));
-          }}
-        />
-        {renderItem
-          ? renderItem({
-              value: it,
-              onChange: onItemChange,
-              editList,
-            })
-          : null}
-      </div>
+    <div className="vd-add-list-item">
+      <CloseCircleFilled
+        className="vd-add-list-item__delete"
+        onClick={() => {
+          onHandleDetele(getRowKey(it, idx));
+        }}
+      />
+      {renderItem
+        ? renderItem({
+            value: it,
+            onChange: onItemChange,
+            editList,
+          })
+        : null}
     </div>
   );
 });
 
-const SortableList: any = SortableContainer((props: any) => {
-  return <div>{props.children}</div>;
+const SLortableContainer = SortableContainer<any>(({ children }: any) => {
+  return <div>{children}</div>;
 });
 
 function VdAddList<T>(props: VdAddListProps<T>) {
@@ -80,6 +77,8 @@ function VdAddList<T>(props: VdAddListProps<T>) {
     title,
   } = props;
 
+  const ref = useRef<HTMLDivElement>(null);
+
   const editList = useMemo(() => {
     return props.editList;
   }, [props.editList]);
@@ -92,21 +91,11 @@ function VdAddList<T>(props: VdAddListProps<T>) {
       (record as any)?.[rowKey as string] ?? index;
   }, [rowKey]);
 
-  const [list, setList] = useMergedState<any[]>(value || [], {
-    value: value || [],
-    onChange: onChange,
-    postState(val) {
-      return val.map((it, index: number) => {
-        if (it.key) {
-          return it;
-        }
-        return {
-          ...it,
-          key: index + '',
-        };
-      });
-    },
-  });
+  const list = value;
+
+  const setList = (li: any[]) => {
+    onChange?.(li);
+  };
 
   const handleAddClick = (record: any) => {
     if (Array.isArray(list) && list.length < max) {
@@ -126,11 +115,15 @@ function VdAddList<T>(props: VdAddListProps<T>) {
       const index = newList.findIndex(
         (it: any, index: number) => getRowKey(it, index) === getRowKey(record)
       );
-      console.log(record);
+      console.log('onItemChange', record);
       newList.splice(index, 1, record);
       setList(newList);
     }
   };
+
+  const { run } = useDebounceFn(onItemChange, {
+    wait: 200,
+  });
 
   const onHandleDetele = (key: string) => {
     if (Array.isArray(list)) {
@@ -141,12 +134,12 @@ function VdAddList<T>(props: VdAddListProps<T>) {
 
   const defaultGroupTitle = () => {
     return (
-      <div className="heard-group-title">
-        <div className="heard-title-content">
-          <div className="heard-title-label">{title}</div>
+      <div className="vd-add-list-heard">
+        <div className="vd-add-list-heard-content">
+          <div className="vd-add-list-heard-label">{title}</div>
           {content ? (
             <div
-              className="heard-title-label"
+              className="vd-add-list-heard-label"
               style={{ marginTop: '10px', color: ' #969799' }}
             >
               {content}
@@ -158,9 +151,9 @@ function VdAddList<T>(props: VdAddListProps<T>) {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
-    const newList = JSON.parse(JSON.stringify(list));
-    arrayMoveMutable(newList, oldIndex, newIndex);
-    console.log(newList);
+    let newList = JSON.parse(JSON.stringify(list));
+    newList = arrayMove(newList, oldIndex, newIndex);
+    console.log('onSortEnd', newList);
     setList(newList);
   };
 
@@ -170,54 +163,51 @@ function VdAddList<T>(props: VdAddListProps<T>) {
     customTitle = defaultGroupTitle();
   }
 
+  const container = document.getElementById('edit-property');
+
   return (
     <>
-      <div className="add-list--bg-colored">
+      <div className="vd-add-list" ref={ref}>
         {customTitle !== null ? (
-          <div className="add-list-title" key="title">
+          <div className="vd-add-list-title" key="title">
             {customTitle}
           </div>
         ) : null}
         <div
-          className="add-list-content"
+          className="vd-add-list-content"
           style={{ marginTop: customTitle == null ? '0' : '12px' }}
         >
-          <div className="deco-goods-list">
-            <SortableList
-              onSortEnd={onSortEnd}
-              helperClass="sortable-list-tab"
-              distance={12}
+          <SLortableContainer
+            onSortEnd={onSortEnd}
+            helperClass="sortable-list-tab"
+          >
+            {list.map((items, index) => (
+              <React.Fragment key={index}>
+                <SortableItem
+                  key={`item-${index}`}
+                  index={index}
+                  it={items}
+                  getRowKey={getRowKey}
+                  editList={editList}
+                  onHandleDetele={onHandleDetele}
+                  renderItem={renderItem}
+                  onItemChange={run}
+                />
+              </React.Fragment>
+            ))}
+          </SLortableContainer>
+          {list.length < max ? (
+            <Button
+              ghost
+              key="addbtn"
+              type="primary"
+              onClick={() => handleAddClick(addRecord)}
+              block
+              icon={<PlusOutlined />}
             >
-              {list.map((it: any, index: number) => {
-                return (
-                  <div key={index}>
-                    <SortableItem
-                      key={`item-${index}`}
-                      index={index}
-                      it={it}
-                      getRowKey={getRowKey}
-                      editList={editList}
-                      onHandleDetele={onHandleDetele}
-                      renderItem={renderItem}
-                      onItemChange={onItemChange}
-                    />
-                  </div>
-                );
-              })}
-            </SortableList>
-            {list.length < max ? (
-              <Button
-                ghost
-                key="addbtn"
-                type="primary"
-                onClick={() => handleAddClick(addRecord)}
-                block
-                icon={<PlusOutlined />}
-              >
-                {typeof addBtnText === 'string' ? addBtnText : addBtnText(list)}
-              </Button>
-            ) : null}
-          </div>
+              {typeof addBtnText === 'string' ? addBtnText : addBtnText(list)}
+            </Button>
+          ) : null}
         </div>
       </div>
     </>

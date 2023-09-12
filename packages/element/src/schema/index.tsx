@@ -1,19 +1,19 @@
 import { ClassType, CompsClassGroup, CompsGroup } from '../interface';
 
-import MagicCube from './MagicCube';
-import PageInfo from './PageInfo';
-import Goods from './Goods';
 import AdImage from './AdImage';
-import ElevatorNav from './ElevatorNav';
-import CrowdImage from './CrowdImage';
-import ImageTextNav from './ImageTextNav';
-import White from './White';
-import Search from './Search';
-import Store from './Store';
-import Notice from './Notice';
-import Video from './VideoCmp';
 import Coupon from './Coupon';
+import CrowdImage from './CrowdImage';
+import ElevatorNav from './ElevatorNav';
+import EnterShop from './EnterShop';
+import Goods from './Goods';
+import ImageTextNav from './ImageTextNav';
+import MagicCube from './MagicCube';
+import Notice from './Notice';
+import PageInfo from './PageInfo';
 import Title from './PTitle';
+import Search from './Search';
+import Video from './VideoCmp';
+import White from './White';
 
 const BaseCompClassGroup: CompsClassGroup[] = [
   {
@@ -29,7 +29,7 @@ const BaseCompClassGroup: CompsClassGroup[] = [
       MagicCube,
       White,
       Search,
-      Store,
+      EnterShop,
       Notice,
       Video,
       // NearbyShop,

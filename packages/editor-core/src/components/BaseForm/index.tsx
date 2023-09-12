@@ -3,6 +3,7 @@ import ProProvider from '@ant-design/pro-provider';
 import React, { useContext } from 'react';
 // @ts-ignore
 import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
+// @ts-ignore
 import * as Components from '@sceditor/element';
 import { valueTypelist } from '../../index';
 

@@ -1,11 +1,12 @@
 import { VdProFormColumnsType } from '../../interface';
 import Item from './Item';
 
-const propsConfig: VdProFormColumnsType[] = [
+const propsConfig: VdProFormColumnsType<any>[] = [
   {
     dataIndex: 'show_method',
     valueType: 'VdRadioIcon',
     fieldProps: {
+      // @ts-ignore
       block: true,
       lineBlock: true,
       type: 'image',

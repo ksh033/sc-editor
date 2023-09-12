@@ -12,7 +12,7 @@ type VdRadioOption = {
   fontSize?: string | number;
 };
 
-type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
+export type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
   ExtendVdFormItemProps & {
     lineBlock?: boolean;
     /** button 按钮模式  image 图片模式*/

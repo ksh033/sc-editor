@@ -1,8 +1,8 @@
-import { VdProFormColumnsType } from '../../interface';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
 
-class Store extends ParentSchemCmp {
-  cmpKey: string = 'Store';
+class EnterShop extends ParentSchemCmp {
+  cmpKey: string = 'EnterShop';
   cmpName: string = '进入店铺';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -20,13 +20,13 @@ class Store extends ParentSchemCmp {
   }
 }
 
-Store.info = {
+EnterShop.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fi8Zam5inptsK9I4E2TDKsFoZCNq.png',
   name: '进入店铺',
-  cmpKey: 'Store',
+  cmpKey: 'EnterShop',
   maxNum: 1,
   usedNum: 0,
   status: '',
 };
 
-export default Store;
+export default EnterShop;

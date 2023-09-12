@@ -69,7 +69,6 @@ const PreView: React.FC<any> = () => {
     const item: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName(
       'drag-item'
     ) as HTMLCollectionOf<HTMLElement>;
-    console.log('item', item);
     const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
 
     iframe.onload = function () {

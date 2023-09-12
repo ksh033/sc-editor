@@ -59,7 +59,7 @@ const propsConfig: VdProFormColumnsType[] = [
     valueType: 'divider',
   },
   {
-    title: '标签样式',
+    title: '更多设置',
     valueType: 'group',
     fieldProps: { collapsible: true, expandIconPosition: 'end' },
     columns: [
