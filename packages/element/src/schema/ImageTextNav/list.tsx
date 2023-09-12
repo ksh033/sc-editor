@@ -1,6 +1,6 @@
-import { VdProFormColumnsType } from '../../interface';
 import { color } from '../../attrType/index';
 import VdImgLink from '../../components/VdImgLink';
+import { VdProFormColumnsType } from '../../interface';
 
 export const VdAddListProps = {
   title: '最多添加 10 个导航，拖动选中的导航可对其排序',
@@ -45,16 +45,16 @@ const propsConfig: VdProFormColumnsType[] = [
                   noImage = true;
                 }
                 if (
-                  (it['link_title'] == null || it['link_title'] == '') &&
+                  (it['title'] == null || it['title'] == '') &&
                   noTitle === false
                 ) {
                   noTitle = true;
                 }
               });
-              if (show_method == '1' && noImage) {
+              if (show_method == 'imageText' && noImage) {
                 callback('请选择一张图片');
               }
-              if (show_method == '2' && noTitle) {
+              if (show_method == 'text' && noTitle) {
                 callback('标题不能为空');
               }
             }
@@ -64,7 +64,7 @@ const propsConfig: VdProFormColumnsType[] = [
       ],
     },
     fieldProps: (form) => {
-      if (form.getFieldValue('show_method') === '2') {
+      if (form.getFieldValue('show_method') === 'text') {
         return {
           ...VdAddListProps,
           renderItem: (props: any) => {
@@ -91,8 +91,8 @@ const propsConfig: VdProFormColumnsType[] = [
     },
     fieldProps: {
       options: [
-        { value: '1', label: '图文导航' },
-        { value: '2', label: '文字导航' },
+        { value: 'imageText', label: '图文导航' },
+        { value: 'text', label: '文字导航' },
       ],
     },
   },
@@ -104,12 +104,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '固定',
-          value: '1',
+          value: 'nowrap',
           icon: 'deco-icon-fixed',
         },
         {
           text: '横向滑动',
-          value: '2',
+          value: 'scroll',
           icon: 'deco-icon-scroll',
         },
       ],
@@ -162,7 +162,7 @@ const propsConfig: VdProFormColumnsType[] = [
   },
   {
     ...color,
-    dataIndex: 'color',
+    dataIndex: 'font_color',
     title: '文字颜色',
     fieldProps: {
       defaultColor: '#000',

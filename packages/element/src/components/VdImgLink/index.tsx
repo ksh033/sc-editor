@@ -1,6 +1,6 @@
 import { Button, Input, Space } from 'antd';
-import React from 'react';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
+import React from 'react';
 import './index.less';
 // import { BsUpload } from '@micro-frame/sc-runtime';
 
@@ -12,7 +12,7 @@ export type VdImgLinkState = {
   image_height?: number;
   link_id?: string;
   link_type?: string;
-  link_title?: string;
+  title?: string;
   link_url?: string;
 };
 
@@ -62,7 +62,7 @@ const VdImgLink: React.FC<VdImgLinkProps> = (props) => {
     if (typeof title === 'string') {
       setValue({
         ...newVal,
-        link_title: title,
+        title: title,
       });
     }
   };
@@ -83,7 +83,7 @@ const VdImgLink: React.FC<VdImgLinkProps> = (props) => {
           {needTitle ? (
             <Space align="center">
               <span>标题</span>
-              <Input onChange={onInputChange} value={value?.link_title}></Input>
+              <Input onChange={onInputChange} value={value?.title}></Input>
             </Space>
           ) : null}
 

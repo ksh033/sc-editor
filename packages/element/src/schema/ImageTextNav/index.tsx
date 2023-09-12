@@ -1,7 +1,7 @@
-import { VdProFormColumnsType } from '../../interface';
-import { spellNamePath } from '../../utils';
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
+import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class ImageTextNav extends ParentSchemCmp {
@@ -25,7 +25,7 @@ class ImageTextNav extends ParentSchemCmp {
     const newC: any[] = columns
       .map((it: any) => {
         const dataIndex = spellNamePath(it.dataIndex);
-        if (record['image_fill_style'] === '1' && dataIndex === 'count') {
+        if (record['image_fill_style'] === 'nowrap' && dataIndex === 'count') {
           return null;
         }
         return it;
@@ -35,11 +35,10 @@ class ImageTextNav extends ParentSchemCmp {
   }
   getInitialValue() {
     return {
-      show_method: '1',
-      image_fill_style: '1',
+      show_method: 'imageText',
+      image_fill_style: 'nowrap',
       sub_entry: [
         {
-          key: '1',
           image_id: '2129097438',
           image_url:
             'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
@@ -49,9 +48,9 @@ class ImageTextNav extends ParentSchemCmp {
           image_height: 1106,
           link_url:
             'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
+          title: '导航一',
         },
         {
-          key: '2',
           image_id: '2129097438',
           image_url:
             'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
@@ -61,12 +60,12 @@ class ImageTextNav extends ParentSchemCmp {
           image_height: 1106,
           link_url:
             'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
+          title: '导航二',
         },
       ],
       background_color: '#fff',
-      color: '#000',
+      font_color: '#000',
       count: 4,
-      page_margin: 10,
     };
   }
 }
