@@ -6,7 +6,7 @@ import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 type VdRadioIconProps = Omit<CheckboxProps, 'onChange'> &
   ExtendVdFormItemProps & {
     valueMap?: Record<string, React.ReactNode>;
-    onChange?: (val: string) => void;
+    onChange?: (val: boolean) => void;
     renderMsg?: () => React.ReactNode;
   };
 
@@ -26,16 +26,17 @@ const VdCheckBox: React.FC<VdRadioIconProps> = (props) => {
   } = props;
 
   const handleChange = (e: CheckboxChangeEvent) => {
-    onChange?.(e.target.checked ? '1' : '0');
+    onChange?.(e.target.checked);
   };
 
   return (
     <>
-      <VdFormItem formItem={formItem} valueName={valueMap[value]} block={block}>
-        <Checkbox
-          onChange={handleChange}
-          checked={Boolean(value === '1')}
-        ></Checkbox>
+      <VdFormItem
+        formItem={formItem}
+        valueName={valueMap[value === true ? '1' : '0']}
+        block={block}
+      >
+        <Checkbox onChange={handleChange} checked={Boolean(value)}></Checkbox>
       </VdFormItem>
       {renderMsg && renderMsg()}
     </>

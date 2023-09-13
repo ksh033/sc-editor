@@ -7,12 +7,12 @@ const fill: VdProFormColumnsType = {
     options: [
       {
         text: '填充',
-        value: 'fillIn',
+        value: 'cover',
         icon: 'deco-icon-img-cover',
       },
       {
         text: '周边留白',
-        value: 'margin',
+        value: 'contain',
         icon: 'deco-icon-img-contain',
       },
     ],

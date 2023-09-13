@@ -5,7 +5,7 @@ import Coupon from './Coupon';
 import CrowdImage from './CrowdImage';
 import ElevatorNav from './ElevatorNav';
 import EnterShop from './EnterShop';
-import Goods from './Goods';
+import GoodsLayout from './GoodsLayout';
 import ImageTextNav from './ImageTextNav';
 import MagicCube from './MagicCube';
 import Notice from './Notice';
@@ -22,7 +22,7 @@ const BaseCompClassGroup: CompsClassGroup[] = [
     list: [
       Title,
       ElevatorNav,
-      Goods,
+      GoodsLayout,
       CrowdImage,
       AdImage,
       ImageTextNav,

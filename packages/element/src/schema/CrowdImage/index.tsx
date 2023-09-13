@@ -1,7 +1,7 @@
-import { VdProFormColumnsType } from '../../interface';
-import { spellNamePath } from '../../utils';
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import { VdProFormColumnsType } from '../../interface';
+import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class CrowdImage extends ParentSchemCmp {
@@ -21,6 +21,7 @@ class CrowdImage extends ParentSchemCmp {
       .filter((it) => it != null);
     return newC;
   }
+
   getInitialValue() {
     return {
       show_method: '0',

@@ -1,5 +1,6 @@
-import React from 'react';
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
+import React from 'react';
+import ScImage from '../../baseComponents/ScImage';
 import './index.less';
 import { goodsList } from './list';
 
@@ -37,27 +38,30 @@ const VdGoodsList: React.FC<VdGoodsListProps> = (props) => {
   };
 
   return (
-    <div className="deco-goods-list">
-      {value.map((it) => {
-        return (
-          <div className="deco-goods-list-item" key={it.goodsId}>
-            <div>
-              <img src=""></img>
+    <div className="deco-goods-list-view">
+      <div className="deco-goods-list-title">商品管理</div>
+      <div className="deco-goods-list">
+        {value.map((it) => {
+          return (
+            <div className="deco-goods-list-item" key={it.goodsId}>
+              <div className="deco-goods-list-item-image">
+                <ScImage src={it.goodsThumb}></ScImage>
+              </div>
+              <CloseCircleFilled
+                className="deco-editor-list-item__delete"
+                onClick={() => {
+                  onHandleDetele(it.goodsId);
+                }}
+              />
             </div>
-            <CloseCircleFilled
-              className="deco-editor-list-item__delete"
-              onClick={() => {
-                onHandleDetele(it.goodsId);
-              }}
-            />
-          </div>
-        );
-      })}
-      <div
-        className="deco-goods-list-item deco-goods-list-add-item"
-        onClick={handleAddClick}
-      >
-        <PlusOutlined />
+          );
+        })}
+        <div
+          className="deco-goods-list-item deco-goods-list-add-item"
+          onClick={handleAddClick}
+        >
+          <PlusOutlined />
+        </div>
       </div>
     </div>
   );
