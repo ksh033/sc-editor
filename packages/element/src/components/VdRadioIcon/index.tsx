@@ -10,6 +10,7 @@ type VdRadioOption = {
   text?: string;
   icon?: string;
   fontSize?: string | number;
+  disabled?: boolean;
 };
 
 export type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
@@ -19,6 +20,8 @@ export type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
     type?: 'button' | 'image';
     onChange?: (value: string | number) => void;
     options?: VdRadioOption[];
+
+    disabled?: boolean;
   };
 
 const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
@@ -30,6 +33,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
     block = false,
     lineBlock = false,
     showValue = true,
+    disabled = false,
     type = 'button',
     styles = {},
   } = props;
@@ -75,6 +79,7 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
               ].join(' ')}
               value={it.value}
               key={it.value}
+              disabled={disabled || it.disabled}
               style={style}
               onClick={() => {
                 onChange?.(it.value);
@@ -112,6 +117,9 @@ const VdRadioIcon: React.FC<VdRadioIconProps> = (props) => {
               className="select-template-item"
               key={`template-image-${index}`}
               onClick={() => {
+                if (disabled || it.disabled) {
+                  return;
+                }
                 onChange?.(it.value);
               }}
             >

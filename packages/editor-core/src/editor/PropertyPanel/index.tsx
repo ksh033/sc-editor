@@ -15,8 +15,6 @@ const PropertyPanel: React.FC<any> = (props) => {
 
   const editList = editorStore.editList;
 
-  console.log('editList', editList);
-
   const editCmp =
     modalType === 'pageSet' ? editorStore.pageinfo : editorStore.currentEditCmp;
 
@@ -63,15 +61,20 @@ const PropertyPanel: React.FC<any> = (props) => {
       ? editCmp?.getFieldsValue()
       : {};
     let newValues = { ...initialValues, ...values };
-    console.log('newValues', newValues);
+    const oldValues = { ...initialValues, ...values };
     // 修改表单
     if (editCmp?.onValuesChange) {
       newValues = editCmp?.onValuesChange(values, newValues);
     }
     // todo
-    // console.log(newValues);
-    console.log(columns);
+    console.log('newValues', newValues);
+    // console.log(columns);
     setValues(newValues);
+    // 判读是否有改过数据
+    if (JSON.stringify(oldValues) !== JSON.stringify(newValues)) {
+      form.setFieldsValue(newValues);
+    }
+
     if (editCmp?.formatValues) {
       editorStore.updateCurrentEditCmpValues(editCmp?.formatValues(newValues));
     } else {

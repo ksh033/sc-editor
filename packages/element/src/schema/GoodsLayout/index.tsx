@@ -1,6 +1,7 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class GoodsLayout extends ParentSchemCmp {
@@ -13,10 +14,30 @@ class GoodsLayout extends ParentSchemCmp {
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
     const newC: any[] = columns
       .map((it) => {
+        const dataIndex = spellNamePath(it.dataIndex);
+        if (record['goods_type'] === 'G1' && dataIndex === 'display_scale') {
+          return {
+            ...it,
+            fieldProps: {
+              ...it.fieldProps,
+              disabled: true,
+            },
+          };
+        }
         return it;
       })
       .filter((it) => it != null);
     return newC;
+  }
+  onValuesChange(changedValues: any, allValues: any) {
+    console.log('changedValues', changedValues, allValues);
+    if (allValues['goods_type'] === 'G1') {
+      return {
+        ...allValues,
+        display_scale: '1',
+      };
+    }
+    return allValues;
   }
   getInitialValue() {
     return {
@@ -24,7 +45,7 @@ class GoodsLayout extends ParentSchemCmp {
       border_radius_type: 'straight',
       goods_style: 'NO_BORDER_BG_WHITE',
       image_fill_style: 'cover',
-      display_scale: '0',
+      display_scale: '1',
       text_style_type: 'normal',
       text_align_type: 'left',
       page_margin: 15,

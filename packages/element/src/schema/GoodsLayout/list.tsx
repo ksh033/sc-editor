@@ -40,7 +40,7 @@ const propsConfig: VdProFormColumnsType[] = [
         },
         {
           text: '一大两小',
-          value: '4',
+          value: 'G7',
           icon: 'deco-icon-hybrid',
         },
         {
