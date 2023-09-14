@@ -139,17 +139,17 @@ const propsConfig: VdProFormColumnsType[] = [
     dataIndex: 'text_style_type',
     title: '文本样式',
   },
-  {
-    title: '文本对齐',
-    dataIndex: 'text_align_type',
-    valueType: 'VdRadioIcon',
-    fieldProps: {
-      options: [
-        { text: '左对齐', value: 'left', icon: 'deco-icon-align-left' },
-        { text: '居中对齐', value: 'center', icon: 'deco-icon-align-center' },
-      ],
-    },
-  },
+  // {
+  //   title: '文本对齐',
+  //   dataIndex: 'text_align_type',
+  //   valueType: 'VdRadioIcon',
+  //   fieldProps: {
+  //     options: [
+  //       { text: '左对齐', value: 'left', icon: 'deco-icon-align-left' },
+  //       { text: '居中对齐', value: 'center', icon: 'deco-icon-align-center' },
+  //     ],
+  //   },
+  // },
   {
     title: '页面边距',
     valueType: 'VdSlider',
