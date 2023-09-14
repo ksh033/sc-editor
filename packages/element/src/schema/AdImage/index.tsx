@@ -38,7 +38,7 @@ class AdImage extends ParentSchemCmp {
       page_margin: 0,
       image_fill_style: 'cover',
       count: 1,
-      sub_entry: [],
+      list: [],
     };
   }
 }

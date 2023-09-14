@@ -34,7 +34,7 @@ const propsConfig: VdProFormColumnsType<any>[] = [
     valueType: 'divider',
   },
   {
-    dataIndex: 'data',
+    dataIndex: 'list',
     valueType: 'VdAddList',
     formItemProps: {
       rules: [

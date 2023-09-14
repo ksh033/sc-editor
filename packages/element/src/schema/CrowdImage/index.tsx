@@ -13,7 +13,7 @@ class CrowdImage extends ParentSchemCmp {
     const newC: any[] = columns
       .map((it) => {
         const dataIndex = spellNamePath(it.dataIndex);
-        if (record['show_method'] === '0' && dataIndex === 'indicator') {
+        if (record['show_method'] !== 'swiper' && dataIndex === 'indicator') {
           return null;
         }
         return it;
@@ -24,12 +24,14 @@ class CrowdImage extends ParentSchemCmp {
 
   getInitialValue() {
     return {
-      show_method: '0',
-      image_style: '1',
-      corner_type: '1',
+      show_method: 'single',
+      image_style: 'normal',
+      corner_type: 'straight',
       indicator: '1',
       page_margin: 0,
-      sub_entry: [],
+      image_fill_style: 'cover',
+      count: 1,
+      list: [],
     };
   }
 }

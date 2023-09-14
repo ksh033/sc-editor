@@ -12,12 +12,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '单图模式',
-          value: '0',
+          value: 'single',
           icon: 'deco-icon-up2end',
         },
         {
           text: '轮播模式',
-          value: '1',
+          value: 'swiper',
           icon: 'deco-icon-carousel',
         },
       ],
@@ -27,7 +27,7 @@ const propsConfig: VdProFormColumnsType[] = [
     valueType: 'divider',
   },
   {
-    dataIndex: 'sub_entry',
+    dataIndex: 'list',
     valueType: 'VdAddList',
     formItemProps: {
       rules: [
@@ -79,12 +79,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '常规',
-          value: '1',
+          value: 'normal',
           icon: 'deco-icon-image-ad-normal',
         },
         {
           text: '投影',
-          value: '2',
+          value: 'shadow',
           icon: 'deco-icon-shadow',
         },
       ],
@@ -98,12 +98,12 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '直角',
-          value: '1',
+          value: 'straight',
           icon: 'deco-icon-corner-straight',
         },
         {
           text: '圆角',
-          value: '2',
+          value: 'round',
           icon: 'deco-icon-corner-round',
         },
       ],
