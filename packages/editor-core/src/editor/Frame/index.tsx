@@ -1,12 +1,12 @@
-import React, { useLayoutEffect } from 'react';
 import { observer, useObserver } from 'mobx-react-lite';
+import React, { useLayoutEffect } from 'react';
 import './index.less';
 
-import TopBar from '../TopBar';
-import ComsPanel from '../ComsPanel';
-import PropertyPanel from '../PropertyPanel';
-import PreView from '../PreView';
 import { useStore } from '../../stores';
+import ComsPanel from '../ComsPanel';
+import PreView from '../PreView';
+import PropertyPanel from '../PropertyPanel';
+import TopBar from '../TopBar';
 
 type FrameProps = {
   iframeUrl?: string;

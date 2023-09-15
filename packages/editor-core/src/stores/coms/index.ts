@@ -12,7 +12,20 @@ export type comsStoreType = {
   getCompByKey: (key: string) => ClassType | null; // 通过组件key获取组件
   getCompInfoByKey: (key: string) => CmpInfo | undefined; // 通过组件key获取组件
   initComsInfoMap: () => void; // 初始化组件
-  updateList: (cmpKey: string, num: number) => void; // 更新list的数据
+  /**
+   * 更新list的数据
+   * @param cmpKey  组件的key
+   * @param num 跟新使用的数量
+   * @returns
+   */
+  updateList: (cmpKey: string, num: number) => void;
+  /**
+   * 更新分组actived的数据
+   * @param id  组 id
+   * @param avtived 是否展开
+   * @returns
+   */
+  updateTabActived: (id: string, avtived: boolean) => void;
   addComsNum: (cmpKey: string) => boolean; // 添加组件数量
   minusComsNum: (cmpKey: string) => boolean; // 减组件数量
   clearNum: () => void; // 清空数量
@@ -66,6 +79,15 @@ class ComsClass {
       });
     });
   }
+  @action.bound
+  updateTabActived(id: string, avtived: boolean) {
+    this.comsList.forEach((item: CompsGroup) => {
+      if (item.id === id) {
+        item.actived = avtived;
+      }
+    });
+  }
+
   // 添加组件数量
   @action.bound
   addComsNum(cmpKey: string) {

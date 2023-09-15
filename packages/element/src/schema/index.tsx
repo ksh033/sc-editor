@@ -14,11 +14,12 @@ import Title from './PTitle';
 import Search from './Search';
 import Video from './VideoCmp';
 import White from './White';
-
+/** 具体组件配置 */
 const BaseCompClassGroup: CompsClassGroup[] = [
   {
     id: 'base-coms',
     name: '基础组件',
+    actived: true,
     list: [
       Title,
       ElevatorNav,
@@ -38,10 +39,11 @@ const BaseCompClassGroup: CompsClassGroup[] = [
   {
     id: 'ump-coms',
     name: '营销组件',
+    actived: true,
     list: [Coupon],
   },
 ];
-
+/** 左侧组件显示 */
 const BaseCompGroup: CompsGroup[] = BaseCompClassGroup.map(
   (it: CompsClassGroup) => {
     const list = it.list.map((purClass) => {
@@ -50,11 +52,12 @@ const BaseCompGroup: CompsGroup[] = BaseCompClassGroup.map(
     return {
       id: it.id,
       name: it.name,
+      actived: it.actived,
       list: list,
     };
   }
 );
-
+/** 组件的映射表 */
 const BaseCompMap = new Map<String, ClassType>();
 BaseCompClassGroup.forEach((it: CompsClassGroup) => {
   it.list.forEach((purClass) => {

@@ -60,12 +60,14 @@ export type ComponentSchemaProps = ComponentSchemaType & Mixin;
 // 组件分组
 export interface CompsClassGroup {
   id: string;
+  actived: boolean;
   name: string;
   list: ClassType[];
 }
-
+/** 左侧组件显示的信息 */
 export interface CompsGroup {
   id: string;
   name: string;
+  actived: boolean;
   list: CmpInfo[];
 }

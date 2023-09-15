@@ -35,38 +35,44 @@
 
     user-select: none;
 
+    .coms-lib-wrap {
+
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 100%;
+    }
+
     .coms-lib {
       padding: 0 12px;
 
       .coms-lib-tab {
+        position: relative;
         margin-top: 22px;
         width: 100%;
-        display: -ms-flexbox;
         display: flex;
-        min-height: 30px;
-        line-height: 30px;
-        position: relative;
+        align-items: center;
+        min-height: 44px;
+        line-height: 44px;
         color: #555;
         cursor: pointer;
 
         .coms-lib-tab-name {
           font-size: 14px;
+          line-height: 44px;
           color: #323233;
-          margin-left: 10px;
           font-weight: 500;
         }
 
         .coms-lib-tab-icon {
           width: 20px;
           height: 20px;
-          font-size: 10px;
           display: inline-block;
-          margin-right: 10px;
-          position: absolute;
-          color: #969799;
-          top: 5px;
+          margin-right: 5px;
           transform: scale(1) rotate(-90deg);
           transition: transform .3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 
@@ -110,6 +116,25 @@
         .com-item-num {
           color: #fff;
         }
+      }
+
+      .com-list {
+        margin: 0 auto;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all .5s cubic-bezier(.23, 1, .32, 1);
+      }
+    }
+
+    .coms-lib-active {
+      .com-list {
+        max-height: 2000px;
+        opacity: 1;
+      }
+
+      .coms-lib-tab .coms-lib-tab-icon {
+        transform: scale(1);
       }
     }
   }

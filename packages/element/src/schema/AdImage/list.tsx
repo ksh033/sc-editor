@@ -56,11 +56,11 @@ const propsConfig: VdProFormColumnsType<any>[] = [
       addRecord: {
         image_id: '2129097438',
         image_url:
-          'https://img01.yzcdn.cn/upload_files/2020/07/10/FhpVJ83EAPCdYAf7C9mm903gbH1N.jpg!large.webp',
+          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
         image_thumb_url:
-          'upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg!100x100.jpg',
-        image_width: 800,
-        image_height: 800,
+          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
+        image_width: 750,
+        image_height: 1106,
         link_url:
           'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
       },

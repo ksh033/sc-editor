@@ -1,4 +1,5 @@
 import { CaretDownOutlined } from '@ant-design/icons';
+import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import ComItem from './ComItem';
@@ -21,13 +22,30 @@ const ComsPanel: React.FC<any> = (props) => {
     }
   };
 
+  const onTabActived = (id: string, actived: boolean) => {
+    comsStore.updateTabActived(id, actived);
+  };
+
   const comsTabs = (tab: CompsGroup) => {
-    const { name, id, list } = tab;
+    const { name, id, list, actived } = tab;
 
     return (
-      <div className="coms-lib" key={id}>
-        <div className="coms-lib-tab">
-          <CaretDownOutlined className="coms-lib-tab-icon"></CaretDownOutlined>
+      <div
+        className={classnames('coms-lib', {
+          'coms-lib-active': actived,
+        })}
+        key={id}
+      >
+        <div
+          className="coms-lib-tab"
+          onClick={() => {
+            onTabActived(id, !actived);
+          }}
+        >
+          <div className="coms-lib-tab-icon">
+            <CaretDownOutlined></CaretDownOutlined>
+          </div>
+
           <span className="coms-lib-tab-name">{name}</span>
         </div>
         <div className="com-list">
@@ -48,14 +66,10 @@ const ComsPanel: React.FC<any> = (props) => {
 
   return (
     <div className="left-wrapper">
-      <div className="coms-lib-wrap">
-        <div className="coms-lib">
-          <div className="com-list" id="drag-box">
-            {comsList.map((item) => {
-              return comsTabs(item);
-            })}
-          </div>
-        </div>
+      <div className="coms-lib-wrap" id="drag-box">
+        {comsList.map((item) => {
+          return comsTabs(item);
+        })}
       </div>
     </div>
   );
