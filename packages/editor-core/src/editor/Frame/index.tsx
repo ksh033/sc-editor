@@ -24,9 +24,11 @@ const Frame: React.FC<FrameProps> = (props) => {
   return useObserver(() => (
     <div className="editor-wrapper">
       <TopBar></TopBar>
-      <ComsPanel></ComsPanel>
-      <PreView></PreView>
-      <PropertyPanel></PropertyPanel>
+      <div className="editor-wrapper-contnet">
+        <ComsPanel></ComsPanel>
+        <PreView></PreView>
+        <PropertyPanel></PropertyPanel>
+      </div>
     </div>
   ));
 };

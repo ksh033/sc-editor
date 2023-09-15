@@ -20,6 +20,7 @@ export const postMessage = (type: string, data: any, index?: number) => {
       addIndex = dropEleChild.length;
     }
   }
+  console.log('postMessage---type', type);
   if (frameObj && frameObj.contentWindow) {
     const msg = {
       type: type,
@@ -28,6 +29,16 @@ export const postMessage = (type: string, data: any, index?: number) => {
     };
     frameObj.contentWindow.postMessage(JSON.stringify(msg), '*');
   }
+};
+/** 页面设置 */
+const updatePage = (item: ComponentSchemaProps) => {
+  console.log('updatePage', item);
+  postMessage('page', {
+    cmpKey: item.cmpKey,
+    cmpName: item.cmpName,
+    values: item.values,
+    id: item.id,
+  });
 };
 
 const addCmp = (item: ComponentSchemaProps, index?: number) => {
@@ -66,7 +77,7 @@ const updateCmp = (item: ComponentSchemaProps) => {
     id: item.id,
   });
 };
-
+/** 复制组件 */
 const copyCmp = (item: ComponentSchemaProps, index: number) => {
   postMessage(
     'copy',
@@ -92,4 +103,5 @@ export default {
   arrayMove,
   updateCmp,
   clearAllCmp,
+  updatePage,
 };

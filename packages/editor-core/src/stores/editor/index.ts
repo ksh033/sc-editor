@@ -8,7 +8,14 @@ import { action, observable } from 'mobx';
 import { genNonDuplicateId } from '../../utils/common';
 import sendToIframe from '../../utils/sendToIframe';
 
-export type ModalType = 'component' | 'componentList' | 'pageSet';
+/**
+ * 页面类型
+ * component 单个组件属性配置页面
+ * componentList 组件管理列表
+ * pageSet  页面设置
+ * customNav 页面底部配置
+ */
+export type ModalType = 'component' | 'componentList' | 'pageSet' | 'customNav';
 
 export type editorStoreType = {
   modalType: ModalType; // 右侧模板类型
@@ -61,6 +68,8 @@ class EditorClass {
   @action.bound
   updatePageInfoValues(newValues: any) {
     this.pageinfo.values = newValues;
+    // 发送消息给iframe
+    sendToIframe.updatePage(this.pageinfo);
   }
 
   // 添加组件并修改

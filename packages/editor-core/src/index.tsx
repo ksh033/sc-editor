@@ -10,6 +10,7 @@ Object.keys(Components).forEach((key: string) => {
     valueTypelist.push(key);
   }
 });
+// iframeId 页面的id
 const iframeId = 'myFrame';
 export { valueTypelist, iframeId };
 

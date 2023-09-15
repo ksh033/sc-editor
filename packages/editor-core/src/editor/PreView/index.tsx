@@ -7,6 +7,7 @@ import { iframeId } from '../../index';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
 import Drag from '../../utils/drag';
+import sendToIframe from '../../utils/sendToIframe';
 import './index.less';
 import useIframeLoad from './useIframeLoad';
 
@@ -21,6 +22,10 @@ const PreView: React.FC<any> = () => {
     editorStore.changeModalType(type);
   };
 
+  // 监听iframne是否加载的hook
+  useIframeLoad();
+
+  // 监听来自iframe的消息
   useEventListener('message', (event: any) => {
     console.log('parent-receive-message', event);
     let data: any = null;
@@ -86,11 +91,16 @@ const PreView: React.FC<any> = () => {
             'drop-item'
           ) as HTMLCollectionOf<HTMLElement>,
         });
+
+        // 初始化后先发送页面配置数据
+        const pageCmp = editorStore.pageinfo;
+        if (pageCmp) {
+          sendToIframe.updatePage(pageCmp);
+        }
       }, 100);
       console.log('iframeDocument', iframeDocument?.getElementById('drop-box'));
     };
   };
-  useIframeLoad();
 
   useEffect(() => {
     if (contentIFrameRef.current) {
