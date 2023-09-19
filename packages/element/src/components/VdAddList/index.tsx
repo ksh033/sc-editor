@@ -188,6 +188,7 @@ function VdAddList<T>(props: VdAddListProps<T>) {
           <SLortableContainer
             onSortEnd={onSortEnd}
             helperClass="sortable-list-tab"
+            distance={1}
           >
             {list.map((items, index) => (
               <React.Fragment key={index}>
