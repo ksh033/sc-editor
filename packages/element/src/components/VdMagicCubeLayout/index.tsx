@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { ExtendVdFormItemProps } from '../VdFormItem';
-import VdImgLink, { VdImgLinkState } from '../VdImgLink';
+import VdImgLink from '../VdImgLink';
+import type { VdImgLinkEntryItem } from '../VdImgLink/type';
 import CubeTemplate from './CubeTemplate';
 import './index.less';
 import {
@@ -92,12 +93,14 @@ const VdMagicCubeLayout: React.FC<VdMagicCubeLayoutProps> = (props) => {
     });
   };
 
-  const onSubEnterHandleChange = (val: VdImgLinkState) => {
+  const onSubEnterHandleChange = (val: VdImgLinkEntryItem) => {
+    console.log('onSubEnterHandleChange', val);
     if (val) {
       const newList = JSON.parse(JSON.stringify(list));
       let newItem = newList[subEntryIndex];
       newItem = Object.assign({}, newItem, val || {});
       newList.splice(subEntryIndex, 1, newItem);
+      console.log('newList', newList);
       onChange?.({
         ...value,
         sub_entry: newList,
@@ -118,12 +121,14 @@ const VdMagicCubeLayout: React.FC<VdMagicCubeLayoutProps> = (props) => {
         setSubEntryIndex={setSubEntryIndex}
         templateId={Number(templateId)}
       />
-      {Array.isArray(list) && list.length > 0 ? (
-        <VdImgLink
-          onChange={onSubEnterHandleChange}
-          value={list[subEntryIndex]}
-        ></VdImgLink>
-      ) : null}
+      <div className="vd-decorate-cube-add-warp">
+        {Array.isArray(list) && list.length > 0 ? (
+          <VdImgLink
+            onChange={onSubEnterHandleChange}
+            value={list[subEntryIndex]}
+          ></VdImgLink>
+        ) : null}
+      </div>
     </React.Fragment>
   );
 };

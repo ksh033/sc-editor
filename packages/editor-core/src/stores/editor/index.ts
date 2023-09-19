@@ -13,9 +13,8 @@ import sendToIframe from '../../utils/sendToIframe';
  * component 单个组件属性配置页面
  * componentList 组件管理列表
  * pageSet  页面设置
- * customNav 页面底部配置
  */
-export type ModalType = 'component' | 'componentList' | 'pageSet' | 'customNav';
+export type ModalType = 'component' | 'componentList' | 'pageSet';
 
 export type editorStoreType = {
   modalType: ModalType; // 右侧模板类型

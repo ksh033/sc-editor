@@ -117,7 +117,7 @@ class MagicCube extends ParentSchemCmp {
   }
   getInitialValue() {
     return {
-      page_margin: 30,
+      page_margin: 0,
       gutter: 0,
       layout: {
         layout_width: 2,

@@ -19,7 +19,7 @@ const Frame: React.FC<FrameProps> = (props) => {
     if (props?.iframeUrl) {
       previewStore.initIframeUrl(props?.iframeUrl);
     }
-  }, []);
+  }, [props?.iframeUrl]);
 
   return useObserver(() => (
     <div className="editor-wrapper">

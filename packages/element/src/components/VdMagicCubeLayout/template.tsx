@@ -1,4 +1,4 @@
-import { VdImgLinkState } from '../VdImgLink';
+import type { VdImgLinkEntryItem } from '../VdImgLink/type';
 
 export const designWidth = 750;
 export const baseWidth = 375;
@@ -11,7 +11,7 @@ export type TemplateMapItem = {
   isCustom: boolean; // 是否动态计算高度
 };
 
-export type CompontentItem = VdImgLinkState & {
+export type CompontentItem = VdImgLinkEntryItem & {
   x: number;
   y: number;
   width: number;

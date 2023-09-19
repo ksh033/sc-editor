@@ -13,19 +13,26 @@ import './index.less';
 
 type typeNode = 'tag' | 'card';
 
-type VdAddListProps<T> = VdFormItemProps & {
+export type VdAddListProps<T> = VdFormItemProps & {
+  /** 添加按钮文案 */
   addBtnText?: string | ((fields: any[]) => React.ReactNode);
+  /** 添加展示类型 */
   type?: typeNode;
+  /** 最大添加数据 */
   max?: number;
+  /** 分组标题 */
   groupTitle?: () => React.ReactNode;
   addRecord?: any;
   /** 子项目格式化 */
-  renderItem?: (it: any, index: number) => React.ReactNode;
+  renderItem?: (pros: any) => React.ReactNode;
   value?: T[];
   onChange?: (list: T[]) => void;
   rowKey?: string;
   title?: string | React.ReactNode;
+  /** 内容 */
   content?: string | React.ReactNode;
+  /** 添加按钮自定义 */
+  addBtnRender?: (val: T[], max: number) => React.ReactNode;
 };
 
 const SortableItem: any = SortableElement((props: any) => {
@@ -75,6 +82,7 @@ function VdAddList<T>(props: VdAddListProps<T>) {
     rowKey = 'key',
     content,
     title,
+    addBtnRender,
   } = props;
 
   const ref = useRef<HTMLDivElement>(null);
@@ -196,17 +204,22 @@ function VdAddList<T>(props: VdAddListProps<T>) {
               </React.Fragment>
             ))}
           </SLortableContainer>
+
           {list.length < max ? (
-            <Button
-              ghost
-              key="addbtn"
-              type="primary"
-              onClick={() => handleAddClick(addRecord)}
-              block
-              icon={<PlusOutlined />}
-            >
-              {typeof addBtnText === 'string' ? addBtnText : addBtnText(list)}
-            </Button>
+            addBtnRender ? (
+              addBtnRender(list, max)
+            ) : (
+              <Button
+                ghost
+                key="addbtn"
+                type="primary"
+                onClick={() => handleAddClick(addRecord)}
+                block
+                icon={<PlusOutlined />}
+              >
+                {typeof addBtnText === 'string' ? addBtnText : addBtnText(list)}
+              </Button>
+            )
           ) : null}
         </div>
       </div>

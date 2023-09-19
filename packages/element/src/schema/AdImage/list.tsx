@@ -1,5 +1,4 @@
 import { VdProFormColumnsType } from '../../interface';
-import Item from './Item';
 
 const propsConfig: VdProFormColumnsType<any>[] = [
   {
@@ -35,7 +34,7 @@ const propsConfig: VdProFormColumnsType<any>[] = [
   },
   {
     dataIndex: 'list',
-    valueType: 'VdAddList',
+    valueType: 'VdAddImageList',
     formItemProps: {
       rules: [
         {
@@ -46,33 +45,7 @@ const propsConfig: VdProFormColumnsType<any>[] = [
       ],
     },
     fieldProps: {
-      addBtnText: (filds: any[]) => {
-        return `添加背景图`;
-      },
-      renderItem: (record: any) => {
-        return <Item record={record}></Item>;
-      },
-      max: 10,
-      addRecord: {
-        image_id: '2129097438',
-        image_url:
-          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
-        image_thumb_url:
-          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
-        image_width: 750,
-        image_height: 1106,
-        link_url:
-          'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
-      },
-      content: (
-        <div>
-          <div key="title">最多添加 5 个广告。</div>
-          <div key="content">
-            最多添加 10 个广告，鼠标拖拽调整广告顺序，建议宽度750像素
-          </div>
-        </div>
-      ),
-      title: '添加图片',
+      addBtnText: '添加背景图片',
     },
   },
   {

@@ -237,13 +237,13 @@ const CubeTemplate: React.FC<CubeTemplateProps> = (props) => {
     setSubEntryIndex(newIndex);
   };
   const u = (325 - (templateId + 3)) / (templateId + 2);
-  const customHeight = list.length > 0 && list[0].image_id && templateId <= 2;
+  const customHeight = list.length > 0 && list[0].imageId && templateId <= 2;
   const imageHegiht =
     list.length > 0 &&
-    list[0].image_id &&
-    list[0].image_width &&
-    list[0].image_height
-      ? Math.floor((u / list[0]?.image_width) * list[0]?.image_height) + 'px'
+    list[0].imageId &&
+    list[0].imageWidth &&
+    list[0].imageHeight
+      ? Math.floor((u / list[0]?.imageWidth) * list[0]?.imageHeight) + 'px'
       : Math.floor(u) + 'px';
 
   const getCubeSelectedStyle = (item: CompontentItem) => {
@@ -348,10 +348,10 @@ const CubeTemplate: React.FC<CubeTemplateProps> = (props) => {
                     key={`cube-${index}`}
                     onClick={() => handleChangeSubEntryIndex(index)}
                   >
-                    {item.image_id != null && item.image_id !== '' ? (
+                    {item.imageId != null && item.imageId !== '' ? (
                       <img
                         alt="cubeImage"
-                        src={item.image_url}
+                        src={item.imageUrl}
                         width={width + 'px'}
                         height={customHeight ? imageHegiht : height + 'px'}
                       ></img>

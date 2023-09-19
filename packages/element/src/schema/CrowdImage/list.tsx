@@ -1,5 +1,4 @@
 import { VdProFormColumnsType } from '../../interface';
-import Item from './Item';
 
 const propsConfig: VdProFormColumnsType[] = [
   {
@@ -28,7 +27,7 @@ const propsConfig: VdProFormColumnsType[] = [
   },
   {
     dataIndex: 'list',
-    valueType: 'VdAddList',
+    valueType: 'VdAddImageList',
     formItemProps: {
       rules: [
         {
@@ -42,21 +41,7 @@ const propsConfig: VdProFormColumnsType[] = [
       addBtnText: (filds: any[]) => {
         return `添加图片(${filds.length}/5)`;
       },
-      renderItem: (record: any, index: number) => {
-        return <Item record={record} key={index}></Item>;
-      },
       max: 5,
-      addRecord: {
-        image_id: '2129097438',
-        image_url:
-          'https://img01.yzcdn.cn/upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg',
-        image_thumb_url:
-          'upload_files/2020/07/10/Fn22ra9wQlBQvBDJO_61hwyKZqc_.jpg!100x100.jpg',
-        image_width: 750,
-        image_height: 1106,
-        link_url:
-          'https://shop90759155.youzan.com/wscshop/showcase/feature?alias=kTSNCfsvO5',
-      },
       content: (
         <div>
           <div key="title">最多添加 5 个广告。</div>

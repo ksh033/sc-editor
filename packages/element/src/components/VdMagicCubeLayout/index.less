@@ -87,6 +87,7 @@
 }
 
 .vd-decorate-cube .cube-selected {
+  box-sizing: content-box;
   position: absolute;
   background-color: #fff;
   border: 1px solid #ebedf0;
@@ -94,6 +95,14 @@
   color: #7d7e80;
   cursor: pointer;
 }
+
+.vd-decorate-cube .cube-selected img {
+  height: inherit;
+  vertical-align: baseline;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
 
 .vd-decorate-cube .cube-item .plus-icon {
   font-size: 20px;
@@ -105,6 +114,7 @@
   border: 1px solid #155bd4;
   color: #155bd4;
   cursor: auto;
+  z-index: 2;
 }
 
 
@@ -134,4 +144,11 @@
   display: block !important;
   color: #000;
   opacity: .3;
+}
+
+.vd-decorate-cube-add-warp {
+  display: flex;
+  padding: 6px 0;
+  margin: 10px;
+  background-color: #f7f8fa;
 }
