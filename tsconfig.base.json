@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "preserve",
+    //"lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "./",
+    "target": "esnext",
+    "moduleResolution": "node",
+
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false, 
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "skipLibCheck": true,
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/examples",
+    "**/dist",
+    "**/fixtures",
+    "**/*.test.ts",
+    "**/*.e2e.ts",
+    "**/templates",
+    "ui"
+  ]
+}

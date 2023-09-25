@@ -34,7 +34,7 @@ export const postMessage = (type: string, data: any, index?: number) => {
 const updatePage = (item: ComponentSchemaProps) => {
   console.log('updatePage', item);
   postMessage('page', {
-    cmpKey: item.cmpKey,
+    cmpType: item.cmpType,
     cmpName: item.cmpName,
     values: item.values,
     id: item.id,
@@ -45,7 +45,7 @@ const addCmp = (item: ComponentSchemaProps, index?: number) => {
   postMessage(
     'add',
     {
-      cmpKey: item.cmpKey,
+      cmpType: item.cmpType,
       cmpName: item.cmpName,
       values: item.values,
       id: item.id,
@@ -71,7 +71,7 @@ const arrayMove = (oldIndex: number, newIndex: number) => {
 
 const updateCmp = (item: ComponentSchemaProps) => {
   postMessage('update', {
-    cmpKey: item.cmpKey,
+    cmpType: item.cmpType,
     cmpName: item.cmpName,
     values: item.values,
     id: item.id,
@@ -82,7 +82,7 @@ const copyCmp = (item: ComponentSchemaProps, index: number) => {
   postMessage(
     'copy',
     {
-      cmpKey: item.cmpKey,
+      cmpType: item.cmpType,
       cmpName: item.cmpName,
       values: item.values,
       id: item.id,

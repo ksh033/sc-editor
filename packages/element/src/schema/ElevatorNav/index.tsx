@@ -126,7 +126,7 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
 };
 
 class ElevatorNav extends ParentSchemCmp {
-  cmpKey: string = 'ElevatorNav';
+  cmpType: string = 'ElevatorNav';
   cmpName: string = '电梯导航';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig = getPropsConfig;
@@ -153,7 +153,7 @@ ElevatorNav.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fpy_YxZ69hGiYl-SUDkDn7Sz2sNH.png',
   name: '电梯导航',
   description: '只能选择当前组件下方的组件进行定位',
-  cmpKey: 'ElevatorNav',
+  cmpType: 'ElevatorNav',
   maxNum: 1,
   usedNum: 0,
   status: '',

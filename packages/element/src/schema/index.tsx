@@ -61,7 +61,7 @@ const BaseCompGroup: CompsGroup[] = BaseCompClassGroup.map(
 const BaseCompMap = new Map<String, ClassType>();
 BaseCompClassGroup.forEach((it: CompsClassGroup) => {
   it.list.forEach((purClass) => {
-    BaseCompMap.set(purClass.info.cmpKey, purClass);
+    BaseCompMap.set(purClass.info.cmpType, purClass);
   });
 });
 

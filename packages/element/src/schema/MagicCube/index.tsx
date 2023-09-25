@@ -3,7 +3,7 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 
 class MagicCube extends ParentSchemCmp {
-  cmpKey: string = 'MagicCube';
+  cmpType: string = 'MagicCube';
   cmpName: string = '魔方';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -136,7 +136,7 @@ MagicCube.info = {
   icon: 'https://img01.yzcdn.cn/public_files/2019/02/12/6c2cc2100fa2db454aaf649c19e0ffc9.png',
   name: '魔方',
   description: '魔方',
-  cmpKey: 'MagicCube',
+  cmpType: 'MagicCube',
   maxNum: 200,
   usedNum: 0,
   status: '',

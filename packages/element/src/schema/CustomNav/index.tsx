@@ -2,7 +2,7 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 
 class CustomNav extends ParentSchemCmp {
-  cmpKey: string = 'CustomNav';
+  cmpType: string = 'CustomNav';
   cmpName: string = '底部导航';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -25,7 +25,7 @@ CustomNav.info = {
   name: '底部导航',
   description:
     '底部导航配置“自定义链接”或“小程序路径”时，可能跳转过去的页面会没法展示底部导航',
-  cmpKey: 'CustomNav',
+  cmpType: 'CustomNav',
   maxNum: 1,
   usedNum: 0,
   status: '',

@@ -1,34 +1,8 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "target": "esnext",
-    "moduleResolution": "node",
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@@service": ["src/services/index.ts"],
-      "@sceditor/element": ["./packages/element/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
-    }
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
-  "include": [
-    "typings.d.ts",
-    "**/src/**/*",
-    "**/docs/**/*",
-    "scripts/**/*",
-    "**/demos",
-    ".eslintrc.js",
-    "tests",
-    "jest.config.js",
-    "**/fixtures",
-    "./tests/no-duplicated.ts",
-    "packages/descriptions/src/demos/.tsx"
-  ],
-  "plugins": [{ "transform": "typescript-transform-paths", "afterDeclarations": true }]
+  "include": ["src"]
 }

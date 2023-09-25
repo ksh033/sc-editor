@@ -1,3 +1,4 @@
+import React from 'react';
 import { VdProFormColumnsType } from '../../interface';
 import CouponItem from './CouponItem';
 
@@ -33,10 +34,10 @@ const propsConfig: VdProFormColumnsType[] = [
       ],
     },
     fieldProps: {
-      addBtnText: (filds: any[]) => {
+      addBtnText: () => {
         return `添加优惠券`;
       },
-      renderItem: (record: any, index: number) => {
+      renderItem: (record: any) => {
         return <CouponItem {...record}></CouponItem>;
       },
       addRecord: {

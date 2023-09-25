@@ -3,7 +3,7 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 
 class Notice extends ParentSchemCmp {
-  cmpKey: string = 'Notice';
+  cmpType: string = 'Notice';
   cmpName: string = '公告';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -107,7 +107,7 @@ class Notice extends ParentSchemCmp {
 Notice.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FlcvwSqlns7YVxDk8Zi2yAG6oEji.png',
   name: '公告',
-  cmpKey: 'Notice',
+  cmpType: 'Notice',
   maxNum: 1,
   usedNum: 0,
   status: '',

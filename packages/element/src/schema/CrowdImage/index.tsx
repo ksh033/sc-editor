@@ -5,7 +5,7 @@ import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class CrowdImage extends ParentSchemCmp {
-  cmpKey: string = 'CrowdImage';
+  cmpType: string = 'CrowdImage';
   cmpName: string = '人群图片';
   propsConfig: VdProFormColumnsType[] = propsConfig;
 
@@ -40,7 +40,7 @@ CrowdImage.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fgyd5N9R29QGAJXE7daGUWFpdv5z.png',
   name: '人群图片',
   description: '',
-  cmpKey: 'CrowdImage',
+  cmpType: 'CrowdImage',
   maxNum: 1,
   usedNum: 0,
   status: '',

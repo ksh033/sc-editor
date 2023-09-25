@@ -5,7 +5,7 @@ import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class ImageTextNav extends ParentSchemCmp {
-  cmpKey: string = 'ImageTextNav';
+  cmpType: string = 'ImageTextNav';
   cmpName: string = '图文导航';
   formProps: FormProps = {
     layout: 'horizontal',
@@ -74,7 +74,7 @@ ImageTextNav.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FnCMmkIRcBPKq5oeY8kX7lq_7hk4.png',
   name: '图文导航',
   description: '图文导航',
-  cmpKey: 'ImageTextNav',
+  cmpType: 'ImageTextNav',
   maxNum: 10,
   usedNum: 0,
   status: '',

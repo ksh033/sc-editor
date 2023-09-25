@@ -4,7 +4,7 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 class PageInfo extends ParentSchemCmp {
   cmpName = '页面设置';
   id = 'page-setting';
-  cmpKey: string = 'PAGE-SETTING';
+  cmpType: string = 'PAGE-SETTING';
   propsConfig: VdProFormColumnsType<any>[] = [
     {
       title: '页面名称',

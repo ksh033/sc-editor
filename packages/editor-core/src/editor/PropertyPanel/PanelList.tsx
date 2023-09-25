@@ -81,14 +81,14 @@ const PanelList: React.FC<any> = (props) => {
   };
 
   const onCopy = (value: ComponentSchemaProps) => {
-    const flag = comsStore.addComsNum(value.cmpKey);
+    const flag = comsStore.addComsNum(value.cmpType);
     if (flag) {
       editorStore.copyCmp(value);
     }
   };
 
   const onDelete = (value: ComponentSchemaProps) => {
-    const flag = comsStore.minusComsNum(value.cmpKey);
+    const flag = comsStore.minusComsNum(value.cmpType);
     if (flag) {
       editorStore.deleteCmp(value.id);
     }

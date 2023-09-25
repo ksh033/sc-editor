@@ -5,7 +5,7 @@ import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 
 class White extends ParentSchemCmp {
-  cmpKey: string = 'White';
+  cmpType: string = 'White';
   cmpName: string = '辅助空白';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -91,7 +91,7 @@ class White extends ParentSchemCmp {
 White.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FutbH839K4gGvY6azrrtJHYDxVqK.png',
   name: '辅助分割',
-  cmpKey: 'White',
+  cmpType: 'White',
   maxNum: 50,
   usedNum: 0,
   status: '',

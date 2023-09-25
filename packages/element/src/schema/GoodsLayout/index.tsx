@@ -5,7 +5,7 @@ import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class GoodsLayout extends ParentSchemCmp {
-  cmpKey: string = 'GoodsLayout';
+  cmpType: string = 'GoodsLayout';
   cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   formProps: FormProps = {
@@ -69,7 +69,7 @@ GoodsLayout.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FirnSShEAotLWTHOsk21GdYa-SdX.png',
   name: '商品',
   description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
-  cmpKey: 'GoodsLayout',
+  cmpType: 'GoodsLayout',
   maxNum: 100,
   usedNum: 0,
   status: '',

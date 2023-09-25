@@ -14,8 +14,8 @@ const BaseForm: React.FC<any> = (props) => {
 
   const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
   valueTypelist.forEach((warpCom) => {
-    const cmpkey = warpCom.charAt(0).toUpperCase() + warpCom.substring(1);
-    const WarpCommponent = Components[cmpkey];
+    const cmpType = warpCom.charAt(0).toUpperCase() + warpCom.substring(1);
+    const WarpCommponent = Components[cmpType];
     // console.log('WarpCommponent', WarpCommponent);
     valueTypeMap[warpCom] = {
       renderFormItem: (_: any, rprops: { fieldProps: any }) => {

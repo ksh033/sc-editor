@@ -4,8 +4,9 @@ import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
+
 class AdImage extends ParentSchemCmp {
-  cmpKey: string = 'AdImage';
+  cmpType: string = 'AdImage';
   cmpName: string = '图片广告';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
@@ -47,10 +48,9 @@ AdImage.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fgyd5N9R29QGAJXE7daGUWFpdv5z.png',
   name: '图片广告',
   description: '图片广告',
-  cmpKey: 'AdImage',
+  cmpType: 'AdImage',
   maxNum: 300,
   usedNum: 0,
   status: '',
 };
-
 export default AdImage;

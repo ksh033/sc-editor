@@ -12,10 +12,10 @@ const ComsPanel: React.FC<any> = (props) => {
 
   const comsList = comsStore.comsList;
 
-  const handleClick = (event: any, cmpKey: string) => {
-    const item = comsStore.getCompByKey(cmpKey);
+  const handleClick = (event: any, cmpType: string) => {
+    const item = comsStore.getCompByKey(cmpType);
     if (item) {
-      const flag = comsStore.addComsNum(cmpKey);
+      const flag = comsStore.addComsNum(cmpType);
       if (flag) {
         editorStore.addToEdit(item);
       }
@@ -53,9 +53,9 @@ const ComsPanel: React.FC<any> = (props) => {
             return (
               <ComItem
                 item={com}
-                key={com.cmpKey}
+                key={com.cmpType}
                 onClick={handleClick}
-                regeditCmpName={com.cmpKey}
+                regeditCmpName={com.cmpType}
               />
             );
           })}

@@ -124,8 +124,8 @@ class EditorClass {
   // 复制组件
   @action.bound
   copyCmp(record: ComponentSchemaProps, noticed = true) {
-    const cmpKey = record.cmpKey;
-    const Clas = BaseCompMap.get(cmpKey);
+    const cmpType = record.cmpType;
+    const Clas = BaseCompMap.get(cmpType);
     if (Clas) {
       const newItem = new Clas();
       console.log('copyCmp');
@@ -163,7 +163,7 @@ class EditorClass {
     const item = this.editList.find((it) => it.id === id);
     if (item) {
       this.currentKey = id;
-      const Clas = BaseCompMap.get(item.cmpKey);
+      const Clas = BaseCompMap.get(item.cmpType);
       if (Clas) {
         const newItem = new Clas();
         newItem.initClass({

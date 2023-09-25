@@ -1,33 +1,17 @@
 {
+
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "target": "esnext",
-    "moduleResolution": "node",
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false, 
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "declaration": true,
-    "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
       "@@/*": ["packages/web/src/.umi/*"],
       "@sceditor/element": ["./packages/element/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
-    },
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"] ,
+
+      "@sceditor/cmp-center":["./packages/cmp-center/src/index.ts"]
+    }
   },
+
   "typings": "./typings.d.ts",
-  "include": [
-    "**/src/**/*",
-    "**/docs/**/*",
-    "scripts/**/*",
-    "**/demos",
-    ".eslintrc.js",
-    "tests",
-    "jest.config.js",
-    "**/fixtures",
-    "./tests/no-duplicated.ts"
-  ]
+  
 }

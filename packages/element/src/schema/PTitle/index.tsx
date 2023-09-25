@@ -10,8 +10,9 @@ import {
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 
+
 class Title extends ParentSchemCmp {
-  cmpKey: string = 'Title';
+  cmpType: string = 'Title';
   cmpName: string = '标题文本';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -188,6 +189,7 @@ class Title extends ParentSchemCmp {
     return {
       styleType: 'old',
       title: '',
+      type:'title_text',
       description: '',
       location: 'left',
       fontSize: 16,
@@ -203,10 +205,9 @@ class Title extends ParentSchemCmp {
 
 Title.info = {
   icon: 'https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png',
-  type: ['title_text', 'title', 'text'],
   name: '标题文本',
   description: '标题文本',
-  cmpKey: 'Title',
+  cmpType: 'Title',
   maxNum: 20,
   usedNum: 0,
   status: '',

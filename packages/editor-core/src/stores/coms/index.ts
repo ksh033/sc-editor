@@ -14,11 +14,11 @@ export type comsStoreType = {
   initComsInfoMap: () => void; // 初始化组件
   /**
    * 更新list的数据
-   * @param cmpKey  组件的key
+   * @param cmpType  组件的key
    * @param num 跟新使用的数量
    * @returns
    */
-  updateList: (cmpKey: string, num: number) => void;
+  updateList: (cmpType: string, num: number) => void;
   /**
    * 更新分组actived的数据
    * @param id  组 id
@@ -26,8 +26,8 @@ export type comsStoreType = {
    * @returns
    */
   updateTabActived: (id: string, avtived: boolean) => void;
-  addComsNum: (cmpKey: string) => boolean; // 添加组件数量
-  minusComsNum: (cmpKey: string) => boolean; // 减组件数量
+  addComsNum: (cmpType: string) => boolean; // 添加组件数量
+  minusComsNum: (cmpType: string) => boolean; // 减组件数量
   clearNum: () => void; // 清空数量
 };
 
@@ -49,7 +49,7 @@ class ComsClass {
     this.comsList.forEach((it: CompsGroup) => {
       if (Array.isArray(it.list)) {
         it.list.forEach((itm: CmpInfo) => {
-          map.set(itm.cmpKey, itm);
+          map.set(itm.cmpType, itm);
         });
       }
     });
@@ -70,10 +70,10 @@ class ComsClass {
   }
 
   @action.bound
-  updateList(cmpKey: string, num: number) {
+  updateList(cmpType: string, num: number) {
     this.comsList.forEach((item: CompsGroup) => {
       item.list.forEach((it: CmpInfo) => {
-        if (it.cmpKey === cmpKey && it) {
+        if (it.cmpType === cmpType && it) {
           it.usedNum = num;
         }
       });
@@ -90,8 +90,8 @@ class ComsClass {
 
   // 添加组件数量
   @action.bound
-  addComsNum(cmpKey: string) {
-    const itemCom = this.getCompInfoByKey(cmpKey);
+  addComsNum(cmpType: string) {
+    const itemCom = this.getCompInfoByKey(cmpType);
     if (itemCom) {
       const newItem = itemCom;
       const usedNum = newItem.usedNum || 0;
@@ -99,35 +99,35 @@ class ComsClass {
       const num = usedNum + 1;
       if (num <= maxNum) {
         newItem.usedNum = num;
-        this.comsInfoMap.set(cmpKey, newItem);
-        this.updateList(cmpKey, num);
+        this.comsInfoMap.set(cmpType, newItem);
+        this.updateList(cmpType, num);
         return true;
       } else {
         message.warning('该组件已添加至上限');
         return false;
       }
     } else {
-      console.warn('未找到 '.concat(cmpKey, ' 对应的组件模块'), cmpKey);
+      console.warn('未找到 '.concat(cmpType, ' 对应的组件模块'), cmpType);
       return false;
     }
   }
   // 减组件数量
   @action.bound
-  minusComsNum(cmpKey: string) {
-    const itemCom = this.getCompInfoByKey(cmpKey);
+  minusComsNum(cmpType: string) {
+    const itemCom = this.getCompInfoByKey(cmpType);
     if (itemCom) {
       const newItem = itemCom;
       const usedNum = newItem.usedNum || 0;
       const num = usedNum - 1;
       if (num >= 0) {
         newItem.usedNum = num;
-        this.comsInfoMap.set(cmpKey, newItem);
-        this.updateList(cmpKey, num);
+        this.comsInfoMap.set(cmpType, newItem);
+        this.updateList(cmpType, num);
         return true;
       }
       return false;
     } else {
-      console.warn('未找到 '.concat(cmpKey, ' 对应的组件模块'), cmpKey);
+      console.warn('未找到 '.concat(cmpType, ' 对应的组件模块'), cmpType);
       return false;
     }
   }

@@ -2,7 +2,6 @@ import { MenuOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 import React from 'react';
 import './index.less';
-
 type CouponItemProps = {
   value: any;
 };

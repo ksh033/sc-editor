@@ -5,7 +5,7 @@ import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 
 class Search extends ParentSchemCmp {
-  cmpKey: string = 'Search';
+  cmpType: string = 'Search';
   cmpName: string = '商品搜索';
   propsConfig: VdProFormColumnsType[] = [
     {
@@ -132,7 +132,7 @@ Search.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FsW9Sbp2UH3-1suib4UB-RwyaR3y.png',
   name: '商品搜索',
   description: '搜索热词和更多相关配置项请前往配置',
-  cmpKey: 'Search',
+  cmpType: 'Search',
   maxNum: 2,
   usedNum: 0,
   status: '',

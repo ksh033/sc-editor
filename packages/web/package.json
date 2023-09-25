@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "web",
   "author": "chengtianhua <1057691751@qq.com>",
   "scripts": {
     "dev": "umi dev",

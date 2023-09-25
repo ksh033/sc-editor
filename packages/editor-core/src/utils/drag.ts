@@ -230,7 +230,7 @@ class Drag {
       callback({
         type: this.type,
         index: this.index,
-        cmpKey: dataset.key,
+        cmpType: dataset.key,
       });
   };
 }

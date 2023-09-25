@@ -23,7 +23,7 @@ const PropertyPanel: React.FC<any> = (props) => {
   const [values, setValues] = useState<any>(editCmp?.getFieldsValue() || {});
   const oldEditCmoId = useRef<string>(editCmp?.id || '');
 
-  const editCmpInfo = comsStore.getCompInfoByKey(editCmp?.cmpKey || '');
+  const editCmpInfo = comsStore.getCompInfoByKey(editCmp?.cmpType || '');
 
   useLayoutEffect(() => {
     if (editCmp?.id) {

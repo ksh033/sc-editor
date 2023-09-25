@@ -1,4 +1,5 @@
 import { VdProFormColumnsType } from '../../interface';
+import React from 'react';
 
 const propsConfig: VdProFormColumnsType[] = [
   {

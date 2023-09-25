@@ -5,7 +5,7 @@ import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 
 class Coupon extends ParentSchemCmp {
-  cmpKey: string = 'Coupon';
+  cmpType: string = 'Coupon';
   cmpName: string = '优惠券';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
@@ -45,7 +45,7 @@ class Coupon extends ParentSchemCmp {
 Coupon.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FupnImjncvDfovyPfalWjuTCEklH.png',
   name: '优惠券',
-  cmpKey: 'Coupon',
+  cmpType: 'Coupon',
   maxNum: 50,
   usedNum: 0,
   status: '',
