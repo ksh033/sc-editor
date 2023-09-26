@@ -1,7 +1,7 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import { FormSchema } from '@ant-design/pro-form/es/components/SchemaForm';
-
-import { ReactNode, ReactElement } from 'react';
+import cloneDeep from 'lodash/cloneDeep';
+import BaseForm from '../BaseForm';
 import {
   CmpInfo,
   ComponentSchemaType,
@@ -9,6 +9,8 @@ import {
   VdProFormColumnsType,
 } from '../interface';
 import { genNonDuplicateId } from '../utils';
+import { validateRules } from '../utils/validateUtil';
+import { filterPageConfig } from './util';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
 
@@ -42,9 +44,27 @@ class ParentSchemCmp implements ComponentSchemaType, Mixin {
     columns: ProFormColumnsType[],
     record: any
   ): ProFormColumnsType[];
-  render?(props: any): ReactNode | ReactElement<any, any>;
+  /** 默认渲染方式 */
+  render(baseProps: any) {
+    let columns: ProFormColumnsType[] = [];
+    if (Array.isArray(this.propsConfig)) {
+      columns = filterPageConfig(this.propsConfig);
+      if (this.getPropsConfig) {
+        columns = this.getPropsConfig(columns, this.values);
+      }
+    }
+    return <BaseForm {...baseProps} columns={columns}></BaseForm>;
+  }
   onValuesChange?(changedValues: any, allValues: any): any;
-
+  /** 获取校验结果 */
+  async getRuleCheck() {
+    let newcolumns = cloneDeep(filterPageConfig(this.propsConfig));
+    if (this.getPropsConfig) {
+      newcolumns = this.getPropsConfig(newcolumns, this.values);
+    }
+    const itemFlag = await validateRules(newcolumns, this.values);
+    return itemFlag;
+  }
   onFilter(
     columns: ProFormColumnsType[],
     fn: (item: ProFormColumnsType) => boolean

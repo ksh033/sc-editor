@@ -4,8 +4,7 @@ import React, { useContext } from 'react';
 // @ts-ignore
 import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
 // @ts-ignore
-import * as Components from '@sceditor/element';
-import { valueTypelist } from '../../index';
+import * as Components from '../components/index';
 
 const BaseForm: React.FC<any> = (props) => {
   const rowData = props['data-row'] || {};
@@ -13,23 +12,25 @@ const BaseForm: React.FC<any> = (props) => {
   const values = useContext(ProProvider);
 
   const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
-  valueTypelist.forEach((warpCom) => {
-    const cmpkey = warpCom.charAt(0).toUpperCase() + warpCom.substring(1);
-    const WarpCommponent = Components[cmpkey];
-    // console.log('WarpCommponent', WarpCommponent);
-    valueTypeMap[warpCom] = {
-      renderFormItem: (_: any, rprops: { fieldProps: any }) => {
-        return (
-          <WarpCommponent
-            {...rprops}
-            {...rprops?.fieldProps}
-            rowData={rowData}
-            editList={editList}
-            id={props.id}
-          />
-        );
-      },
-    };
+  Object.keys(Components).forEach((warpCom: string) => {
+    if (warpCom.startsWith('Vd')) {
+      const cmpkey = warpCom.charAt(0).toUpperCase() + warpCom.substring(1);
+      const WarpCommponent = Components[cmpkey];
+      // console.log('WarpCommponent', WarpCommponent);
+      valueTypeMap[warpCom] = {
+        renderFormItem: (_: any, rprops: { fieldProps: any }) => {
+          return (
+            <WarpCommponent
+              {...rprops}
+              {...rprops?.fieldProps}
+              rowData={rowData}
+              editList={editList}
+              id={props.id}
+            />
+          );
+        },
+      };
+    }
   });
 
   return (

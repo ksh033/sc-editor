@@ -1,14 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep';
-import isNil from 'lodash/isNil';
-// @ts-ignore
-import { ProFormColumnsType } from '@ant-design/pro-form';
-import { VdProFormColumnsType } from '@sceditor/element';
 import { Rules } from 'async-validator/dist-types/interface';
-import { valueTypelist } from '../index';
-
-const defaultFormItemProps = {
-  className: 'deco-control-group',
-};
 
 export function genNonDuplicateId(randomLength: number | undefined = 10) {
   let idStr = Date.now().toString(36);
@@ -16,58 +6,6 @@ export function genNonDuplicateId(randomLength: number | undefined = 10) {
   return idStr;
 }
 
-const isNoStyle = (valueType: string) => {
-  return valueTypelist.indexOf(valueType) > -1;
-};
-
-const converFormItem = (
-  list: VdProFormColumnsType[],
-  columnList: ProFormColumnsType[]
-) => {
-  if (Array.isArray(list)) {
-    list.forEach((it: VdProFormColumnsType) => {
-      const valueType = it.valueType;
-      const { columns, ...restIt } = it;
-      let newItem: ProFormColumnsType<any, any> = restIt;
-      let newColumns: ProFormColumnsType[] = [];
-      if (Array.isArray(columns) && columns.length > 0) {
-        converFormItem(columns, newColumns);
-        newItem.columns = newColumns;
-      }
-      if (isNil(newItem.formItemProps)) {
-        newItem.formItemProps = {};
-      }
-      if (isNil(newItem.fieldProps)) {
-        newItem.fieldProps = {};
-      }
-
-      const formItemProps = Object.assign(
-        {},
-        defaultFormItemProps,
-        newItem.formItemProps
-      );
-      newItem.formItemProps = formItemProps;
-      if (it && typeof it.valueType === 'string') {
-        const valueType: string = it.valueType || '';
-        if (isNoStyle(valueType)) {
-          newItem.formItemProps = {
-            ...formItemProps,
-            label: undefined,
-          };
-          newItem.fieldProps['formItem'] = {
-            name: it.dataIndex,
-            label: it.title,
-          };
-          if (valueType === 'VdDivider') {
-            newItem.formItemProps.noStyle = true;
-          }
-        }
-      }
-
-      columnList.push(newItem);
-    });
-  }
-};
 export function isPromise(obj: any) {
   return (
     !!obj && //有实际含义的变量才执行方法，变量null，undefined和''空串都为false
@@ -75,16 +13,6 @@ export function isPromise(obj: any) {
     typeof obj.then === 'function'
   );
 }
-
-export const filterPageConfig = (
-  propsConfig: VdProFormColumnsType<any>[]
-): ProFormColumnsType[] => {
-  let itemInfos: VdProFormColumnsType<any>[] = cloneDeep(propsConfig);
-  const newColumn: ProFormColumnsType[] = [];
-  converFormItem(itemInfos, newColumn);
-
-  return newColumn;
-};
 
 export function getType(obj: any) {
   // @ts-ignore
