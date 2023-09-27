@@ -31,13 +31,16 @@ export interface Mixin {
   setImmediatelyCheck: (checked: boolean) => void;
   setId: (id: string) => void;
 }
+
+t
 /** 组件配置的数据结构 */
 export interface ComponentSchemaType {
+  
   id: string;
   values: any;
   immediatelyCheck: boolean; // 加载组件的时候是否立即校验
-  cmpType: string; // 映射组件用的
-  cmpName?: string;
+    cmpType: string; // 映射组件用的
+   cmpName?: string;
   propsConfig: VdProFormColumnsType<any>[]; // 右侧属性配置栏显示
   getInitialValue?: () => any; // 右侧属性初始化数据
   getPropsConfig?: (

@@ -3,10 +3,12 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.Coupon,'优惠券')
 class Coupon extends ParentSchemCmp {
-  cmpType: string = 'Coupon';
-  cmpName: string = '优惠券';
+ // cmpType: string = 'Coupon';
+  //cmpName: string = '优惠券';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
     const newC: any[] = columns

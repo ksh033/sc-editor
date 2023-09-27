@@ -3,10 +3,12 @@ import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.Search,'商品搜索')
 class Search extends ParentSchemCmp {
-  cmpType: string = 'Search';
-  cmpName: string = '商品搜索';
+  // cmpType: string = 'Search';
+  // cmpName: string = '商品搜索';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '显示位置',

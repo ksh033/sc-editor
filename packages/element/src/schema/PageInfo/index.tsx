@@ -1,10 +1,13 @@
 import { VdProFormColumnsType } from '../../interface';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.PageInfo,'页面设置')
 class PageInfo extends ParentSchemCmp {
-  cmpName = '页面设置';
+  // cmpName = '页面设置';
+  // cmpType: string = 'PAGE-SETTING';
   id = 'page-setting';
-  cmpType: string = 'PAGE-SETTING';
+ 
   propsConfig: VdProFormColumnsType<any>[] = [
     {
       title: '页面名称',

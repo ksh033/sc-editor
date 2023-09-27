@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@sceditor/element": "workspace:*",
+    "@sceditor/cmp-center": "workspace:*",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout":"^7.10.3",

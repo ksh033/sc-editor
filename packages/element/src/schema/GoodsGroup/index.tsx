@@ -4,10 +4,12 @@ import { ProFormColumnsType } from '@ant-design/pro-form';
 import propsConfig from './list';
 import { spellNamePath } from '../../utils';
 import GroupTitle from '../../components/VdGoodsGroup/GroupTitle';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.Goods,'商品')
 class Goods extends ParentSchemCmp {
-  cmpType: string = 'Goods';
-  cmpName: string = '商品';
+  // cmpType: string = 'Goods';
+  // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   formProps: FormProps = {
     layout: 'horizontal',

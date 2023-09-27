@@ -3,10 +3,11 @@ import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
-
+import { SysComponents, components } from '@sceditor/cmp-center';
+@components(SysComponents.White,'辅助空白')
 class White extends ParentSchemCmp {
-  cmpType: string = 'White';
-  cmpName: string = '辅助空白';
+  // cmpType: string = 'White';
+  // cmpName: string = '辅助空白';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '分割类型',

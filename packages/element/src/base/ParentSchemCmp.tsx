@@ -9,13 +9,13 @@ import {
   VdProFormColumnsType,
 } from '../interface';
 import { genNonDuplicateId } from '../utils';
-import {registerCmp} from '@sceditor/cmp-center';
+import {registerCmp,getComponents} from '@sceditor/cmp-center';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
 
-class ParentSchemCmp implements ComponentSchemaType, Mixin {
+abstract class ParentSchemCmp implements ComponentSchemaType, Mixin {
   // 基础配置
-  static info: CmpInfo = {
+   static info: CmpInfo = {
     name: '',
     maxNum: 0,
     usedNum: 0,
@@ -25,8 +25,7 @@ class ParentSchemCmp implements ComponentSchemaType, Mixin {
   formProps: FormProps = {};
 
   propsConfig: VdProFormColumnsType[] = [];
-  cmpType: string = '';
-  cmpName: string = '';
+  
   id: string = '';
   values: any = {};
   immediatelyCheck: boolean = false;
@@ -34,10 +33,14 @@ class ParentSchemCmp implements ComponentSchemaType, Mixin {
   constructor(values = {}) {
     this.values = values;
     this.id = genNonDuplicateId();
-    registerCmp(this.cmpType,this)
-  }
 
-  [key: string]: any;
+  }
+  cmpType: string="";
+  cmpName?: string | undefined;
+
+  formatValues?: ((allValues: any) => void) | undefined;
+
+
 
   getInitialValue?(): any;
   getPropsConfig?(

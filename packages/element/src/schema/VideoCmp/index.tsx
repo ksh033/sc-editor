@@ -2,10 +2,11 @@ import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
-
+import { SysComponents, components } from '@sceditor/cmp-center';
+@components(SysComponents.Video,'视频')
 class Video extends ParentSchemCmp {
-  cmpType: string = 'Video';
-  cmpName: string = '视频';
+  // cmpType: string = 'Video';
+  // cmpName: string = '视频';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '视频',

@@ -1,10 +1,12 @@
 import { color } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.Notice,'公告')
 class Notice extends ParentSchemCmp {
-  cmpType: string = 'Notice';
-  cmpName: string = '公告';
+  // cmpType: string = 'Notice';
+  // cmpName: string = '公告';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '公告',

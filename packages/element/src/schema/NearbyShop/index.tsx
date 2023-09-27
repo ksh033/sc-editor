@@ -1,9 +1,11 @@
 import { VdProFormColumnsType } from '../../interface'
 import ParentSchemCmp from '../../base/ParentSchemCmp'
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.NearbyShop,'附近的门店')
 class NearbyShop extends ParentSchemCmp {
-  cmpType: string = 'NearbyShop'
-  cmpName: string = '附近的门店'
+  // cmpType: string = 'NearbyShop'
+  // cmpName: string = '附近的门店'
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '分组',

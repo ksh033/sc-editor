@@ -3,10 +3,11 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-
+import {components,SysComponents} from "@sceditor/cmp-center"
+@components(SysComponents.CrowdImage,'人群图片')
 class CrowdImage extends ParentSchemCmp {
-  cmpType: string = 'CrowdImage';
-  cmpName: string = '人群图片';
+  // cmpType: string = 'CrowdImage';
+  // cmpName: string = '人群图片';
   propsConfig: VdProFormColumnsType[] = propsConfig;
 
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {

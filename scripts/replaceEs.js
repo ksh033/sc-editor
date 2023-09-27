@@ -1,5 +1,5 @@
 function replacePath(path) {
-  if (path.node.source && path.node.source.value?.includes('es/')) {
+  if (path.node.source && path.node.source.value?.includes('/es/')) {
     const esModule = path.node.source.value.replace('/es/', '/lib/');
     try {
       if (require.resolve(esModule)) {

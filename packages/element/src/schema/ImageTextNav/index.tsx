@@ -3,10 +3,12 @@ import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.ImageTextNav,'图文导航')
 class ImageTextNav extends ParentSchemCmp {
-  cmpType: string = 'ImageTextNav';
-  cmpName: string = '图文导航';
+  // cmpType: string = 'ImageTextNav';
+  // cmpName: string = '图文导航';
   formProps: FormProps = {
     layout: 'horizontal',
     shouldUpdate: (newValues, oldValues) => {

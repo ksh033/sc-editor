@@ -8,7 +8,7 @@ import { useStore } from '../../stores';
 import { filterPageConfig } from '../../utils/common';
 import { validateRules } from '../../utils/validateUtil';
 
-const PropertyPanel: React.FC<any> = (props) => {
+const PropertyPanel: React.FC<any> = () => {
   const { editorStore } = useStore();
 
   const editList = editorStore.editList;

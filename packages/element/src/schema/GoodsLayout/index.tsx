@@ -3,10 +3,12 @@ import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.GoodsLayout,'商品排版')
 class GoodsLayout extends ParentSchemCmp {
-  cmpType: string = 'GoodsLayout';
-  cmpName: string = '商品';
+  // cmpType: string = 'GoodsLayout';
+  // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   formProps: FormProps = {
     layout: 'horizontal',

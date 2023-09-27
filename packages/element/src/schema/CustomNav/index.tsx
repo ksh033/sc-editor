@@ -1,9 +1,11 @@
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.CustomNav,'底部导航')
 class CustomNav extends ParentSchemCmp {
-  cmpType: string = 'CustomNav';
-  cmpName: string = '底部导航';
+  // cmpType: string = 'CustomNav';
+  // cmpName: string = '底部导航';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '文案',

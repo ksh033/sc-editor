@@ -3,11 +3,12 @@ import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-
-
+import {components,SysComponents} from "@sceditor/cmp-center"
+@components(SysComponents.AdImage,'图片广告')
 class AdImage extends ParentSchemCmp {
-  cmpType: string = 'AdImage';
-  cmpName: string = '图片广告';
+
+  // public cmpType: string = 'AdImage';
+  // public cmpName: string = '图片广告';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
     const newC: any[] = columns
@@ -30,7 +31,10 @@ class AdImage extends ParentSchemCmp {
       .filter((it) => it != null);
     return newC;
   }
+
   getInitialValue() {
+
+    
     return {
       show_method: 'single',
       image_style: 'normal',

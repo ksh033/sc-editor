@@ -124,10 +124,12 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
     });
   return newC;
 };
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.ElevatorNav,'电梯导航')
 class ElevatorNav extends ParentSchemCmp {
-  cmpType: string = 'ElevatorNav';
-  cmpName: string = '电梯导航';
+  // cmpType: string = 'ElevatorNav';
+  // cmpName: string = '电梯导航';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   getPropsConfig = getPropsConfig;
   getInitialValue() {

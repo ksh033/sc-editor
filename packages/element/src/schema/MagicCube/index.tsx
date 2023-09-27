@@ -1,10 +1,12 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import {components,SysComponents} from "@sceditor/cmp-center"
 
+@components(SysComponents.MagicCube,'魔方')
 class MagicCube extends ParentSchemCmp {
-  cmpType: string = 'MagicCube';
-  cmpName: string = '魔方';
+  // cmpType: string = 'MagicCube';
+  // cmpName: string = '魔方';
   propsConfig: VdProFormColumnsType[] = [
     {
       title: '魔方布局',

@@ -9,11 +9,12 @@ import {
 } from '../../attrType/index';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import { SysComponents, components } from '@sceditor/cmp-center';
 
-
+@components(SysComponents.Title,'标题文本')
 class Title extends ParentSchemCmp {
-  cmpType: string = 'Title';
-  cmpName: string = '标题文本';
+  //readonly cmpType: string = 'Title';
+ // readonly cmpName: string = '标题文本';
   propsConfig: VdProFormColumnsType[] = [
     {
       valueType: 'VdTabs',
