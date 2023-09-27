@@ -1,12 +1,10 @@
 // @ts-ignore
 import { ComponentSchemaProps } from '@sceditor/element';
 import { Button, message } from 'antd';
-import cloneDeep from 'lodash/cloneDeep';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useStore } from '../../stores';
-import { filterPageConfig } from '../../utils/common';
-import { validateRules } from '../../utils/validateUtil';
+// import { filterPageConfig } from '../../utils/common';
 
 const PropertyPanel: React.FC<any> = () => {
   const { editorStore } = useStore();
@@ -17,12 +15,12 @@ const PropertyPanel: React.FC<any> = () => {
     if (Array.isArray(editList)) {
       for (let i = 0; i < editList.length; i++) {
         const item: ComponentSchemaProps = editList[i];
-        let newcolumns = cloneDeep(filterPageConfig(item?.propsConfig));
-        if (item?.getPropsConfig) {
-          newcolumns = item?.getPropsConfig(newcolumns, item.values);
+        console.log(item);
+        // const newItem = new item();
+        let itemFlag = false;
+        if (item.getRuleCheck) {
+          itemFlag = await item.getRuleCheck();
         }
-
-        const itemFlag = await validateRules(newcolumns, item.values);
         if (flag && itemFlag === false) {
           flag = false;
           editorStore.updeteEditListItem({

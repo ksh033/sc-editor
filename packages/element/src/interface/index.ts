@@ -47,9 +47,8 @@ export interface ComponentSchemaType {
     columns: ProFormColumnsType[],
     record: any
   ) => ProFormColumnsType[];
-  render?: (
-    props: any
-  ) => React.ReactNode | React.ReactElement<any, any> | null;
+  render: (props: any) => React.ReactNode | React.ReactElement<any, any> | null;
+  getRuleCheck: () => Promise<boolean>;
   onValuesChange?: (changedValues: any, allValues: any) => any;
   formatValues?: (allValues: any) => void;
   initClass: (record: ComponentSchemaType) => void;

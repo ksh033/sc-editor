@@ -1,10 +1,8 @@
 import { Form } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import BaseForm from '../../components/BaseForm';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
-import { filterPageConfig } from '../../utils/common';
 import './index.less';
 import PanelList from './PanelList';
 
@@ -39,17 +37,6 @@ const PropertyPanel: React.FC<any> = (props) => {
     form.validateFields();
     editCmp?.setImmediatelyCheck(false);
   }, [Boolean(editCmp?.immediatelyCheck)]);
-
-  const columns = React.useMemo(() => {
-    if (editCmp?.propsConfig) {
-      let newcolumns = filterPageConfig(editCmp?.propsConfig);
-      if (editCmp?.getPropsConfig) {
-        newcolumns = editCmp?.getPropsConfig(newcolumns, values);
-      }
-      return newcolumns;
-    }
-    return [];
-  }, [editCmp?.propsConfig, editCmp?.getPropsConfig, JSON.stringify(values)]);
 
   const onPageValuesChange = (values: any, allValues: any) => {
     // 更新页面数据
@@ -93,7 +80,6 @@ const PropertyPanel: React.FC<any> = (props) => {
       const baseProps = {
         id: editCmp.id,
         form: form,
-        columns: columns,
         submitter: false,
         initialValues: initialValues,
         'data-list': Array.from(editList),
@@ -108,7 +94,7 @@ const PropertyPanel: React.FC<any> = (props) => {
         return <React.Fragment>{editCmp.render()}</React.Fragment>;
       }
 
-      return <BaseForm {...baseProps}></BaseForm>;
+      return null;
     }
     if (type === 'componentList') {
       return <PanelList></PanelList>;

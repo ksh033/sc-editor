@@ -1,4 +1,4 @@
-export * from './schema/index';
-export * from './components/index';
 export * from './attrType/index';
+export * from './components/index';
 export * from './interface';
+export * from './schema/index';
