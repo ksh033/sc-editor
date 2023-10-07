@@ -12,6 +12,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "skipLibCheck": true,
+    "preserveSymlinks": true,
+    "noImplicitAny": false,
     "paths": {
       "@@service": ["src/services/index.ts"],
       "@sceditor/element": ["./packages/element/src/index.ts"],

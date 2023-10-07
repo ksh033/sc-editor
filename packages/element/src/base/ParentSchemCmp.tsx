@@ -1,6 +1,6 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import { FormSchema } from '@ant-design/pro-form/es/components/SchemaForm';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash';
 import BaseForm from '../BaseForm';
 import {
   CmpInfo,

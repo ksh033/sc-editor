@@ -9,7 +9,7 @@ export const postMessage = (type: string, data: any, index?: number) => {
   if (index == null) {
     if (doc) {
       const dropEle = doc?.getElementById('drop-box');
-      const dropEleChild = [];
+      const dropEleChild: ChildNode[] = [];
       if (dropEle) {
         dropEle.childNodes.forEach((item) => {
           if (item.nodeType === 1) {

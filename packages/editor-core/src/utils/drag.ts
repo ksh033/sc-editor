@@ -81,7 +81,7 @@ class Drag {
 
   //释放区内部元素位置
   getDropOffset = () => {
-    const result = [];
+    const result: any[] = [];
     const { dropEleItems } = this.params;
     if (dropEleItems) {
       const el = dropEleItems;
@@ -134,7 +134,7 @@ class Drag {
       const dropOffsetLength = dropOffset.length;
 
       if (dropOffset && dropOffset.length) {
-        dropOffset.map((item, i) => {
+        dropOffset.map((item: any, i) => {
           const Ele = dropEleChild[i];
 
           //在元素前面插入占位元素

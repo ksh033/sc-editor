@@ -77,7 +77,7 @@ const PropertyPanel: React.FC<any> = (props) => {
     console.log('initialValues', initialValues);
     if ((type === 'component' || type === 'pageSet') && editCmp) {
       const formProps = editCmp?.formProps || {};
-      const baseProps = {
+      const baseProps: any = {
         id: editCmp.id,
         form: form,
         submitter: false,

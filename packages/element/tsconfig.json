@@ -12,6 +12,8 @@
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
+    "preserveSymlinks": true,
+    "noImplicitAny": false,
     "paths": {
       "@@service": ["src/services/index.ts"],
       "@sceditor/element": ["./packages/element/src/index.ts"],
@@ -31,5 +33,7 @@
     "./tests/no-duplicated.ts",
     "packages/descriptions/src/demos/.tsx"
   ],
-  "plugins": [{ "transform": "typescript-transform-paths", "afterDeclarations": true }]
+  "plugins": [
+    { "transform": "typescript-transform-paths", "afterDeclarations": true }
+  ]
 }

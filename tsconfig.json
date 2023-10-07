@@ -12,6 +12,7 @@
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
+    "preserveSymlinks": true,
     "paths": {
       "@@/*": ["packages/web/src/.umi/*"],
       "@sceditor/element": ["./packages/element/src/index.ts"],

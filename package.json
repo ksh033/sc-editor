@@ -8,12 +8,11 @@
     "build": "father-build",
     "release": "node ./scripts/release.js --conventionalPrerelease=true",
     "build:dev": "father-build --watch",
-    "build:web-dev": "npm run build && cross-env  REACT_APP_ENV=dev APP_ROOT=packages/web umi build",
-    "build:web-pro": "npm run build && cross-env REACT_APP_ENV=pro APP_ROOT=packages/web umi build",
-    "build:web-test": "npm run build && cross-env REACT_APP_ENV=test APP_ROOT=packages/web umi build",
-    "build:web-pre": "npm run build && cross-env REACT_APP_ENV=pre APP_ROOT=packages/web umi build",
-    "start": "cross-env APP_ROOT=packages/web umi dev",
-    "update:deps": "yarn upgrade"
+    "build:web-dev": "pnpm run build && cross-env  REACT_APP_ENV=dev APP_ROOT=packages/web umi build",
+    "build:web-pro": "pnpm run build && cross-env REACT_APP_ENV=pro APP_ROOT=packages/web umi build",
+    "build:web-test": "pnpm run build && cross-env REACT_APP_ENV=test APP_ROOT=packages/web umi build",
+    "build:web-pre": "pnpm run build && cross-env REACT_APP_ENV=pre APP_ROOT=packages/web umi build",
+    "start": "cross-env APP_ROOT=packages/web umi dev"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
@@ -55,15 +54,17 @@
     "babel-loader": "^9.1.2",
     "babel-plugin-lodash": "3.3.4",
     "chalk": "^5.2.0",
-    "father-build":"^1.22.5",
+    "classnames": "^2.3.2",
     "copy-webpack-plugin": "5.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.2.0",
     "father": "^4.1.7",
+    "father-build": "^1.22.5",
     "jsdom": "^16.4.0",
     "jsdom-global": "^3.0.2",
     "lerna": "^3.20.2",
     "lerna-changelog": "^1.0.1",
+    "less": "^3.7.1",
     "less-loader": "^5.0.0",
     "lint-staged": "^10.0.2",
     "lodash": "^4.17.21",
@@ -76,7 +77,6 @@
     "pretty-quick": "^3.1.3",
     "progress-bar-webpack-plugin": "^2.1.0",
     "query-string": "^6.14.1",
-    "less": "^3.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "slash2": "^2.0.0",
@@ -90,7 +90,11 @@
   "packageManager": "pnpm@8.2.0",
   "name": "sc-editor",
   "dependencies": {
-    "babel-plugin-import": "^1.13.8"
+    "@ant-design/pro-provider": "^2.13.1",
+    "@chenshuai2144/sketch-color": "^1.0.9",
+    "async-validator": "^4.2.5",
+    "babel-plugin-import": "^1.13.8",
+    "rc-field-form": "^1.38.2"
   },
   "resolutions": {
     "less-loader": "^7.3.0"

@@ -8,7 +8,7 @@ import compute from '../../utils/compute';
 import './index.less';
 import { isImageFileType } from './utils';
 
-export type VdUploadFile = UploadFile & {
+export type VdUploadFile = UploadFile<any> & {
   width?: number;
   height?: number;
   fileId: string;
