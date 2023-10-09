@@ -6,7 +6,7 @@
   "scripts": {
     "bootstrap": "node ./scripts/bootstrap.js",
     "build": "father-build",
-    "build:dev2":"pnpm  --filter \"@sceditor/**\" dev",
+    "build:dev2":"pnpm  --parallel --filter \"@sceditor/**\" dev",
     "build:dev":"pnpm run build-center:dev && pnpm run build-element:dev &pnpm run build-core:dev ",
     "release": "node ./scripts/release.js --conventionalPrerelease=true",
     "test": "node ./scripts/dev.js",

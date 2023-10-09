@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@ant-design/pro-form": "^2.10.1",
+    "async-validator":"^4.2.5",
+    "@ant-design/pro-form": "^2.21.0",
+    "@ant-design/pro-provider":"^2.13.1",
     "@sceditor/cmp-center":"workspace:*",
     "@types/lodash": "^4.14.194",
     "ahooks": "^3.7.6",
