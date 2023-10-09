@@ -19,6 +19,7 @@
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
+    "@types/sortablejs": "^1.13.3",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout": "^7.10.3",
@@ -90,6 +91,8 @@
   "packageManager": "pnpm@8.2.0",
   "name": "sc-editor",
   "dependencies": {
+    "sortablejs": "1.13.0",
+    "react-sortablejs": "^6.1.4",
     "@ant-design/pro-provider": "^2.13.1",
     "@chenshuai2144/sketch-color": "^1.0.9",
     "async-validator": "^4.2.5",

@@ -1,16 +1,22 @@
 import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import Sortable from '../../utils/Sortable';
 import ComItem from './ComItem';
-// @ts-ignore
-import { CompsGroup } from '@sceditor/element';
+import type { CompsGroup } from '@sceditor/element';
 import { useStore } from '../../stores';
+import { genNonDuplicateId } from '../../utils/common';
+import sendToIframe from '../../utils/sendToIframe';
 
 const ComsPanel: React.FC<any> = (props) => {
   const { comsStore, editorStore } = useStore();
 
   const comsList = comsStore.comsList;
+
+  const divRef = useRef<HTMLDivElement>(null);
+
+  const tempCmpKey = useRef<string | null>(null);
 
   const handleClick = (event: any, cmpKey: string) => {
     const item = comsStore.getCompByKey(cmpKey);
@@ -26,9 +32,57 @@ const ComsPanel: React.FC<any> = (props) => {
     comsStore.updateTabActived(id, actived);
   };
 
+  const getDragEle = (cmpKey: string) => {
+    const item = comsStore.getCompByKey(cmpKey);
+    if (item) {
+      const newItem = new item();
+
+      if (newItem.setId) {
+        newItem.setId(genNonDuplicateId());
+      }
+      if (newItem.getInitialValue) {
+        console.log('newItem.getInitialValue()', newItem.getInitialValue());
+        newItem.setFieldsValue(newItem.getInitialValue());
+      }
+      return newItem;
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    if (divRef.current) {
+      const parents = document.querySelectorAll('.com-list');
+      parents.forEach((parent: Element) => {
+        const item = parent as HTMLElement;
+        Sortable.create(item, {
+          draggable: '.drag-item',
+          group: 'shared',
+          sort: false,
+          onChoose(evt) {
+            const { key } = evt.item.dataset;
+            if (key) {
+              tempCmpKey.current = key;
+              const data = getDragEle(key);
+              if (data) {
+                sendToIframe.postMessage('onChoose', data);
+              }
+            }
+          },
+          onEnd(ev) {
+            console.log('mouseup onEnd');
+            if (tempCmpKey.current != null) {
+              handleClick(ev, tempCmpKey.current);
+              tempCmpKey.current = null;
+            }
+            sendToIframe.postMessage('onEnd', {});
+          },
+        });
+      });
+    }
+  }, [divRef.current]);
+
   const comsTabs = (tab: CompsGroup) => {
     const { name, id, list, actived } = tab;
-
     return (
       <div
         className={classnames('coms-lib', {
@@ -66,7 +120,7 @@ const ComsPanel: React.FC<any> = (props) => {
 
   return (
     <div className="left-wrapper">
-      <div className="coms-lib-wrap" id="drag-box">
+      <div className="coms-lib-wrap" id="drag-box" ref={divRef}>
         {comsList.map((item) => {
           return comsTabs(item);
         })}

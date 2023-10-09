@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
+import classnames from 'classnames';
 // @ts-ignore
 import { CmpInfo } from '@sceditor/element';
+
 import { useHover } from 'ahooks';
 import { observer } from 'mobx-react-lite';
 
@@ -25,9 +27,9 @@ const ComItem: React.FC<ComItemProps> = (props) => {
   return (
     <div
       ref={ref}
-      className={
-        isHovering ? 'com-item com-item-active drag-item' : 'com-item drag-item'
-      }
+      className={classnames('com-item', 'drag-item', {
+        'com-item-active': isHovering,
+      })}
       onClick={itemDragStartHandler}
       data-key={regeditCmpName}
     >

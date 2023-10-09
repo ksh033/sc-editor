@@ -18,6 +18,7 @@ const PreView: React.FC<any> = () => {
   const contentIFrameRef = useRef<HTMLIFrameElement>(null);
   const modalType = editorStore.modalType;
   const [height, setHeight] = useState<Number>(defaultHeight);
+
   const handleClick = (type: ModalType) => {
     editorStore.changeModalType(type);
   };
@@ -27,8 +28,9 @@ const PreView: React.FC<any> = () => {
 
   // 监听来自iframe的消息
   useEventListener('message', (event: any) => {
-    console.log('parent-receive-message', event);
+    // console.log('parent-receive-message', event);
     let data: any = null;
+    const rect = contentIFrameRef.current?.getBoundingClientRect();
     if (typeof event.data === 'string') {
       data = JSON.parse(event.data);
       if (data.type === 'changeActive') {
@@ -53,6 +55,22 @@ const PreView: React.FC<any> = () => {
           editorStore.addCmp(restItem, index);
         }
       }
+      if (event.data.type == 'mousemove') {
+        // console.log();
+        let pos = {
+          clientX: event.data.data.clientX + Number(rect?.left || 0),
+          clientY: event.data.data.clientY + Number(rect?.top || 0),
+        };
+
+        document.dispatchEvent(new MouseEvent('mousemove', pos));
+      } else if (event.data.type === 'mouseup') {
+        let pos = {
+          clientX: event.data.data.clientX + Number(rect?.left || 0),
+          clientY: event.data.data.clientY + Number(rect?.top || 0),
+        };
+
+        document.dispatchEvent(new MouseEvent('mouseup', pos));
+      }
     }
   });
 
@@ -75,7 +93,6 @@ const PreView: React.FC<any> = () => {
       'drag-item'
     ) as HTMLCollectionOf<HTMLElement>;
     const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
-
     iframe.onload = function () {
       console.log('加载成功回调');
       const iframeDocument =
@@ -102,11 +119,11 @@ const PreView: React.FC<any> = () => {
     };
   };
 
-  useEffect(() => {
-    if (contentIFrameRef.current) {
-      init();
-    }
-  }, [contentIFrameRef.current]);
+  // useEffect(() => {
+  //   if (contentIFrameRef.current) {
+  //     init();
+  //   }
+  // }, [contentIFrameRef.current]);
 
   return (
     <div className="preview-wrap">

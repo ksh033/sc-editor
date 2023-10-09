@@ -2,25 +2,25 @@
 import { ComponentSchemaProps } from '@sceditor/element';
 import { iframeId } from '../index';
 
-export const postMessage = (type: string, data: any, index?: number) => {
+const postMessage = (type: string, data: any, index?: number) => {
   const frameObj = document.getElementById(iframeId) as HTMLIFrameElement;
-  const doc = frameObj.contentDocument || frameObj.contentWindow?.document;
+  // const doc = frameObj.contentDocument || frameObj.contentWindow?.document;
   let addIndex = index;
-  if (index == null) {
-    if (doc) {
-      const dropEle = doc?.getElementById('drop-box');
-      const dropEleChild: ChildNode[] = [];
-      if (dropEle) {
-        dropEle.childNodes.forEach((item) => {
-          if (item.nodeType === 1) {
-            dropEleChild.push(item);
-          }
-        });
-      }
-      addIndex = dropEleChild.length;
-    }
-  }
-  console.log('postMessage---type', type);
+  // if (index == null) {
+  //   if (doc) {
+  //     const dropEle = doc?.getElementById('drop-box');
+  //     const dropEleChild: ChildNode[] = [];
+  //     if (dropEle) {
+  //       dropEle.childNodes.forEach((item) => {
+  //         if (item.nodeType === 1) {
+  //           dropEleChild.push(item);
+  //         }
+  //       });
+  //     }
+  //     addIndex = dropEleChild.length;
+  //   }
+  // }
+  // console.log('postMessage---type', type);
   if (frameObj && frameObj.contentWindow) {
     const msg = {
       type: type,
@@ -104,4 +104,5 @@ export default {
   updateCmp,
   clearAllCmp,
   updatePage,
+  postMessage,
 };

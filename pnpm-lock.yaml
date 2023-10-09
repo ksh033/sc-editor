@@ -26,6 +26,12 @@ importers:
       rc-field-form:
         specifier: ^1.38.2
         version: registry.npmmirror.com/rc-field-form@1.38.2(react-dom@18.2.0)(react@18.2.0)
+      react-sortablejs:
+        specifier: ^6.1.4
+        version: registry.npmmirror.com/react-sortablejs@6.1.4(@types/sortablejs@1.15.3)(react-dom@18.2.0)(react@18.2.0)(sortablejs@1.13.0)
+      sortablejs:
+        specifier: 1.13.0
+        version: registry.npmmirror.com/sortablejs@1.13.0
     devDependencies:
       '@ant-design/icons':
         specifier: ^5.0.1
@@ -99,6 +105,9 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.1.0
         version: registry.npmmirror.com/@types/react-router-dom@5.3.3
+      '@types/sortablejs':
+        specifier: ^1.13.3
+        version: registry.npmmirror.com/@types/sortablejs@1.15.3
       '@types/warning':
         specifier: ^3.0.0
         version: registry.npmmirror.com/@types/warning@3.0.1
@@ -264,6 +273,9 @@ importers:
       mobx-react-lite:
         specifier: ^2.2.2
         version: registry.npmmirror.com/mobx-react-lite@2.2.2(mobx@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+      rc-field-form:
+        specifier: ^1.38.2
+        version: registry.npmmirror.com/rc-field-form@1.38.2(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: registry.npmmirror.com/react@18.2.0
@@ -288,6 +300,9 @@ importers:
       react-sortable-hoc:
         specifier: ^2.0.0
         version: registry.npmmirror.com/react-sortable-hoc@2.0.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+      react-sortablejs:
+        specifier: ^6.1.4
+        version: registry.npmmirror.com/react-sortablejs@6.1.4(@types/sortablejs@1.15.3)(react-dom@18.2.0)(react@18.2.0)(sortablejs@1.13.0)
       redux:
         specifier: ^4.0.5
         version: registry.npmmirror.com/redux@4.2.1
@@ -297,6 +312,9 @@ importers:
       redux-thunk:
         specifier: ^2.3.0
         version: registry.npmmirror.com/redux-thunk@2.4.2(redux@4.2.1)
+      sortablejs:
+        specifier: 1.13.0
+        version: registry.npmmirror.com/sortablejs@1.13.0
       umi:
         specifier: ^4.0.64
         version: registry.npmmirror.com/umi@4.0.83(@babel/core@7.23.0)(@types/node@14.18.63)(@types/react@18.2.25)(eslint@7.32.0)(postcss@8.4.31)(prettier@2.8.8)(react-dom@18.2.0)(react@18.2.0)(rollup@2.33.3)(styled-components@6.0.8)(stylelint@14.16.1)(typescript@5.2.2)(webpack@5.88.2)
@@ -343,6 +361,9 @@ importers:
       moment:
         specifier: ^2.24.0
         version: registry.npmmirror.com/moment@2.29.4
+      rc-field-form:
+        specifier: ^1.38.2
+        version: registry.npmmirror.com/rc-field-form@1.38.2(react-dom@17.0.2)(react@18.2.0)
       rc-resize-observer:
         specifier: ^1.0.0
         version: registry.npmmirror.com/rc-resize-observer@1.3.1(react-dom@17.0.2)(react@18.2.0)
@@ -7218,6 +7239,11 @@ packages:
     name: '@types/semver'
     version: 7.5.3
 
+  registry.npmmirror.com/@types/sortablejs@1.15.3:
+    resolution: {integrity: sha512-v+zh6TZP/cLeMUK0MDx1onp8e7Jk2/4iTQ7sb/n80rTAvBm14yJkpOEfJdrTCkHiF7IZbPjxGX2NRJfogRoYIg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.3.tgz}
+    name: '@types/sortablejs'
+    version: 1.15.3
+
   registry.npmmirror.com/@types/stylis@4.2.1:
     resolution: {integrity: sha512-OSaMrXUKxVigGlKRrET39V2xdhzlztQ9Aqumn1WbCBKHOi9ry7jKSd7rkyj0GzmWaU960Rd+LpOFpLfx5bMQAg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/stylis/-/stylis-4.2.1.tgz}
     name: '@types/stylis'
@@ -10413,6 +10439,12 @@ packages:
       isobject: registry.npmmirror.com/isobject@3.0.1
       static-extend: registry.npmmirror.com/static-extend@0.1.2
     dev: true
+
+  registry.npmmirror.com/classnames@2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/classnames/-/classnames-2.3.1.tgz}
+    name: classnames
+    version: 2.3.1
+    dev: false
 
   registry.npmmirror.com/classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/classnames/-/classnames-2.3.2.tgz}
@@ -22594,6 +22626,25 @@ packages:
       react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
     dev: false
 
+  registry.npmmirror.com/react-sortablejs@6.1.4(@types/sortablejs@1.15.3)(react-dom@18.2.0)(react@18.2.0)(sortablejs@1.13.0):
+    resolution: {integrity: sha512-fc7cBosfhnbh53Mbm6a45W+F735jwZ1UFIYSrIqcO/gRIFoDyZeMtgKlpV4DdyQfbCzdh5LoALLTDRxhMpTyXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-sortablejs/-/react-sortablejs-6.1.4.tgz}
+    id: registry.npmmirror.com/react-sortablejs/6.1.4
+    name: react-sortablejs
+    version: 6.1.4
+    peerDependencies:
+      '@types/sortablejs': '1'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+      sortablejs: '1'
+    dependencies:
+      '@types/sortablejs': registry.npmmirror.com/@types/sortablejs@1.15.3
+      classnames: registry.npmmirror.com/classnames@2.3.1
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      sortablejs: registry.npmmirror.com/sortablejs@1.13.0
+      tiny-invariant: registry.npmmirror.com/tiny-invariant@1.2.0
+    dev: false
+
   registry.npmmirror.com/react@18.1.0:
     resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react/-/react-18.1.0.tgz}
     name: react
@@ -24010,6 +24061,12 @@ packages:
       sort-object-keys: registry.npmmirror.com/sort-object-keys@1.1.3
     dev: true
 
+  registry.npmmirror.com/sortablejs@1.13.0:
+    resolution: {integrity: sha512-RBJirPY0spWCrU5yCmWM1eFs/XgX2J5c6b275/YyxFRgnzPhKl/TDeU2hNR8Dt7ITq66NRPM4UlOt+e5O4CFHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sortablejs/-/sortablejs-1.13.0.tgz}
+    name: sortablejs
+    version: 1.13.0
+    dev: false
+
   registry.npmmirror.com/source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map-js/-/source-map-js-1.0.2.tgz}
     name: source-map-js
@@ -25216,6 +25273,12 @@ packages:
     name: timsort
     version: 0.3.0
     dev: true
+
+  registry.npmmirror.com/tiny-invariant@1.2.0:
+    resolution: {integrity: sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tiny-invariant/-/tiny-invariant-1.2.0.tgz}
+    name: tiny-invariant
+    version: 1.2.0
+    dev: false
 
   registry.npmmirror.com/tinycolor2@1.6.0:
     resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tinycolor2/-/tinycolor2-1.6.0.tgz}

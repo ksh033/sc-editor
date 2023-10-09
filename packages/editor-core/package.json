@@ -33,11 +33,14 @@
     "react-motion": "^0.5.2",
     "react-redux": "^7.2.1",
     "react-sortable-hoc": "^2.0.0",
+    "react-sortablejs": "^6.1.4",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "umi": "^4.0.64",
+    "sortablejs": "1.13.0",
     "rc-field-form": "^1.38.2"
+    
   },
   "devDependencies": {
     "prettier": "^2.2.0"
