@@ -2,7 +2,8 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef } from 'react';
-import Sortable from '../../utils/Sortable';
+// import Sortable from '../../utils/Sortable';
+import Sortable from 'sortablejs';
 import ComItem from './ComItem';
 import type { CompsGroup } from '@sceditor/element';
 import { useStore } from '../../stores';
@@ -56,11 +57,19 @@ const ComsPanel: React.FC<any> = (props) => {
         const item = parent as HTMLElement;
         Sortable.create(item, {
           draggable: '.drag-item',
-          group: 'shared',
+          group: {
+            name: 'shared',
+            put: false,
+          },
           sort: false,
+          forceFallback: true,
+          // @ts-ignore
+          supportPointer: false,
+          dragoverBubble: true,
+          dropBubble: true,
           onChoose(evt) {
             const { key } = evt.item.dataset;
-            if (key) {
+            if (key && key !== tempCmpKey.current) {
               tempCmpKey.current = key;
               const data = getDragEle(key);
               if (data) {
@@ -71,7 +80,6 @@ const ComsPanel: React.FC<any> = (props) => {
           onEnd(ev) {
             console.log('mouseup onEnd');
             if (tempCmpKey.current != null) {
-              handleClick(ev, tempCmpKey.current);
               tempCmpKey.current = null;
             }
             sendToIframe.postMessage('onEnd', {});

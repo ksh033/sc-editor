@@ -28,11 +28,19 @@ const PreView: React.FC<any> = () => {
 
   // 监听来自iframe的消息
   useEventListener('message', (event: any) => {
-    // console.log('parent-receive-message', event);
     let data: any = null;
     const rect = contentIFrameRef.current?.getBoundingClientRect();
-    if (typeof event.data === 'string') {
-      data = JSON.parse(event.data);
+    if (event.data) {
+      data = event.data;
+      if (data.type === 'add') {
+        const item = comsStore.getCompByKey(data.data.cmpKey);
+        if (item) {
+          const flag = comsStore.addComsNum(data.data.cmpKey);
+          if (flag) {
+            editorStore.addToEdit(item, data.data.index);
+          }
+        }
+      }
       if (data.type === 'changeActive') {
         editorStore.switchEditCmp(data.data);
       }
@@ -55,69 +63,69 @@ const PreView: React.FC<any> = () => {
           editorStore.addCmp(restItem, index);
         }
       }
-      if (event.data.type == 'mousemove') {
-        // console.log();
-        let pos = {
-          clientX: event.data.data.clientX + Number(rect?.left || 0),
-          clientY: event.data.data.clientY + Number(rect?.top || 0),
-        };
+    }
+    if (event.data.type == 'mousemove') {
+      // console.log();
+      let pos = {
+        clientX: event.data.data.clientX + Number(rect?.left || 0),
+        clientY: event.data.data.clientY + Number(rect?.top || 0),
+      };
 
-        document.dispatchEvent(new MouseEvent('mousemove', pos));
-      } else if (event.data.type === 'mouseup') {
-        let pos = {
-          clientX: event.data.data.clientX + Number(rect?.left || 0),
-          clientY: event.data.data.clientY + Number(rect?.top || 0),
-        };
+      document.dispatchEvent(new MouseEvent('mousemove', pos));
+    } else if (event.data.type === 'mouseup') {
+      let pos = {
+        clientX: event.data.data.clientX + Number(rect?.left || 0),
+        clientY: event.data.data.clientY + Number(rect?.top || 0),
+      };
 
-        document.dispatchEvent(new MouseEvent('mouseup', pos));
-      }
+      document.dispatchEvent(new MouseEvent('mouseup', pos));
     }
   });
 
-  const callback = (params: any) => {
-    if (params.type === 'add' || params.type === 'insert') {
-      if (params.cmpKey) {
-        const item = comsStore.getCompByKey(params.cmpKey);
-        if (item) {
-          const flag = comsStore.addComsNum(params.cmpKey);
-          if (flag) {
-            editorStore.addToEdit(item, params.index);
-          }
-        }
-      }
-    }
-  };
+  // const callback = (params: any) => {
+  //   if (params.type === 'add' || params.type === 'insert') {
+  //     if (params.cmpKey) {
+  //       const item = comsStore.getCompByKey(params.cmpKey);
+  //       if (item) {
+  //         const flag = comsStore.addComsNum(params.cmpKey);
+  //         if (flag) {
+  //           editorStore.addToEdit(item, params.index);
+  //         }
+  //       }
+  //     }
+  //   }
+  // };
 
-  const init = () => {
-    const item: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName(
-      'drag-item'
-    ) as HTMLCollectionOf<HTMLElement>;
-    const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
-    iframe.onload = function () {
-      console.log('加载成功回调');
-      const iframeDocument =
-        iframe.contentDocument || iframe.contentWindow?.document;
-      setTimeout(() => {
-        Drag.init({
-          iframeEle: iframe,
-          dragEle: document.getElementById('drag-box'),
-          dragItem: item,
-          callback,
-          dropEle: iframeDocument?.getElementById('drop-box'),
-          dropEleItems: iframeDocument?.getElementsByClassName(
-            'drop-item'
-          ) as HTMLCollectionOf<HTMLElement>,
-        });
+  // const init = () => {
+  //   const item: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName(
+  //     'drag-item'
+  //   ) as HTMLCollectionOf<HTMLElement>;
+  //   const iframe = document.getElementById(iframeId) as HTMLIFrameElement;
+  //   iframe.onload = function () {
+  //     console.log('加载成功回调');
+  //     const iframeDocument =
+  //       iframe.contentDocument || iframe.contentWindow?.document;
+  //     setTimeout(() => {
+  //       Drag.init({
+  //         iframeEle: iframe,
+  //         dragEle: document.getElementById('drag-box'),
+  //         dragItem: item,
+  //         callback,
+  //         dropEle: iframeDocument?.getElementById('drop-box'),
+  //         dropEleItems: iframeDocument?.getElementsByClassName(
+  //           'drop-item'
+  //         ) as HTMLCollectionOf<HTMLElement>,
+  //       });
 
-        // 初始化后先发送页面配置数据
-        const pageCmp = editorStore.pageinfo;
-        if (pageCmp) {
-          sendToIframe.updatePage(pageCmp);
-        }
-      }, 100);
-      console.log('iframeDocument', iframeDocument?.getElementById('drop-box'));
-    };
-  };
+  //       // 初始化后先发送页面配置数据
+  //       const pageCmp = editorStore.pageinfo;
+  //       if (pageCmp) {
+  //         sendToIframe.updatePage(pageCmp);
+  //       }
+  //     }, 100);
+  //     console.log('iframeDocument', iframeDocument?.getElementById('drop-box'));
+  //   };
+  // };
 
   // useEffect(() => {
   //   if (contentIFrameRef.current) {
@@ -149,7 +157,13 @@ const PreView: React.FC<any> = () => {
           组件管理
         </Button>
       </div>
-      <div className="preview drop-content">
+      <div
+        className="preview drop-content"
+        onMouseMove={(event) => {
+          event.stopPropagation();
+          event.cancelable = false;
+        }}
+      >
         <iframe
           ref={contentIFrameRef}
           id={iframeId}

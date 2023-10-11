@@ -77,7 +77,8 @@ class EditorClass {
     // 先更新当前的 list 下的数据
     // this.updeteEditList();
     const newItem = new item();
-
+    // 关键点
+    newItem.index = index;
     if (newItem.setId) {
       newItem.setId(genNonDuplicateId());
     }
@@ -96,7 +97,7 @@ class EditorClass {
     }
     if (noticed) {
       // 发送消息给iframe
-      sendToIframe.addCmp(newItem, index);
+      sendToIframe.addCmp(newItem);
     }
   }
   // 添加组件
@@ -137,7 +138,7 @@ class EditorClass {
 
         if (noticed) {
           // 发送消息给iframe
-          sendToIframe.copyCmp(newItem, newIndex);
+          sendToIframe.copyCmp(newItem);
         }
       }
     }

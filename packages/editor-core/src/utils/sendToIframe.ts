@@ -2,10 +2,14 @@
 import { ComponentSchemaProps } from '@sceditor/element';
 import { iframeId } from '../index';
 
-const postMessage = (type: string, data: any, index?: number) => {
+type PostComProps = ComponentSchemaProps & {
+  index?: number;
+};
+
+const postMessage = (type: string, data: any) => {
   const frameObj = document.getElementById(iframeId) as HTMLIFrameElement;
   // const doc = frameObj.contentDocument || frameObj.contentWindow?.document;
-  let addIndex = index;
+  // let addIndex = index;
   // if (index == null) {
   //   if (doc) {
   //     const dropEle = doc?.getElementById('drop-box');
@@ -22,17 +26,15 @@ const postMessage = (type: string, data: any, index?: number) => {
   // }
   // console.log('postMessage---type', type);
   if (frameObj && frameObj.contentWindow) {
-    const msg = {
+    let msg = {
       type: type,
       data,
-      index: addIndex,
     };
     frameObj.contentWindow.postMessage(JSON.stringify(msg), '*');
   }
 };
 /** 页面设置 */
-const updatePage = (item: ComponentSchemaProps) => {
-  console.log('updatePage', item);
+const updatePage = (item: PostComProps) => {
   postMessage('page', {
     cmpKey: item.cmpKey,
     cmpName: item.cmpName,
@@ -41,17 +43,14 @@ const updatePage = (item: ComponentSchemaProps) => {
   });
 };
 
-const addCmp = (item: ComponentSchemaProps, index?: number) => {
-  postMessage(
-    'add',
-    {
-      cmpKey: item.cmpKey,
-      cmpName: item.cmpName,
-      values: item.values,
-      id: item.id,
-    },
-    index
-  );
+const addCmp = (item: PostComProps) => {
+  postMessage('add', {
+    cmpKey: item.cmpKey,
+    cmpName: item.cmpName,
+    values: item.values,
+    id: item.id,
+    index: item?.index,
+  });
 };
 
 const deleteCmp = (id: string) => {
@@ -69,7 +68,7 @@ const arrayMove = (oldIndex: number, newIndex: number) => {
   });
 };
 
-const updateCmp = (item: ComponentSchemaProps) => {
+const updateCmp = (item: PostComProps) => {
   postMessage('update', {
     cmpKey: item.cmpKey,
     cmpName: item.cmpName,
@@ -78,17 +77,13 @@ const updateCmp = (item: ComponentSchemaProps) => {
   });
 };
 /** 复制组件 */
-const copyCmp = (item: ComponentSchemaProps, index: number) => {
-  postMessage(
-    'copy',
-    {
-      cmpKey: item.cmpKey,
-      cmpName: item.cmpName,
-      values: item.values,
-      id: item.id,
-    },
-    index
-  );
+const copyCmp = (item: PostComProps) => {
+  postMessage('copy', {
+    cmpKey: item.cmpKey,
+    cmpName: item.cmpName,
+    values: item.values,
+    id: item.id,
+  });
 };
 
 const clearAllCmp = () => {
