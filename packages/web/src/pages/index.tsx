@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React,{ useEffect } from 'react';
 // @ts-ignore
 import Editor from '@sceditor/editor-core';
 
