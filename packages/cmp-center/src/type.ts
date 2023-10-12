@@ -33,4 +33,19 @@ export enum SysComponents {
      */
     PageInfo="PageInfo"
 }
+
+export enum MessageTypeEnum{
+    updateCmp="updateCmp",
+    clearAllCmp="clearAllCmp",
+    deleteCmp="deleteCmp",
+    arrayMoveCmp="arrayMoveCmp",
+    updatePage="updatePage",
+    changeActiveCmp="changeActiveCmp",
+    addCmp="addCmp",
+    copyCmp="copyCmp",
+
+
+}
 export type SysComponentsEnumType= keyof typeof SysComponents
+
+export type MessageType= keyof typeof MessageTypeEnum

@@ -1,15 +1,17 @@
 
 export {SysComponents} from './type'
 import type {SysComponentsEnumType} from './type'
+
+export {default as IframePostMessage}  from './message'
+
+
 const _components=new Map<string,any>()
 export function registerCmp(
     cmpType: SysComponentsEnumType,cmp:any
   ):void;
-
-  export function registerCmp(
+ export function registerCmp(
     cmpType: string,cmp:any
   ):void;
-  
 export function registerCmp(type,cmp){
 
   _components.set(type,cmp)
