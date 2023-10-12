@@ -12,17 +12,7 @@
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
-<<<<<<< HEAD
    
-=======
-    "preserveSymlinks": true,
-    "noImplicitAny": false,
-    "paths": {
-      "@@service": ["src/services/index.ts"],
-      "@sceditor/element": ["./packages/element/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
-    }
->>>>>>> master
   },
   
 }
