@@ -5,7 +5,7 @@ import './index.less';
 
 export type VdFormItemProps = {
   formItem?: FormItemProps;
-  valueName?: React.Key | React.ReactNode;
+  valueName?: React.ReactNode;
   showValue?: boolean;
   block?: boolean;
   showFormItemTitle?: boolean;

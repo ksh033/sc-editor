@@ -1,11 +1,12 @@
 import { FileOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Spin, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
-import type { UploadFile } from 'antd/es/upload/interface';
+import type { UploadFile } from 'antd';
 import classNames from 'classnames';
 import type { CSSProperties } from 'react';
 import React, { memo, useMemo } from 'react';
 import type { SortEnd } from 'react-sortable-hoc';
+// @ts-ignore
 import {
   arrayMove,
   SortableContainer,
@@ -15,13 +16,9 @@ import './index.less';
 import Picture from './Picture';
 import PictureCard from './PictureCard';
 import type { Props, SortableItemParams, SortableListParams } from './types';
-export type { UploadFile } from 'antd/es/upload/interface';
 
 interface DragableUploadListItemProps {
-  originNode: React.ReactElement<
-    any,
-    string | React.JSXElementConstructor<any>
-  >;
+  originNode: any;
   file: UploadFile;
   fileList: UploadFile[];
   params: SortableListParams;
@@ -144,6 +141,7 @@ const SortableList = SortableContainer<SortableListParams>(
             iconRender={iconRender}
             onRemove={params.onRemove}
             fileList={params.items}
+            capture="user"
             itemRender={(originNode, file, currFileList) => (
               <DragableUploadListItem
                 originNode={originNode}
@@ -158,6 +156,7 @@ const SortableList = SortableContainer<SortableListParams>(
         <Upload
           {...params.props}
           showUploadList={false}
+          capture="user"
           onChange={params.onChange}
         >
           {params.props.children}

@@ -11,7 +11,7 @@ class ImageTextNav extends ParentSchemCmp {
   // cmpName: string = '图文导航';
   formProps: FormProps = {
     layout: 'horizontal',
-    shouldUpdate: (newValues, oldValues) => {
+    shouldUpdate: (newValues: any, oldValues: any) => {
       if (
         newValues &&
         oldValues &&

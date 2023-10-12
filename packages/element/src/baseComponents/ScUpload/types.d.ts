@@ -6,7 +6,7 @@ export type Props = {
   onChange: (params: { fileList: UploadFile[] }) => void;
   children?: ReactNode;
   preWidth?: number | string;
-} & UploadProps;
+} & Omit<UploadProps, 'capture'>;
 
 type SortableParams = {
   props: Omit<Props, 'onChange'>;

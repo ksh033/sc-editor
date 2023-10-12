@@ -1,21 +1,28 @@
 import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+// import Sortable from '../../utils/Sortable';
+import Sortable from 'sortablejs';
 import ComItem from './ComItem';
-// @ts-ignore
-import { CompsGroup } from '@sceditor/element';
+import type { CompsGroup } from '@sceditor/element';
 import { useStore } from '../../stores';
+import { genNonDuplicateId } from '../../utils/common';
+import sendToIframe from '../../utils/sendToIframe';
 
 const ComsPanel: React.FC<any> = (props) => {
   const { comsStore, editorStore } = useStore();
 
   const comsList = comsStore.comsList;
 
-  const handleClick = (event: any, cmpType: string) => {
-    const item = comsStore.getCompByKey(cmpType);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  const tempCmpKey = useRef<string | null>(null);
+
+  const handleClick = (event: any, cmpKey: string) => {
+    const item = comsStore.getCompByKey(cmpKey);
     if (item) {
-      const flag = comsStore.addComsNum(cmpType);
+      const flag = comsStore.addComsNum(cmpKey);
       if (flag) {
         editorStore.addToEdit(item);
       }
@@ -26,9 +33,64 @@ const ComsPanel: React.FC<any> = (props) => {
     comsStore.updateTabActived(id, actived);
   };
 
+  const getDragEle = (cmpKey: string) => {
+    const item = comsStore.getCompByKey(cmpKey);
+    if (item) {
+      const newItem = new item();
+
+      if (newItem.setId) {
+        newItem.setId(genNonDuplicateId());
+      }
+      if (newItem.getInitialValue) {
+        console.log('newItem.getInitialValue()', newItem.getInitialValue());
+        newItem.setFieldsValue(newItem.getInitialValue());
+      }
+      return newItem;
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    if (divRef.current) {
+      const parents = document.querySelectorAll('.com-list');
+      parents.forEach((parent: Element) => {
+        const item = parent as HTMLElement;
+        Sortable.create(item, {
+          draggable: '.drag-item',
+          group: {
+            name: 'shared',
+            put: false,
+          },
+          sort: false,
+          forceFallback: true,
+          // @ts-ignore
+          supportPointer: false,
+          dragoverBubble: true,
+          dropBubble: true,
+          onChoose(evt) {
+            const { key } = evt.item.dataset;
+            if (key && key !== tempCmpKey.current) {
+              tempCmpKey.current = key;
+              const data = getDragEle(key);
+              if (data) {
+                sendToIframe.postMessage('onChoose', data);
+              }
+            }
+          },
+          onEnd(ev) {
+            console.log('mouseup onEnd');
+            if (tempCmpKey.current != null) {
+              tempCmpKey.current = null;
+            }
+            sendToIframe.postMessage('onEnd', {});
+          },
+        });
+      });
+    }
+  }, [divRef.current]);
+
   const comsTabs = (tab: CompsGroup) => {
     const { name, id, list, actived } = tab;
-
     return (
       <div
         className={classnames('coms-lib', {
@@ -66,7 +128,7 @@ const ComsPanel: React.FC<any> = (props) => {
 
   return (
     <div className="left-wrapper">
-      <div className="coms-lib-wrap" id="drag-box">
+      <div className="coms-lib-wrap" id="drag-box" ref={divRef}>
         {comsList.map((item) => {
           return comsTabs(item);
         })}
