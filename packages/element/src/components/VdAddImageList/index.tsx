@@ -7,11 +7,12 @@ import VdSelectImage, {
   VdSelectImageItem,
   VdSelectImageRef,
 } from '../VdSelectImage';
+import { registerEditorAttrCmp,EditorPropertyComponent } from '@sceditor/editor-core';
 
 type VdAddImageListProps = VdAddListProps<any>;
 
 /** 添加图片 */
-const VdAddImageList: React.FC<VdAddImageListProps> = (props) => {
+const VdAddImageList:EditorPropertyComponent<VdAddImageListProps> = (props) => {
   const renderItem = (rprops: any) => {
     return <VdImgLink {...rprops}></VdImgLink>;
   };
@@ -66,5 +67,6 @@ const VdAddImageList: React.FC<VdAddImageListProps> = (props) => {
     ></VdAddList>
   );
 };
-
+VdAddImageList.valueType="VdAddImageList";
+registerEditorAttrCmp(VdAddImageList)
 export default VdAddImageList;

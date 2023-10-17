@@ -2,6 +2,7 @@ import { Checkbox, CheckboxProps } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type VdRadioIconProps = Omit<CheckboxProps, 'onChange'> &
   ExtendVdFormItemProps & {
@@ -15,7 +16,7 @@ const defaultValueMap: Record<string, React.ReactNode> = {
   '0': '不显示',
 };
 
-const VdCheckBox: React.FC<VdRadioIconProps> = (props) => {
+const VdCheckBox: EditorPropertyComponent<VdRadioIconProps> = (props) => {
   const {
     onChange,
     value,
@@ -42,5 +43,6 @@ const VdCheckBox: React.FC<VdRadioIconProps> = (props) => {
     </>
   );
 };
-
+VdCheckBox.valueType="VdCheckBox"
+registerEditorAttrCmp(VdCheckBox)
 export default VdCheckBox;

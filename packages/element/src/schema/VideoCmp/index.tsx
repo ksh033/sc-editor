@@ -1,10 +1,9 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import { SysComponents, components } from '@sceditor/cmp-center';
+import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
 @components(SysComponents.Video,'视频')
-class Video extends ParentSchemCmp {
+class Video extends BaseSchemaEditor {
   // cmpType: string = 'Video';
   // cmpName: string = '视频';
   propsConfig: VdProFormColumnsType[] = [
@@ -186,10 +185,10 @@ Video.info = {
   name: '视频',
   description:
     '自动播放仅小程序v2.86.7及以上版本生效，其他部分功能优化（竖版视频、隐藏进度条等）支持H5和v2.86.7及以上版本的小程序',
-  cmpType: 'Video',
+  cmpType: SysComponents.Video,
   maxNum: 50,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(Video)
 export default Video;

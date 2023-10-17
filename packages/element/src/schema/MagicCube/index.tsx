@@ -1,10 +1,8 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
+import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.MagicCube,'魔方')
-class MagicCube extends ParentSchemCmp {
+class MagicCube extends BaseSchemaEditor {
   // cmpType: string = 'MagicCube';
   // cmpName: string = '魔方';
   propsConfig: VdProFormColumnsType[] = [
@@ -138,10 +136,10 @@ MagicCube.info = {
   icon: 'https://img01.yzcdn.cn/public_files/2019/02/12/6c2cc2100fa2db454aaf649c19e0ffc9.png',
   name: '魔方',
   description: '魔方',
-  cmpType: 'MagicCube',
+  cmpType: SysComponents.MagicCube,
   maxNum: 200,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(MagicCube)
 export default MagicCube;

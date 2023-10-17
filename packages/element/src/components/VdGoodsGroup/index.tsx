@@ -1,11 +1,12 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Space } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { FormListFieldData } from 'antd/es/form/FormList';
 import React from 'react';
 import { VdFormItemProps } from '../VdFormItem';
 import SetGoodsCount from './SetGoodsCount';
 import './index.less';
 import GoodsTagItem from './GoodsTagItem';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type typeNode = 'tag' | 'card';
 
@@ -27,7 +28,7 @@ type VdGoodsGroupDataNode = {
   isShowAll?: boolean;
 };
 
-const VdGoodsGroup: React.FC<VdGoodsGroupProps> = (props) => {
+const VdGoodsGroup: EditorPropertyComponent<VdGoodsGroupProps> = (props) => {
   const {
     addBtnText = '添加商品分组',
     formItem,
@@ -152,5 +153,6 @@ const VdGoodsGroup: React.FC<VdGoodsGroupProps> = (props) => {
     </>
   );
 };
-
+VdGoodsGroup.valueType='VdGoodsGroup';
+registerEditorAttrCmp(VdGoodsGroup);
 export default VdGoodsGroup;

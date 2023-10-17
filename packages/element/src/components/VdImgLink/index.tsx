@@ -1,10 +1,10 @@
 import { Button, Space } from 'antd';
-import React from 'react';
 import VdSelectImage from '../VdSelectImage';
 import './index.less';
 import { VdImgLinkProps } from './type';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
-const VdImgLink: React.FC<VdImgLinkProps> = (props) => {
+const VdImgLink:EditorPropertyComponent<VdImgLinkProps> = (props) => {
   const { value, onChange } = props;
 
   const onUploadChange = (val: any) => {
@@ -29,5 +29,6 @@ const VdImgLink: React.FC<VdImgLinkProps> = (props) => {
     </div>
   );
 };
-
+VdImgLink.valueType="VdImgLink"
+registerEditorAttrCmp(VdImgLink)
 export default VdImgLink;

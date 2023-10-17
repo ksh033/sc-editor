@@ -1,7 +1,8 @@
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 import { Input, Radio, RadioChangeEvent, RadioGroupProps, Space } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { CheckboxValueType } from 'antd/es/checkbox/Group';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 
 export interface VdCheckboxOptionType {
   label: React.ReactNode;
@@ -18,7 +19,7 @@ type VdStyleRadioProps = Omit<RadioGroupProps, 'options' | 'onChange'> & {
   onChange?: (val: any) => void;
 };
 
-const VdStyleRadio: React.FC<VdStyleRadioProps> = (props) => {
+const VdStyleRadio: EditorPropertyComponent<VdStyleRadioProps> = (props) => {
   const {
     value = {
       btn_type: 1,
@@ -74,5 +75,6 @@ const VdStyleRadio: React.FC<VdStyleRadioProps> = (props) => {
     </Space>
   );
 };
-
+VdStyleRadio.valueType="VdStyleRadio"
+registerEditorAttrCmp(VdStyleRadio)
 export default VdStyleRadio;

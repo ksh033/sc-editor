@@ -3,11 +3,9 @@ import { useEventListener } from 'ahooks';
 import { Button } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
-import { iframeId } from '../../index';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
-import Drag from '../../utils/drag';
-import sendToIframe from '../../utils/sendToIframe';
+import {iframeId} from '../../manager'
 import './index.less';
 import useIframeLoad from './useIframeLoad';
 
@@ -33,9 +31,9 @@ const PreView: React.FC<any> = () => {
     if (event.data) {
       data = event.data;
       if (data.type === 'add') {
-        const item = comsStore.getCompByKey(data.data.cmpKey);
+        const item = comsStore.getCompByKey(data.data.cmpType);
         if (item) {
-          const flag = comsStore.addComsNum(data.data.cmpKey);
+          const flag = comsStore.addComsNum(data.data.cmpType);
           if (flag) {
             editorStore.addToEdit(item, data.data.index);
           }
@@ -84,10 +82,10 @@ const PreView: React.FC<any> = () => {
 
   // const callback = (params: any) => {
   //   if (params.type === 'add' || params.type === 'insert') {
-  //     if (params.cmpKey) {
-  //       const item = comsStore.getCompByKey(params.cmpKey);
+  //     if (params.cmpType) {
+  //       const item = comsStore.getCompByKey(params.cmpType);
   //       if (item) {
-  //         const flag = comsStore.addComsNum(params.cmpKey);
+  //         const flag = comsStore.addComsNum(params.cmpType);
   //         if (flag) {
   //           editorStore.addToEdit(item, params.index);
   //         }

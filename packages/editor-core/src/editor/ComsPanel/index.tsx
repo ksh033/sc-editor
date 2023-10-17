@@ -5,24 +5,24 @@ import React, { useEffect, useRef } from 'react';
 // import Sortable from '../../utils/Sortable';
 import Sortable from 'sortablejs';
 import ComItem from './ComItem';
-import type { CompsGroup } from '@sceditor/element';
 import { useStore } from '../../stores';
 import { genNonDuplicateId } from '../../utils/common';
 import sendToIframe from '../../utils/sendToIframe';
+import {CompsGroup, type BaseSchemaClass} from '../../manager'
 
-const ComsPanel: React.FC<any> = (props) => {
+const ComsPanel: React.FC<any> = (props:any) => {
   const { comsStore, editorStore } = useStore();
 
   const comsList = comsStore.comsList;
 
   const divRef = useRef<HTMLDivElement>(null);
 
-  const tempCmpKey = useRef<string | null>(null);
+  const tempcmpType = useRef<string | null>(null);
 
-  const handleClick = (event: any, cmpKey: string) => {
-    const item = comsStore.getCompByKey(cmpKey);
+  const handleClick = (event: any, cmpType: string) => {
+    const item = comsStore.getCompByKey(cmpType);
     if (item) {
-      const flag = comsStore.addComsNum(cmpKey);
+      const flag = comsStore.addComsNum(cmpType);
       if (flag) {
         editorStore.addToEdit(item);
       }
@@ -33,10 +33,10 @@ const ComsPanel: React.FC<any> = (props) => {
     comsStore.updateTabActived(id, actived);
   };
 
-  const getDragEle = (cmpKey: string) => {
-    const item = comsStore.getCompByKey(cmpKey);
+  const getDragEle = (cmpType: string) => {
+    const item = comsStore.getCompByKey(cmpType) as any;
     if (item) {
-      const newItem = new item();
+      const newItem:BaseSchemaClass = new item();
 
       if (newItem.setId) {
         newItem.setId(genNonDuplicateId());
@@ -69,8 +69,8 @@ const ComsPanel: React.FC<any> = (props) => {
           dropBubble: true,
           onChoose(evt) {
             const { key } = evt.item.dataset;
-            if (key && key !== tempCmpKey.current) {
-              tempCmpKey.current = key;
+            if (key && key !== tempcmpType.current) {
+              tempcmpType.current = key;
               const data = getDragEle(key);
               if (data) {
                 sendToIframe.postMessage('onChoose', data);
@@ -79,8 +79,8 @@ const ComsPanel: React.FC<any> = (props) => {
           },
           onEnd(ev) {
             console.log('mouseup onEnd');
-            if (tempCmpKey.current != null) {
-              tempCmpKey.current = null;
+            if (tempcmpType.current != null) {
+              tempcmpType.current = null;
             }
             sendToIframe.postMessage('onEnd', {});
           },

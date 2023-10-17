@@ -1,5 +1,5 @@
 import { observer, useObserver } from 'mobx-react-lite';
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect,useRef } from 'react';
 import './index.less';
 
 import { useStore } from '../../stores';
@@ -7,21 +7,27 @@ import ComsPanel from '../ComsPanel';
 import PreView from '../PreView';
 import PropertyPanel from '../PropertyPanel';
 import TopBar from '../TopBar';
+import {EditorContext,EditorManager} from '../../manager'
 
 type FrameProps = {
   iframeUrl?: string;
 };
 
 const Frame: React.FC<FrameProps> = (props) => {
-  const { previewStore } = useStore();
+  const { previewStore,comsStore,editorStore } = useStore();
 
+  const ref= useRef<EditorManager>()
   useLayoutEffect(() => {
     if (props?.iframeUrl) {
       previewStore.initIframeUrl(props?.iframeUrl);
     }
+    ref.current=new EditorManager()
+    //comsStore.init(ref.current)
+   // editorStore.init(ref.current)
   }, [props?.iframeUrl]);
 
   return useObserver(() => (
+   <EditorContext.Provider value={{manager:ref.current?}}>
     <div className="editor-wrapper">
       <TopBar></TopBar>
       <div className="editor-wrapper-contnet">
@@ -30,6 +36,7 @@ const Frame: React.FC<FrameProps> = (props) => {
         <PropertyPanel></PropertyPanel>
       </div>
     </div>
+    </EditorContext.Provider>
   ));
 };
 

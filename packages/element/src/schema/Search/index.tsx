@@ -1,12 +1,11 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
+import { SysComponents } from '@sceditor/cmp-center';
 import { color } from '../../attrType/index';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.Search,'商品搜索')
-class Search extends ParentSchemCmp {
+
+class Search extends BaseSchemaEditor {
   // cmpType: string = 'Search';
   // cmpName: string = '商品搜索';
   propsConfig: VdProFormColumnsType[] = [
@@ -134,10 +133,10 @@ Search.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FsW9Sbp2UH3-1suib4UB-RwyaR3y.png',
   name: '商品搜索',
   description: '搜索热词和更多相关配置项请前往配置',
-  cmpType: 'Search',
+  cmpType: SysComponents.Search,
   maxNum: 2,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(Search)
 export default Search;

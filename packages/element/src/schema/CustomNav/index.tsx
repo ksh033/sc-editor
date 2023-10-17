@@ -1,9 +1,8 @@
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
+import {BaseSchemaEditor,registerEditor} from '@sceditor/editor-core';
 
-@components(SysComponents.CustomNav,'底部导航')
-class CustomNav extends ParentSchemCmp {
+class CustomNav extends BaseSchemaEditor {
   // cmpType: string = 'CustomNav';
   // cmpName: string = '底部导航';
   propsConfig: VdProFormColumnsType[] = [
@@ -27,10 +26,10 @@ CustomNav.info = {
   name: '底部导航',
   description:
     '底部导航配置“自定义链接”或“小程序路径”时，可能跳转过去的页面会没法展示底部导航',
-  cmpType: 'CustomNav',
+  cmpType: SysComponents.CustomNav,
   maxNum: 1,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(CustomNav)
 export default CustomNav;

@@ -1,9 +1,9 @@
 import { VdProFormColumnsType } from '../../interface';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
+import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.PageInfo,'页面设置')
-class PageInfo extends ParentSchemCmp {
+
+class PageInfo extends BaseSchemaEditor {
   // cmpName = '页面设置';
   // cmpType: string = 'PAGE-SETTING';
   id = 'page-setting';
@@ -33,5 +33,12 @@ class PageInfo extends ParentSchemCmp {
     };
   }
 }
-
+PageInfo.info={
+  name:'页面设置',
+  cmpType:SysComponents.PageInfo,
+  maxNum:1,
+  usedNum:1,
+  status:''
+}
+registerEditor(PageInfo);
 export default PageInfo;

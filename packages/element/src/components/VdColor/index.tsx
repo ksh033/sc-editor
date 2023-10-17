@@ -2,8 +2,8 @@ import type { SketchPickerProps } from '@chenshuai2144/sketch-color';
 import { SketchPicker } from '@chenshuai2144/sketch-color';
 import { Button, Popover, PopoverProps, Space } from 'antd';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
-import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 export type VdColorProps = SketchPickerProps &
   ExtendVdFormItemProps & {
@@ -27,7 +27,7 @@ export const DEFAULT_COLORS = [
   '#F6BD16', // 9 - 黄色
 ];
 
-const VdColor: React.FC<VdColorProps> = (props) => {
+const VdColor: EditorPropertyComponent<VdColorProps> = (props) => {
   const { formItem, popoverProps, defaultColor = '#1890ff', ...rest } = props;
 
   const [color, setColor] = useMergedState(defaultColor, {
@@ -100,5 +100,6 @@ const VdColor: React.FC<VdColorProps> = (props) => {
     </VdFormItem>
   );
 };
-
+VdColor.valueType="VdCheckBox"
+registerEditorAttrCmp(VdColor)
 export default VdColor;

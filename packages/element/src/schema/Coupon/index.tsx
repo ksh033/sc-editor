@@ -1,12 +1,11 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
+import {BaseSchemaEditor,registerEditor} from '@sceditor/editor-core';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import { SysComponents } from '@sceditor/cmp-center';
 
-@components(SysComponents.Coupon,'优惠券')
-class Coupon extends ParentSchemCmp {
+class Coupon extends BaseSchemaEditor {
  // cmpType: string = 'Coupon';
   //cmpName: string = '优惠券';
   propsConfig: VdProFormColumnsType[] = propsConfig;
@@ -47,10 +46,10 @@ class Coupon extends ParentSchemCmp {
 Coupon.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FupnImjncvDfovyPfalWjuTCEklH.png',
   name: '优惠券',
-  cmpType: 'Coupon',
+  cmpType:SysComponents.Coupon,
   maxNum: 50,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(Coupon)
 export default Coupon;

@@ -5,8 +5,8 @@ import { isPromise } from './common';
 
 export function validateRules(
   columns: ProFormColumnsType[],
-  record: any,
-): Promise<Boolean> {
+  record: any
+): Promise<boolean> {
   const getFieldValue = (name: string) => {
     return record[name];
   };

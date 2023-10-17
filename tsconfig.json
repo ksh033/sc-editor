@@ -4,10 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@@/*": ["packages/web/src/.umi/*"],
       "@sceditor/element": ["./packages/element/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"] ,
-
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.ts"] ,
       "@sceditor/cmp-center":["./packages/cmp-center/src/index.ts"]
     }
   },

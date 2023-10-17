@@ -1,15 +1,15 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
-import React from 'react';
 import ScImage from '../../baseComponents/ScImage';
 import './index.less';
 import { goodsList } from './list';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type VdGoodsListProps = {
   value: any[];
   onChange: (list: any[]) => void;
 };
 
-const VdGoodsList: React.FC<VdGoodsListProps> = (props) => {
+const VdGoodsList: EditorPropertyComponent<VdGoodsListProps> = (props) => {
   const { value = [], onChange } = props;
 
   const handleAddClick = () => {
@@ -66,5 +66,6 @@ const VdGoodsList: React.FC<VdGoodsListProps> = (props) => {
     </div>
   );
 };
-
+VdGoodsList.valueType='VdGoodsList'
+registerEditorAttrCmp(VdGoodsList)
 export default VdGoodsList;

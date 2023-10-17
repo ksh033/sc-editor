@@ -1,12 +1,13 @@
 import type { InputProps } from 'antd';
 import { Input } from 'antd';
 import './index.less';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type VdVideoLayoutProps = InputProps & {
   info?: string;
 };
 
-const VdVideoLayout: React.FC<VdVideoLayoutProps> = (props) => {
+const VdVideoLayout: EditorPropertyComponent<VdVideoLayoutProps> = (props) => {
   const {
     value,
     onChange,
@@ -35,5 +36,6 @@ const VdVideoLayout: React.FC<VdVideoLayoutProps> = (props) => {
     </div>
   );
 };
-
+VdVideoLayout.valueType="VdVideoLayout"
+registerEditorAttrCmp(VdVideoLayout)
 export default VdVideoLayout;

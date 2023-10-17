@@ -6,7 +6,7 @@ import { ModalType } from '../../stores/editor';
 import './index.less';
 import PanelList from './PanelList';
 
-const PropertyPanel: React.FC<any> = (props) => {
+const PropertyPanel: React.FC<any> = (props:any) => {
   const { editorStore, comsStore } = useStore();
 
   const modalType = editorStore.modalType;

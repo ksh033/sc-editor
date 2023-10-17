@@ -1,10 +1,10 @@
+import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
 import { color } from '../../attrType/index';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
 
-@components(SysComponents.Notice,'公告')
-class Notice extends ParentSchemCmp {
+
+class Notice extends BaseSchemaEditor {
   // cmpType: string = 'Notice';
   // cmpName: string = '公告';
   propsConfig: VdProFormColumnsType[] = [
@@ -109,10 +109,10 @@ class Notice extends ParentSchemCmp {
 Notice.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FlcvwSqlns7YVxDk8Zi2yAG6oEji.png',
   name: '公告',
-  cmpType: 'Notice',
+  cmpType: SysComponents.Notice,
   maxNum: 1,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(Notice)
 export default Notice;

@@ -1,15 +1,46 @@
 import { action, observable } from 'mobx';
 // @ts-ignore
-import { BaseCompGroup, BaseCompMap, CmpInfo } from '@sceditor/element';
+//import { BaseCompGroup, BaseCompMap, CmpInfo } from '@sceditor/element';
+import {SysComponents} from  "@sceditor/cmp-center";
 // @ts-ignore
-import type { ClassType, CompsGroup } from '@sceditor/element';
 import { message } from 'antd';
+import  {type CmpInfo, EditorManager,type CompsGroup,type BaseSchemaClass} from '../../manager'
 
-export type comsStoreType = {
+
+const BaseCompClassGroup = [
+  {
+    id: 'base-coms',
+    name: '基础组件',
+    actived: true,
+    list: [
+      SysComponents.Title,
+      SysComponents.ElevatorNav,
+      SysComponents.GoodsLayout,
+      SysComponents.CrowdImage,
+      SysComponents.AdImage,
+      SysComponents.ImageTextNav,
+      SysComponents.MagicCube,
+      SysComponents.White,
+      SysComponents.Search,
+      SysComponents.EnterShop,
+      SysComponents.Notice,
+      SysComponents.Video,
+      // NearbyShop,
+    ],
+  },
+  {
+    id: 'ump-coms',
+    name: '营销组件',
+    actived: true,
+    list: [SysComponents.Coupon],
+  },
+]
+export type ComsStoreType = {
   comsList: CompsGroup[]; // 组件列表
-  comsMap: Map<String, ClassType>; // 组件map
+  comsMap: Map<String, BaseSchemaClass>; // 组件map
   comsInfoMap: Map<String, CmpInfo>; // 组件map
-  getCompByKey: (key: string) => ClassType | null; // 通过组件key获取组件
+  init:(manager:EditorManager)=>void;
+  getCompByKey: (key: string) => BaseSchemaClass | null; // 通过组件key获取组件
   getCompInfoByKey: (key: string) => CmpInfo | undefined; // 通过组件key获取组件
   initComsInfoMap: () => void; // 初始化组件
   /**
@@ -31,20 +62,46 @@ export type comsStoreType = {
   clearNum: () => void; // 清空数量
 };
 
-class ComsClass {
-  @observable comsList = BaseCompGroup;
-  @observable comsMap = BaseCompMap;
-  @observable comsInfoMap = new Map<String, CmpInfo>();
+class ComsClass implements ComsStoreType {
+  @observable 
+  comsList: CompsGroup[]=[];
+  @observable 
+  comsMap: Map<String, BaseSchemaClass>=new Map();
+  @observable 
+  comsInfoMap = new Map<String, CmpInfo>();
 
+  manager!: EditorManager;
   /**
    * 初始化组件
    */
   constructor() {
-    this.initComsInfoMap();
+   // this.initComsInfoMap();
   }
+  @action.bound
+  init(manager:EditorManager){
 
+    this.manager=manager
+    this.initComsInfoMap()
+  }
   @action.bound
   initComsInfoMap() {
+    if (this.manager){
+      const editorMap=this.manager.getEditorsMap()
+      const list=BaseCompClassGroup.map((it)=>{
+        const list = it.list.map((purClass) => {
+          return editorMap[purClass].info;
+        });
+        return {
+          id: it.id,
+          name: it.name,
+          actived: it.actived,
+          list: list,
+        }; 
+  
+      })
+      this.comsList=list
+    }
+
     const map = new Map<String, CmpInfo>();
     this.comsList.forEach((it: CompsGroup) => {
       if (Array.isArray(it.list)) {
@@ -58,8 +115,8 @@ class ComsClass {
 
   // 通过组件key获取组件
   @action.bound
-  getCompByKey(key: string): ClassType | null {
-    const clas: any = this.comsMap.get(key);
+  getCompByKey(key: string): BaseSchemaClass | null {
+    const clas: any = this.manager.getEditorByType(key);
     return clas || null;
   }
 
@@ -145,5 +202,5 @@ class ComsClass {
     this.initComsInfoMap();
   }
 }
-const comsStore: comsStoreType = new ComsClass();
+const comsStore: ComsStoreType = new ComsClass();
 export default comsStore;

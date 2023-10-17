@@ -1,13 +1,14 @@
-import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
+// import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import propsConfig from './list';
 import { spellNamePath } from '../../utils';
 import GroupTitle from '../../components/VdGoodsGroup/GroupTitle';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
+import { BaseSchemaEditor, FormProps, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.Goods,'商品')
-class Goods extends ParentSchemCmp {
+
+class Goods extends BaseSchemaEditor {
   // cmpType: string = 'Goods';
   // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
@@ -120,10 +121,10 @@ Goods.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FirnSShEAotLWTHOsk21GdYa-SdX.png',
   name: '商品',
   description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
-  cmpType: 'Goods',
+  cmpType: SysComponents.Goods,
   maxNum: 100,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(Goods)
 export default Goods;

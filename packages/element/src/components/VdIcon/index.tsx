@@ -6,15 +6,18 @@
 // export default VdIcon;
 import React from 'react';
 import './index.less';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 type VdIconProps = {
   type: string;
   onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   style?: React.CSSProperties;
 };
 
-const VdIcon: React.FC<VdIconProps> = (props) => {
+const VdIcon: EditorPropertyComponent<VdIconProps> = (props) => {
   return (
     <i className={props.type} onClick={props.onClick} style={props.style}></i>
   );
 };
+VdIcon.valueType="VdIcon"
+registerEditorAttrCmp(VdIcon)
 export default VdIcon;

@@ -1,6 +1,5 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
+import {BaseSchemaEditor,registerEditor,type ProFormColumnsType} from '@sceditor/editor-core';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 import { imageRule, textImageRule, textRule } from './rules';
@@ -124,10 +123,9 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
     });
   return newC;
 };
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
 
-@components(SysComponents.ElevatorNav,'电梯导航')
-class ElevatorNav extends ParentSchemCmp {
+class ElevatorNav extends BaseSchemaEditor {
   // cmpType: string = 'ElevatorNav';
   // cmpName: string = '电梯导航';
   propsConfig: VdProFormColumnsType[] = propsConfig;
@@ -155,10 +153,10 @@ ElevatorNav.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fpy_YxZ69hGiYl-SUDkDn7Sz2sNH.png',
   name: '电梯导航',
   description: '只能选择当前组件下方的组件进行定位',
-  cmpType: 'ElevatorNav',
+  cmpType: SysComponents.ElevatorNav,
   maxNum: 1,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(ElevatorNav)
 export default ElevatorNav;

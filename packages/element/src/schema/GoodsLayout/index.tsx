@@ -1,12 +1,11 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
+import { BaseSchemaEditor, registerEditor, type FormProps, type ProFormColumnsType } from '@sceditor/editor-core';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
 
-@components(SysComponents.GoodsLayout,'商品排版')
-class GoodsLayout extends ParentSchemCmp {
+
+class GoodsLayout extends BaseSchemaEditor {
   // cmpType: string = 'GoodsLayout';
   // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
@@ -71,10 +70,10 @@ GoodsLayout.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FirnSShEAotLWTHOsk21GdYa-SdX.png',
   name: '商品',
   description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
-  cmpType: 'GoodsLayout',
+  cmpType: SysComponents.GoodsLayout,
   maxNum: 100,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(GoodsLayout)
 export default GoodsLayout;

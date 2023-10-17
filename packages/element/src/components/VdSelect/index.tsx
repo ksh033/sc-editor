@@ -1,10 +1,10 @@
 import { Select, SelectProps } from 'antd';
-import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type VdSelectProps = SelectProps & ExtendVdFormItemProps;
 
-const VdSelect: React.FC<VdSelectProps> = (props) => {
+const VdSelect: EditorPropertyComponent<VdSelectProps> = (props) => {
   const { formItem, options = [], value, onChange, block = false } = props;
   console.log('formItem', formItem);
   return (
@@ -18,5 +18,6 @@ const VdSelect: React.FC<VdSelectProps> = (props) => {
     </VdFormItem>
   );
 };
-
+VdSelect.valueType="VdSelect"
+registerEditorAttrCmp(VdSelect)
 export default VdSelect;

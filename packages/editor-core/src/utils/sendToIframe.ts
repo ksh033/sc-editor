@@ -1,6 +1,6 @@
 // @ts-ignore
 import { ComponentSchemaProps } from '@sceditor/element';
-import { iframeId } from '../index';
+import { iframeId } from '../manager';
 
 type PostComProps = ComponentSchemaProps & {
   index?: number;
@@ -45,7 +45,7 @@ const updatePage = (item: PostComProps) => {
 
 const addCmp = (item: PostComProps) => {
   postMessage('add', {
-    cmpKey: item.cmpKey,
+    cmpType: item.cmpType,
     cmpName: item.cmpName,
     values: item.values,
     id: item.id,
@@ -79,7 +79,7 @@ const updateCmp = (item: PostComProps) => {
 /** 复制组件 */
 const copyCmp = (item: PostComProps) => {
   postMessage('copy', {
-    cmpKey: item.cmpKey,
+    cmpType: item.cmpType,
     cmpName: item.cmpName,
     values: item.values,
     id: item.id,

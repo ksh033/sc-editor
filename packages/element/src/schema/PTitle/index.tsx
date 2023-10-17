@@ -7,12 +7,12 @@ import {
   fontWeight,
   location,
 } from '../../attrType/index';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
-import { SysComponents, components } from '@sceditor/cmp-center';
+import { SysComponents } from '@sceditor/cmp-center';
+import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.Title,'标题文本')
-class Title extends ParentSchemCmp {
+
+class Title extends BaseSchemaEditor {
   //readonly cmpType: string = 'Title';
  // readonly cmpName: string = '标题文本';
   propsConfig: VdProFormColumnsType[] = [
@@ -208,10 +208,12 @@ Title.info = {
   icon: 'https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png',
   name: '标题文本',
   description: '标题文本',
-  cmpType: 'Title',
+  cmpType: SysComponents.Title,
   maxNum: 20,
   usedNum: 0,
   status: '',
 };
+
+registerEditor(Title)
 
 export default Title;

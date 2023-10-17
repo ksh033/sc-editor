@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { iframeId } from '../../index';
+import { iframeId }  from '../../manager'
 
 function useIframeLoad() {
   const [iframeState, setIframeState] = useState(false);

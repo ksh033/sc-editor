@@ -23,8 +23,8 @@
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"],
       "@@service": ["src/services/index.ts"],
-      "@sceditor/element": ["./packages/element/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.tsx"]
+      "@sceditor/element": ["../../packages/element/src/index.ts"],
+      
     }
   },
   "exclude": [

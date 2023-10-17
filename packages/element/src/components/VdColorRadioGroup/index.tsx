@@ -5,6 +5,7 @@ import { CheckboxValueType } from 'antd/es/checkbox/Group';
 import React, { useMemo } from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import './index.less';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 export interface VdColorRadioGroupOptionType {
   label: React.ReactNode;
@@ -20,7 +21,7 @@ type VdColorRadioGroupProps = Omit<RadioGroupProps, 'options'> &
     options?: Array<VdColorRadioGroupOptionType | string | number>;
   };
 
-const VdColorRadioGroup: React.FC<VdColorRadioGroupProps> = (props) => {
+const VdColorRadioGroup: EditorPropertyComponent<VdColorRadioGroupProps> = (props) => {
   const { onChange, value, options = [], formItem, block = false } = props;
   const valueMap = useMemo(() => {
     const map = new Map();
@@ -58,5 +59,6 @@ const VdColorRadioGroup: React.FC<VdColorRadioGroupProps> = (props) => {
     </VdFormItem>
   );
 };
-
+VdColorRadioGroup.valueType="VdColorRadioGroup";
+registerEditorAttrCmp(VdColorRadioGroup)
 export default VdColorRadioGroup;

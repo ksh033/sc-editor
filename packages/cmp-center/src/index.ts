@@ -3,7 +3,7 @@ export {SysComponents} from './type'
 import type {SysComponentsEnumType} from './type'
 
 export {default as IframePostMessage}  from './message'
-
+export type {SysComponentsEnumType}
 
 const _components=new Map<string,any>()
 export function registerCmp(

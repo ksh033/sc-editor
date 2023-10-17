@@ -1,12 +1,13 @@
 // @ts-ignore
-import type { ComponentSchemaProps } from '@sceditor/element';
+//import type {  BaseSchemaClass } from '@sceditor/element';
 // @ts-ignore
-import { BaseCompMap, ClassType, PageInfo } from '@sceditor/element';
+//import { BaseCompMap,  AbsBaseSchemaClass, PageInfo } from '@sceditor/element';
 import { arrayMoveImmutable } from 'array-move';
 import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';
 import { genNonDuplicateId } from '../../utils/common';
 import sendToIframe from '../../utils/sendToIframe';
+import { BaseSchemaClass, EditorManager } from '../../manager'
 
 /**
  * 页面类型
@@ -16,21 +17,23 @@ import sendToIframe from '../../utils/sendToIframe';
  */
 export type ModalType = 'component' | 'componentList' | 'pageSet';
 
+
 export type editorStoreType = {
   modalType: ModalType; // 右侧模板类型
-  pageinfo: ComponentSchemaProps | null;
+  init: (manager: EditorManager) => void;
+  pageinfo: BaseSchemaClass;
   currentKey: string | null; // 正在编辑的组件id
-  currentEditCmp: ComponentSchemaProps | null; // 正在编辑的数据
-  editList: ComponentSchemaProps[]; // 所有的编辑列表
+  currentEditCmp: BaseSchemaClass | null; // 正在编辑的数据
+  editList: BaseSchemaClass[]; // 所有的编辑列表
   updateCurrentEditCmpValues: (newValues: any) => void; // 更新正在编辑的组件的内容
   switchEditCmp: (id: string, immediatelyCheck?: boolean) => void; // 切换编辑的组件
-  addToEdit: (item: ClassType, index?: number, noticed?: boolean) => void; // 添加组件并编辑
-  addCmp: (record: ComponentSchemaProps, index: number) => void; // 纯粹添加组件
+  addToEdit: (item: BaseSchemaClass, index?: number, noticed?: boolean) => void; // 添加组件并编辑
+  addCmp: (record: BaseSchemaClass, index: number) => void; // 纯粹添加组件
   deleteCmp: (id: string, noticed?: boolean) => void; // 删除组件
-  copyCmp: (record: ComponentSchemaProps, noticed?: boolean) => void; // 拷贝组件
+  copyCmp: (record: BaseSchemaClass, noticed?: boolean) => void; // 拷贝组件
   clearAllCmp: () => void; // 清除全部编辑组件
   updeteEditList: () => void; // 更新编辑列表
-  updeteEditListItem: (record: ComponentSchemaProps) => void;
+  updeteEditListItem: (record: BaseSchemaClass) => void;
   arrayMove: (oldIndex: number, newIndex: number, noticed?: boolean) => void; // 更新排序
   changeModalType: (type: ModalType) => void; // 切换状态
   updatePageInfoValues: (newValues: any) => void; // 更新页面设置数据
@@ -38,11 +41,18 @@ export type editorStoreType = {
 
 class EditorClass {
   @observable modalType: ModalType = 'pageSet';
-  @observable pageinfo = new PageInfo();
+  @observable pageinfo;
   @observable currentKey: string | null = null;
-  @observable currentEditCmp: ComponentSchemaProps | null = null;
-  @observable editList: ComponentSchemaProps[] = [];
+  @observable currentEditCmp: BaseSchemaClass | null = null;
+  @observable editList: BaseSchemaClass[] = [];
+  manager!: EditorManager
+  @action.bound
+  init(manager: EditorManager) {
+    this.manager = manager;
+    const PageClass: any = this.manager.getEditorByType('PageInfo')
+    this.pageinfo = new PageClass()
 
+  }
   // 切换状态
   @action.bound
   changeModalType(type: ModalType) {
@@ -73,10 +83,11 @@ class EditorClass {
 
   // 添加组件并修改
   @action.bound
-  addToEdit(item: ClassType, index?: number, noticed = true): void {
+  addToEdit(item: BaseSchemaClass, index?: number, noticed = true): void {
     // 先更新当前的 list 下的数据
     // this.updeteEditList();
-    const newItem = new item();
+    const CmpClass: any = item;
+    const newItem: BaseSchemaClass = new CmpClass();
     // 关键点
     newItem.index = index;
     if (newItem.setId) {
@@ -102,7 +113,7 @@ class EditorClass {
   }
   // 添加组件
   @action.bound
-  addCmp(item: ComponentSchemaProps, index: number) {
+  addCmp(item: BaseSchemaClass, index: number) {
     if (index != null && index > -1) {
       this.editList.splice(index, 0, item);
     }
@@ -124,11 +135,11 @@ class EditorClass {
 
   // 复制组件
   @action.bound
-  copyCmp(record: ComponentSchemaProps, noticed = true) {
+  copyCmp(record: BaseSchemaClass, noticed = true) {
     const cmpType = record.cmpType;
-    const Clas = BaseCompMap.get(cmpType);
+    const Clas: any = this.manager.getEditorByType(cmpType);
     if (Clas) {
-      const newItem = new Clas();
+      const newItem: BaseSchemaClass = new Clas();
       console.log('copyCmp');
       newItem.setFieldsValue(record.values);
       const index = this.editList.findIndex((it) => it.id === record.id);
@@ -164,9 +175,10 @@ class EditorClass {
     const item = this.editList.find((it) => it.id === id);
     if (item) {
       this.currentKey = id;
-      const Clas = BaseCompMap.get(item.cmpType);
+
+      const Clas: any = this.manager.getEditorByType(item.cmpType);
       if (Clas) {
-        const newItem = new Clas();
+        const newItem: BaseSchemaClass = new Clas();
         newItem.initClass({
           ...item,
           immediatelyCheck: immediatelyCheck,
@@ -193,7 +205,7 @@ class EditorClass {
 
   // 更新编辑列表
   @action.bound
-  updeteEditListItem(record: ComponentSchemaProps) {
+  updeteEditListItem(record: BaseSchemaClass) {
     if (record) {
       const editCmp = cloneDeep(record);
       const index = this.editList.findIndex((it) => it.id === record?.id);

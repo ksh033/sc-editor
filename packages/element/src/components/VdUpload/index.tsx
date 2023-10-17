@@ -7,6 +7,7 @@ import { baseApi, imageUrl } from '../../utils/common';
 import compute from '../../utils/compute';
 import './index.less';
 import { isImageFileType } from './utils';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 export type VdUploadFile = UploadFile<any> & {
   width?: number;
@@ -32,7 +33,7 @@ export type VdUploadProps = {
   imgHeight?: { maxHeight?: number; minHeight?: number; height?: number };
 };
 
-const VdUpload: React.FC<VdUploadProps> = (props) => {
+const VdUpload: EditorPropertyComponent<VdUploadProps> = (props) => {
   const {
     action = `${baseApi}/file/api/file/upload`,
     value = [],
@@ -308,5 +309,6 @@ const VdUpload: React.FC<VdUploadProps> = (props) => {
     </div>
   );
 };
-
+VdUpload.valueType="VdUpload"
+registerEditorAttrCmp(VdUpload)
 export default VdUpload;

@@ -1,12 +1,13 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
-import ParentSchemCmp, { FormProps } from '../../base/ParentSchemCmp';
+
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
+import { BaseSchemaEditor, FormProps, registerEditor } from '@sceditor/editor-core';
 
-@components(SysComponents.ImageTextNav,'图文导航')
-class ImageTextNav extends ParentSchemCmp {
+
+class ImageTextNav extends BaseSchemaEditor {
   // cmpType: string = 'ImageTextNav';
   // cmpName: string = '图文导航';
   formProps: FormProps = {
@@ -76,10 +77,10 @@ ImageTextNav.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FnCMmkIRcBPKq5oeY8kX7lq_7hk4.png',
   name: '图文导航',
   description: '图文导航',
-  cmpType: 'ImageTextNav',
+  cmpType: SysComponents.ImageTextNav,
   maxNum: 10,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(ImageTextNav)
 export default ImageTextNav;

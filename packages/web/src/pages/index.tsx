@@ -1,14 +1,14 @@
 import React,{ useEffect } from 'react';
-// @ts-ignore
-import Editor from '@sceditor/editor-core';
+
+import {Editor,Test} from '@sceditor/element';
 
 export default function IndexPage() {
   // document.domain = '192.168.31.182';
   useEffect(() => {
-    console.log(window.location, '12');
+    console.log(window.location, Test);
   }, []);
   return (
-    <Editor iframeUrl="http://192.168.31.181:10086/#/pages/preview/index" />
+    <Editor iframeUrl="http://127.0.0.1:10086/#/pages/preview/index" />
   );
 }
 

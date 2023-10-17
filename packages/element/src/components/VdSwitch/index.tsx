@@ -2,6 +2,7 @@ import type { SwitchProps } from 'antd';
 import { Switch } from 'antd';
 import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type VdSwitchProps = SwitchProps &
   ExtendVdFormItemProps & {
@@ -14,7 +15,7 @@ const defaultValueMap = {
   false: '不显示',
 };
 
-const VdSwitch: React.FC<VdSwitchProps> = (props) => {
+const VdSwitch: EditorPropertyComponent<VdSwitchProps> = (props) => {
   const {
     formItem,
     value = false,
@@ -33,5 +34,6 @@ const VdSwitch: React.FC<VdSwitchProps> = (props) => {
     </VdFormItem>
   );
 };
-
+VdSwitch.valueType="VdSwitch"
+registerEditorAttrCmp(VdSwitch)
 export default VdSwitch;

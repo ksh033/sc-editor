@@ -1,11 +1,10 @@
-import { ProFormColumnsType } from '@ant-design/pro-form';
 import { color } from '../../attrType/index';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
-import { SysComponents, components } from '@sceditor/cmp-center';
-@components(SysComponents.White,'辅助空白')
-class White extends ParentSchemCmp {
+import { SysComponents, } from '@sceditor/cmp-center';
+import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
+
+class White extends BaseSchemaEditor {
   // cmpType: string = 'White';
   // cmpName: string = '辅助空白';
   propsConfig: VdProFormColumnsType[] = [
@@ -92,10 +91,10 @@ class White extends ParentSchemCmp {
 White.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FutbH839K4gGvY6azrrtJHYDxVqK.png',
   name: '辅助分割',
-  cmpType: 'White',
+  cmpType: SysComponents.White,
   maxNum: 50,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(White)
 export default White;

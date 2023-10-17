@@ -10,6 +10,7 @@ import {
 } from 'react-sortable-hoc';
 import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 type typeNode = 'tag' | 'card';
 
@@ -70,7 +71,9 @@ const SLortableContainer = SortableContainer<any>(({ children }: any) => {
   return <div>{children}</div>;
 });
 
-function VdAddList<T>(props: VdAddListProps<T>) {
+
+const VdAddList:EditorPropertyComponent<VdAddListProps<any>>=(props)=>{
+
   const {
     addBtnText = '新增',
     max = 999,
@@ -226,6 +229,9 @@ function VdAddList<T>(props: VdAddListProps<T>) {
       </div>
     </>
   );
+
 }
 
+VdAddList.valueType="VdAddList"
+registerEditorAttrCmp(VdAddList)
 export default VdAddList;

@@ -1,7 +1,9 @@
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 import { Tabs } from 'antd';
-import React from 'react';
 
-const TabsForm: React.FC<any> = (props: any) => {
+
+
+const VdTabs: EditorPropertyComponent<any> = (props: any) => {
   const { options = [], onChange, value } = props;
   const { TabPane } = Tabs;
   return (
@@ -14,5 +16,6 @@ const TabsForm: React.FC<any> = (props: any) => {
     </div>
   );
 };
-
-export default TabsForm;
+VdTabs.valueType="VdTabs"
+registerEditorAttrCmp(VdTabs)
+export default VdTabs;

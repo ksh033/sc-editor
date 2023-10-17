@@ -1,13 +1,13 @@
-import _ from 'lodash';
-import React from 'react';
+
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import { InputNumber, Slider, SliderSingleProps, Space } from 'antd';
 import './index.less';
+import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
 
 export type VdSliderProps = SliderSingleProps & ExtendVdFormItemProps;
 
-const VdSlider: React.FC<VdSliderProps> = (props) => {
+const VdSlider: EditorPropertyComponent<VdSliderProps> = (props) => {
   const { formItem, min = 0, max = 60, defaultValue = 0, ...rest } = props;
 
   const [inputValue, setInputValue] = useMergedState(defaultValue, {
@@ -41,5 +41,6 @@ const VdSlider: React.FC<VdSliderProps> = (props) => {
     </VdFormItem>
   );
 };
-
+VdSlider.valueType="VdSlider"
+registerEditorAttrCmp(VdSlider)
 export default VdSlider;

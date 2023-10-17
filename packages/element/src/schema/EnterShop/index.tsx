@@ -1,8 +1,8 @@
+import { registerEditor } from '@sceditor/editor-core';
 import ParentSchemCmp from '../../base/ParentSchemCmp';
 import { VdProFormColumnsType } from '../../interface';
-import {components,SysComponents} from "@sceditor/cmp-center"
+import {SysComponents} from "@sceditor/cmp-center"
 
-@components(SysComponents.EnterShop,'进入店铺')
 class EnterShop extends ParentSchemCmp {
   // cmpType: string = 'EnterShop';
   // cmpName: string = '进入店铺';
@@ -25,10 +25,10 @@ class EnterShop extends ParentSchemCmp {
 EnterShop.info = {
   icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fi8Zam5inptsK9I4E2TDKsFoZCNq.png',
   name: '进入店铺',
-  cmpType: 'EnterShop',
+  cmpType: SysComponents.EnterShop,
   maxNum: 1,
   usedNum: 0,
   status: '',
 };
-
+registerEditor(EnterShop)
 export default EnterShop;

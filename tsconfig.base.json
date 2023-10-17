@@ -17,7 +17,7 @@
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
-    
+   
   },
   
   "exclude": [
