@@ -4,8 +4,8 @@ import { action, observable } from 'mobx';
 import {SysComponents} from  "@sceditor/cmp-center";
 // @ts-ignore
 import { message } from 'antd';
-import  {type CmpInfo, EditorManager,type CompsGroup,type BaseSchemaClass} from '../../manager'
-
+import  { EditorManager} from '../../manager'
+import  {type CmpInfo, type CompsGroup,type BaseSchemaClass} from '../../design'
 
 const BaseCompClassGroup = [
   {
@@ -116,7 +116,7 @@ class ComsClass implements ComsStoreType {
   // 通过组件key获取组件
   @action.bound
   getCompByKey(key: string): BaseSchemaClass | null {
-    const clas: any = this.manager.getEditorByType(key);
+    const clas: any = this.comsMap.get(key);
     return clas || null;
   }
 

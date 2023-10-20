@@ -5,12 +5,17 @@ import React, { useContext } from 'react';
 import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
 // @ts-ignore
 import * as Components from '../components/index';
-import {EditorPropertyContext} from "../../manager"
+import {EditorContext, EditorPropertyContext} from "../../manager"
 const BaseForm: React.FC<any> = (props) => {
   const rowData = props['data-row'] || {};
   const editList = Array.isArray(props['data-list']) ? props['data-list'] : [];
-  //const values = useContext(ProProvider);
 
+  
+  const values = useContext(ProProvider);
+  const editorContext=useContext(EditorContext)
+  const valueTypeMap=editorContext.manager.getEditorPropertyComponentMap()
+
+  console.log("valueTypeMap",valueTypeMap)
   // const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
   // Object.keys(Components).forEach((warpCom: string) => {
   //   if (warpCom.startsWith('Vd')) {
@@ -34,17 +39,17 @@ const BaseForm: React.FC<any> = (props) => {
   // });
 
   return (
-    // <ProProvider.Provider
-    //   value={{
-    //     ...values,
-    //     valueTypeMap: valueTypeMap,
-    //   }}
-    // >
+    <ProProvider.Provider
+      value={{
+        ...values,
+        valueTypeMap: valueTypeMap,
+      }}
+    >
       <EditorPropertyContext.Provider value={{editList,rowData}}>
       <BetaSchemaForm {...props} layoutType="Form"></BetaSchemaForm>
 
       </EditorPropertyContext.Provider>
-    //</ProProvider.Provider>
+   </ProProvider.Provider>
   );
 };
 

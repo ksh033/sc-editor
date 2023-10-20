@@ -20,11 +20,11 @@
   "dependencies": {
 
     "@sceditor/cmp-center": "workspace:*",
-    "@ant-design/icons": "^5.0.1",
+    "@ant-design/icons": "^5.2.6",
     "@ant-design/pro-form": "^2.21.2",
     "@ant-design/pro-layout":"^7.10.3",
     "@types/lodash": "^4.14.180",
-    "@ant-design/pro-provider":"^2.12.3",
+    "@ant-design/pro-provider":"^2.13.1",
     "PubSub": "^3.6.0",
     "ahooks": "^3.7.6",
     "lint-staged": "^10.0.7",

@@ -1,17 +1,20 @@
 import { CaretDownOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 // import Sortable from '../../utils/Sortable';
 import Sortable from 'sortablejs';
 import ComItem from './ComItem';
 import { useStore } from '../../stores';
-import { genNonDuplicateId } from '../../utils/common';
-import sendToIframe from '../../utils/sendToIframe';
-import {CompsGroup, type BaseSchemaClass} from '../../manager'
+//import sendToIframe from '../../utils/sendToIframe';
+import {EditorContext} from '../../manager'
+import type {CompsGroup} from '../../design'
 
 const ComsPanel: React.FC<any> = (props:any) => {
-  const { comsStore, editorStore } = useStore();
+
+  const {manager}=useContext(EditorContext)
+
+  const { comsStore } =useStore();
 
   const comsList = comsStore.comsList;
 
@@ -19,36 +22,30 @@ const ComsPanel: React.FC<any> = (props:any) => {
 
   const tempcmpType = useRef<string | null>(null);
 
-  const handleClick = (event: any, cmpType: string) => {
-    const item = comsStore.getCompByKey(cmpType);
-    if (item) {
-      const flag = comsStore.addComsNum(cmpType);
-      if (flag) {
-        editorStore.addToEdit(item);
-      }
-    }
+  const handleClick = (_event: any, cmpType: string) => {
+    manager.insterNode({cmpType})
   };
 
   const onTabActived = (id: string, actived: boolean) => {
     comsStore.updateTabActived(id, actived);
   };
 
-  const getDragEle = (cmpType: string) => {
-    const item = comsStore.getCompByKey(cmpType) as any;
-    if (item) {
-      const newItem:BaseSchemaClass = new item();
+  // const getDragEle = (cmpType: string) => {
+  //   const item = comsStore.getCompByKey(cmpType) as any;
+  //   if (item) {
+  //     const newItem:BaseSchemaClass = new item();
 
-      if (newItem.setId) {
-        newItem.setId(genNonDuplicateId());
-      }
-      if (newItem.getInitialValue) {
-        console.log('newItem.getInitialValue()', newItem.getInitialValue());
-        newItem.setFieldsValue(newItem.getInitialValue());
-      }
-      return newItem;
-    }
-    return null;
-  };
+  //     // if (newItem.setId) {
+  //     //   newItem.setId(genNonDuplicateId());
+  //     // }
+  //     // if (newItem.getInitialValue) {
+  //     //   console.log('newItem.getInitialValue()', newItem.getInitialValue());
+  //     //   newItem.setFieldsValue(newItem.getInitialValue());
+  //     // }
+  //     return newItem.getData();
+  //   }
+  //   return null;
+  // };
 
   useEffect(() => {
     if (divRef.current) {
@@ -71,9 +68,12 @@ const ComsPanel: React.FC<any> = (props:any) => {
             const { key } = evt.item.dataset;
             if (key && key !== tempcmpType.current) {
               tempcmpType.current = key;
-              const data = getDragEle(key);
-              if (data) {
-                sendToIframe.postMessage('onChoose', data);
+     
+              const newNode =manager.createNode(key)
+              if (newNode) {
+               // sendToIframe.postMessage('onChoose', data);
+               const data=newNode.getData()
+               manager?.message.emit('StartDrag',data)
               }
             }
           },
@@ -82,7 +82,8 @@ const ComsPanel: React.FC<any> = (props:any) => {
             if (tempcmpType.current != null) {
               tempcmpType.current = null;
             }
-            sendToIframe.postMessage('onEnd', {});
+          //  sendToIframe.postMessage('onEnd', {});
+            manager?.message.emit('DragEnd',{})
           },
         });
       });

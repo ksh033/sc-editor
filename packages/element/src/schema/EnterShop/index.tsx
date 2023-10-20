@@ -1,9 +1,9 @@
-import { registerEditor } from '@sceditor/editor-core';
-import ParentSchemCmp from '../../base/ParentSchemCmp';
-import { VdProFormColumnsType } from '../../interface';
+import { registerEditor ,  BaseSchemaEditor} from '@sceditor/editor-core';
 import {SysComponents} from "@sceditor/cmp-center"
+import { VdProFormColumnsType } from '../../interface';
 
-class EnterShop extends ParentSchemCmp {
+
+class EnterShop extends BaseSchemaEditor {
   // cmpType: string = 'EnterShop';
   // cmpName: string = '进入店铺';
   propsConfig: VdProFormColumnsType[] = [

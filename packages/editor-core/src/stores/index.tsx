@@ -1,11 +1,14 @@
 import { useLocalStore } from 'mobx-react-lite';
 import * as React from 'react';
-import { createStore, TStore } from './config';
+import { createStore, StoreType } from './config';
 
-const storeContext = React.createContext<TStore | null>(null);
+
+export type {StoreType}
+const storeContext = React.createContext<StoreType | null>(null);
 
 export const StoreProvider = ({ children }: any) => {
     const store = useLocalStore(createStore);
+    
     return <storeContext.Provider value={store}>{children}</storeContext.Provider>;
 };
 

@@ -9,6 +9,13 @@ import { filterPageConfig } from './util';
 import React from 'react';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
+export interface EditorData {
+  id: string,
+  cmpType: string,
+  values: any, 
+  cmpName?: string, 
+  index?: number
+};
 
 
 /**
@@ -23,15 +30,15 @@ export interface EditorPropertyComponent<P> extends React.FC<P> {
 // 组件展示基础信息
 export interface CmpInfo {
   // type?: string | Array<string>;
-   name: string;
-   description?: string;
-   cmpType: string;
-   icon?: string;
-   maxNum: number;
-   usedNum: number;
-   status: string;
- }
- /** 左侧组件显示的信息 */
+  name: string;
+  description?: string;
+  cmpType: string;
+  icon?: string;
+  maxNum: number;
+  usedNum: number;
+  status: string;
+}
+/** 左侧组件显示的信息 */
 export interface CompsGroup {
   id: string;
   name: string;
@@ -39,12 +46,13 @@ export interface CompsGroup {
   list: CmpInfo[];
 }
 
+export type { ProFormColumnsType };
 
-export type {ProFormColumnsType};
+
 /** 组件配置的数据结构 */
 export interface BaseSchemaClass {
   id: string;
-  index?:number;
+  index?: number;
   values: any;
   immediatelyCheck: boolean; // 加载组件的时候是否立即校验
   cmpType: string; // 映射组件用的
@@ -70,7 +78,11 @@ export interface BaseSchemaClass {
   setFieldsValue: (record: any) => void;
   setImmediatelyCheck: (checked: boolean) => void;
   setId: (id: string) => void;
+
+  getData: () => EditorData
 }
+
+
 
 
 
@@ -89,12 +101,12 @@ export interface Mixin {
 
 /** 组件配置的数据结构 */
 export interface ComponentSchemaType {
-  
+
   id: string;
   values: any;
   immediatelyCheck: boolean; // 加载组件的时候是否立即校验
-    cmpType: string; // 映射组件用的
-   cmpName?: string;
+  cmpType: string; // 映射组件用的
+  cmpName?: string;
   propsConfig: ProFormColumnsType<any>[]; // 右侧属性配置栏显示
   getInitialValue?: () => any; // 右侧属性初始化数据
   getPropsConfig?: (
@@ -111,7 +123,7 @@ export interface ComponentSchemaType {
 
 abstract class BaseSchemaEditor implements BaseSchemaClass {
   // 基础配置
-   static info: CmpInfo = {
+  static info: CmpInfo = {
     name: '',
     maxNum: 0,
     usedNum: 0,
@@ -120,8 +132,8 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
   };
   formProps = {};
 
- propsConfig!: ProFormColumnsType<any, any>[];
-  
+  propsConfig!: ProFormColumnsType<any, any>[];
+
   id: string = '';
   values: any = {};
   immediatelyCheck: boolean = false;
@@ -129,12 +141,16 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
   constructor(values = {}) {
     this.values = values;
     this.id = genNonDuplicateId();
-  
-
   }
-  cmpType: string="";
-  cmpName?: string | undefined;
+  index?: number | undefined;
+  inCluded?: ((columns: ProFormColumnsType[], list: React.Key[]) => boolean) | undefined;
+  getData() {
 
+
+    return { id: this.id, values: this.values, cmpType: this.cmpType, index: this.index, cmpName: this.cmpName }
+  }
+  cmpType: string = "";
+  cmpName?: string | undefined;
   formatValues?: ((allValues: any) => void) | undefined;
 
   getInitialValue?(): any;
@@ -194,5 +210,5 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
 }
 
 
-export type AbsBaseSchemaClass =typeof BaseSchemaEditor
+export type AbsBaseSchemaClass = typeof BaseSchemaEditor
 export default BaseSchemaEditor;

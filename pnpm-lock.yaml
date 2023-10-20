@@ -248,8 +248,8 @@ importers:
         specifier: ^7.10.3
         version: 7.10.3(antd@5.4.2)(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/pro-provider':
-        specifier: ^2.12.3
-        version: 2.12.3(antd@5.4.2)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^2.13.1
+        version: 2.13.1(antd@5.4.2)(react-dom@18.2.0)(react@18.2.0)
       '@sceditor/cmp-center':
         specifier: workspace:*
         version: link:../cmp-center

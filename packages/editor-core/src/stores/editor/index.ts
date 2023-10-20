@@ -7,8 +7,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';
 import { genNonDuplicateId } from '../../utils/common';
 import sendToIframe from '../../utils/sendToIframe';
-import { BaseSchemaClass, EditorManager } from '../../manager'
-
+import {  EditorManager } from '../../manager';
+import type { EditorData ,BaseSchemaClass} from '../../design';
 /**
  * 页面类型
  * component 单个组件属性配置页面
@@ -27,14 +27,14 @@ export type editorStoreType = {
   editList: BaseSchemaClass[]; // 所有的编辑列表
   updateCurrentEditCmpValues: (newValues: any) => void; // 更新正在编辑的组件的内容
   switchEditCmp: (id: string, immediatelyCheck?: boolean) => void; // 切换编辑的组件
-  addToEdit: (item: BaseSchemaClass, index?: number, noticed?: boolean) => void; // 添加组件并编辑
-  addCmp: (record: BaseSchemaClass, index: number) => void; // 纯粹添加组件
-  deleteCmp: (id: string, noticed?: boolean) => void; // 删除组件
-  copyCmp: (record: BaseSchemaClass, noticed?: boolean) => void; // 拷贝组件
+  addToEdit: (item: EditorData) => BaseSchemaClass; // 添加组件并编辑
+  addCmp: (record: BaseSchemaClass,index?:number) => void; // 纯粹添加组件
+  deleteCmp: (id: string) => void; // 删除组件
+  copyCmp: (record: EditorData) => BaseSchemaClass|null; // 拷贝组件
   clearAllCmp: () => void; // 清除全部编辑组件
   updeteEditList: () => void; // 更新编辑列表
   updeteEditListItem: (record: BaseSchemaClass) => void;
-  arrayMove: (oldIndex: number, newIndex: number, noticed?: boolean) => void; // 更新排序
+  arrayMove: (oldIndex: number, newIndex: number) => {oldIndex:number,newIndex:number}|null; // 更新排序
   changeModalType: (type: ModalType) => void; // 切换状态
   updatePageInfoValues: (newValues: any) => void; // 更新页面设置数据
 };
@@ -69,7 +69,8 @@ class EditorClass {
     if (this.currentEditCmp) {
       this.currentEditCmp.setFieldsValue(newValues);
       // 发送消息给iframe
-      sendToIframe.updateCmp(this.currentEditCmp);
+      this.manager.message.emit('UpdateNode',this.currentEditCmp.getData())
+   
     }
   }
 
@@ -83,10 +84,11 @@ class EditorClass {
 
   // 添加组件并修改
   @action.bound
-  addToEdit(item: BaseSchemaClass, index?: number, noticed = true): void {
+  addToEdit(item: EditorData): BaseSchemaClass {
     // 先更新当前的 list 下的数据
     // this.updeteEditList();
-    const CmpClass: any = item;
+    const {cmpType,index}=item
+    const CmpClass: any = this.manager.getEditorByType(cmpType);
     const newItem: BaseSchemaClass = new CmpClass();
     // 关键点
     newItem.index = index;
@@ -106,14 +108,13 @@ class EditorClass {
     } else {
       this.editList.push(newItem);
     }
-    if (noticed) {
-      // 发送消息给iframe
-      sendToIframe.addCmp(newItem);
-    }
+   
+
+    return newItem
   }
   // 添加组件
   @action.bound
-  addCmp(item: BaseSchemaClass, index: number) {
+  addCmp(item: BaseSchemaClass, index?: number) {
     if (index != null && index > -1) {
       this.editList.splice(index, 0, item);
     }
@@ -121,21 +122,21 @@ class EditorClass {
 
   // 删除组件
   @action.bound
-  deleteCmp(id: string, noticed = true) {
+  deleteCmp(id: string) {
     this.editList = this.editList.filter((it) => it.id !== id);
     if (this.currentKey === id) {
       this.currentKey = null;
       this.currentEditCmp = null;
     }
-    if (noticed) {
-      // 发送消息给iframe
-      sendToIframe.deleteCmp(id);
-    }
+    // if (noticed) {
+    //   // 发送消息给iframe
+    //   sendToIframe.deleteCmp(id);
+    // }
   }
 
   // 复制组件
   @action.bound
-  copyCmp(record: BaseSchemaClass, noticed = true) {
+  copyCmp(record: EditorData) {
     const cmpType = record.cmpType;
     const Clas: any = this.manager.getEditorByType(cmpType);
     if (Clas) {
@@ -146,13 +147,14 @@ class EditorClass {
       if (index > -1) {
         const newIndex = index + 1;
         this.editList.splice(newIndex, 0, newItem);
-
-        if (noticed) {
-          // 发送消息给iframe
-          sendToIframe.copyCmp(newItem);
-        }
+        return newItem
+        // if (noticed) {
+        //   // 发送消息给iframe
+        //   sendToIframe.copyCmp(newItem);
+        // }
       }
     }
+    return null
   }
 
   // 清空组件
@@ -217,14 +219,14 @@ class EditorClass {
 
   // 更新排序
   @action.bound
-  arrayMove(oldIndex: number, newIndex: number, noticed = true) {
+  arrayMove(oldIndex: number, newIndex: number) {
     if (oldIndex !== newIndex) {
       this.editList = arrayMoveImmutable(this.editList, oldIndex, newIndex);
+      return {oldIndex, newIndex}
     }
-    if (noticed) {
-      // 发送消息给iframe
-      sendToIframe.arrayMove(oldIndex, newIndex);
-    }
+
+   return null
+   
   }
 }
 const editorStore: editorStoreType = new EditorClass();

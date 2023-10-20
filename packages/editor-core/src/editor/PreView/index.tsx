@@ -24,61 +24,61 @@ const PreView: React.FC<any> = () => {
   // 监听iframne是否加载的hook
   useIframeLoad();
 
-  // 监听来自iframe的消息
-  useEventListener('message', (event: any) => {
-    let data: any = null;
-    const rect = contentIFrameRef.current?.getBoundingClientRect();
-    if (event.data) {
-      data = event.data;
-      if (data.type === 'add') {
-        const item = comsStore.getCompByKey(data.data.cmpType);
-        if (item) {
-          const flag = comsStore.addComsNum(data.data.cmpType);
-          if (flag) {
-            editorStore.addToEdit(item, data.data.index);
-          }
-        }
-      }
-      if (data.type === 'changeActive') {
-        editorStore.switchEditCmp(data.data);
-      }
-      if (data.type === 'changeHeight') {
-        setHeight(data.data);
-      }
-      if (data.type === 'delete') {
-        const flag = comsStore.minusComsNum(data.data.cmpType);
-        if (flag) {
-          editorStore.deleteCmp(data.data.id, false);
-        }
-      }
-      if (data.type === 'arrayMove') {
-        editorStore.arrayMove(data.data.oldIndex, data.data.newIndex, false);
-      }
-      if (data.type === 'copy') {
-        const { index, ...restItem } = data.data;
-        const flag = comsStore.addComsNum(data.data.cmpType);
-        if (flag) {
-          editorStore.addCmp(restItem, index);
-        }
-      }
-    }
-    if (event.data.type == 'mousemove') {
-      // console.log();
-      let pos = {
-        clientX: event.data.data.clientX + Number(rect?.left || 0),
-        clientY: event.data.data.clientY + Number(rect?.top || 0),
-      };
+  // // 监听来自iframe的消息
+  // useEventListener('message', (event: any) => {
+  //   let data: any = null;
+  //   const rect = contentIFrameRef.current?.getBoundingClientRect();
+  //   if (event.data) {
+  //     data = event.data;
+  //     if (data.type === 'add') {
+  //       const item = comsStore.getCompByKey(data.data.cmpType);
+  //       if (item) {
+  //         const flag = comsStore.addComsNum(data.data.cmpType);
+  //         if (flag) {
+  //           editorStore.addToEdit(item, data.data.index);
+  //         }
+  //       }
+  //     }
+  //     if (data.type === 'changeActive') {
+  //       editorStore.switchEditCmp(data.data);
+  //     }
+  //     if (data.type === 'changeHeight') {
+  //       setHeight(data.data);
+  //     }
+  //     if (data.type === 'delete') {
+  //       const flag = comsStore.minusComsNum(data.data.cmpType);
+  //       if (flag) {
+  //         editorStore.deleteCmp(data.data.id, false);
+  //       }
+  //     }
+  //     if (data.type === 'arrayMove') {
+  //       editorStore.arrayMove(data.data.oldIndex, data.data.newIndex, false);
+  //     }
+  //     if (data.type === 'copy') {
+  //       const { index, ...restItem } = data.data;
+  //       const flag = comsStore.addComsNum(data.data.cmpType);
+  //       if (flag) {
+  //         editorStore.addCmp(restItem, index);
+  //       }
+  //     }
+  //   }
+  //   if (event.data.type == 'mousemove') {
+  //     // console.log();
+  //     let pos = {
+  //       clientX: event.data.data.clientX + Number(rect?.left || 0),
+  //       clientY: event.data.data.clientY + Number(rect?.top || 0),
+  //     };
 
-      document.dispatchEvent(new MouseEvent('mousemove', pos));
-    } else if (event.data.type === 'mouseup') {
-      let pos = {
-        clientX: event.data.data.clientX + Number(rect?.left || 0),
-        clientY: event.data.data.clientY + Number(rect?.top || 0),
-      };
+  //     document.dispatchEvent(new MouseEvent('mousemove', pos));
+  //   } else if (event.data.type === 'mouseup') {
+  //     let pos = {
+  //       clientX: event.data.data.clientX + Number(rect?.left || 0),
+  //       clientY: event.data.data.clientY + Number(rect?.top || 0),
+  //     };
 
-      document.dispatchEvent(new MouseEvent('mouseup', pos));
-    }
-  });
+  //     document.dispatchEvent(new MouseEvent('mouseup', pos));
+  //   }
+  // });
 
   // const callback = (params: any) => {
   //   if (params.type === 'add' || params.type === 'insert') {

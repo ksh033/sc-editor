@@ -100,6 +100,6 @@ const VdColor: EditorPropertyComponent<VdColorProps> = (props) => {
     </VdFormItem>
   );
 };
-VdColor.valueType="VdCheckBox"
+VdColor.valueType="VdColor"
 registerEditorAttrCmp(VdColor)
 export default VdColor;

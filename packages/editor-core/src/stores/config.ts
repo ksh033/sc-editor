@@ -20,4 +20,4 @@ export function createStore() {
 
 export const store = createStore()
 
-export type TStore = ReturnType<typeof createStore>
+export type StoreType = ReturnType<typeof createStore>

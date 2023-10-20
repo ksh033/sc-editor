@@ -91,7 +91,7 @@ const PropertyPanel: React.FC<any> = (props:any) => {
       };
 
       if (editCmp.render) {
-        return <React.Fragment>{editCmp.render()}</React.Fragment>;
+        return <React.Fragment>{editCmp.render(baseProps)}</React.Fragment>;
       }
 
       return null;
