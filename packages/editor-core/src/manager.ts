@@ -1,14 +1,10 @@
 import { ProFieldFCRenderProps, ProRenderFieldPropsType } from "@ant-design/pro-provider";
 import React, { useContext } from "react";
-import { BaseSchemaClass,  AbsBaseSchemaClass,  EditorPropertyComponent, EditorData } from "./design"
+import { BaseSchemaClass,  AbsBaseSchemaClass,  EditorPropertyComponent, EditorData, EditorPropertyHoc } from "./design"
 import { SysComponents, IframePostMessage } from '@sceditor/cmp-center'
 // iframeId 页面的id
 const iframeId = 'myFrame';
 export { iframeId };
-export const EditorPropertyContext = React.createContext<{ rowData: any, editList: any }>({
-  rowData: null,
-  editList: null
-});
 
 import { StoreType } from './stores'
 
@@ -42,9 +38,9 @@ export function registerEditorAttrCmp(klass: EditorPropertyComponent<any>, value
   if (type && !valueTypeMap[type]) {
     valueTypeMap[type] = {
       renderFormItem: (_text: any, props: ProFieldFCRenderProps, _dom: JSX.Element) => {
-        const editorValue = {}
-
-        return React.createElement(klass, { ...props, ...props?.fieldProps, ...editorValue })
+        //const editorValue = useContext(EditorContext)
+        const  EditorPropertyCmp=EditorPropertyHoc(klass)
+        return React.createElement(EditorPropertyCmp, { ...props, ...props?.fieldProps })
       }
     }
   }

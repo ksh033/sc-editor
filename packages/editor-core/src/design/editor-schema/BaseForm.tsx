@@ -5,11 +5,12 @@ import React, { useContext } from 'react';
 import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
 // @ts-ignore
 import * as Components from '../components/index';
-import {EditorContext, EditorPropertyContext} from "../../manager"
+import {EditorContext} from "../../manager"
+import {EditorPropertyContext} from './EditorPropertyHoc'
 const BaseForm: React.FC<any> = (props) => {
   const rowData = props['data-row'] || {};
   const editList = Array.isArray(props['data-list']) ? props['data-list'] : [];
-
+   const id=props["id"]; 
   
   const values = useContext(ProProvider);
   const editorContext=useContext(EditorContext)
@@ -45,7 +46,7 @@ const BaseForm: React.FC<any> = (props) => {
         valueTypeMap: valueTypeMap,
       }}
     >
-      <EditorPropertyContext.Provider value={{editList,rowData}}>
+      <EditorPropertyContext.Provider value={{editList,rowData,id}}>
       <BetaSchemaForm {...props} layoutType="Form"></BetaSchemaForm>
 
       </EditorPropertyContext.Provider>
