@@ -13,6 +13,15 @@ import Title from './PTitle';
 import Search from './Search';
 import Video from './VideoCmp';
 import White from './White';
+
+import './initTpl'
+console.log("index")
+
+
+// import('./initTpl').then((res)=>{
+// console.log('./initTpl',res)
+// })
+
 /** 具体组件配置 */
 // const BaseCompClassGroup: CompsClassGroup[] = [
 //   {
@@ -65,7 +74,8 @@ import White from './White';
 // });
 
 // export { BaseCompMap, BaseCompGroup, PageInfo };
-export { Title,
+export {
+    Title,
     ElevatorNav,
     GoodsLayout,
     CrowdImage,
@@ -78,4 +88,6 @@ export { Title,
     Notice,
     Coupon,
     PageInfo,
-    Video,}
+    Video
+    
+}

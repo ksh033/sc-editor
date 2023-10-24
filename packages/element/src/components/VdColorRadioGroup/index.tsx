@@ -1,11 +1,11 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Radio, RadioGroupProps, Tooltip } from 'antd';
+import { Radio, RadioGroupProps } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { CheckboxValueType } from 'antd/es/checkbox/Group';
 import React, { useMemo } from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 export interface VdColorRadioGroupOptionType {
   label: React.ReactNode;
@@ -21,7 +21,7 @@ type VdColorRadioGroupProps = Omit<RadioGroupProps, 'options'> &
     options?: Array<VdColorRadioGroupOptionType | string | number>;
   };
 
-const VdColorRadioGroup: EditorPropertyComponent<VdColorRadioGroupProps> = (props) => {
+const VdColorRadioGroup: SysEditorPropertyComponent<VdColorRadioGroupProps> = (props) => {
   const { onChange, value, options = [], formItem, block = false } = props;
   const valueMap = useMemo(() => {
     const map = new Map();

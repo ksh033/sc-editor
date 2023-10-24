@@ -2,9 +2,10 @@ import { Button, Space } from 'antd';
 import VdSelectImage from '../VdSelectImage';
 import './index.less';
 import { VdImgLinkProps } from './type';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
-const VdImgLink:EditorPropertyComponent<VdImgLinkProps> = (props) => {
+const VdImgLink:SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
   const { value, onChange } = props;
 
   const onUploadChange = (val: any) => {

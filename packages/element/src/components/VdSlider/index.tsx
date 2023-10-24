@@ -3,11 +3,12 @@ import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import { InputNumber, Slider, SliderSingleProps, Space } from 'antd';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 export type VdSliderProps = SliderSingleProps & ExtendVdFormItemProps;
 
-const VdSlider: EditorPropertyComponent<VdSliderProps> = (props) => {
+const VdSlider: SysEditorPropertyComponent<VdSliderProps> = (props) => {
   const { formItem, min = 0, max = 60, defaultValue = 0, ...rest } = props;
 
   const [inputValue, setInputValue] = useMergedState(defaultValue, {

@@ -21,11 +21,11 @@ export interface EditorData {
 /**
  * 编辑器属性组件
  */
-export interface EditorPropertyComponent<P> extends React.FC<P> {
+export interface EditorPropertyComponent<P,ValueTyps=string> extends React.FC<P> {
   /**
    * 属性组件类型
    */
-  valueType: string;
+  valueType: ValueTyps;
 }
 // 组件展示基础信息
 export interface CmpInfo {

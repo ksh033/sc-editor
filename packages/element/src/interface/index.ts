@@ -1,75 +1,13 @@
 import type { BaseSchemaEditor, ProFormColumnsType } from '@sceditor/editor-core';
 //import React from 'react';
 //import ParentSchemCmp from '../base/ParentSchemCmp';
-import { ComponentItemType } from './enum';
-
-// // 组件展示基础信息
-// export interface CmpInfo {
-//  // type?: string | Array<string>;
-//   name: string;
-//   description?: string;
-//   cmpType: string;
-//   icon?: string;
-//   maxNum: number;
-//   usedNum: number;
-//   status: string;
-// }
+import { SysValueTypes } from '../components/interface';
 
 export type VdProFormColumnsType<RecordType = any> = ProFormColumnsType<
   RecordType,
-  ComponentItemType
+  SysValueTypes
 >;
 
-// export interface Mixin {
-//   onFilter?: (
-//     columns: ProFormColumnsType[],
-//     fn: (item: ProFormColumnsType) => boolean
-//   ) => ProFormColumnsType[];
-//   inCluded?: (columns: ProFormColumnsType[], list: React.Key[]) => boolean;
-//   getFieldsValue: () => any;
-//   setFieldsValue: (record: any) => void;
-//   setImmediatelyCheck: (checked: boolean) => void;
-//   setId: (id: string) => void;
-// }
-
-
-// /** 组件配置的数据结构 */
-// export interface ComponentSchemaType {
-  
-//   id: string;
-//   values: any;
-//   immediatelyCheck: boolean; // 加载组件的时候是否立即校验
-//     cmpType: string; // 映射组件用的
-//    cmpName?: string;
-//   propsConfig: VdProFormColumnsType<any>[]; // 右侧属性配置栏显示
-//   getInitialValue?: () => any; // 右侧属性初始化数据
-//   getPropsConfig?: (
-//     columns: ProFormColumnsType[],
-//     record: any
-//   ) => ProFormColumnsType[];
-//   render: (props: any) => React.ReactNode | React.ReactElement<any, any> | null;
-//   getRuleCheck: () => Promise<boolean>;
-//   onValuesChange?: (changedValues: any, allValues: any) => any;
-//   formatValues?: (allValues: any) => void;
-//   initClass: (record: ComponentSchemaType) => void;
-//   formProps?: any;
-// }
-
-// export type ClassType = typeof ParentSchemCmp;
 
 export type ComponentSchemaProps = BaseSchemaEditor;
 
-// // 组件分组
-// export interface CompsClassGroup {
-//   id: string;
-//   actived: boolean;
-//   name: string;
-//   list: ClassType[];
-// }
-// /** 左侧组件显示的信息 */
-// export interface CompsGroup {
-//   id: string;
-//   name: string;
-//   actived: boolean;
-//   list: CmpInfo[];
-// }

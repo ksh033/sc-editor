@@ -6,6 +6,8 @@ const location: VdProFormColumnsType<RadioProps> = {
   dataIndex: 'location',
   valueType: 'VdRadioIcon',
   fieldProps: {
+
+
     options: [
       { text: '居左显示', value: 'left', icon: 'deco-icon-align-left' },
       { text: '居中显示', value: 'center', icon: 'deco-icon-align-center' },

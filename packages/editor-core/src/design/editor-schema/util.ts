@@ -1,7 +1,6 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import cloneDeep from 'lodash/cloneDeep';
 import isNil from 'lodash/isNil';
-import { type VdProFormColumnsType } from '../../manager'
 const defaultFormItemProps = {
   className: 'deco-control-group',
 };
@@ -11,11 +10,11 @@ const isNoStyle = (valueType: string) => {
 };
 
 const converFormItem = (
-  list: VdProFormColumnsType[],
+  list: ProFormColumnsType[],
   columnList: ProFormColumnsType[]
 ) => {
   if (Array.isArray(list)) {
-    list.forEach((it: VdProFormColumnsType) => {
+    list.forEach((it: ProFormColumnsType) => {
      // const valueType = it.valueType;
       const { columns, ...restIt } = it;
       let newItem: ProFormColumnsType<any, any> = restIt;
@@ -59,9 +58,9 @@ const converFormItem = (
   }
 };
 export const filterPageConfig = (
-  propsConfig: VdProFormColumnsType<any>[]
+  propsConfig: ProFormColumnsType<any>[]
 ): ProFormColumnsType[] => {
-  let itemInfos: VdProFormColumnsType<any>[] = cloneDeep(propsConfig);
+  let itemInfos: ProFormColumnsType<any>[] = cloneDeep(propsConfig);
   const newColumn: ProFormColumnsType[] = [];
   converFormItem(itemInfos, newColumn);
 

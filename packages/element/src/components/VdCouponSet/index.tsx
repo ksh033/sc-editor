@@ -1,13 +1,14 @@
 import { Checkbox, InputNumber, Radio, Space } from 'antd';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type VdCouponSetProps = {
   value?: any;
   onChange?: (val: any) => void;
 };
 
-const VdCouponSet:EditorPropertyComponent<VdCouponSetProps> = (props) => {
+const VdCouponSet:SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
   const {
     value = {
       isShowAll: true,

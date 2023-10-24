@@ -89,7 +89,7 @@ class ComsClass implements ComsStoreType {
       const editorMap=this.manager.getEditorsMap()
       const list=BaseCompClassGroup.map((it)=>{
         const list = it.list.map((purClass) => {
-          return editorMap[purClass].info;
+          return editorMap[purClass]?.info||{};
         });
         return {
           id: it.id,

@@ -18,7 +18,7 @@ import VdSwitch from './VdSwitch';
 import VdTabs from './VdTabs';
 import VdUpload from './VdUpload';
 import VdVideoLink from './VdVideoLink';
-
+import VdImgLink from './VdImgLink';
 export {
   VdRadioIcon,
   VdColor,
@@ -37,6 +37,7 @@ export {
   VdSwitch,
   VdUpload,
   VdVideoLink,
+  VdImgLink,
   VdAddElevatorNav,
   VdAddImageList,
 };

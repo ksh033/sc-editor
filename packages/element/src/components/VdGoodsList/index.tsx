@@ -2,14 +2,15 @@ import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
 import ScImage from '../../baseComponents/ScImage';
 import './index.less';
 import { goodsList } from './list';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { SysEditorPropertyComponent } from '../interface';
 
 type VdGoodsListProps = {
   value: any[];
   onChange: (list: any[]) => void;
 };
 
-const VdGoodsList: EditorPropertyComponent<VdGoodsListProps> = (props) => {
+const VdGoodsList: SysEditorPropertyComponent<VdGoodsListProps> = (props) => {
   const { value = [], onChange } = props;
 
   const handleAddClick = () => {

@@ -4,7 +4,8 @@ import React, { Fragment, useMemo } from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import VdIcon from '../VdIcon';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type VdRadioOption = {
   value: string | number;
@@ -25,7 +26,7 @@ export type VdRadioIconProps = Omit<RadioGroupProps, 'onChange' | 'options'> &
     disabled?: boolean;
   };
 
-const VdRadioIcon: EditorPropertyComponent<VdRadioIconProps> = (props) => {
+const VdRadioIcon: SysEditorPropertyComponent<VdRadioIconProps> = (props) => {
   const {
     onChange,
     value,

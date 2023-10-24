@@ -9,7 +9,8 @@ import {
   getDefaultTemplateCompontents,
   templateMap,
 } from './template';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type ValueState = {
   sub_entry: CompontentItem[];
@@ -25,7 +26,7 @@ export type VdMagicCubeLayoutProps = ExtendVdFormItemProps & {
 };
 
 export const MethodLength = 8 - 1;
-const VdMagicCubeLayout: EditorPropertyComponent<VdMagicCubeLayoutProps> = (props) => {
+const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (props) => {
   const {
     formItem,
     rowData,

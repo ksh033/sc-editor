@@ -1,5 +1,5 @@
 import { ProFieldFCRenderProps, ProRenderFieldPropsType } from "@ant-design/pro-provider";
-import React, { useContext } from "react";
+
 import { BaseSchemaClass,  AbsBaseSchemaClass,  EditorPropertyComponent, EditorData, EditorPropertyHoc } from "./design"
 import { SysComponents, IframePostMessage } from '@sceditor/cmp-center'
 // iframeId 页面的id
@@ -7,6 +7,7 @@ const iframeId = 'myFrame';
 export { iframeId };
 
 import { StoreType } from './stores'
+import React from "react";
 
 const builtEditors: Record<string, AbsBaseSchemaClass> = {}
 const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};

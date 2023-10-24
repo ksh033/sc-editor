@@ -1,7 +1,7 @@
 import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
-import { color } from '../../attrType/index';
 import { VdProFormColumnsType } from '../../interface';
-import {SysComponents} from "@sceditor/cmp-center"
+import { SysComponents } from "@sceditor/cmp-center"
+import { getSchemaTpl } from '../tpl';
 
 
 class Notice extends BaseSchemaEditor {
@@ -24,30 +24,30 @@ class Notice extends BaseSchemaEditor {
         ],
       },
     },
-    {
-      ...color,
+    getSchemaTpl('color', {
+
       dataIndex: 'background_color',
       title: '背景颜色',
       fieldProps: {
         defaultColor: '#fff8e9',
       },
-    },
-    {
-      ...color,
+    },),
+    getSchemaTpl('color', {
+
       dataIndex: 'color',
       title: '文本颜色',
       fieldProps: {
         defaultColor: '#646566',
       },
-    },
-    {
-      ...color,
+    }),
+    getSchemaTpl('color', {
+
       dataIndex: 'card_background_color',
       title: '卡片背景',
       fieldProps: {
         defaultColor: 'transparent',
       },
-    },
+    }),
     {
       dataIndex: 'corner_type',
       title: '卡片倒角',

@@ -5,7 +5,8 @@ import { CheckboxValueType } from 'antd/es/checkbox/Group';
 import React, { useMemo } from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 export interface VdRadioGroupOptionType {
   label: React.ReactNode;
@@ -21,7 +22,7 @@ type VdRadioGroupProps = Omit<RadioGroupProps, 'options'> &
     options?: Array<VdRadioGroupOptionType | string | number>;
   };
 
-const VdRadioGroup: EditorPropertyComponent<VdRadioGroupProps> = (props) => {
+const VdRadioGroup: SysEditorPropertyComponent<VdRadioGroupProps> = (props) => {
   const { onChange, value, options = [], formItem, block = false } = props;
   const valueMap = useMemo(() => {
     const map = new Map();

@@ -3,7 +3,8 @@ import { SketchPicker } from '@chenshuai2144/sketch-color';
 import { Button, Popover, PopoverProps, Space } from 'antd';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import {  registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 export type VdColorProps = SketchPickerProps &
   ExtendVdFormItemProps & {
@@ -27,7 +28,7 @@ export const DEFAULT_COLORS = [
   '#F6BD16', // 9 - 黄色
 ];
 
-const VdColor: EditorPropertyComponent<VdColorProps> = (props) => {
+const VdColor: SysEditorPropertyComponent<VdColorProps> = (props) => {
   const { formItem, popoverProps, defaultColor = '#1890ff', ...rest } = props;
 
   const [color, setColor] = useMergedState(defaultColor, {

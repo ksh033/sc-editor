@@ -1,20 +1,15 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
 import { SelectProps } from 'antd';
-import {
-  color,
-  date,
-  fontSize,
-  fontWeight,
-  location,
-} from '../../attrType/index';
+
 import { VdProFormColumnsType } from '../../interface';
 import { SysComponents } from '@sceditor/cmp-center';
 import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
+import { getSchemaTpl } from '../tpl';
 
 
 class Title extends BaseSchemaEditor {
   //readonly cmpType: string = 'Title';
- // readonly cmpName: string = '标题文本';
+  // readonly cmpName: string = '标题文本';
   propsConfig: VdProFormColumnsType[] = [
     {
       valueType: 'VdTabs',
@@ -76,60 +71,71 @@ class Title extends BaseSchemaEditor {
         ],
       },
     },
-    date,
+   getSchemaTpl('date'),
     {
       title: '作者',
       dataIndex: 'author',
     },
-    {
-      ...location,
+    getSchemaTpl('location', {
+
       dataIndex: 'location',
       title: '显示位置',
-    },
-    {
-      ...fontSize,
-      dataIndex: 'fontSize',
-      title: '标题大小',
-    },
-    {
-      ...fontSize,
-      dataIndex: 'descriptionFontSize',
-      title: '描述大小',
-    },
-    {
-      ...fontWeight,
-      dataIndex: 'fontWeight',
-      title: '标题粗细',
-    },
-    {
-      ...fontWeight,
-      dataIndex: 'descriptionFontWeight',
-      title: '描述粗细',
-    },
-    {
-      ...color,
-      dataIndex: 'color',
-      title: '标题颜色',
-      fieldProps: {
-        defaultColor: '#323233',
-      },
-    },
-    {
-      ...color,
-      dataIndex: 'descriptionColor',
-      title: '描述颜色',
-      fieldProps: {
-        defaultColor: '#969799',
-      },
-    },
-    {
-      ...color,
-      dataIndex: 'backgroundColor',
-      title: '背景颜色',
-      fieldProps: {
-        defaultColor: '#fff',
-      },
-    },
+    }),
+    getSchemaTpl('fontSize',
+      {
+
+        dataIndex: 'fontSize',
+        title: '标题大小',
+      }),
+    getSchemaTpl('fontSize',
+      {
+
+        dataIndex: 'descriptionFontSize',
+        title: '描述大小',
+      }),
+    getSchemaTpl('fontWeight',
+      {
+
+        dataIndex: 'fontWeight',
+        title: '标题粗细',
+      }),
+
+    getSchemaTpl('fontWeight',
+      {
+        dataIndex: 'descriptionFontWeight',
+        title: '描述粗细',
+      }),
+
+    getSchemaTpl('color',
+      {
+
+        dataIndex: 'color',
+        title: '标题颜色',
+        fieldProps: {
+          defaultColor: '#323233',
+        },
+      })
+    ,
+    getSchemaTpl('color',
+      {
+
+        dataIndex: 'descriptionColor',
+        title: '描述颜色',
+        fieldProps: {
+          defaultColor: '#969799',
+        },
+      })
+    ,
+    getSchemaTpl('color',
+      {
+
+        dataIndex: 'backgroundColor',
+        title: '背景颜色',
+        fieldProps: {
+          defaultColor: '#fff',
+        },
+      })
+
   ];
 
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
@@ -190,7 +196,7 @@ class Title extends BaseSchemaEditor {
     return {
       styleType: 'old',
       title: '',
-      type:'title_text',
+      type: 'title_text',
       description: '',
       location: 'left',
       fontSize: 16,

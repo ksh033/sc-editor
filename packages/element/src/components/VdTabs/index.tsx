@@ -1,9 +1,10 @@
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import { Tabs } from 'antd';
+import { SysEditorPropertyComponent } from '../interface';
 
 
 
-const VdTabs: EditorPropertyComponent<any> = (props: any) => {
+const VdTabs: SysEditorPropertyComponent<any> = (props: any) => {
   const { options = [], onChange, value } = props;
 
   return (

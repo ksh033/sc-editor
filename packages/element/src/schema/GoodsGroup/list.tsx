@@ -1,5 +1,5 @@
-import { fill, fontWeight, needAll, tagListTemplate } from '../../attrType';
 import { VdProFormColumnsType } from '../../interface';
+import { getSchemaTpl } from '../tpl';
 
 const propsConfig: VdProFormColumnsType[] = [
   {
@@ -59,13 +59,12 @@ const propsConfig: VdProFormColumnsType[] = [
     dataIndex: 'line',
     valueType: 'divider',
   },
-  {
-    ...tagListTemplate,
+
+  getSchemaTpl('tagListTemplate', {
     dataIndex: 'tag_list_template',
-    title: '展示模板',
-  },
-  {
-    ...needAll,
+    title: '展示模板'
+  }),
+  getSchemaTpl('needAll', {
     dataIndex: 'is_show_all',
     title: '全部分组',
     fieldProps: {
@@ -73,8 +72,9 @@ const propsConfig: VdProFormColumnsType[] = [
         true: '展示',
         false: '不展示',
       },
-    },
-  },
+    }
+  }),
+  
   {
     dataIndex: 'nav_style',
     title: '菜单样式',
@@ -239,16 +239,16 @@ const propsConfig: VdProFormColumnsType[] = [
       ],
     },
   },
-  {
-    ...fill,
+
+  getSchemaTpl('fill', {
     title: '图片填充',
-    dataIndex: 'image_fill_style',
-  },
-  {
-    ...fontWeight,
+    dataIndex: 'image_fill_style'
+  }),
+  getSchemaTpl('fontWeight', {
     dataIndex: 'text_style_type',
     title: '文本样式',
-  },
+  }),
+
   {
     title: '文本对齐',
     dataIndex: 'text_align_type',

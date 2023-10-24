@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
+    "outDir": "es",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react-jsx",
-    //"lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["ES6", "DOM", "ES2015", "ES2021"],
     "baseUrl": "./",
     "target": "esnext",
     "moduleResolution": "node",

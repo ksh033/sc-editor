@@ -6,7 +6,8 @@ import { VdFormItemProps } from '../VdFormItem';
 import SetGoodsCount from './SetGoodsCount';
 import './index.less';
 import GoodsTagItem from './GoodsTagItem';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type typeNode = 'tag' | 'card';
 
@@ -28,7 +29,7 @@ type VdGoodsGroupDataNode = {
   isShowAll?: boolean;
 };
 
-const VdGoodsGroup: EditorPropertyComponent<VdGoodsGroupProps> = (props) => {
+const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
   const {
     addBtnText = '添加商品分组',
     formItem,

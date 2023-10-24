@@ -7,12 +7,13 @@ import VdSelectImage, {
   VdSelectImageItem,
   VdSelectImageRef,
 } from '../VdSelectImage';
-import { registerEditorAttrCmp,EditorPropertyComponent } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type VdAddImageListProps = VdAddListProps<any>;
 
 /** 添加图片 */
-const VdAddImageList:EditorPropertyComponent<VdAddImageListProps> = (props) => {
+const VdAddImageList:SysEditorPropertyComponent<VdAddImageListProps> = (props) => {
   const renderItem = (rprops: any) => {
     return <VdImgLink {...rprops}></VdImgLink>;
   };

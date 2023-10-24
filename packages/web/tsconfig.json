@@ -11,7 +11,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "importHelpers": true,
     "noEmit": true,
     "sourceMap": true,

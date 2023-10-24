@@ -1,8 +1,9 @@
-import { color } from '../../attrType/index';
+
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import { SysComponents, } from '@sceditor/cmp-center';
 import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
+import { getSchemaTpl } from '../tpl';
 
 class White extends BaseSchemaEditor {
   // cmpType: string = 'White';
@@ -42,14 +43,15 @@ class White extends BaseSchemaEditor {
         ],
       },
     },
-    {
-      ...color,
+    getSchemaTpl('color',{
+
       dataIndex: 'color',
       title: '辅助线颜色',
       fieldProps: {
         defaultColor: '#e5e5e5',
       },
-    },
+    })
+    ,
     {
       title: '空白高度',
       valueType: 'VdSlider',

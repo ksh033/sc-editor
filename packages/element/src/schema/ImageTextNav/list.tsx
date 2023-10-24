@@ -1,6 +1,6 @@
-import { color } from '../../attrType/index';
 import VdImgLink from '../../components/VdImgLink';
 import { VdProFormColumnsType } from '../../interface';
+import { getSchemaTpl } from '../tpl';
 
 export const VdAddListProps = {
   title: '最多添加 10 个导航，拖动选中的导航可对其排序',
@@ -152,22 +152,21 @@ const propsConfig: VdProFormColumnsType[] = [
       ],
     },
   },
-  {
-    ...color,
+  getSchemaTpl('color', {
     dataIndex: 'background_color',
     title: '背景颜色',
     fieldProps: {
       defaultColor: '#fff',
-    },
-  },
-  {
-    ...color,
+    }
+  }),
+  getSchemaTpl('color', {
     dataIndex: 'font_color',
     title: '文字颜色',
     fieldProps: {
       defaultColor: '#000',
-    },
-  },
+    }
+  })
+
 ];
 
 export default propsConfig;

@@ -50,7 +50,10 @@ class EditorClass {
   init(manager: EditorManager) {
     this.manager = manager;
     const PageClass: any = this.manager.getEditorByType('PageInfo')
-    this.pageinfo = new PageClass()
+    if (PageClass){
+      this.pageinfo = new PageClass()
+    }
+
 
   }
   // 切换状态

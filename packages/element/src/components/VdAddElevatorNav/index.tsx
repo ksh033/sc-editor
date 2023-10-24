@@ -3,7 +3,9 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { ComponentSchemaProps } from '../../interface';
 import VdAddList from '../VdAddList';
 import TagItem from './TagItem';
-import { registerEditorAttrCmp,EditorPropertyComponent } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
+
 
 export type SubEntryItem = {
   /** 图片id */
@@ -38,7 +40,7 @@ export type VdAddElevatorNavProps = {
 };
 
 /** 添加跳转 */
-const VdAddElevatorNav: EditorPropertyComponent<VdAddElevatorNavProps> = (props) => {
+const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (props) => {
   const { rowData, value, onChange, id, editList } = props;
 
   const options: DefaultOptionType[] = useMemo(() => {
@@ -121,6 +123,6 @@ const VdAddElevatorNav: EditorPropertyComponent<VdAddElevatorNavProps> = (props)
     ></VdAddList>
   );
 };
-VdAddElevatorNav.valueType="VdAddElevatorNav";
+VdAddElevatorNav.valueType='VdAddElevatorNav';
 registerEditorAttrCmp(VdAddElevatorNav)
 export default VdAddElevatorNav;

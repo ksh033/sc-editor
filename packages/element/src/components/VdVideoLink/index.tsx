@@ -1,13 +1,14 @@
 import type { InputProps } from 'antd';
 import { Input } from 'antd';
 import './index.less';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type VdVideoLayoutProps = InputProps & {
   info?: string;
 };
 
-const VdVideoLayout: EditorPropertyComponent<VdVideoLayoutProps> = (props) => {
+const VdVideoLayout: SysEditorPropertyComponent<VdVideoLayoutProps> = (props) => {
   const {
     value,
     onChange,

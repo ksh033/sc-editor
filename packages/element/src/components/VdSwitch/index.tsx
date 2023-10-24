@@ -2,7 +2,8 @@ import type { SwitchProps } from 'antd';
 import { Switch } from 'antd';
 import React from 'react';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
-import { EditorPropertyComponent, registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import { SysEditorPropertyComponent } from '../interface';
 
 type VdSwitchProps = SwitchProps &
   ExtendVdFormItemProps & {
@@ -15,7 +16,7 @@ const defaultValueMap = {
   false: '不显示',
 };
 
-const VdSwitch: EditorPropertyComponent<VdSwitchProps> = (props) => {
+const VdSwitch: SysEditorPropertyComponent<VdSwitchProps> = (props) => {
   const {
     formItem,
     value = false,

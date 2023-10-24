@@ -1,10 +1,7 @@
 import { BetaSchemaForm } from '@ant-design/pro-form';
 import ProProvider from '@ant-design/pro-provider';
 import React, { useContext } from 'react';
-// @ts-ignore
-import type { ProRenderFieldPropsType } from '@ant-design/pro-utils';
-// @ts-ignore
-import * as Components from '../components/index';
+
 import {EditorContext} from "../../manager"
 import {EditorPropertyContext} from './EditorPropertyHoc'
 const BaseForm: React.FC<any> = (props) => {

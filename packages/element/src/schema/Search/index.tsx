@@ -1,8 +1,8 @@
 import { SysComponents } from '@sceditor/cmp-center';
-import { color } from '../../attrType/index';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
+import { getSchemaTpl } from '../tpl';
 
 
 class Search extends BaseSchemaEditor {
@@ -74,30 +74,30 @@ class Search extends BaseSchemaEditor {
         max: 60,
       },
     },
-    {
-      ...color,
-      dataIndex: 'background_color',
-      title: '背景颜色',
-      fieldProps: {
-        defaultColor: '#F9F9F9',
-      },
+   getSchemaTpl('color', {
+
+    dataIndex: 'background_color',
+    title: '背景颜色',
+    fieldProps: {
+      defaultColor: '#F9F9F9',
     },
-    {
-      ...color,
+  }),
+    getSchemaTpl('color',{
+
       dataIndex: 'border_style_color',
       title: '框体颜色',
       fieldProps: {
         defaultColor: '#FFFFFF',
       },
-    },
-    {
-      ...color,
+    }),
+    getSchemaTpl('color',{
+
       dataIndex: 'text_color',
       title: '文本颜色',
       fieldProps: {
         defaultColor: '#969799',
       },
-    },
+    }),
   ];
 
   getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
