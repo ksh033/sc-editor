@@ -65,7 +65,7 @@
     "es/**/*.less",
     "lib/**/*.less",
     "es/index.js",
-    "es/schema/initTpl.js"
+    "es/schema/initTpl.js" 
   ],
   "peerDependencies": {
     "ahooks": "^2.9.6",
