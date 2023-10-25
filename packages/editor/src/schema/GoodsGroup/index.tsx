@@ -118,7 +118,7 @@ class Goods extends BaseSchemaEditor {
 }
 
 Goods.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FirnSShEAotLWTHOsk21GdYa-SdX.png',
+  icon: require('../../icons/goodsgroup.png'),
   name: '商品',
   description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
   cmpType: SysComponents.Goods,

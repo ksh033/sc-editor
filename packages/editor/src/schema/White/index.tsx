@@ -91,7 +91,7 @@ class White extends BaseSchemaEditor {
 }
 
 White.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FutbH839K4gGvY6azrrtJHYDxVqK.png',
+  icon: require('../../icons/white.png'),
   name: '辅助分割',
   cmpType: SysComponents.White,
   maxNum: 50,

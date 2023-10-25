@@ -133,7 +133,7 @@ class MagicCube extends BaseSchemaEditor {
 }
 
 MagicCube.info = {
-  icon: 'https://img01.yzcdn.cn/public_files/2019/02/12/6c2cc2100fa2db454aaf649c19e0ffc9.png',
+  icon: require('../../icons/magiccube.png'),
   name: '魔方',
   description: '魔方',
   cmpType: SysComponents.MagicCube,

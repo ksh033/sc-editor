@@ -181,7 +181,7 @@ class Video extends BaseSchemaEditor {
 }
 
 Video.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FpyONVTUzVGqkAwqoh-RQeclXPo5.png',
+  icon: require('../../icons/video.png'),
   name: '视频',
   description:
     '自动播放仅小程序v2.86.7及以上版本生效，其他部分功能优化（竖版视频、隐藏进度条等）支持H5和v2.86.7及以上版本的小程序',

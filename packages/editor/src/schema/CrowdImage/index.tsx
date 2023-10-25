@@ -39,7 +39,7 @@ class CrowdImage extends BaseSchemaEditor {
 }
 
 CrowdImage.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fgyd5N9R29QGAJXE7daGUWFpdv5z.png',
+  icon: require('../../icons/image.png'),
   name: '人群图片',
   description: '',
   cmpType:SysComponents.CrowdImage,

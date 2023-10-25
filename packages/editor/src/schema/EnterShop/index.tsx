@@ -23,7 +23,8 @@ class EnterShop extends BaseSchemaEditor {
 }
 
 EnterShop.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fi8Zam5inptsK9I4E2TDKsFoZCNq.png',
+
+  icon: require('../../icons/entershop.png'),
   name: '进入店铺',
   cmpType: SysComponents.EnterShop,
   maxNum: 1,

@@ -107,7 +107,7 @@ class Notice extends BaseSchemaEditor {
 }
 
 Notice.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FlcvwSqlns7YVxDk8Zi2yAG6oEji.png',
+  icon: require('../../icons/notice.png'),
   name: '公告',
   cmpType: SysComponents.Notice,
   maxNum: 1,

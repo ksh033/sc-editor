@@ -130,7 +130,7 @@ class Search extends BaseSchemaEditor {
 }
 
 Search.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FsW9Sbp2UH3-1suib4UB-RwyaR3y.png',
+  icon: require('../../icons/search.png'),
   name: '商品搜索',
   description: '搜索热词和更多相关配置项请前往配置',
   cmpType: SysComponents.Search,

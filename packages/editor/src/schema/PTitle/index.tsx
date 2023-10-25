@@ -211,7 +211,7 @@ class Title extends BaseSchemaEditor {
 }
 
 Title.info = {
-  icon: 'https://img.yzcdn.cn/public_files/2019/02/12/add4829af43def85a200029c3e485d77.png',
+  icon: require('../../icons/text.png'),
   name: '标题文本',
   description: '标题文本',
   cmpType: SysComponents.Title,

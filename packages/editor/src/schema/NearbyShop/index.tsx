@@ -24,7 +24,7 @@ class NearbyShop extends BaseSchemaEditor {
 }
 
 NearbyShop.info = {
-  icon: 'https://img.yzcdn.cn/public_files/e93ff32ae14f629f9b8c064fff63b23f.png',
+  icon: require('../../icons/shop.png'),
   name: '附近的门店',
   cmpType:SysComponents.NearbyShop,
   description:

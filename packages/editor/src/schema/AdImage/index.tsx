@@ -47,7 +47,7 @@ class AdImage extends BaseSchemaEditor {
 }
 
 AdImage.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fgyd5N9R29QGAJXE7daGUWFpdv5z.png',
+  icon: require('../../icons/image.png'),
   name: '图片广告',
   description: '图片广告',
   cmpType: SysComponents.AdImage,

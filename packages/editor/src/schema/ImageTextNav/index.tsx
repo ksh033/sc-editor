@@ -74,7 +74,7 @@ class ImageTextNav extends BaseSchemaEditor {
 }
 
 ImageTextNav.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FnCMmkIRcBPKq5oeY8kX7lq_7hk4.png',
+  icon: require('../../icons/nav.png'),
   name: '图文导航',
   description: '图文导航',
   cmpType: SysComponents.ImageTextNav,

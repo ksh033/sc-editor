@@ -44,7 +44,7 @@ class Coupon extends BaseSchemaEditor {
 }
 
 Coupon.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/FupnImjncvDfovyPfalWjuTCEklH.png',
+  icon: require('../../icons/coupon.png'),
   name: '优惠券',
   cmpType:SysComponents.Coupon,
   maxNum: 50,

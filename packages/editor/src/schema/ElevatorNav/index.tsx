@@ -150,7 +150,7 @@ class ElevatorNav extends BaseSchemaEditor {
 }
 
 ElevatorNav.info = {
-  icon: 'https://img01.yzcdn.cn/upload_files/2022/06/17/Fpy_YxZ69hGiYl-SUDkDn7Sz2sNH.png',
+  icon: require('../../icons/elevatornav.png'),
   name: '电梯导航',
   description: '只能选择当前组件下方的组件进行定位',
   cmpType: SysComponents.ElevatorNav,
