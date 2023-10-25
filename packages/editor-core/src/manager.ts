@@ -1,7 +1,7 @@
 import { ProFieldFCRenderProps, ProRenderFieldPropsType } from "@ant-design/pro-provider";
 
 import { BaseSchemaClass,  AbsBaseSchemaClass,  EditorPropertyComponent, EditorData, EditorPropertyHoc } from "./design"
-import { SysComponents, IframePostMessage } from '@sceditor/cmp-center'
+import { SysComponents, IframePostMessage } from '@sceditor/core'
 // iframeId 页面的id
 const iframeId = 'myFrame';
 export { iframeId };

@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react';
 
-import {Editor} from '@sceditor/element';
+import {Editor} from '@sceditor/editor';
 
 export default function IndexPage() {
   // document.domain = '192.168.31.182';

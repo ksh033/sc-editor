@@ -8,9 +8,10 @@ import {
   SortEnd,
 } from 'react-sortable-hoc';
 import { useStore } from '../../stores';
+import type {BaseSchemaClass} from '../../design/editor-schema/BaseSchema'
 import './PanelList.less';
 // @ts-ignore
-import { ComponentSchemaProps } from '@sceditor/element';
+
 
 const SortableItem: any = SortableElement((props: any) => {
   const { value, onCopy, onDelete, indexNmu, changeEditCmp } = props;
@@ -80,14 +81,14 @@ const PanelList: React.FC<any> = (props) => {
     editorStore.arrayMove(oldIndex, newIndex);
   };
 
-  const onCopy = (value: ComponentSchemaProps) => {
+  const onCopy = (value: BaseSchemaClass) => {
     const flag = comsStore.addComsNum(value.cmpType);
     if (flag) {
       editorStore.copyCmp(value);
     }
   };
 
-  const onDelete = (value: ComponentSchemaProps) => {
+  const onDelete = (value: BaseSchemaClass) => {
     const flag = comsStore.minusComsNum(value.cmpType);
     if (flag) {
       editorStore.deleteCmp(value.id);

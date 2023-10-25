@@ -1,7 +1,4 @@
-// @ts-ignore
-//import type {  BaseSchemaClass } from '@sceditor/element';
-// @ts-ignore
-//import { BaseCompMap,  AbsBaseSchemaClass, PageInfo } from '@sceditor/element';
+
 import { arrayMoveImmutable } from 'array-move';
 import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';

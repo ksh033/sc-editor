@@ -250,7 +250,7 @@ importers:
       '@ant-design/pro-provider':
         specifier: ^2.13.1
         version: 2.13.1(antd@5.4.2)(react-dom@18.2.0)(react@18.2.0)
-      '@sceditor/cmp-center':
+      '@sceditor/core':
         specifier: workspace:*
         version: link:../cmp-center
       '@types/lodash':
@@ -344,7 +344,7 @@ importers:
       '@chenshuai2144/sketch-color':
         specifier: ^1.0.9
         version: 1.0.9(react@18.2.0)
-      '@sceditor/cmp-center':
+      '@sceditor/core':
         specifier: workspace:*
         version: link:../cmp-center
       '@sceditor/editor-core':

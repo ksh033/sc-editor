@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 // @ts-ignore
 //import { BaseCompGroup, BaseCompMap, CmpInfo } from '@sceditor/element';
-import {SysComponents} from  "@sceditor/cmp-center";
+import {SysComponents} from  "@sceditor/core";
 // @ts-ignore
 import { message } from 'antd';
 import  { EditorManager} from '../../manager'
