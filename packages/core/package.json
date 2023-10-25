@@ -2,9 +2,7 @@
   "name": "@sceditor/core",
   "version": "0.0.1",
   "description": "组件注册中心",
-  "keywords": [
-  
-  ],
+  "keywords": [],
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
@@ -19,19 +17,16 @@
     "ant"
   ],
   "scripts": {
-    "dev":"father dev",
-    "build":"father build"
+    "dev": "father dev",
+    "build": "father build"
   },
   "dependencies": {
-    
+    "@sceditor/core": "^0.0.1"
   },
   "sideEffects": [
     "es/**/*.less",
     "lib/**/*.less"
   ],
-  "peerDependencies": {
-  
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

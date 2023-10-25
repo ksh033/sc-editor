@@ -1,8 +1,8 @@
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
-import { SysComponents, components } from '@sceditor/core';
+import { SysComponents } from '@sceditor/core';
 import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
-@components(SysComponents.Video,'视频')
+
 class Video extends BaseSchemaEditor {
   // cmpType: string = 'Video';
   // cmpName: string = '视频';

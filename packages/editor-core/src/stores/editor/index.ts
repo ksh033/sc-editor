@@ -3,7 +3,7 @@ import { arrayMoveImmutable } from 'array-move';
 import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';
 import { genNonDuplicateId } from '../../utils/common';
-import sendToIframe from '../../utils/sendToIframe';
+//import sendToIframe from '../../utils/sendToIframe';
 import {  EditorManager } from '../../manager';
 import type { EditorData ,BaseSchemaClass} from '../../design';
 /**
@@ -79,7 +79,8 @@ class EditorClass {
   updatePageInfoValues(newValues: any) {
     this.pageinfo.values = newValues;
     // 发送消息给iframe
-    sendToIframe.updatePage(this.pageinfo);
+    this.manager.message.emit('UpdatePageInfo',this.pageinfo.getData())
+
   }
 
   // 添加组件并修改
@@ -163,9 +164,10 @@ class EditorClass {
     this.editList = [];
     this.currentKey = null;
     this.currentEditCmp = null;
+    this.manager.message.emit('ClearNodes')
 
     // 发送消息给iframe
-    sendToIframe.clearAllCmp();
+   // sendToIframe.clearAllCmp();
   }
 
   // 切换编辑的组件
