@@ -21,7 +21,6 @@
     "build": "father build"
   },
   "dependencies": {
-    "@sceditor/core": "^0.0.1"
   },
   "sideEffects": [
     "es/**/*.less",
