@@ -3,15 +3,15 @@ import { SketchPicker } from '@chenshuai2144/sketch-color';
 import { Button, Popover, PopoverProps, Space } from 'antd';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import VdFormItem, { ExtendVdFormItemProps } from '../VdFormItem';
-import {  registerEditorAttrCmp } from '@sceditor/editor-core';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
 
 export type VdColorProps = SketchPickerProps &
+  BaseFromItemProps<string> &
   ExtendVdFormItemProps & {
-    value?: string;
     defaultColor: string;
     popoverProps?: PopoverProps;
-    onChange?: (color: string) => void;
     colors?: string[];
   };
 
@@ -101,6 +101,6 @@ const VdColor: SysEditorPropertyComponent<VdColorProps> = (props) => {
     </VdFormItem>
   );
 };
-VdColor.valueType="VdColor"
-registerEditorAttrCmp(VdColor)
+VdColor.valueType = 'VdColor';
+registerEditorAttrCmp(VdColor);
 export default VdColor;

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
-import {iframeId} from '../../manager'
+import { iframeId } from '../../manager';
 import './index.less';
 import useIframeLoad from './useIframeLoad';
 

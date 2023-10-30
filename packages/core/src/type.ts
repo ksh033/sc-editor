@@ -42,11 +42,11 @@ export enum MessageTypeEnum{
     /**
      * 鼠标移动
      */
-     MouseMove='MouseMove',
-     /**
-      * 插入节点
-      */
-     InsterNode="InsterNode",
+    MouseMove='MouseMove',
+    /**
+     * 插入节点
+     */
+    InsterNode="InsterNode",
     /**
      * 更新节点
      */
@@ -59,7 +59,7 @@ export enum MessageTypeEnum{
      * 删除节点
      */
     DeleteNode="DeleteNode",
-   /**
+    /**
      * 移动节点
      */
     MoveNode="MoveNode",
@@ -76,14 +76,13 @@ export enum MessageTypeEnum{
      * 复制节点
      */
     CopyNode="CopyNode",
-
-        /**
-         * 鼠标释放
-         */
-        MouseUp="MouseUp",
-/**
- * 拖动结束
- */
+    /**
+     * 鼠标释放
+     */
+    MouseUp="MouseUp",
+    /**
+     * 拖动结束
+     */
     DragEnd="DragEnd",
 
 

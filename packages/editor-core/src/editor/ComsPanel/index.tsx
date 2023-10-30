@@ -7,14 +7,13 @@ import Sortable from 'sortablejs';
 import ComItem from './ComItem';
 import { useStore } from '../../stores';
 //import sendToIframe from '../../utils/sendToIframe';
-import {EditorContext} from '../../manager'
-import type {CompsGroup} from '../../design'
+import { EditorContext } from '../../manager';
+import type { CompsGroup } from '../../design';
 
-const ComsPanel: React.FC<any> = (props:any) => {
+const ComsPanel: React.FC<any> = (props: any) => {
+  const { manager } = useContext(EditorContext);
 
-  const {manager}=useContext(EditorContext)
-
-  const { comsStore } =useStore();
+  const { comsStore } = useStore();
 
   const comsList = comsStore.comsList;
 
@@ -23,7 +22,7 @@ const ComsPanel: React.FC<any> = (props:any) => {
   const tempcmpType = useRef<string | null>(null);
 
   const handleClick = (_event: any, cmpType: string) => {
-    manager.insterNode({cmpType})
+    manager.insterNode({ cmpType });
   };
 
   const onTabActived = (id: string, actived: boolean) => {
@@ -68,12 +67,12 @@ const ComsPanel: React.FC<any> = (props:any) => {
             const { key } = evt.item.dataset;
             if (key && key !== tempcmpType.current) {
               tempcmpType.current = key;
-     
-              const newNode =manager.createNode(key)
+
+              const newNode = manager.createNode(key);
               if (newNode) {
-               // sendToIframe.postMessage('onChoose', data);
-               const data=newNode.getData()
-               manager?.message.emit('StartDrag',data)
+                // sendToIframe.postMessage('onChoose', data);
+                const data = newNode.getData();
+                manager?.message.emit('StartDrag', data);
               }
             }
           },
@@ -82,8 +81,8 @@ const ComsPanel: React.FC<any> = (props:any) => {
             if (tempcmpType.current != null) {
               tempcmpType.current = null;
             }
-          //  sendToIframe.postMessage('onEnd', {});
-            manager?.message.emit('DragEnd',{})
+            //  sendToIframe.postMessage('onEnd', {});
+            manager?.message.emit('DragEnd', {});
           },
         });
       });

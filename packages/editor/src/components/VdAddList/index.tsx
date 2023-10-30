@@ -10,32 +10,32 @@ import {
 } from 'react-sortable-hoc';
 import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
-import {  registerEditorAttrCmp } from '@sceditor/editor-core';
-import { SysEditorPropertyComponent } from '../interface';
+import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
+// import { SysEditorPropertyComponent } from '../interface';
 
 type typeNode = 'tag' | 'card';
 
-export type VdAddListProps<T> = VdFormItemProps & {
-  /** 添加按钮文案 */
-  addBtnText?: string | ((fields: any[]) => React.ReactNode);
-  /** 添加展示类型 */
-  type?: typeNode;
-  /** 最大添加数据 */
-  max?: number;
-  /** 分组标题 */
-  groupTitle?: () => React.ReactNode;
-  addRecord?: any;
-  /** 子项目格式化 */
-  renderItem?: (pros: any) => React.ReactNode;
-  value?: T[];
-  onChange?: (list: T[]) => void;
-  rowKey?: string;
-  title?: string | React.ReactNode;
-  /** 内容 */
-  content?: string | React.ReactNode;
-  /** 添加按钮自定义 */
-  addBtnRender?: (val: T[], max: number) => React.ReactNode;
-};
+export type VdAddListProps<T> = VdFormItemProps &
+  BaseFromItemProps<T[]> & {
+    /** 添加按钮文案 */
+    addBtnText?: string | ((fields: any[]) => React.ReactNode);
+    /** 添加展示类型 */
+    type?: typeNode;
+    /** 最大添加数据 */
+    max?: number;
+    /** 分组标题 */
+    groupTitle?: () => React.ReactNode;
+    addRecord?: any;
+    /** 子项目格式化 */
+    renderItem?: (pros: any) => React.ReactNode;
+    rowKey?: string;
+    title?: string | React.ReactNode;
+    /** 内容 */
+    content?: string | React.ReactNode;
+    /** 添加按钮自定义 */
+    addBtnRender?: (val: T[], max: number) => React.ReactNode;
+  };
 
 const SortableItem: any = SortableElement((props: any) => {
   console.log('SortableItem', props);
@@ -72,9 +72,7 @@ const SLortableContainer = SortableContainer<any>(({ children }: any) => {
   return <div>{children}</div>;
 });
 
-
-const VdAddList:SysEditorPropertyComponent<VdAddListProps<any>>=(props)=>{
-
+const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
   const {
     addBtnText = '新增',
     max = 999,
@@ -175,8 +173,6 @@ const VdAddList:SysEditorPropertyComponent<VdAddListProps<any>>=(props)=>{
     customTitle = defaultGroupTitle();
   }
 
-  const container = document.getElementById('edit-property');
-
   return (
     <>
       <div className="vd-add-list" ref={ref}>
@@ -230,9 +226,8 @@ const VdAddList:SysEditorPropertyComponent<VdAddListProps<any>>=(props)=>{
       </div>
     </>
   );
+};
 
-}
-
-VdAddList.valueType="VdAddList"
-registerEditorAttrCmp(VdAddList)
+VdAddList.valueType = 'VdAddList';
+registerEditorAttrCmp(VdAddList);
 export default VdAddList;

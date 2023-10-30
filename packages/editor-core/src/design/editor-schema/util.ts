@@ -15,7 +15,7 @@ const converFormItem = (
 ) => {
   if (Array.isArray(list)) {
     list.forEach((it: ProFormColumnsType) => {
-     // const valueType = it.valueType;
+      // const valueType = it.valueType;
       const { columns, ...restIt } = it;
       let newItem: ProFormColumnsType<any, any> = restIt;
       let newColumns: ProFormColumnsType[] = [];

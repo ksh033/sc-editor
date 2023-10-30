@@ -1,4 +1,5 @@
 import { CheckOutlined, PlusOutlined } from '@ant-design/icons';
+import type { BaseFromItemProps } from '@sceditor/core';
 import { Modal } from 'antd';
 import React, {
   PropsWithChildren,
@@ -22,10 +23,9 @@ export type VdSelectImageItem = {
   imageHeight?: number;
 };
 
-export type VdSelectImageProps = PropsWithChildren<{
-  value?: VdSelectImageItem;
-  onChange?: (val: VdSelectImageItem) => void;
-}>;
+export type VdSelectImageProps = PropsWithChildren<
+  BaseFromItemProps<VdSelectImageItem>
+>;
 
 export type VdSelectImageRef = {
   /** 打开弹窗 */

@@ -60,6 +60,6 @@ const VdRadioGroup: SysEditorPropertyComponent<VdRadioGroupProps> = (props) => {
     </VdFormItem>
   );
 };
-VdRadioGroup.valueType="VdRadioGroup"
+VdRadioGroup.valueType = 'VdRadioGroup';
 registerEditorAttrCmp(VdRadioGroup);
 export default VdRadioGroup;

@@ -1,8 +1,6 @@
 import { BaseImage, Link } from '../../interface/common.d';
+import type { BaseFromItemProps } from '@sceditor/core';
 
 export type VdImgLinkEntryItem = BaseImage & Link;
 
-export type VdImgLinkProps = {
-  value?: VdImgLinkEntryItem;
-  onChange?: (val: VdImgLinkEntryItem) => void;
-};
+export type VdImgLinkProps = BaseFromItemProps<VdImgLinkEntryItem>;

@@ -310,6 +310,6 @@ const VdUpload: SysEditorPropertyComponent<VdUploadProps> = (props) => {
     </div>
   );
 };
-VdUpload.valueType="VdUpload"
-registerEditorAttrCmp(VdUpload)
+VdUpload.valueType = 'VdUpload';
+registerEditorAttrCmp(VdUpload);
 export default VdUpload;

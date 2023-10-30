@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import classnames from 'classnames';
-import type { CmpInfo } from "../../design/editor-schema/BaseSchema";
+import type { CmpInfo } from '../../design/editor-schema/BaseSchema';
 
 import { useHover } from 'ahooks';
 import { observer } from 'mobx-react-lite';

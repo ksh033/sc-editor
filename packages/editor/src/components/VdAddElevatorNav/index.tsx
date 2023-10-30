@@ -4,8 +4,8 @@ import { ComponentSchemaProps } from '../../interface';
 import VdAddList from '../VdAddList';
 import TagItem from './TagItem';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
-
 
 export type SubEntryItem = {
   /** 图片id */
@@ -31,16 +31,15 @@ export type SubEntryItem = {
   useLink?: boolean;
 };
 
-export type VdAddElevatorNavProps = {
-  value: SubEntryItem[];
-  onChange: (val: SubEntryItem[]) => void;
-  rowData?: any;
+export type VdAddElevatorNavProps = BaseFromItemProps<SubEntryItem[]> & {
   editList?: ComponentSchemaProps[];
   id?: string;
 };
 
 /** 添加跳转 */
-const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (props) => {
+const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
+  props
+) => {
   const { rowData, value, onChange, id, editList } = props;
 
   const options: DefaultOptionType[] = useMemo(() => {
@@ -123,6 +122,6 @@ const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (pro
     ></VdAddList>
   );
 };
-VdAddElevatorNav.valueType='VdAddElevatorNav';
-registerEditorAttrCmp(VdAddElevatorNav)
+VdAddElevatorNav.valueType = 'VdAddElevatorNav';
+registerEditorAttrCmp(VdAddElevatorNav);
 export default VdAddElevatorNav;

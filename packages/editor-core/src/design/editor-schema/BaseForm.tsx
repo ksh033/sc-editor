@@ -2,18 +2,18 @@ import { BetaSchemaForm } from '@ant-design/pro-form';
 import ProProvider from '@ant-design/pro-provider';
 import React, { useContext } from 'react';
 
-import {EditorContext} from "../../manager"
-import {EditorPropertyContext} from './EditorPropertyHoc'
+import { EditorContext } from '../../manager';
+import { EditorPropertyContext } from './EditorPropertyHoc';
 const BaseForm: React.FC<any> = (props) => {
   const rowData = props['data-row'] || {};
   const editList = Array.isArray(props['data-list']) ? props['data-list'] : [];
-   const id=props["id"]; 
-  
-  const values = useContext(ProProvider);
-  const editorContext=useContext(EditorContext)
-  const valueTypeMap=editorContext.manager.getEditorPropertyComponentMap()
+  const id = props['id'];
 
-  console.log("valueTypeMap",valueTypeMap)
+  const values = useContext(ProProvider);
+  const editorContext = useContext(EditorContext);
+  const valueTypeMap = editorContext.manager.getEditorPropertyComponentMap();
+
+  console.log('valueTypeMap', valueTypeMap);
   // const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
   // Object.keys(Components).forEach((warpCom: string) => {
   //   if (warpCom.startsWith('Vd')) {
@@ -43,11 +43,10 @@ const BaseForm: React.FC<any> = (props) => {
         valueTypeMap: valueTypeMap,
       }}
     >
-      <EditorPropertyContext.Provider value={{editList,rowData,id}}>
-      <BetaSchemaForm {...props} layoutType="Form"></BetaSchemaForm>
-
+      <EditorPropertyContext.Provider value={{ editList, rowData, id }}>
+        <BetaSchemaForm {...props} layoutType="Form"></BetaSchemaForm>
       </EditorPropertyContext.Provider>
-   </ProProvider.Provider>
+    </ProProvider.Provider>
   );
 };
 

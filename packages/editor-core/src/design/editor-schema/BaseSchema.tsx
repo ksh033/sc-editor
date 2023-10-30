@@ -6,22 +6,22 @@ import BaseForm from './BaseForm';
 import { genNonDuplicateId } from '../../utils';
 import { validateRules } from '../../utils/validateUtil';
 import { filterPageConfig } from './util';
-import React from 'react';
+import React, { ComponentClass } from 'react';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
 export interface EditorData {
-  id: string,
-  cmpType: string,
-  values: any, 
-  cmpName?: string, 
-  index?: number
-};
-
+  id: string;
+  cmpType: string;
+  values: any;
+  cmpName?: string;
+  index?: number;
+}
 
 /**
  * 编辑器属性组件
  */
-export interface EditorPropertyComponent<P,ValueTyps=string> extends React.FC<P> {
+export interface EditorPropertyComponent<P, ValueTyps = string>
+  extends React.FC<P> {
   /**
    * 属性组件类型
    */
@@ -48,7 +48,6 @@ export interface CompsGroup {
 
 export type { ProFormColumnsType };
 
-
 /** 组件配置的数据结构 */
 export interface BaseSchemaClass {
   id: string;
@@ -63,7 +62,9 @@ export interface BaseSchemaClass {
     columns: ProFormColumnsType[],
     record: any
   ) => ProFormColumnsType[];
-  render: (props?: any) => React.ReactNode | React.ReactElement<any, any> | null;
+  render: (
+    props?: any
+  ) => React.ReactNode | React.ReactElement<any, any> | null;
   getRuleCheck: () => Promise<boolean>;
   onValuesChange?: (changedValues: any, allValues: any) => any;
   formatValues?: (allValues: any) => void;
@@ -79,12 +80,8 @@ export interface BaseSchemaClass {
   setImmediatelyCheck: (checked: boolean) => void;
   setId: (id: string) => void;
 
-  getData: () => EditorData
+  getData: () => EditorData;
 }
-
-
-
-
 
 export interface Mixin {
   onFilter?: (
@@ -98,10 +95,8 @@ export interface Mixin {
   setId: (id: string) => void;
 }
 
-
 /** 组件配置的数据结构 */
 export interface ComponentSchemaType {
-
   id: string;
   values: any;
   immediatelyCheck: boolean; // 加载组件的时候是否立即校验
@@ -143,13 +138,19 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
     this.id = genNonDuplicateId();
   }
   index?: number | undefined;
-  inCluded?: ((columns: ProFormColumnsType[], list: React.Key[]) => boolean) | undefined;
+  inCluded?:
+    | ((columns: ProFormColumnsType[], list: React.Key[]) => boolean)
+    | undefined;
   getData() {
-
-
-    return { id: this.id, values: this.values, cmpType: this.cmpType, index: this.index, cmpName: this.cmpName }
+    return {
+      id: this.id,
+      values: this.values,
+      cmpType: this.cmpType,
+      index: this.index,
+      cmpName: this.cmpName,
+    };
   }
-  cmpType: string = "";
+  cmpType: string = '';
   cmpName?: string | undefined;
   formatValues?: ((allValues: any) => void) | undefined;
 
@@ -209,6 +210,5 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
   }
 }
 
-
-export type AbsBaseSchemaClass = typeof BaseSchemaEditor
+export type AbsBaseSchemaClass = typeof BaseSchemaEditor;
 export default BaseSchemaEditor;

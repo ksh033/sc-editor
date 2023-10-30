@@ -21,7 +21,9 @@ type VdColorRadioGroupProps = Omit<RadioGroupProps, 'options'> &
     options?: Array<VdColorRadioGroupOptionType | string | number>;
   };
 
-const VdColorRadioGroup: SysEditorPropertyComponent<VdColorRadioGroupProps> = (props) => {
+const VdColorRadioGroup: SysEditorPropertyComponent<VdColorRadioGroupProps> = (
+  props
+) => {
   const { onChange, value, options = [], formItem, block = false } = props;
   const valueMap = useMemo(() => {
     const map = new Map();
@@ -59,6 +61,6 @@ const VdColorRadioGroup: SysEditorPropertyComponent<VdColorRadioGroupProps> = (p
     </VdFormItem>
   );
 };
-VdColorRadioGroup.valueType="VdColorRadioGroup";
-registerEditorAttrCmp(VdColorRadioGroup)
+VdColorRadioGroup.valueType = 'VdColorRadioGroup';
+registerEditorAttrCmp(VdColorRadioGroup);
 export default VdColorRadioGroup;

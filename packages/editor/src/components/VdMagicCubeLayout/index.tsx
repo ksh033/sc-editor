@@ -10,6 +10,7 @@ import {
   templateMap,
 } from './template';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
 
 type ValueState = {
@@ -18,15 +19,15 @@ type ValueState = {
   height: number;
 };
 
-export type VdMagicCubeLayoutProps = ExtendVdFormItemProps & {
-  value: ValueState;
-  onChange: (val: ValueState) => void;
-  rowData: any;
-  templateDataIndex: string;
-};
+export type VdMagicCubeLayoutProps = ExtendVdFormItemProps &
+  BaseFromItemProps<ValueState> & {
+    templateDataIndex: string;
+  };
 
 export const MethodLength = 8 - 1;
-const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (props) => {
+const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (
+  props
+) => {
   const {
     formItem,
     rowData,
@@ -134,6 +135,6 @@ const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (p
     </React.Fragment>
   );
 };
-VdMagicCubeLayout.valueType='VdMagicCubeLayout'
-registerEditorAttrCmp(VdMagicCubeLayout)
+VdMagicCubeLayout.valueType = 'VdMagicCubeLayout';
+registerEditorAttrCmp(VdMagicCubeLayout);
 export default VdMagicCubeLayout;

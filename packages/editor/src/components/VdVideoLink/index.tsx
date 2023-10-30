@@ -8,7 +8,9 @@ type VdVideoLayoutProps = InputProps & {
   info?: string;
 };
 
-const VdVideoLayout: SysEditorPropertyComponent<VdVideoLayoutProps> = (props) => {
+const VdVideoLayout: SysEditorPropertyComponent<VdVideoLayoutProps> = (
+  props
+) => {
   const {
     value,
     onChange,
@@ -37,6 +39,6 @@ const VdVideoLayout: SysEditorPropertyComponent<VdVideoLayoutProps> = (props) =>
     </div>
   );
 };
-VdVideoLayout.valueType="VdVideoLayout"
-registerEditorAttrCmp(VdVideoLayout)
+VdVideoLayout.valueType = 'VdVideoLayout';
+registerEditorAttrCmp(VdVideoLayout);
 export default VdVideoLayout;

@@ -3,12 +3,10 @@ import ScImage from '../../baseComponents/ScImage';
 import './index.less';
 import { goodsList } from './list';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
 import type { SysEditorPropertyComponent } from '../interface';
 
-type VdGoodsListProps = {
-  value: any[];
-  onChange: (list: any[]) => void;
-};
+type VdGoodsListProps = BaseFromItemProps<any[]> & {};
 
 const VdGoodsList: SysEditorPropertyComponent<VdGoodsListProps> = (props) => {
   const { value = [], onChange } = props;
@@ -67,6 +65,6 @@ const VdGoodsList: SysEditorPropertyComponent<VdGoodsListProps> = (props) => {
     </div>
   );
 };
-VdGoodsList.valueType='VdGoodsList'
-registerEditorAttrCmp(VdGoodsList)
+VdGoodsList.valueType = 'VdGoodsList';
+registerEditorAttrCmp(VdGoodsList);
 export default VdGoodsList;

@@ -1,14 +1,12 @@
 import { Checkbox, InputNumber, Radio, Space } from 'antd';
 import './index.less';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
 
-type VdCouponSetProps = {
-  value?: any;
-  onChange?: (val: any) => void;
-};
+type VdCouponSetProps = BaseFromItemProps<any>;
 
-const VdCouponSet:SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
+const VdCouponSet: SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
   const {
     value = {
       isShowAll: true,
@@ -73,6 +71,6 @@ const VdCouponSet:SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
     </div>
   );
 };
-VdCouponSet.valueType="VdCouponSet"
-registerEditorAttrCmp(VdCouponSet)
+VdCouponSet.valueType = 'VdCouponSet';
+registerEditorAttrCmp(VdCouponSet);
 export default VdCouponSet;
