@@ -62,7 +62,7 @@ const propsConfig: VdProFormColumnsType[] = [
 
   getSchemaTpl('tagListTemplate', {
     dataIndex: 'tag_list_template',
-    title: '展示模板'
+    title: '展示模板',
   }),
   getSchemaTpl('needAll', {
     dataIndex: 'is_show_all',
@@ -72,9 +72,9 @@ const propsConfig: VdProFormColumnsType[] = [
         true: '展示',
         false: '不展示',
       },
-    }
+    },
   }),
-  
+
   {
     dataIndex: 'nav_style',
     title: '菜单样式',
@@ -174,19 +174,19 @@ const propsConfig: VdProFormColumnsType[] = [
       options: [
         {
           text: '无边白底',
-          value: '0',
+          value: 'NO_BORDER_WHITEBG',
         },
         {
           text: '卡片投影',
-          value: '1',
+          value: 'CARD_SHADOW',
         },
         {
           text: '描边白底',
-          value: '2',
+          value: 'WHITE_BORDER',
         },
         {
           text: '无边透明底',
-          value: '3',
+          value: 'NO_BORDER_TRANSPARENT',
         },
       ],
     },
@@ -242,7 +242,7 @@ const propsConfig: VdProFormColumnsType[] = [
 
   getSchemaTpl('fill', {
     title: '图片填充',
-    dataIndex: 'image_fill_style'
+    dataIndex: 'image_fill_style',
   }),
   getSchemaTpl('fontWeight', {
     dataIndex: 'text_style_type',

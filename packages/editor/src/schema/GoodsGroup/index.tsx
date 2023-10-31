@@ -4,9 +4,12 @@ import { ProFormColumnsType } from '@ant-design/pro-form';
 import propsConfig from './list';
 import { spellNamePath } from '../../utils';
 import GroupTitle from '../../components/VdGoodsGroup/GroupTitle';
-import {SysComponents} from "@sceditor/core"
-import { BaseSchemaEditor, FormProps, registerEditor } from '@sceditor/editor-core';
-
+import { SysComponents } from '@sceditor/core';
+import {
+  BaseSchemaEditor,
+  FormProps,
+  registerEditor,
+} from '@sceditor/editor-core';
 
 class Goods extends BaseSchemaEditor {
   // cmpType: string = 'Goods';
@@ -95,7 +98,7 @@ class Goods extends BaseSchemaEditor {
       goods_from: '0',
       is_show_all: '0',
       goods_type: '0',
-      goods_style: '0',
+      goods_style: 'NO_BORDER_WHITEBG',
       border_radius_type: '1',
       display_scale: '0',
       image_fill_style: '1',
@@ -126,5 +129,5 @@ Goods.info = {
   usedNum: 0,
   status: '',
 };
-registerEditor(Goods)
+registerEditor(Goods);
 export default Goods;

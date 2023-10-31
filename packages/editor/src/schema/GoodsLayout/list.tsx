@@ -1,4 +1,3 @@
-
 import { VdProFormColumnsType } from '../../interface';
 import { getSchemaTpl } from '../tpl';
 
@@ -77,7 +76,7 @@ const propsConfig: VdProFormColumnsType[] = [
         },
         {
           text: '无边透明底',
-          value: 'NO_BORDER_BG_TRANSPARENT',
+          value: 'NO_BORDER_TRANSPARENT',
         },
       ],
     },
@@ -132,9 +131,8 @@ const propsConfig: VdProFormColumnsType[] = [
   },
   getSchemaTpl('fill', {
     title: '图片填充',
-    dataIndex: 'image_fill_style'
-  })
-  ,
+    dataIndex: 'image_fill_style',
+  }),
   getSchemaTpl('fontWeight', {
     dataIndex: 'text_style_type',
     title: '文本样式',

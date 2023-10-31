@@ -13,7 +13,7 @@ const BaseForm: React.FC<any> = (props) => {
   const editorContext = useContext(EditorContext);
   const valueTypeMap = editorContext.manager.getEditorPropertyComponentMap();
 
-  console.log('valueTypeMap', valueTypeMap);
+  // console.log('valueTypeMap', valueTypeMap);
   // const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
   // Object.keys(Components).forEach((warpCom: string) => {
   //   if (warpCom.startsWith('Vd')) {
