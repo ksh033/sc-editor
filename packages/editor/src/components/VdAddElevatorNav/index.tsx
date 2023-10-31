@@ -104,7 +104,6 @@ const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
 
   const renderItem = useCallback(
     (props: any) => {
-      console.log('options', options);
       return <TagItem {...props} type={showMethod} options={options}></TagItem>;
     },
     [JSON.stringify(options), showMethod]

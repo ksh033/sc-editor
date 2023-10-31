@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import classnames from 'classnames';
 import type { CmpInfo } from '../../design/editor-schema/BaseSchema';
-
 import { useHover } from 'ahooks';
 import { observer } from 'mobx-react-lite';
 
@@ -21,6 +20,9 @@ const ComItem: React.FC<ComItemProps> = (props) => {
   const isHovering = useHover(ref);
 
   const itemDragStartHandler = (event: React.DragEvent<HTMLDivElement>) => {
+    console.log('onClick');
+    event.stopPropagation();
+    event.preventDefault();
     onClick?.(event, regeditCmpName);
   };
   return (

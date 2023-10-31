@@ -6,13 +6,13 @@
   "scripts": {
     "bootstrap": "node ./scripts/bootstrap.js",
     "build": "father-build",
-    "build:dev2":"pnpm  --parallel --filter \"@sceditor/**\" dev",
-    "build:dev":"pnpm run build-center:dev && pnpm run build-element:dev &pnpm run build-core:dev ",
+    "build:dev2": "pnpm  --parallel --filter \"@sceditor/**\" dev",
+    "build:dev": "pnpm run build-center:dev && pnpm run build-element:dev &pnpm run build-core:dev ",
     "release": "node ./scripts/release.js --conventionalPrerelease=true",
     "test": "node ./scripts/dev.js",
-    "build-center:dev":"pnpm --filter \"@sceditor/core\" dev",
-    "build-element:dev":"pnpm --filter \"@sceditor/element\" dev" ,
-    "build-core:dev":"pnpm --filter \"@sceditor/editor-core\" dev",
+    "build-center:dev": "pnpm --filter \"@sceditor/core\" dev",
+    "build-element:dev": "pnpm --filter \"@sceditor/element\" dev",
+    "build-core:dev": "pnpm --filter \"@sceditor/editor-core\" dev",
     "build:web-dev": "npm run build && cross-env  REACT_APP_ENV=dev APP_ROOT=packages/web umi build",
     "build:web-pro": "npm run build && cross-env REACT_APP_ENV=pro APP_ROOT=packages/web umi build",
     "build:web-test": "npm run build && cross-env REACT_APP_ENV=test APP_ROOT=packages/web umi build",
@@ -25,7 +25,6 @@
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
-    "@types/sortablejs": "^1.13.3",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout": "^7.10.3",
@@ -50,6 +49,7 @@
     "@types/react-resizable": "^1.7.2",
     "@types/react-responsive": "^8.0.1",
     "@types/react-router-dom": "^5.1.0",
+    "@types/sortablejs": "^1.13.3",
     "@types/warning": "^3.0.0",
     "@types/xhr-mock": "^2.0.0",
     "@umijs/lint": "^4.0.52",
@@ -97,13 +97,14 @@
   "packageManager": "pnpm@8.2.0",
   "name": "sc-editor",
   "dependencies": {
-    "sortablejs": "1.13.0",
-    "react-sortablejs": "^6.1.4",
     "@ant-design/pro-provider": "^2.13.1",
     "@chenshuai2144/sketch-color": "^1.0.9",
     "async-validator": "^4.2.5",
     "babel-plugin-import": "^1.13.8",
-    "rc-field-form": "^1.38.2"
+    "rc-field-form": "^1.38.2",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-sortablejs": "^6.1.4",
+    "sortablejs": "1.13.0"
   },
   "resolutions": {
     "less-loader": "^7.3.0"

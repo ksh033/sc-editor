@@ -5,7 +5,7 @@ import { VdImgLinkProps } from './type';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import { SysEditorPropertyComponent } from '../interface';
 
-const VdImgLink:SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
+const VdImgLink: SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
   const { value, onChange } = props;
 
   const onUploadChange = (val: any) => {
@@ -30,6 +30,6 @@ const VdImgLink:SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
     </div>
   );
 };
-VdImgLink.valueType="VdImgLink"
-registerEditorAttrCmp(VdImgLink)
+VdImgLink.valueType = 'VdImgLink';
+registerEditorAttrCmp(VdImgLink);
 export default VdImgLink;

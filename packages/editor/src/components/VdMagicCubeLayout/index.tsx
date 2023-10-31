@@ -97,13 +97,11 @@ const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (
   };
 
   const onSubEnterHandleChange = (val: VdImgLinkEntryItem) => {
-    console.log('onSubEnterHandleChange', val);
     if (val) {
       const newList = JSON.parse(JSON.stringify(list));
       let newItem = newList[subEntryIndex];
       newItem = Object.assign({}, newItem, val || {});
       newList.splice(subEntryIndex, 1, newItem);
-      console.log('newList', newList);
       onChange?.({
         ...value,
         sub_entry: newList,

@@ -1,4 +1,6 @@
-
+// 先注册属性
+import './initTpl';
+// 后动态生成配置
 import AdImage from './AdImage';
 import Coupon from './Coupon';
 import CrowdImage from './CrowdImage';
@@ -14,9 +16,7 @@ import Search from './Search';
 import Video from './VideoCmp';
 import White from './White';
 
-import './initTpl'
-console.log("index")
-
+console.log('index');
 
 // import('./initTpl').then((res)=>{
 // console.log('./initTpl',res)
@@ -75,19 +75,18 @@ console.log("index")
 
 // export { BaseCompMap, BaseCompGroup, PageInfo };
 export {
-    Title,
-    ElevatorNav,
-    GoodsLayout,
-    CrowdImage,
-    AdImage,
-    ImageTextNav,
-    MagicCube,
-    White,
-    Search,
-    EnterShop,
-    Notice,
-    Coupon,
-    PageInfo,
-    Video
-    
-}
+  Title,
+  ElevatorNav,
+  GoodsLayout,
+  CrowdImage,
+  AdImage,
+  ImageTextNav,
+  MagicCube,
+  White,
+  Search,
+  EnterShop,
+  Notice,
+  Coupon,
+  PageInfo,
+  Video,
+};

@@ -107,41 +107,36 @@ const propsConfig: VdProFormColumnsType[] = [
           ],
         },
       },
- 
-      getSchemaTpl('color',{ dataIndex: 'font_default_color',
-      title: '文本颜色-默认状态',
-      fieldProps: {
-        defaultColor: '#969799',
-      }}),
 
-      getSchemaTpl('color',{
+      getSchemaTpl('color', {
+        dataIndex: 'font_default_color',
+        title: '文本颜色-默认状态',
+        fieldProps: {
+          defaultColor: '#969799',
+        },
+      }),
+
+      getSchemaTpl('color', {
         dataIndex: 'font_active_color',
         title: '文本颜色-选中状态',
         fieldProps: {
           defaultColor: '#e5e5e5',
         },
-      })
-      ,
-
+      }),
       getSchemaTpl('color', {
-   
         dataIndex: 'border_color',
         title: '圆框颜色',
         fieldProps: {
           defaultColor: '#EE0A24',
         },
-      })
-     ,
-
-     getSchemaTpl('color', {
-   
-      dataIndex: 'background_color',
-      title: '背景颜色',
-      fieldProps: {
-        defaultColor: '#ffffff',
-      },
-    })
-      
+      }),
+      getSchemaTpl('color', {
+        dataIndex: 'background_color',
+        title: '背景颜色',
+        fieldProps: {
+          defaultColor: '#ffffff',
+        },
+      }),
     ],
   },
 ];

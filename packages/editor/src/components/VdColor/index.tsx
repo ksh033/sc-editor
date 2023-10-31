@@ -10,7 +10,7 @@ import { SysEditorPropertyComponent } from '../interface';
 export type VdColorProps = SketchPickerProps &
   BaseFromItemProps<string> &
   ExtendVdFormItemProps & {
-    defaultColor: string;
+    defaultColor?: string;
     popoverProps?: PopoverProps;
     colors?: string[];
   };
@@ -29,7 +29,13 @@ export const DEFAULT_COLORS = [
 ];
 
 const VdColor: SysEditorPropertyComponent<VdColorProps> = (props) => {
-  const { formItem, popoverProps, defaultColor = '#1890ff', ...rest } = props;
+  const {
+    formItem,
+    popoverProps,
+    defaultColor = '#1890ff',
+    colors,
+    presetColors,
+  } = props;
 
   const [color, setColor] = useMergedState(defaultColor, {
     value: props.value,
@@ -80,10 +86,7 @@ const VdColor: SysEditorPropertyComponent<VdColorProps> = (props) => {
               }}
             >
               <SketchPicker
-                {...rest}
-                presetColors={
-                  rest.colors || rest.presetColors || DEFAULT_COLORS
-                }
+                presetColors={colors || presetColors || DEFAULT_COLORS}
                 color={color}
                 onChange={({ hex, rgb: { r, g, b, a } }) => {
                   if (a && a < 1) {

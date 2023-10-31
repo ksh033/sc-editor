@@ -21,6 +21,7 @@ const Frame: React.FC<FrameProps> = (props) => {
     if (props?.iframeUrl) {
       store.previewStore.initIframeUrl(props?.iframeUrl);
     }
+    // 监听来自iframe 的数据
     ref.current = new EditorManager(
       {
         iframeElem: document.getElementById(iframeId) as HTMLIFrameElement,

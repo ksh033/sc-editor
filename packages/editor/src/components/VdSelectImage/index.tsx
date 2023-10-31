@@ -24,7 +24,9 @@ export type VdSelectImageItem = {
 };
 
 export type VdSelectImageProps = PropsWithChildren<
-  BaseFromItemProps<VdSelectImageItem>
+  Omit<BaseFromItemProps<VdSelectImageItem>, 'value'> & {
+    value?: VdSelectImageItem;
+  }
 >;
 
 export type VdSelectImageRef = {
@@ -102,12 +104,24 @@ const VdSelectImage = React.forwardRef<VdSelectImageRef, VdSelectImageProps>(
             {value?.imageUrl ? (
               <div className="vd-select-image">
                 <img src={value?.imageUrl} className="thumb-image"></img>
-                <span className="modify-image" onClick={showModal}>
+                <span
+                  className="modify-image"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    showModal();
+                  }}
+                >
                   更换图片
                 </span>
               </div>
             ) : (
-              <div className="vd-select-image" onClick={showModal}>
+              <div
+                className="vd-select-image"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showModal();
+                }}
+              >
                 <PlusOutlined style={{ fontSize: 16 }} />
                 <span style={{ marginTop: '4px' }}>添加图片</span>
               </div>

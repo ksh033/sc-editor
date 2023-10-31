@@ -2,12 +2,17 @@ import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
 import { useDebounceFn } from 'ahooks';
 import { Button } from 'antd';
 import React, { useMemo, useRef } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import type { SortEnd } from 'react-sortable-hoc';
+import {
+  arrayMove,
+  SortableContainer,
+  SortableElement,
+} from 'react-sortable-hoc';
 import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
-import { arrayMove } from 'react-sortable-hoc';
+import { SysEditorPropertyComponent } from '../interface';
 
 type typeNode = 'tag' | 'card';
 
@@ -31,6 +36,46 @@ export type VdAddListProps<T> = VdFormItemProps &
     /** 添加按钮自定义 */
     addBtnRender?: (val: T[], max: number) => React.ReactNode;
   };
+
+const SortableItem: any = SortableElement((props: any) => {
+  const {
+    it,
+    sortIndex,
+    getRowKey,
+    onHandleDetele,
+    renderItem,
+    onItemChange,
+    editList = [],
+  } = props;
+
+  const onChange = (record) => {
+    onItemChange(record, sortIndex);
+  };
+
+  return (
+    <div className="vd-add-list-item">
+      <CloseCircleFilled
+        className="vd-add-list-item__delete"
+        onClick={() => {
+          const key = getRowKey(it, sortIndex);
+          console.log(key);
+          onHandleDetele(getRowKey(it, sortIndex));
+        }}
+      />
+      {renderItem
+        ? renderItem({
+            value: it,
+            onChange: onChange,
+            editList,
+          })
+        : null}
+    </div>
+  );
+});
+
+const SLortableContainer = SortableContainer<any>(({ children }: any) => {
+  return <div className="vd-add-list-sortable">{children}</div>;
+});
 
 const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
   const {
@@ -58,7 +103,7 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
       return rowKey;
     }
     return (record: any, index: number) =>
-      (record as any)?.[rowKey as string] ?? index + '';
+      (record as any)?.[rowKey as string] ?? index;
   }, [rowKey]);
 
   const list = value;
@@ -116,21 +161,9 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
     );
   };
 
-  const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
-    // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'transparent',
-    // styles we need to apply on draggables
-    ...draggableStyle,
-  });
-
-  const onDragEnd = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
+  const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
     let newList = JSON.parse(JSON.stringify(list));
-    newList = arrayMove(newList, result.source.index, result.destination.index);
+    newList = arrayMove(newList, oldIndex, newIndex);
     console.log('onSortEnd', newList);
     setList(newList);
   };
@@ -153,7 +186,7 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
           className="vd-add-list-content"
           style={{ marginTop: customTitle == null ? '0' : '12px' }}
         >
-          {/* <SLortableContainer
+          <SLortableContainer
             onSortEnd={onSortEnd}
             helperClass="sortable-list-tab"
             distance={1}
@@ -171,56 +204,7 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
                 onItemChange={run}
               />
             ))}
-          </SLortableContainer> */}
-
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {list.map((item, index) => (
-                    <Draggable
-                      key={getRowKey(item, index)}
-                      draggableId={getRowKey(item, index)}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          className="vd-add-list-item"
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          onClick={() => {}}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        >
-                          <CloseCircleFilled
-                            className="vd-add-list-item__delete"
-                            onClick={() => {
-                              const key = getRowKey(item, index);
-                              console.log(key);
-                              onHandleDetele(getRowKey(item, index));
-                            }}
-                          />
-                          {renderItem
-                            ? renderItem({
-                                value: item,
-                                onChange: (record) => {
-                                  run(record, index);
-                                },
-                                editList,
-                              })
-                            : null}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+          </SLortableContainer>
           {/* 添加按钮 */}
           {list.length < max ? (
             addBtnRender ? (

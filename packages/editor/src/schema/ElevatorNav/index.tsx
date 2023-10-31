@@ -1,5 +1,9 @@
 import { VdProFormColumnsType } from '../../interface';
-import {BaseSchemaEditor,registerEditor,type ProFormColumnsType} from '@sceditor/editor-core';
+import {
+  BaseSchemaEditor,
+  registerEditor,
+  type ProFormColumnsType,
+} from '@sceditor/editor-core';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 import { imageRule, textImageRule, textRule } from './rules';
@@ -123,7 +127,7 @@ const getPropsConfig = (columns: ProFormColumnsType<any>[], record: any) => {
     });
   return newC;
 };
-import {SysComponents} from "@sceditor/core"
+import { SysComponents } from '@sceditor/core';
 
 class ElevatorNav extends BaseSchemaEditor {
   // cmpType: string = 'ElevatorNav';
@@ -137,8 +141,8 @@ class ElevatorNav extends BaseSchemaEditor {
       sub_entry: [
         { title: '导航一', key: '1' },
         { title: '导航二', key: '2' },
-        { title: '导航三', key: '2' },
-        { title: '导航四', key: '2' },
+        { title: '导航三', key: '3' },
+        { title: '导航四', key: '4' },
       ],
       navigation_type: 'underline',
       font_default_color: '#969799',
@@ -158,5 +162,5 @@ ElevatorNav.info = {
   usedNum: 0,
   status: '',
 };
-registerEditor(ElevatorNav)
+registerEditor(ElevatorNav);
 export default ElevatorNav;

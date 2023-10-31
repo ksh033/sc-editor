@@ -22,7 +22,7 @@ const ComsPanel: React.FC<any> = (props: any) => {
   const tempcmpType = useRef<string | null>(null);
 
   const handleClick = (_event: any, cmpType: string) => {
-    manager.insterNode({ cmpType });
+    manager.insterNode({ cmpType, index: 0 });
   };
 
   const onTabActived = (id: string, actived: boolean) => {
@@ -46,6 +46,24 @@ const ComsPanel: React.FC<any> = (props: any) => {
   //   return null;
   // };
 
+  const onDragEnd = () => {
+    console.log('onDragEnd onDragEnd onDragEnd');
+    if (tempcmpType.current != null) {
+      tempcmpType.current = null;
+    }
+    //  sendToIframe.postMessage('onEnd', {});
+    manager?.message.emit('DragEnd', {});
+  };
+
+  const onUnChoose = () => {
+    console.log('UnChoose UnChoose UnChoose');
+    // 取消选中
+    if (tempcmpType.current != null) {
+      tempcmpType.current = null;
+    }
+    manager?.message.emit('UnChoose', {});
+  };
+
   useEffect(() => {
     if (divRef.current) {
       const parents = document.querySelectorAll('.com-list');
@@ -57,13 +75,20 @@ const ComsPanel: React.FC<any> = (props: any) => {
             name: 'shared',
             put: false,
           },
+          animation: 1000,
+          delay: 1000,
+          delayOnTouchOnly: true,
           sort: false,
           forceFallback: true,
           // @ts-ignore
           supportPointer: false,
           dragoverBubble: true,
           dropBubble: true,
-          onChoose(evt) {
+          onStart: function (evt: any) {
+            console.log('onStart', evt.item);
+            if (evt.item.stopPropagation) {
+              evt.item.stopPropagation();
+            }
             const { key } = evt.item.dataset;
             if (key && key !== tempcmpType.current) {
               tempcmpType.current = key;
@@ -76,14 +101,8 @@ const ComsPanel: React.FC<any> = (props: any) => {
               }
             }
           },
-          onEnd(ev) {
-            console.log('mouseup onEnd');
-            if (tempcmpType.current != null) {
-              tempcmpType.current = null;
-            }
-            //  sendToIframe.postMessage('onEnd', {});
-            manager?.message.emit('DragEnd', {});
-          },
+          onUnchoose: onUnChoose,
+          onEnd: onDragEnd,
         });
       });
     }

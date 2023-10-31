@@ -1,11 +1,10 @@
-
 import { arrayMoveImmutable } from 'array-move';
 import cloneDeep from 'lodash/cloneDeep';
 import { action, observable } from 'mobx';
 import { genNonDuplicateId } from '../../utils/common';
 //import sendToIframe from '../../utils/sendToIframe';
-import {  EditorManager } from '../../manager';
-import type { EditorData ,BaseSchemaClass} from '../../design';
+import { EditorManager } from '../../manager';
+import type { EditorData, BaseSchemaClass } from '../../design';
 /**
  * 页面类型
  * component 单个组件属性配置页面
@@ -13,7 +12,6 @@ import type { EditorData ,BaseSchemaClass} from '../../design';
  * pageSet  页面设置
  */
 export type ModalType = 'component' | 'componentList' | 'pageSet';
-
 
 export type editorStoreType = {
   modalType: ModalType; // 右侧模板类型
@@ -25,13 +23,16 @@ export type editorStoreType = {
   updateCurrentEditCmpValues: (newValues: any) => void; // 更新正在编辑的组件的内容
   switchEditCmp: (id: string, immediatelyCheck?: boolean) => void; // 切换编辑的组件
   addToEdit: (item: EditorData) => BaseSchemaClass; // 添加组件并编辑
-  addCmp: (record: BaseSchemaClass,index?:number) => void; // 纯粹添加组件
+  addCmp: (record: BaseSchemaClass, index?: number) => void; // 纯粹添加组件
   deleteCmp: (id: string) => void; // 删除组件
-  copyCmp: (record: EditorData) => BaseSchemaClass|null; // 拷贝组件
+  copyCmp: (record: EditorData) => BaseSchemaClass | null; // 拷贝组件
   clearAllCmp: () => void; // 清除全部编辑组件
   updeteEditList: () => void; // 更新编辑列表
   updeteEditListItem: (record: BaseSchemaClass) => void;
-  arrayMove: (oldIndex: number, newIndex: number) => {oldIndex:number,newIndex:number}|null; // 更新排序
+  arrayMove: (
+    oldIndex: number,
+    newIndex: number
+  ) => { oldIndex: number; newIndex: number } | null; // 更新排序
   changeModalType: (type: ModalType) => void; // 切换状态
   updatePageInfoValues: (newValues: any) => void; // 更新页面设置数据
 };
@@ -42,16 +43,14 @@ class EditorClass {
   @observable currentKey: string | null = null;
   @observable currentEditCmp: BaseSchemaClass | null = null;
   @observable editList: BaseSchemaClass[] = [];
-  manager!: EditorManager
+  manager!: EditorManager;
   @action.bound
   init(manager: EditorManager) {
     this.manager = manager;
-    const PageClass: any = this.manager.getEditorByType('PageInfo')
-    if (PageClass){
-      this.pageinfo = new PageClass()
+    const PageClass: any = this.manager.getEditorByType('PageInfo');
+    if (PageClass) {
+      this.pageinfo = new PageClass();
     }
-
-
   }
   // 切换状态
   @action.bound
@@ -69,8 +68,7 @@ class EditorClass {
     if (this.currentEditCmp) {
       this.currentEditCmp.setFieldsValue(newValues);
       // 发送消息给iframe
-      this.manager.message.emit('UpdateNode',this.currentEditCmp.getData())
-   
+      this.manager.message.emit('UpdateNode', this.currentEditCmp.getData());
     }
   }
 
@@ -79,8 +77,7 @@ class EditorClass {
   updatePageInfoValues(newValues: any) {
     this.pageinfo.values = newValues;
     // 发送消息给iframe
-    this.manager.message.emit('UpdatePageInfo',this.pageinfo.getData())
-
+    this.manager.message.emit('UpdatePageInfo', this.pageinfo.getData());
   }
 
   // 添加组件并修改
@@ -88,7 +85,7 @@ class EditorClass {
   addToEdit(item: EditorData): BaseSchemaClass {
     // 先更新当前的 list 下的数据
     // this.updeteEditList();
-    const {cmpType,index}=item
+    const { cmpType, index } = item;
     const CmpClass: any = this.manager.getEditorByType(cmpType);
     const newItem: BaseSchemaClass = new CmpClass();
     // 关键点
@@ -109,9 +106,8 @@ class EditorClass {
     } else {
       this.editList.push(newItem);
     }
-   
-
-    return newItem
+    console.log('this.editList', this.editList);
+    return newItem;
   }
   // 添加组件
   @action.bound
@@ -148,14 +144,14 @@ class EditorClass {
       if (index > -1) {
         const newIndex = index + 1;
         this.editList.splice(newIndex, 0, newItem);
-        return newItem
+        return newItem;
         // if (noticed) {
         //   // 发送消息给iframe
         //   sendToIframe.copyCmp(newItem);
         // }
       }
     }
-    return null
+    return null;
   }
 
   // 清空组件
@@ -164,10 +160,10 @@ class EditorClass {
     this.editList = [];
     this.currentKey = null;
     this.currentEditCmp = null;
-    this.manager.message.emit('ClearNodes')
+    this.manager.message.emit('ClearNodes');
 
     // 发送消息给iframe
-   // sendToIframe.clearAllCmp();
+    // sendToIframe.clearAllCmp();
   }
 
   // 切换编辑的组件
@@ -223,12 +219,13 @@ class EditorClass {
   @action.bound
   arrayMove(oldIndex: number, newIndex: number) {
     if (oldIndex !== newIndex) {
-      this.editList = arrayMoveImmutable(this.editList, oldIndex, newIndex);
-      return {oldIndex, newIndex}
+      const editList = arrayMoveImmutable(this.editList, oldIndex, newIndex);
+      this.editList = editList;
+      console.log('this.editList', editList);
+      return { oldIndex, newIndex };
     }
 
-   return null
-   
+    return null;
   }
 }
 const editorStore: editorStoreType = new EditorClass();

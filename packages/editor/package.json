@@ -40,7 +40,7 @@
     "@sceditor/core":"workspace:*",
     "@ant-design/pro-form": "^2.21.0",
     "@ant-design/pro-provider":"^2.13.1",
-
+    "react-beautiful-dnd": "^13.1.1",
     "@types/lodash": "^4.14.194",
     "ahooks": "^3.7.6",
     "antd": "^5.4.2",
