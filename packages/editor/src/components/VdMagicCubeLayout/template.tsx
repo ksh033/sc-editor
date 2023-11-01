@@ -213,9 +213,9 @@ export function getListItemBymatrixData(matrixData: any[][]) {
 }
 
 export function formatMatrixData(val: any) {
-  const sub_entry = val.sub_entry;
-  const width = val.width;
-  const height = val.height;
+  const sub_entry = val.sub_entry || [];
+  const width = val.width || 1;
+  const height = val.height || 1;
   const matrixData = getInitArray(width, height);
   if (sub_entry.length > 0) {
     sub_entry.forEach((it: any) => {

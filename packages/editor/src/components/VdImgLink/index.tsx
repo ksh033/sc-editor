@@ -24,7 +24,9 @@ const VdImgLink: SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
       <div className="vd-img-link-content">
         <Space direction="vertical" className="vd-img-link-space">
           <span className="tag-item-warp-label">链接</span>
-          <Button type="link">选择跳转到页面</Button>
+          <Button type="link" style={{ padding: 0 }}>
+            选择跳转到页面
+          </Button>
         </Space>
       </div>
     </div>

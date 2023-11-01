@@ -1,15 +1,13 @@
 {
-
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@sceditor/editor": ["./packages/editor/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.ts"] ,
-      "@sceditor/core":["./packages/core/src/index.ts"]
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.ts"],
+      "@sceditor/core": ["./packages/core/src/index.ts"]
     }
   },
 
-  "typings": "./typings.d.ts",
-  
+  "typings": "./typings.d.ts"
 }

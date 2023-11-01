@@ -55,8 +55,8 @@ export function registerEditorAttrCmp(
         _dom: JSX.Element
       ) => {
         //const editorValue = useContext(EditorContext)
-        const EditorPropertyCmp = EditorPropertyHoc(klass);
-        return React.createElement(EditorPropertyCmp, {
+        // const EditorPropertyCmp = EditorPropertyHoc(klass);
+        return React.createElement(klass, {
           ...props,
           ...props?.fieldProps,
         });

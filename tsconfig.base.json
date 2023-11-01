@@ -12,15 +12,19 @@
 
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "noImplicitAny": false, 
+    "noImplicitAny": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
-   
+    "paths": {
+      "@sceditor/editor": ["./packages/editor/src/index.ts"],
+      "@sceditor/editor-core": ["./packages/editor-core/src/index.ts"],
+      "@sceditor/core": ["./packages/core/src/index.ts"]
+    }
   },
-  
+
   "exclude": [
     "**/node_modules",
     "**/examples",

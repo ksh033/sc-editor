@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { ExtendVdFormItemProps } from '../VdFormItem';
 import VdImgLink from '../VdImgLink';
 import type { VdImgLinkEntryItem } from '../VdImgLink/type';
@@ -9,7 +9,10 @@ import {
   getDefaultTemplateCompontents,
   templateMap,
 } from './template';
-import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import {
+  registerEditorAttrCmp,
+  EditorPropertyContext,
+} from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
 
@@ -30,7 +33,6 @@ const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (
 ) => {
   const {
     formItem,
-    rowData,
     templateDataIndex,
     value = {
       sub_entry: [],
@@ -38,40 +40,50 @@ const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (
       height: 0,
     },
     onChange,
-    ...rest
   } = props;
-  const templateId = rowData[templateDataIndex] || '0';
+
+  const editorValue = useContext(EditorPropertyContext);
+  const templateId = useMemo(() => {
+    return editorValue.rowData[templateDataIndex] || '0';
+  }, [JSON.stringify(editorValue.rowData), templateDataIndex]);
 
   const [subEntryIndex, setSubEntryIndex] = useState<number>(0);
 
-  useLayoutEffect(() => {
-    if (templateId != null) {
-      const templateItemMap = templateMap[templateId];
-      let newList = getDefaultTemplateCompontents(templateId);
+  const getValues = (id: string) => {
+    const templateItemMap = templateMap[templateId];
+    let newList = getDefaultTemplateCompontents(templateId);
 
-      if (Array.isArray(value.sub_entry) && value.sub_entry.length > 0) {
-        newList = newList.map((item, index) => {
-          const valitem: any = value.sub_entry[index];
-          if (valitem) {
-            return {
-              ...valitem,
-              x: item.x,
-              y: item.y,
-              width: item.width,
-              height: item.height,
-            };
-          }
-          return item;
-        });
-      }
-      console.log('templateId', templateId);
-      onChange?.({
-        width: templateItemMap.rowSpan,
-        height: templateItemMap.colSpan,
-        sub_entry: newList,
+    if (Array.isArray(value.sub_entry) && value.sub_entry.length > 0) {
+      newList = newList.map((item, index) => {
+        const valitem: any = value.sub_entry[index];
+        if (valitem) {
+          return {
+            ...valitem,
+            x: item.x,
+            y: item.y,
+            width: item.width,
+            height: item.height,
+          };
+        }
+        return item;
       });
     }
-  }, [templateId, JSON.stringify(value)]);
+    return {
+      width: templateItemMap.rowSpan,
+      height: templateItemMap.colSpan,
+      sub_entry: newList,
+    };
+  };
+
+  useEffect(() => {
+    if (templateId != null) {
+      const newValues = getValues(templateId);
+      // if (JSON.stringify(value) !== JSON.stringify(newValues)) {
+      onChange?.(newValues);
+      // }
+      console.log('templateId', templateId);
+    }
+  }, [templateId]);
 
   const list = useMemo(() => {
     return Array.isArray(value.sub_entry) ? value.sub_entry : [];

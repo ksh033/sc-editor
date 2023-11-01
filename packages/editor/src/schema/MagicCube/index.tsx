@@ -1,6 +1,10 @@
 import { VdProFormColumnsType } from '../../interface';
-import {SysComponents} from "@sceditor/core"
-import { BaseSchemaEditor, ProFormColumnsType, registerEditor } from '@sceditor/editor-core';
+import { SysComponents } from '@sceditor/core';
+import {
+  BaseSchemaEditor,
+  ProFormColumnsType,
+  registerEditor,
+} from '@sceditor/editor-core';
 
 class MagicCube extends BaseSchemaEditor {
   // cmpType: string = 'MagicCube';
@@ -15,7 +19,7 @@ class MagicCube extends BaseSchemaEditor {
       },
       formItemProps: {
         rules: [
-          ({ getFieldValue }) => ({
+          ({}) => ({
             type: 'object',
             validator(rule, value, callback) {
               if (
@@ -120,8 +124,8 @@ class MagicCube extends BaseSchemaEditor {
       page_margin: 0,
       gutter: 0,
       layout: {
-        layout_width: 2,
-        layout_height: 1,
+        width: 2,
+        height: 1,
         sub_entry: [
           { x: 0, y: 0, width: 1, height: 1 },
           { x: 1, y: 0, width: 1, height: 1 },
@@ -141,5 +145,5 @@ MagicCube.info = {
   usedNum: 0,
   status: '',
 };
-registerEditor(MagicCube)
+registerEditor(MagicCube);
 export default MagicCube;

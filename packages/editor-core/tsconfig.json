@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "target": "esnext",
     "moduleResolution": "node",
-    "jsx":"react-jsx",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "strict": true,
@@ -12,7 +12,8 @@
     "noImplicitReturns": true,
     "declaration": true,
     "skipLibCheck": true,
-   
-  },
-  
+    "paths": {
+      "@sceditor/core": ["../core/src/index.ts"]
+    }
+  }
 }

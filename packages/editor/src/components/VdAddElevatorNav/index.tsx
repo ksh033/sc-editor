@@ -1,9 +1,12 @@
 import type { DefaultOptionType } from 'antd/es/select';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 import { ComponentSchemaProps } from '../../interface';
 import VdAddList from '../VdAddList';
 import TagItem from './TagItem';
-import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import {
+  registerEditorAttrCmp,
+  EditorPropertyContext,
+} from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
 import { SysEditorPropertyComponent } from '../interface';
 
@@ -40,7 +43,12 @@ export type VdAddElevatorNavProps = BaseFromItemProps<SubEntryItem[]> & {
 const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
   props
 ) => {
-  const { rowData, value, onChange, id, editList } = props;
+  const { value, onChange, id, editList } = props;
+  const editorValue = useContext(EditorPropertyContext);
+
+  const rowData = useMemo(() => {
+    return editorValue.rowData;
+  }, [JSON.stringify(editorValue.rowData)]);
 
   const options: DefaultOptionType[] = useMemo(() => {
     const index = editList?.findIndex((it) => it.id === id);

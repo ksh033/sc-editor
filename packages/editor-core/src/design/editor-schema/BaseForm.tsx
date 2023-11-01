@@ -37,16 +37,16 @@ const BaseForm: React.FC<any> = (props) => {
   // });
 
   return (
-    <ProProvider.Provider
-      value={{
-        ...values,
-        valueTypeMap: valueTypeMap,
-      }}
-    >
-      <EditorPropertyContext.Provider value={{ editList, rowData, id }}>
+    <EditorPropertyContext.Provider value={{ editList, rowData, id }}>
+      <ProProvider.Provider
+        value={{
+          ...values,
+          valueTypeMap: valueTypeMap,
+        }}
+      >
         <BetaSchemaForm {...props} layoutType="Form"></BetaSchemaForm>
-      </EditorPropertyContext.Provider>
-    </ProProvider.Provider>
+      </ProProvider.Provider>
+    </EditorPropertyContext.Provider>
   );
 };
 
