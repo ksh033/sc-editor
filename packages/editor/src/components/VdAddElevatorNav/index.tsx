@@ -34,21 +34,26 @@ export type SubEntryItem = {
   useLink?: boolean;
 };
 
-export type VdAddElevatorNavProps = BaseFromItemProps<SubEntryItem[]> & {
-  editList?: ComponentSchemaProps[];
-  id?: string;
-};
+export type VdAddElevatorNavProps = BaseFromItemProps<SubEntryItem[]>;
 
 /** 添加跳转 */
 const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
   props
 ) => {
-  const { value, onChange, id, editList } = props;
+  const { value, onChange } = props;
   const editorValue = useContext(EditorPropertyContext);
 
   const rowData = useMemo(() => {
     return editorValue.rowData;
   }, [JSON.stringify(editorValue.rowData)]);
+
+  const editList = useMemo(() => {
+    return editorValue.editList;
+  }, [JSON.stringify(editorValue.editList)]);
+
+  const id = useMemo(() => {
+    return editorValue.id;
+  }, [editorValue.id]);
 
   const options: DefaultOptionType[] = useMemo(() => {
     const index = editList?.findIndex((it) => it.id === id);

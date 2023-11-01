@@ -1,11 +1,14 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
 import { useDebounceFn } from 'ahooks';
 import { Button } from 'antd';
-import React, { useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { VdFormItemProps } from '../VdFormItem';
 import './index.less';
-import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import {
+  EditorPropertyContext,
+  registerEditorAttrCmp,
+} from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
 import { arrayMove } from 'react-sortable-hoc';
 
@@ -49,9 +52,11 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
+  const editorValue = useContext(EditorPropertyContext);
+
   const editList = useMemo(() => {
-    return props.editList;
-  }, [props.editList]);
+    return editorValue.editList;
+  }, [JSON.stringify(editorValue.editList)]);
 
   const getRowKey = React.useMemo<any>(() => {
     if (typeof rowKey === 'function') {
@@ -93,7 +98,6 @@ const VdAddList = <T extends object>(props: VdAddListProps<T>) => {
   const onHandleDetele = (key: string) => {
     if (Array.isArray(list)) {
       const newList = list.filter((it, index) => getRowKey(it, index) !== key);
-      console.log('newList', newList);
       setList(newList);
     }
   };

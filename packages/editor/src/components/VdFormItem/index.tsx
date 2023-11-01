@@ -1,6 +1,5 @@
 import type { FormItemProps } from 'antd';
 import React, { PropsWithChildren } from 'react';
-import type { ComponentSchemaProps } from '../../interface';
 import './index.less';
 
 export type VdFormItemProps = {
@@ -10,7 +9,6 @@ export type VdFormItemProps = {
   block?: boolean;
   showFormItemTitle?: boolean;
   styles?: React.CSSProperties;
-  editList?: ComponentSchemaProps[];
 };
 
 export type ExtendVdFormItemProps = {
