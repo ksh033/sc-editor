@@ -1,6 +1,6 @@
 export const baseApi = '/api';
 
-export const baseUrl = 'https://testepay.bstj.com/bg/img';
+export const baseUrl = 'https://test.yumcat.cn/images';
 
 export function imageUrl(url: string) {
   const str = RegExp('http');

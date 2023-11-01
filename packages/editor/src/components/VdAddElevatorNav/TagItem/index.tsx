@@ -5,6 +5,7 @@ import useMergedState from 'rc-util/es/hooks/useMergedState';
 import React, { useState } from 'react';
 import type { SubEntryItem } from '../index';
 import './index.less';
+import VdSelectImage from '../../VdSelectImage';
 
 export type TagItemProps = {
   type?: 'text' | 'imageText' | 'image';
@@ -69,11 +70,22 @@ const TagItem: React.FC<TagItemProps> = (props) => {
     });
   };
 
+  const onImageValChange = (val: any) => {
+    const newVal = value || {};
+    setValue({
+      ...newVal,
+      ...val,
+    });
+  };
+
   return (
     <div className="tag-item-warp">
       {type === 'image' || type === 'imageText' ? (
         <div className="has-choosed-image">
-          <img src={value?.imageUrl} className="tag-item-image"></img>
+          <VdSelectImage
+            value={value}
+            onChange={onImageValChange}
+          ></VdSelectImage>
         </div>
       ) : null}
 

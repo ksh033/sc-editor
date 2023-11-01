@@ -36,7 +36,6 @@ export function registerEditor(klass: AbsBaseSchemaClass) {
     builtEditors[klass.info.cmpType] = editorClass;
   }
 }
-
 /**
  *
  * @param klass 编辑器属性控件
@@ -48,6 +47,7 @@ export function registerEditorAttrCmp(
 ) {
   const type = klass.valueType || valueType;
   if (type && !valueTypeMap[type]) {
+    const EditorPropertyCmp = EditorPropertyHoc(klass);
     valueTypeMap[type] = {
       renderFormItem: (
         _text: any,
@@ -55,8 +55,7 @@ export function registerEditorAttrCmp(
         _dom: JSX.Element
       ) => {
         //const editorValue = useContext(EditorContext)
-        // const EditorPropertyCmp = EditorPropertyHoc(klass);
-        return React.createElement(klass, {
+        return React.createElement(EditorPropertyCmp, {
           ...props,
           ...props?.fieldProps,
         });

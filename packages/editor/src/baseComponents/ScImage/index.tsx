@@ -34,9 +34,10 @@ const BsImg: React.FC<any> = (props) => {
 
   return customSrc ? (
     <Image
-      src={formatUrl ? breviaryUrl(customSrc) : imageUrl(thumb)}
+      src={formatUrl ? customSrc : imageUrl(thumb)}
       fallback={defaultImg}
       alt=""
+      height="100%"
       preview={{
         src: customSrc,
       }}
@@ -44,7 +45,13 @@ const BsImg: React.FC<any> = (props) => {
       className="bs-img"
     />
   ) : (
-    <Image src={defaultImg} alt="" {...restProps} className="bs-img" />
+    <Image
+      src={defaultImg}
+      alt=""
+      {...restProps}
+      className="bs-img"
+      height="100%"
+    />
   );
 };
 

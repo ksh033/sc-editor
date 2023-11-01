@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import { EditorContext } from '../../manager';
 import { EditorPropertyContext } from './EditorPropertyHoc';
 const BaseForm: React.FC<any> = (props) => {
-  const rowData = props['data-row'] || {};
+  const attrFromData = props['data-row'] || {};
   const editList = Array.isArray(props['data-list']) ? props['data-list'] : [];
   const id = props['id'];
 
@@ -13,7 +13,7 @@ const BaseForm: React.FC<any> = (props) => {
   const editorContext = useContext(EditorContext);
   const valueTypeMap = editorContext.manager.getEditorPropertyComponentMap();
 
-  // console.log('valueTypeMap', valueTypeMap);
+  console.log('valueTypeMap', valueTypeMap);
   // const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
   // Object.keys(Components).forEach((warpCom: string) => {
   //   if (warpCom.startsWith('Vd')) {
@@ -37,7 +37,7 @@ const BaseForm: React.FC<any> = (props) => {
   // });
 
   return (
-    <EditorPropertyContext.Provider value={{ editList, rowData, id }}>
+    <EditorPropertyContext.Provider value={{ editList, attrFromData, id }}>
       <ProProvider.Provider
         value={{
           ...values,

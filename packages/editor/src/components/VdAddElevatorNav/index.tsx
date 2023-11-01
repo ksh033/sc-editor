@@ -43,9 +43,9 @@ const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
   const { value, onChange } = props;
   const editorValue = useContext(EditorPropertyContext);
 
-  const rowData = useMemo(() => {
-    return editorValue.rowData;
-  }, [JSON.stringify(editorValue.rowData)]);
+  const attrFromData = useMemo(() => {
+    return editorValue.attrFromData;
+  }, [JSON.stringify(editorValue.attrFromData)]);
 
   const editList = useMemo(() => {
     return editorValue.editList;
@@ -112,8 +112,10 @@ const VdAddElevatorNav: SysEditorPropertyComponent<VdAddElevatorNavProps> = (
   };
   /** 类型 */
   const showMethod = useMemo(() => {
-    return rowData && rowData['show_method'] ? rowData['show_method'] : 'text';
-  }, [rowData?.['show_method']]);
+    return attrFromData && attrFromData['show_method']
+      ? attrFromData['show_method']
+      : 'text';
+  }, [attrFromData?.['show_method']]);
 
   const renderItem = useCallback(
     (props: any) => {

@@ -44,8 +44,8 @@ const VdMagicCubeLayout: SysEditorPropertyComponent<VdMagicCubeLayoutProps> = (
 
   const editorValue = useContext(EditorPropertyContext);
   const templateId = useMemo(() => {
-    return editorValue.rowData[templateDataIndex] || '0';
-  }, [JSON.stringify(editorValue.rowData), templateDataIndex]);
+    return editorValue.attrFromData[templateDataIndex] || '0';
+  }, [JSON.stringify(editorValue.attrFromData), templateDataIndex]);
 
   const [subEntryIndex, setSubEntryIndex] = useState<number>(0);
 

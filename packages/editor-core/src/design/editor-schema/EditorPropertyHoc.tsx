@@ -1,11 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
 export const EditorPropertyContext = React.createContext<{
-  rowData: any;
+  /** 属性数据 */
+  attrFromData: any;
+  /** 编辑列表数据 */
   editList: any;
+  /** 当前组件的id */
   id: string;
 }>({
-  rowData: null,
+  attrFromData: null,
   editList: null,
   id: '',
 });
