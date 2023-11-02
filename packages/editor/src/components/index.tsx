@@ -13,12 +13,13 @@ import VdRadioGroup from './VdRadioGroup';
 import VdRadioIcon from './VdRadioIcon';
 import VdSelect from './VdSelect';
 import VdSlider from './VdSlider';
-import VdStyleRadio from './VdStyleRadio';
+import VdSelectBuyBtnStyle from './VdSelectBuyBtnStyle';
 import VdSwitch from './VdSwitch';
 import VdTabs from './VdTabs';
 import VdUpload from './VdUpload';
 import VdVideoLink from './VdVideoLink';
 import VdImgLink from './VdImgLink';
+
 export {
   VdRadioIcon,
   VdColor,
@@ -26,7 +27,7 @@ export {
   VdSlider,
   VdMagicCubeLayout,
   VdCheckBox,
-  VdStyleRadio,
+  VdSelectBuyBtnStyle,
   VdRadioGroup,
   VdGoodsList,
   VdGoodsGroup,

@@ -6,7 +6,6 @@ export enum SysValueTypesEnum {
   VdSlider = 'VdSlider',
   VdMagicCubeLayout = 'VdMagicCubeLayout',
   VdCheckBox = 'VdCheckBox',
-  VdStyleRadio = 'VdStyleRadio',
   VdRadioGroup = 'VdRadioGroup',
   VdGoodsList = 'VdGoodsList',
   VdGoodsGroup = 'VdGoodsGroup',
@@ -21,6 +20,8 @@ export enum SysValueTypesEnum {
   VdAddImageList = 'VdAddImageList',
   VdImgLink = 'VdImgLink',
   VdVideoLayout = 'VdVideoLayout',
+  VdSelectBuyBtnStyle = 'VdSelectBuyBtnStyle',
+  VdIcon = 'VdIcon',
 }
 export type SysValueTypes = keyof typeof SysValueTypesEnum;
 export type SysEditorPropertyComponent<P> = EditorPropertyComponent<

@@ -82,6 +82,30 @@ const propsConfig: VdProFormColumnsType[] = [
     },
   },
   {
+    dataIndex: 'buy_btn_express',
+    valueType: 'VdSelectBuyBtnStyle',
+    title: '购买按钮样式',
+    // formItemProps: {
+    //   className: 'deco-control-group',
+    //   style: {
+    //     marginBottom: '12px',
+    //   },
+    // },
+    // fieldProps: {
+    //   valueMap: {
+    //     true: '显示',
+    //     false: (
+    //       <span>
+    //         不显示
+    //         <span style={{ marginLeft: '4px', color: '#969799' }}>
+    //           勾选后有利于提高商品成交
+    //         </span>
+    //       </span>
+    //     ),
+    //   },
+    // },
+  },
+  {
     title: '商品倒角',
     dataIndex: 'border_radius_type',
     valueType: 'VdRadioIcon',
@@ -188,49 +212,26 @@ const propsConfig: VdProFormColumnsType[] = [
     valueType: 'VdCheckBox',
     title: '商品原价',
   },
-  {
-    dataIndex: 'buy_btn',
-    valueType: 'VdCheckBox',
-    title: '购买按钮',
-    formItemProps: {
-      className: 'deco-control-group',
-      style: {
-        marginBottom: '12px',
-      },
-    },
-    fieldProps: {
-      valueMap: {
-        true: '显示',
-        false: (
-          <span>
-            不显示
-            <span style={{ marginLeft: '4px', color: '#969799' }}>
-              勾选后有利于提高商品成交
-            </span>
-          </span>
-        ),
-      },
-    },
-  },
-  {
-    dataIndex: 'buy_btn_express',
-    valueType: 'VdStyleRadio',
-    formItemProps: {
-      className: 'deco-control-style-group',
-    },
-    fieldProps: {
-      options: [
-        { value: '1', label: '样式1' },
-        { value: '2', label: '样式2' },
-        { value: '3', label: '样式3', showBtn: true, btnText: '马上抢' },
-        { value: '4', label: '样式4', showBtn: true, btnText: '购买' },
-        { value: '5', label: '样式5' },
-        { value: '6', label: '样式6' },
-        { value: '7', label: '样式7', showBtn: true, btnText: '马上抢' },
-        { value: '8', label: '样式8', showBtn: true, btnText: '购买' },
-      ],
-    },
-  },
+
+  // {
+  //   dataIndex: 'buy_btn_express',
+  //   valueType: 'VdStyleRadio',
+  //   formItemProps: {
+  //     className: 'deco-control-style-group',
+  //   },
+  //   fieldProps: {
+  //     options: [
+  //       { value: '1', label: '样式1' },
+  //       { value: '2', label: '样式2' },
+  //       { value: '3', label: '样式3', showBtn: true, btnText: '马上抢' },
+  //       { value: '4', label: '样式4', showBtn: true, btnText: '购买' },
+  //       { value: '5', label: '样式5' },
+  //       { value: '6', label: '样式6' },
+  //       { value: '7', label: '样式7', showBtn: true, btnText: '马上抢' },
+  //       { value: '8', label: '样式8', showBtn: true, btnText: '购买' },
+  //     ],
+  //   },
+  // },
   {
     dataIndex: 'show_corner_mark',
     valueType: 'VdRadioGroup',

@@ -1,9 +1,13 @@
-import { BaseSchemaEditor, registerEditor, type FormProps, type ProFormColumnsType } from '@sceditor/editor-core';
+import {
+  BaseSchemaEditor,
+  registerEditor,
+  type FormProps,
+  type ProFormColumnsType,
+} from '@sceditor/editor-core';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
-import {SysComponents} from "@sceditor/core"
-
+import { SysComponents } from '@sceditor/core';
 
 class GoodsLayout extends BaseSchemaEditor {
   // cmpType: string = 'GoodsLayout';
@@ -60,7 +64,7 @@ class GoodsLayout extends BaseSchemaEditor {
       nav_style: '1',
       sticky: '0',
       buy_btn_express: {
-        btn_type: '1',
+        btnType: 'cart1',
       },
     };
   }
@@ -75,5 +79,5 @@ GoodsLayout.info = {
   usedNum: 0,
   status: '',
 };
-registerEditor(GoodsLayout)
+registerEditor(GoodsLayout);
 export default GoodsLayout;
