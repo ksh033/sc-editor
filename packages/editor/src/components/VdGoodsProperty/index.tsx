@@ -31,7 +31,7 @@ const VdGoodsProperty = () => {
   const formItemRender = (list: VdProFormColumnsType[]) => {
     const renderList: React.ReactNode[] = [];
     if (Array.isArray(list)) {
-      list.forEach((it: VdProFormColumnsType) => {
+      list.forEach((it: VdProFormColumnsType, idx) => {
         let formItemProps = Object.assign(
           { className: 'deco-control-group' },
           it.formItemProps
@@ -47,7 +47,11 @@ const VdGoodsProperty = () => {
           label: it.title,
         };
         const valueType = (it.valueType || '') as string;
-        renderList.push(SingleRender(valueType, fieldProps, formItemProps));
+        renderList.push(
+          <Fragment key={`item-${it.key || it.dataIndex || idx}`}>
+            {SingleRender(valueType, fieldProps, formItemProps)}
+          </Fragment>
+        );
       });
     }
     return renderList;
