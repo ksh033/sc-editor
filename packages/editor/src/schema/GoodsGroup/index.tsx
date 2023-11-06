@@ -11,7 +11,8 @@ import {
   registerEditor,
 } from '@sceditor/editor-core';
 
-class Goods extends BaseSchemaEditor {
+/** 商品组 */
+class GoodsGroup extends BaseSchemaEditor {
   // cmpType: string = 'Goods';
   // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
@@ -120,14 +121,14 @@ class Goods extends BaseSchemaEditor {
   }
 }
 
-Goods.info = {
+GoodsGroup.info = {
   icon: require('../../icons/goodsgroup.png'),
-  name: '商品',
+  name: '商品组',
   description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
-  cmpType: SysComponents.Goods,
+  cmpType: SysComponents.GoodsGroup,
   maxNum: 100,
   usedNum: 0,
   status: '',
 };
-registerEditor(Goods);
-export default Goods;
+registerEditor(GoodsGroup);
+export default GoodsGroup;

@@ -20,6 +20,7 @@ import React from 'react';
 
 const builtEditors: Record<string, AbsBaseSchemaClass> = {};
 const valueTypeMap: Record<string, ProRenderFieldPropsType> = {};
+const componentMap: Record<string, EditorPropertyComponent<any>> = {};
 /**
  * 注册设计器组件
  * @param klass
@@ -61,6 +62,7 @@ export function registerEditorAttrCmp(
         });
       },
     };
+    componentMap[type] = klass;
   }
 }
 
@@ -206,7 +208,10 @@ export class EditorManager {
   getEditorPropertyComponentMap() {
     return valueTypeMap;
   }
-
+  /** 获取组件库 */
+  getComponentMap() {
+    return componentMap;
+  }
   //sendMessage("")
 }
 const initData: any = {};

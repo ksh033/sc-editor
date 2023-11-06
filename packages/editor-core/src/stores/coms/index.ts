@@ -1,11 +1,15 @@
 import { action, observable } from 'mobx';
 // @ts-ignore
 //import { BaseCompGroup, BaseCompMap, CmpInfo } from '@sceditor/element';
-import {SysComponents} from  "@sceditor/core";
+import { SysComponents } from '@sceditor/core';
 // @ts-ignore
 import { message } from 'antd';
-import  { EditorManager} from '../../manager'
-import  {type CmpInfo, type CompsGroup,type BaseSchemaClass} from '../../design'
+import { EditorManager } from '../../manager';
+import {
+  type CmpInfo,
+  type CompsGroup,
+  type BaseSchemaClass,
+} from '../../design';
 
 const BaseCompClassGroup = [
   {
@@ -16,6 +20,7 @@ const BaseCompClassGroup = [
       SysComponents.Title,
       SysComponents.ElevatorNav,
       SysComponents.GoodsLayout,
+      SysComponents.GoodsGroup,
       SysComponents.CrowdImage,
       SysComponents.AdImage,
       SysComponents.ImageTextNav,
@@ -34,12 +39,12 @@ const BaseCompClassGroup = [
     actived: true,
     list: [SysComponents.Coupon],
   },
-]
+];
 export type ComsStoreType = {
   comsList: CompsGroup[]; // 组件列表
   comsMap: Map<String, BaseSchemaClass>; // 组件map
   comsInfoMap: Map<String, CmpInfo>; // 组件map
-  init:(manager:EditorManager)=>void;
+  init: (manager: EditorManager) => void;
   getCompByKey: (key: string) => BaseSchemaClass | null; // 通过组件key获取组件
   getCompInfoByKey: (key: string) => CmpInfo | undefined; // 通过组件key获取组件
   initComsInfoMap: () => void; // 初始化组件
@@ -63,11 +68,11 @@ export type ComsStoreType = {
 };
 
 class ComsClass implements ComsStoreType {
-  @observable 
-  comsList: CompsGroup[]=[];
-  @observable 
-  comsMap: Map<String, BaseSchemaClass>=new Map();
-  @observable 
+  @observable
+  comsList: CompsGroup[] = [];
+  @observable
+  comsMap: Map<String, BaseSchemaClass> = new Map();
+  @observable
   comsInfoMap = new Map<String, CmpInfo>();
 
   manager!: EditorManager;
@@ -75,31 +80,29 @@ class ComsClass implements ComsStoreType {
    * 初始化组件
    */
   constructor() {
-   // this.initComsInfoMap();
+    // this.initComsInfoMap();
   }
   @action.bound
-  init(manager:EditorManager){
-
-    this.manager=manager
-    this.initComsInfoMap()
+  init(manager: EditorManager) {
+    this.manager = manager;
+    this.initComsInfoMap();
   }
   @action.bound
   initComsInfoMap() {
-    if (this.manager){
-      const editorMap=this.manager.getEditorsMap()
-      const list=BaseCompClassGroup.map((it)=>{
+    if (this.manager) {
+      const editorMap = this.manager.getEditorsMap();
+      const list = BaseCompClassGroup.map((it) => {
         const list = it.list.map((purClass) => {
-          return editorMap[purClass]?.info||{};
+          return editorMap[purClass]?.info || {};
         });
         return {
           id: it.id,
           name: it.name,
           actived: it.actived,
           list: list,
-        }; 
-  
-      })
-      this.comsList=list
+        };
+      });
+      this.comsList = list;
     }
 
     const map = new Map<String, CmpInfo>();

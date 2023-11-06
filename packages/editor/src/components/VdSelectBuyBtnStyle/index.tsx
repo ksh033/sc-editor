@@ -75,6 +75,7 @@ const VdSelectBuyBtnStyle: SysEditorPropertyComponent<
           placement="bottomLeft"
           trigger={['click']}
           open={open}
+          onOpenChange={setOpen}
           dropdownRender={() => {
             return (
               <div className="vd-panel-select-dropdown-render">

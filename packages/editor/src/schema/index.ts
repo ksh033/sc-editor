@@ -7,6 +7,7 @@ import CrowdImage from './CrowdImage';
 import ElevatorNav from './ElevatorNav';
 import EnterShop from './EnterShop';
 import GoodsLayout from './GoodsLayout';
+import GoodsGroup from './GoodsGroup';
 import ImageTextNav from './ImageTextNav';
 import MagicCube from './MagicCube';
 import Notice from './Notice';
@@ -78,6 +79,7 @@ export {
   Title,
   ElevatorNav,
   GoodsLayout,
+  GoodsGroup,
   CrowdImage,
   AdImage,
   ImageTextNav,

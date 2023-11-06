@@ -18,7 +18,7 @@ export enum SysComponents {
    * 辅助空白
    */
   White = 'White',
-  Goods = 'Goods',
+  GoodsGroup = 'GoodsGroup',
   ElevatorNav = 'ElevatorNav',
   EnterShop = 'EnterShop',
   ImageTextNav = 'ImageTextNav',
