@@ -17,12 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "declaration": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@sceditor/editor": ["./packages/editor/src/index.ts"],
-      "@sceditor/editor-core": ["./packages/editor-core/src/index.ts"],
-      "@sceditor/core": ["./packages/core/src/index.ts"]
-    }
+    "skipLibCheck": true
   },
 
   "exclude": [

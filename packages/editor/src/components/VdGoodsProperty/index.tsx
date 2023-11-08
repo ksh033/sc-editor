@@ -1,14 +1,34 @@
 import { Form } from 'antd';
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useMemo } from 'react';
 import list from './list';
 import { VdProFormColumnsType } from '../../interface';
-import { EditorContext, registerEditorAttrCmp } from '@sceditor/editor-core';
+import {
+  EditorContext,
+  EditorPropertyContext,
+  registerEditorAttrCmp,
+} from '@sceditor/editor-core';
 import React from 'react';
 
 /** 商品属性集合 */
 const VdGoodsProperty = () => {
   const editorContext = useContext(EditorContext);
   const comMap = editorContext.manager.getComponentMap();
+
+  const editorValue = useContext(EditorPropertyContext);
+
+  const attrFromData = useMemo(() => {
+    return editorValue.attrFromData;
+  }, [JSON.stringify(editorValue.attrFromData)]);
+
+  const getFieldProps = (key, fieldProps) => {
+    if (key === 'display_scale' && attrFromData['goods_type'] === 'G1') {
+      return {
+        ...fieldProps,
+        disabled: true,
+      };
+    }
+    return fieldProps;
+  };
 
   const SingleRender = (
     valueType: string,
@@ -36,7 +56,7 @@ const VdGoodsProperty = () => {
           { className: 'deco-control-group' },
           it.formItemProps
         );
-        const fieldProps = it.fieldProps || {};
+        let fieldProps = it.fieldProps || {};
         formItemProps = {
           ...formItemProps,
           label: undefined,
@@ -46,6 +66,7 @@ const VdGoodsProperty = () => {
           name: it.dataIndex,
           label: it.title,
         };
+        fieldProps = getFieldProps(it.key || it.dataIndex, fieldProps);
         const valueType = (it.valueType || '') as string;
         renderList.push(
           <Fragment key={`item-${it.key || it.dataIndex || idx}`}>

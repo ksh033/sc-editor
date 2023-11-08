@@ -1,3 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@sceditor/editor-core": ["../editor-core/src/index.ts"],
+      "@sceditor/core": ["../core/src/index.ts"]
+    }
+  }
 }

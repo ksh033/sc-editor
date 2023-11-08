@@ -5,34 +5,17 @@ import {
   type ProFormColumnsType,
 } from '@sceditor/editor-core';
 import { VdProFormColumnsType } from '../../interface';
-import { spellNamePath } from '../../utils';
 import propsConfig from './list';
 import { SysComponents } from '@sceditor/core';
 
+/** 商品 */
 class GoodsLayout extends BaseSchemaEditor {
-  // cmpType: string = 'GoodsLayout';
-  // cmpName: string = '商品';
   propsConfig: VdProFormColumnsType[] = propsConfig;
   formProps: FormProps = {
     layout: 'horizontal',
   };
-  getPropsConfig(columns: ProFormColumnsType<any>[], record: any) {
-    const newC: any[] = columns
-      .map((it) => {
-        const dataIndex = spellNamePath(it.dataIndex);
-        if (record['goods_type'] === 'G1' && dataIndex === 'display_scale') {
-          return {
-            ...it,
-            fieldProps: {
-              ...it.fieldProps,
-              disabled: true,
-            },
-          };
-        }
-        return it;
-      })
-      .filter((it) => it != null);
-    return newC;
+  getPropsConfig(columns: ProFormColumnsType<any>[]) {
+    return columns;
   }
   onValuesChange(changedValues: any, allValues: any) {
     console.log('changedValues', changedValues, allValues);

@@ -94,28 +94,25 @@ class GoodsGroup extends BaseSchemaEditor {
   }
   getInitialValue() {
     return {
-      tag_list_template: 'top',
-      type: 'goods',
-      goods_from: '0',
-      is_show_all: '0',
-      goods_type: '0',
-      goods_style: 'NO_BORDER_WHITEBG',
-      border_radius_type: '1',
-      display_scale: '0',
-      image_fill_style: '1',
+      goods_type: 'G1',
+      border_radius_type: 'straight',
+      goods_style: 'NO_BORDER_BG_WHITE',
+      image_fill_style: 'cover',
+      display_scale: '1',
       text_style_type: 'normal',
       text_align_type: 'left',
       page_margin: 15,
       goods_margin: 10,
-      goods_name: '1',
-      goods_description: '1',
-      goods_price: '1',
-      show_corner_mark: '1',
-      buy_btn: '1',
+      show_goods_name: true,
+      show_goods_desc: true,
+      show_goods_price: true,
+      show_mark_price: true,
+      show_corner_mark: true,
+      buy_btn: true,
       nav_style: '1',
       sticky: '0',
       buy_btn_express: {
-        btn_type: '1',
+        btnType: 'cart1',
       },
     };
   }
@@ -124,7 +121,6 @@ class GoodsGroup extends BaseSchemaEditor {
 GoodsGroup.info = {
   icon: require('../../icons/goodsgroup.png'),
   name: '商品组',
-  description: '小程序仅支持显示实物（含分销）、虚拟、电子卡券商品',
   cmpType: SysComponents.GoodsGroup,
   maxNum: 100,
   usedNum: 0,
