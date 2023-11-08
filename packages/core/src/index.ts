@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import React from 'react';
 import { SysComponents, type SysComponentsEnumType } from './type';
 export type { BaseFromItemProps } from './baseFromItem';

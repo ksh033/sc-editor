@@ -26,9 +26,6 @@
     "es/**/*.less",
     "lib/**/*.less"
   ],
-  "bin": {
-    "core": "lib/index.js"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
