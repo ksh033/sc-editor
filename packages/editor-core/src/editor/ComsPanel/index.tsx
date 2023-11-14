@@ -10,7 +10,7 @@ import { useStore } from '../../stores';
 import { EditorContext } from '../../manager';
 import type { CompsGroup } from '../../design';
 
-const ComsPanel: React.FC<any> = (props: any) => {
+const ComsPanel: React.FC<any> = () => {
   const { manager } = useContext(EditorContext);
 
   const { comsStore } = useStore();

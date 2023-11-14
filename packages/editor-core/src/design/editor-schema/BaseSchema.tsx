@@ -1,3 +1,4 @@
+import React from 'react';
 import type { ProFormColumnsType } from '@ant-design/pro-form';
 import { FormSchema } from '@ant-design/pro-form/es/components/SchemaForm';
 import { cloneDeep } from 'lodash';
@@ -6,7 +7,6 @@ import BaseForm from './BaseForm';
 import { genNonDuplicateId } from '../../utils';
 import { validateRules } from '../../utils/validateUtil';
 import { filterPageConfig } from './util';
-import React, { ComponentClass } from 'react';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
 export interface EditorData {

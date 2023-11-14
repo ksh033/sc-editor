@@ -8,6 +8,7 @@ import './index.less';
 import GoodsTagItem from './GoodsTagItem';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import { SysEditorPropertyComponent } from '../interface';
+import VdIcon from '../VdIcon';
 
 type typeNode = 'tag' | 'card';
 
@@ -15,7 +16,7 @@ type VdGoodsGroupProps = VdFormItemProps & {
   addBtnText?: string;
   type?: typeNode;
   max?: number;
-  groupTitle?: () => React.ReactNode;
+  groupTitle?: React.ReactNode;
 };
 
 type VdGoodsGroupDataNode = {
@@ -31,56 +32,60 @@ type VdGoodsGroupDataNode = {
 
 const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
   const {
-    addBtnText = '添加商品分组',
+    addBtnText = '选择商品分组',
     formItem,
     type = 'card',
     max = 999,
-    groupTitle,
+    groupTitle = '商品分组管理',
   } = props;
+  const form = Form.useFormInstance();
+
+  console.log('props', form);
 
   const fieldsFormat = (
     it: FormListFieldData,
     remove: (index: number | number[]) => void,
-    itType: typeNode,
+    itType: typeNode
   ) => {
     const { name, ...restField } = it;
+
+    const title: string =
+      form.getFieldValue(['sub_entry', name, 'groupName']) || '';
+
     if (itType === 'card') {
       return (
-        <div className="goods-group-card-item" key={it.key}>
+        <div className="vd-goods-group-card-item" key={it.key}>
           <CloseCircleFilled
             className="card-item__delete"
             onClick={() => {
               remove(it.name);
             }}
           />
-          <Form.Item
-            {...restField}
-            label="商品来源"
-            shouldUpdate={(prevValues, curValues) =>
-              prevValues.title !== curValues.title
-            }
-          >
-            {({ getFieldValue }) => {
-              const title: string =
-                getFieldValue(['sub_entry', name, 'title']) || '';
-              return <span>{title}</span>;
+          <div className="vd-goods-group-card-item-header">
+            <div className="tag-detail">
+              <i className="drag-icon"></i>
+              <a className="goods-group-name" target="_blank">
+                <VdIcon type="deco-icon-tag-icon "></VdIcon>
+                {title}
+              </a>
+            </div>
+            <div className="modify-btn">修改</div>
+          </div>
+          <div
+            className="decorate-divider"
+            style={{
+              backgroundColor: 'rgb(235, 237, 240)',
+              margin: '12px 16px',
             }}
-          </Form.Item>
+          ></div>
           <Form.Item
             {...restField}
-            name={[name, 'tag_name']}
-            label="菜单名称"
-            key={[name, 'tag_name'].join('-')}
-          >
-            <Input placeholder="最多14个字" maxLength={14} />
-          </Form.Item>
-          <Form.Item
-            {...restField}
-            name={[name, 'isShowAll']}
-            label="显示个数"
-            key={[name, 'isShowAll'].join('-')}
+            className="vd-goods-group-card-item-padding"
+            name={[name, 'goodsConfig']}
+            label="显示商品"
+            key={[name, 'goodsConfig'].join('-')}
             rules={[
-              ({ getFieldValue }) => ({
+              ({}) => ({
                 validator(_, value) {
                   if (
                     value.isShowAll === false &&
@@ -94,6 +99,15 @@ const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
             ]}
           >
             <SetGoodsCount />
+          </Form.Item>
+          <Form.Item
+            {...restField}
+            className="vd-goods-group-card-item-padding"
+            name={[name, 'tagName']}
+            label="菜单名称"
+            key={[name, 'tag_name'].join('-')}
+          >
+            <Input placeholder="最多14个字" maxLength={14} />
           </Form.Item>
         </div>
       );
@@ -112,8 +126,8 @@ const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
 
   return (
     <>
-      <div className="goods-group--bg-colored">
-        <>{groupTitle ? groupTitle() : null}</>
+      <div className="vd-goods-group">
+        {groupTitle && <div className="vd-goods-group-title">{groupTitle}</div>}
         <Form.List name={formItem?.name || ''}>
           {(fields, { add, remove }) => (
             <>
@@ -131,11 +145,11 @@ const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
                       alias: 's5vbc7wa',
                       id: 121558147,
                       timestamp: 1655429502304,
-                      title: '最热商品',
-                      tag_name: '最热商品',
+                      groupName: '最热商品',
                       type: 'tag',
+                      tagName: '最热商品',
                       url: 'https://h5.youzan.com/v2/showcase/tag?alias=s5vbc7wa',
-                      isShowAll: {
+                      goodsConfig: {
                         isShowAll: true,
                         goods_number: 0,
                       },
@@ -150,10 +164,13 @@ const VdGoodsGroup: SysEditorPropertyComponent<VdGoodsGroupProps> = (props) => {
             </>
           )}
         </Form.List>
+        <div className="vd-goods-group-tips">
+          最多不超过15个分组，拖拽可调整分组顺序
+        </div>
       </div>
     </>
   );
 };
-VdGoodsGroup.valueType='VdGoodsGroup';
+VdGoodsGroup.valueType = 'VdGoodsGroup';
 registerEditorAttrCmp(VdGoodsGroup);
 export default VdGoodsGroup;

@@ -8,10 +8,9 @@ import {
   SortEnd,
 } from 'react-sortable-hoc';
 import { useStore } from '../../stores';
-import type {BaseSchemaClass} from '../../design/editor-schema/BaseSchema'
+import type { BaseSchemaClass } from '../../design/editor-schema/BaseSchema';
 import './PanelList.less';
 // @ts-ignore
-
 
 const SortableItem: any = SortableElement((props: any) => {
   const { value, onCopy, onDelete, indexNmu, changeEditCmp } = props;
@@ -72,7 +71,7 @@ const SortableList: any = SortableContainer(
   }
 );
 
-const PanelList: React.FC<any> = (props) => {
+const PanelList: React.FC<any> = () => {
   const { comsStore, editorStore } = useStore();
 
   const editList = editorStore.editList;

@@ -10,6 +10,7 @@ const propsConfig: VdProFormColumnsType<any>[] = [
       lineBlock: true,
       type: 'image',
       showValue: false,
+      styles: { padding: '10px 34px 12px' },
       options: [
         {
           text: '一行一个',

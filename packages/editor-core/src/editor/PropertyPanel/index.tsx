@@ -39,7 +39,7 @@ const PropertyPanel: React.FC<any> = () => {
     editCmp?.setImmediatelyCheck(false);
   }, [Boolean(editCmp?.immediatelyCheck)]);
 
-  const onPageValuesChange = (values: any, allValues: any) => {
+  const onPageValuesChange = (_: any, allValues: any) => {
     // 更新页面数据
     editorStore.updatePageInfoValues(allValues);
   };

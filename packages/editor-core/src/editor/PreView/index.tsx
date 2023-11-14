@@ -1,21 +1,20 @@
 import { CopyOutlined, HomeOutlined } from '@ant-design/icons';
-import { useEventListener } from 'ahooks';
 import { Button } from 'antd';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useStore } from '../../stores';
 import { ModalType } from '../../stores/editor';
 import { iframeId } from '../../manager';
 import './index.less';
 import useIframeLoad from './useIframeLoad';
 
-const defaultHeight = 750;
+// const defaultHeight = 750;
 
 const PreView: React.FC<any> = () => {
-  const { comsStore, editorStore, previewStore } = useStore();
+  const { editorStore, previewStore } = useStore();
   const contentIFrameRef = useRef<HTMLIFrameElement>(null);
   const modalType = editorStore.modalType;
-  const [height, setHeight] = useState<Number>(defaultHeight);
+  // const [height, setHeight] = useState<Number>(defaultHeight);
 
   const handleClick = (type: ModalType) => {
     editorStore.changeModalType(type);

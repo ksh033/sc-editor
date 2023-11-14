@@ -1,4 +1,4 @@
-import { Input, InputNumber, Radio, RadioChangeEvent } from 'antd';
+import { Input, InputNumber, Radio, RadioChangeEvent, Space } from 'antd';
 import React from 'react';
 
 type SetGoodsCountValueType = {
@@ -30,18 +30,23 @@ const SetGoodsCount: React.FC<SetGoodsCountProps> = (props) => {
 
   return (
     <Radio.Group onChange={onHandleChange} value={props.value?.isShowAll}>
-      <Radio value={false}>
-        <InputNumber
-          style={{ width: 100, marginLeft: 4 }}
-          placeholder="自定义"
-          controls={false}
-          value={value?.goods_number}
-          max={100}
-          onChange={onHandleInputChange}
-          parser={(text) => (/^\d+$/.test(text || '') ? Number(text) : 0)}
-        />
-      </Radio>
-      <Radio value={true}>全部</Radio>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Radio value={false}>
+          <Space align="center">
+            <InputNumber
+              style={{ width: 100, marginLeft: 4 }}
+              placeholder="自定义"
+              controls={false}
+              value={value?.goods_number}
+              max={100}
+              onChange={onHandleInputChange}
+              parser={(text) => (/^\d+$/.test(text || '') ? Number(text) : 0)}
+            />
+            <span>个</span>
+          </Space>
+        </Radio>
+        <Radio value={true}>全部</Radio>
+      </div>
     </Radio.Group>
   );
 };
