@@ -36,13 +36,6 @@ const SingleGoods = forwardRef<JumpModalRef, SingleGoodsProps>((props, ref) => {
         filterCommitionFlag: false,
       }}
       selectedRowKeys={selectedRowKeys}
-      setSearchInfo={(searchInfo: SearchInfo) => {
-        searchInfo.changeSearchItem('catalogScene', {
-          props: {
-            disabled: true,
-          },
-        });
-      }}
       getCheckboxProps={(record: any) => {
         if (
           selectedRowKeys.indexOf(record.mallGoodsId) > -1 ||
