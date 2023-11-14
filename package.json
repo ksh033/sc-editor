@@ -25,6 +25,11 @@
     "react-dom": ">=16.9.0"
   },
   "devDependencies": {
+    "@micro-frame/sc-runtime": "alpha",
+    "@scboson/sc-schema": "alpha",
+    "@scboson/sc-element": "alpha",
+    "@scboson/sc-layout": "alpha",
+    "@scboson/sc-utils": "alpha",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-form": "^2.10.1",
     "@ant-design/pro-layout": "^7.10.3",

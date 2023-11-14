@@ -2,14 +2,13 @@
   "compilerOptions": {
     "module": "esnext",
     "outDir": "es",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "jsx": "react-jsx",
     "lib": ["ES6", "DOM", "ES2015", "ES2021"],
     "baseUrl": "./",
     "target": "esnext",
     "moduleResolution": "node",
-
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
@@ -26,6 +25,8 @@
   },
 
   "exclude": [
+    ".history",
+    "node_modules",
     "**/node_modules",
     "**/examples",
     "**/dist",

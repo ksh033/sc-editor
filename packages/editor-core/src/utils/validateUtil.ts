@@ -46,7 +46,7 @@ export function validateRules(
   });
   const validator = new Schema(descriptor);
   console.log('descriptor', descriptor);
-  return new Promise((resolve, rejust) => {
+  return new Promise((resolve) => {
     validator
       .validate(record, { first: true })
       .then(() => {
