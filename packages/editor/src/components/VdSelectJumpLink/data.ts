@@ -16,7 +16,7 @@ export const items: MenuProps['items'] = [
     ],
   },
   {
-    key: 'goods-group',
+    key: 'goods-group-key',
     label: '商品分组',
     children: [
       {
@@ -26,7 +26,7 @@ export const items: MenuProps['items'] = [
     ],
   },
   {
-    key: 'coupon',
+    key: 'coupon-key',
     label: '优惠券',
     children: [
       {
@@ -36,17 +36,7 @@ export const items: MenuProps['items'] = [
     ],
   },
   {
-    key: 'coupon',
-    label: '优惠券',
-    children: [
-      {
-        key: 'coupon',
-        label: '优惠券',
-      },
-    ],
-  },
-  {
-    key: 'custom-link',
+    key: 'custom-link-key',
     label: '自定义链接',
     children: [
       {

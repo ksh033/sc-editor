@@ -1,20 +1,20 @@
 import { MenuOutlined } from '@ant-design/icons';
+import type { CouponItemProps as CouponItemValueProps } from '../../../components/VdSelectCoupon/type';
 import { Space } from 'antd';
 import React from 'react';
 import './index.less';
+
 type CouponItemProps = {
-  value: any;
+  value: CouponItemValueProps;
 };
 
 const CouponItem: React.FC<CouponItemProps> = (props) => {
   const { value } = props;
   return (
-    <div className="coupon-item" key={value.key}>
+    <div className="coupon-item" key={value.couponId}>
       <Space>
         <MenuOutlined />
-        <span>
-          优惠券：{value.name} {value.condition ? `(${value.condition})` : null}
-        </span>
+        <span>优惠券：{value.couponTitle}</span>
       </Space>
     </div>
   );

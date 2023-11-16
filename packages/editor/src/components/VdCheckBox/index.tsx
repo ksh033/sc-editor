@@ -44,6 +44,6 @@ const VdCheckBox: SysEditorPropertyComponent<VdRadioIconProps> = (props) => {
     </>
   );
 };
-VdCheckBox.valueType="VdCheckBox"
-registerEditorAttrCmp(VdCheckBox)
+VdCheckBox.valueType = 'VdCheckBox';
+registerEditorAttrCmp(VdCheckBox);
 export default VdCheckBox;

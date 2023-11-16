@@ -42,12 +42,16 @@ const VdCouponSet: SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
               style={{ width: 180, marginLeft: 4 }}
               placeholder="请输入显示的券活动数"
               controls={false}
-              value={value?.coupon_num}
+              value={value?.coupon_num || 1}
               max={10}
               onChange={(num: any) => {
-                onHandleChange('coupon_num', num);
+                if (num === 0) {
+                  onHandleChange('isShowAll', true);
+                } else {
+                  onHandleChange('couponNum', num);
+                }
               }}
-              parser={(text) => (/^\d+$/.test(text || '') ? Number(text) : 0)}
+              parser={(text) => (/^\d+$/.test(text || '') ? Number(text) : 1)}
             />
           </Radio>
         </Radio.Group>
@@ -55,14 +59,14 @@ const VdCouponSet: SysEditorPropertyComponent<VdCouponSetProps> = (props) => {
           <Space>
             <span className="vd-coupon-set__label">隐藏不可分享的优惠券</span>
             <span>
-              {Boolean(value?.hide_unshared_coupon) ? '隐藏' : '不隐藏'}
+              {Boolean(value?.hideUnsharedCoupon) ? '隐藏' : '不隐藏'}
             </span>
           </Space>
           <div>
             <Checkbox
-              checked={value?.hide_unshared_coupon}
+              checked={value?.hideUnsharedCoupon}
               onChange={(e) => {
-                onHandleChange('hide_unshared_coupon', e.target.checked);
+                onHandleChange('hideUnsharedCoupon', e.target.checked);
               }}
             ></Checkbox>
           </div>

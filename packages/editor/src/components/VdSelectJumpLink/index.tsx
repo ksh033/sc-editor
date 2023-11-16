@@ -1,12 +1,14 @@
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { Button, Dropdown, Input } from 'antd';
+import type { MenuProps } from 'antd';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
+import SingleGoods from './SingleGoods';
+import { CModal } from '@scboson/sc-element';
 import classnames from 'classnames';
 import { SysEditorPropertyComponent } from '../interface';
-import { VdSelectJumpLinkProps } from './type';
+import type { VdSelectJumpLinkProps } from './type';
 import { items } from './data';
 import './index.less';
-import SingleGoods from './SingleGoods';
 
 /** 选择跳转链接 */
 const VdSelectJumpLink: SysEditorPropertyComponent<VdSelectJumpLinkProps> = (
@@ -16,25 +18,38 @@ const VdSelectJumpLink: SysEditorPropertyComponent<VdSelectJumpLinkProps> = (
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const ref = useRef<any>();
-
-  const map: Record<string, () => React.ReactNode> = {
+  const map: Record<string, () => void> = {
     'single-goods': () => {
-      return <SingleGoods ref={ref}></SingleGoods>;
+      CModal.show({
+        title: '选择商品',
+        content: SingleGoods,
+        onOk: () => {},
+        width: '900px',
+      });
     },
   };
 
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    console.log('e', e);
+    const key = e.key;
+    if (map[key]) {
+      map[key]();
+    }
+  };
+
   return (
-    <Dropdown
-      menu={{ items }}
-      placement="bottomLeft"
-      open={open}
-      onOpenChange={setOpen}
-    >
-      <Button type={type === 'link' ? 'link' : 'primary'} size="small">
-        {btnText}
-      </Button>
-    </Dropdown>
+    <Fragment>
+      <Dropdown
+        menu={{ items, onClick: handleMenuClick }}
+        placement="bottomLeft"
+        open={open}
+        onOpenChange={setOpen}
+      >
+        <Button type={type === 'link' ? 'link' : 'primary'} size="small">
+          {btnText}
+        </Button>
+      </Dropdown>
+    </Fragment>
   );
 };
 

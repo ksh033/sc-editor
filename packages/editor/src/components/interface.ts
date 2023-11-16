@@ -24,6 +24,7 @@ export enum SysValueTypesEnum {
   VdIcon = 'VdIcon',
   VdSelectJumpLink = 'VdSelectJumpLink',
   VdGoodsProperty = 'VdGoodsProperty',
+  VdSelectCoupon = 'VdSelectCoupon',
 }
 export type SysValueTypes = keyof typeof SysValueTypesEnum;
 export type SysEditorPropertyComponent<P> = EditorPropertyComponent<

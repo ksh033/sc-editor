@@ -1,7 +1,5 @@
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import { CModal } from '@scboson/sc-element';
+import { forwardRef, useEffect } from 'react';
 import { useSetState } from 'ahooks';
-import type SearchInfo from '@scboson/sc-schema/es/page/SearchInfo';
 import _ from 'lodash';
 import { JumpModalRef } from '../type';
 import SelectGoodsTable from './table';
@@ -19,7 +17,6 @@ const SingleGoods = forwardRef<JumpModalRef, SingleGoodsProps>((props, ref) => {
     checked: false,
   });
   const selectedRowKeys = state.useScope.map(({ mallGoodsId }) => mallGoodsId);
-  let selecteds: any = null;
 
   useEffect(() => {
     if (value) {
@@ -29,7 +26,7 @@ const SingleGoods = forwardRef<JumpModalRef, SingleGoodsProps>((props, ref) => {
     }
   }, [value]);
 
-  const goodsTable = (
+  return (
     <SelectGoodsTable
       selectionType="checkbox"
       params={{
@@ -48,7 +45,7 @@ const SingleGoods = forwardRef<JumpModalRef, SingleGoodsProps>((props, ref) => {
       onTabelRow={(keys, selectRows: any[]) => {
         if (Array.isArray(selectRows)) {
           const useScopeLength = state.useScope.length;
-          selecteds = selectRows.map(
+          let selecteds = selectRows.map(
             ({ mallGoodsId, goodsName }, index: number) => ({
               mallGoodsId,
               goodsName,
@@ -56,33 +53,11 @@ const SingleGoods = forwardRef<JumpModalRef, SingleGoodsProps>((props, ref) => {
             })
           );
           selecteds = _.unionBy(state.useScope, selecteds, 'mallGoodsId');
+
+          onChange?.(selecteds);
         }
       }}
     />
   );
-
-  const onOpen = () => {
-    CModal.show({
-      title: '选择商品',
-      content: goodsTable,
-      onOk: () => {
-        if (selecteds) {
-          setState({ useScope: selecteds });
-
-          onChange?.(selecteds);
-        }
-      },
-
-      width: '900px',
-    });
-  };
-
-  useImperativeHandle(ref, () => {
-    return {
-      open: onOpen,
-    };
-  });
-
-  return <div>12</div>;
 });
 export default SingleGoods;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import type { PageConfig } from '@scboson/sc-schema';
 import list from './list';
 import type { ProColumn } from '@scboson/sc-schema/es/interface';
@@ -60,7 +60,7 @@ const GoodsTable: React.FC<GoodsTableProps> = (props: GoodsTableProps) => {
 };
 GoodsTable.displayName = 'GoodsTable';
 
-export default WithTable<GoodsTableProps>(
+const Table = WithTable<GoodsTableProps>(
   GoodsTable,
   pageConfig,
   (props, searchInfo) => {
@@ -74,18 +74,13 @@ export default WithTable<GoodsTableProps>(
     } = props;
     let rowKey = defaultRowKey;
     let request = defaultRequest;
-    if (goodsType === 'standard') {
-      searchInfo.searchInfo.queryList[1].name = 'goodsName';
-    }
-    if (goodsType === 'discount-goods') {
-      searchInfo.changeSearchItem('catalogScene', {
-        hidden: true,
-      });
-    }
-    if (setSearchInfo) {
-      setSearchInfo(searchInfo);
-    }
+
+    // if (setSearchInfo) {
+    //   setSearchInfo();
+    // }
 
     return { ...restProps, rowKey, request };
   }
-);
+) as FunctionComponent<GoodsTableProps>;
+
+export default Table;

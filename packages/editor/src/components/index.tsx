@@ -20,6 +20,7 @@ import VdUpload from './VdUpload';
 import VdVideoLink from './VdVideoLink';
 import VdImgLink from './VdImgLink';
 import VdGoodsProperty from './VdGoodsProperty';
+import VdSelectCoupon from './VdSelectCoupon';
 
 export {
   VdRadioIcon,
@@ -43,4 +44,5 @@ export {
   VdAddElevatorNav,
   VdAddImageList,
   VdGoodsProperty,
+  VdSelectCoupon,
 };
