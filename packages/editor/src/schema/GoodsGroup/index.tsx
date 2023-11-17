@@ -21,7 +21,13 @@ class GoodsGroup extends BaseSchemaEditor {
   getColumItem(it: ProFormColumnsType<any, any>, record) {
     const dataIndex = it.dataIndex ? spellNamePath(it.dataIndex) : it.key;
     if (record['show_method'] === 'LEFT_NAV' && dataIndex) {
-      const hiddenList: Key[] = ['sticky', 'show_all_tag', 'nav_style'];
+      const hiddenList: Key[] = [
+        'sticky',
+        'show_all_tag',
+        'nav_style',
+        '1',
+        '2',
+      ];
       if (dataIndex === 'goods-group') {
         return {
           ...it,
@@ -31,6 +37,7 @@ class GoodsGroup extends BaseSchemaEditor {
         };
       }
       if (hiddenList.indexOf(dataIndex) > -1) {
+        console.log('dataIndex');
         return null;
       }
     }

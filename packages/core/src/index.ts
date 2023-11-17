@@ -25,7 +25,6 @@ export function registerCmp(type, cmp) {
 }
 
 export const getCmpByType = (type: string) => {
-  console.log('_components', _components);
   return _components.get(type);
 };
 

@@ -78,6 +78,10 @@ export const filterItemPageConfig = (
       .map((it) => {
         if (Array.isArray(it.columns) && it.columns.length > 0) {
           it.columns = filterItemPageConfig(it.columns, fn, record);
+          // 如果子项没有父节点也删除
+          if (it.valueType === 'group' && it.columns.length === 0) {
+            return null;
+          }
         }
         return fn(it, record);
       })
