@@ -43,9 +43,6 @@ const propsConfig: VdProFormColumnsType[] = [
     },
   },
   {
-    valueType: 'divider',
-  },
-  {
     title: '商品样式',
     dataIndex: 'goods_style',
     valueType: 'VdRadioIcon',
@@ -148,9 +145,6 @@ const propsConfig: VdProFormColumnsType[] = [
     fieldProps: {
       max: 30,
     },
-  },
-  {
-    valueType: 'divider',
   },
   {
     dataIndex: 'show_goods_name',

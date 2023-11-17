@@ -6,7 +6,7 @@ import BaseForm from './BaseForm';
 
 import { genNonDuplicateId } from '../../utils';
 import { validateRules } from '../../utils/validateUtil';
-import { filterPageConfig } from './util';
+import { filterItemPageConfig, filterPageConfig } from './util';
 
 export type FormProps = Omit<FormSchema<any, any>, 'layoutType' | 'columns'>;
 export interface EditorData {
@@ -58,6 +58,11 @@ export interface BaseSchemaClass {
   cmpName?: string;
   propsConfig: ProFormColumnsType<any, any>[]; // 右侧属性配置栏显示
   getInitialValue?: () => any; // 右侧属性初始化数据
+  /** 单个属性过滤 */
+  getColumItem?(
+    column: ProFormColumnsType,
+    record: any
+  ): ProFormColumnsType | null;
   getPropsConfig?: (
     columns: ProFormColumnsType[],
     record: any
@@ -104,6 +109,11 @@ export interface ComponentSchemaType {
   cmpName?: string;
   propsConfig: ProFormColumnsType<any>[]; // 右侧属性配置栏显示
   getInitialValue?: () => any; // 右侧属性初始化数据
+  /** 单个属性过滤 */
+  getColumItem?(
+    column: ProFormColumnsType,
+    record: any
+  ): ProFormColumnsType | null;
   getPropsConfig?: (
     columns: ProFormColumnsType[],
     record: any
@@ -155,6 +165,11 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
   formatValues?: ((allValues: any) => void) | undefined;
 
   getInitialValue?(): any;
+  /** 单个属性过滤 */
+  getColumItem?(
+    column: ProFormColumnsType<any>,
+    record: any
+  ): ProFormColumnsType<any> | null;
   getPropsConfig?(
     columns: ProFormColumnsType[],
     record: any
@@ -164,6 +179,11 @@ abstract class BaseSchemaEditor implements BaseSchemaClass {
     let columns: ProFormColumnsType[] = [];
     if (Array.isArray(this.propsConfig)) {
       columns = filterPageConfig(this.propsConfig);
+      /** 单个过滤 */
+      if (this.getColumItem) {
+        columns = filterItemPageConfig(columns, this.getColumItem, this.values);
+      }
+      /** 多个过滤 */
       if (this.getPropsConfig) {
         columns = this.getPropsConfig(columns, this.values);
       }

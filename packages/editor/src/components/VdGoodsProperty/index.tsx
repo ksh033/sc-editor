@@ -8,9 +8,15 @@ import {
   registerEditorAttrCmp,
 } from '@sceditor/editor-core';
 import React from 'react';
+import { VdGoodsPropertyProps } from './type';
+import { SysEditorPropertyComponent } from '../interface';
 
 /** 商品属性集合 */
-const VdGoodsProperty = () => {
+const VdGoodsProperty: SysEditorPropertyComponent<VdGoodsPropertyProps> = (
+  props
+) => {
+  const { ignoreList = [] } = props;
+
   const editorContext = useContext(EditorContext);
   const comMap = editorContext.manager.getComponentMap();
 
@@ -52,27 +58,29 @@ const VdGoodsProperty = () => {
     const renderList: React.ReactNode[] = [];
     if (Array.isArray(list)) {
       list.forEach((it: VdProFormColumnsType, idx) => {
-        let formItemProps = Object.assign(
-          { className: 'deco-control-group' },
-          it.formItemProps
-        );
-        let fieldProps = it.fieldProps || {};
-        formItemProps = {
-          ...formItemProps,
-          label: undefined,
-          name: it.dataIndex,
-        };
-        fieldProps['formItem'] = {
-          name: it.dataIndex,
-          label: it.title,
-        };
-        fieldProps = getFieldProps(it.key || it.dataIndex, fieldProps);
-        const valueType = (it.valueType || '') as string;
-        renderList.push(
-          <Fragment key={`item-${it.key || it.dataIndex || idx}`}>
-            {SingleRender(valueType, fieldProps, formItemProps)}
-          </Fragment>
-        );
+        if (it.dataIndex && ignoreList.indexOf(it.dataIndex) === -1) {
+          let formItemProps = Object.assign(
+            { className: 'deco-control-group' },
+            it.formItemProps
+          );
+          let fieldProps = it.fieldProps || {};
+          formItemProps = {
+            ...formItemProps,
+            label: undefined,
+            name: it.dataIndex,
+          };
+          fieldProps['formItem'] = {
+            name: it.dataIndex,
+            label: it.title,
+          };
+          fieldProps = getFieldProps(it.key || it.dataIndex, fieldProps);
+          const valueType = (it.valueType || '') as string;
+          renderList.push(
+            <Fragment key={`item-${it.key || it.dataIndex || idx}`}>
+              {SingleRender(valueType, fieldProps, formItemProps)}
+            </Fragment>
+          );
+        }
       });
     }
     return renderList;

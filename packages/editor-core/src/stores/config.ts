@@ -6,18 +6,18 @@
  * @Description: In User Settings Edit
  * @FilePath: \react-cli\src\stores\config.ts
  */
-import comsStore from './coms/index'
-import editorStore from './editor/index'
-import previewStore from './preview/index'
+import comsStore from './coms/index';
+import editorStore from './editor/index';
+import previewStore from './preview/index';
 
 export function createStore() {
   return {
     comsStore,
     editorStore,
     previewStore,
-  }
+  };
 }
 
-export const store = createStore()
+export const store = createStore();
 
-export type StoreType = ReturnType<typeof createStore>
+export type StoreType = ReturnType<typeof createStore>;

@@ -64,7 +64,7 @@ const propsConfig: VdProFormColumnsType[] = [
       },
       {
         title: '显示全部分组',
-        dataIndex: 'show_all_goods_tag',
+        dataIndex: 'show_all_tag',
         valueType: 'VdRadioIcon',
         fieldProps: {
           showValue: false,

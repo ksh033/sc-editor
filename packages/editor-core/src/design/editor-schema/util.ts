@@ -66,3 +66,24 @@ export const filterPageConfig = (
 
   return newColumn;
 };
+
+/** 过滤单个 */
+export const filterItemPageConfig = (
+  propsConfig: ProFormColumnsType<any>[],
+  fn: (column: ProFormColumnsType, record: any) => ProFormColumnsType | null,
+  record: any
+): ProFormColumnsType[] => {
+  if (Array.isArray(propsConfig)) {
+    const newList = propsConfig
+      .map((it) => {
+        if (Array.isArray(it.columns) && it.columns.length > 0) {
+          it.columns = filterItemPageConfig(it.columns, fn, record);
+        }
+        return fn(it, record);
+      })
+      .filter((it) => it != null);
+
+    return newList as ProFormColumnsType[];
+  }
+  return [];
+};

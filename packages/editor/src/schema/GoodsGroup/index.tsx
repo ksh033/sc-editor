@@ -7,6 +7,8 @@ import {
   FormProps,
   registerEditor,
 } from '@sceditor/editor-core';
+import { spellNamePath } from '../../utils';
+import { Key } from 'react';
 
 /** 商品组 */
 class GoodsGroup extends BaseSchemaEditor {
@@ -16,14 +18,29 @@ class GoodsGroup extends BaseSchemaEditor {
   formProps: FormProps = {
     layout: 'horizontal',
   };
-  getPropsConfig(columns: ProFormColumnsType<any>[]) {
-    return columns;
+  getColumItem(it: ProFormColumnsType<any, any>, record) {
+    const dataIndex = it.dataIndex ? spellNamePath(it.dataIndex) : it.key;
+    if (record['show_method'] === 'LEFT_NAV' && dataIndex) {
+      const hiddenList: Key[] = ['sticky', 'show_all_tag', 'nav_style'];
+      if (dataIndex === 'goods-group') {
+        return {
+          ...it,
+          fieldProps: {
+            ignoreList: ['goods_type', 'goods_style'],
+          },
+        };
+      }
+      if (hiddenList.indexOf(dataIndex) > -1) {
+        return null;
+      }
+    }
+    return it;
   }
   getInitialValue() {
     return {
       nav_style: '1',
       sticky: true,
-      show_all_goods_tag: false,
+      show_all_tag: false,
       show_method: 'TOP_NAV',
       goods_type: 'G1',
       border_radius_type: 'straight',
