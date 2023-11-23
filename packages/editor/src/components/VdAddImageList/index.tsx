@@ -2,20 +2,22 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useRef } from 'react';
 import VdAddList, { VdAddListProps } from '../VdAddList';
-import VdImgLink from '../VdImgLink';
 import VdSelectImage, {
   VdSelectImageItem,
   VdSelectImageRef,
 } from '../VdSelectImage';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import { SysEditorPropertyComponent } from '../interface';
+import AddImageItem from './AddImageItem';
 
 type VdAddImageListProps = VdAddListProps<any>;
 
 /** 添加图片 */
-const VdAddImageList:SysEditorPropertyComponent<VdAddImageListProps> = (props) => {
+const VdAddImageList: SysEditorPropertyComponent<VdAddImageListProps> = (
+  props
+) => {
   const renderItem = (rprops: any) => {
-    return <VdImgLink {...rprops}></VdImgLink>;
+    return <AddImageItem {...rprops}></AddImageItem>;
   };
 
   const modalRef = useRef<VdSelectImageRef>(null);
@@ -31,7 +33,10 @@ const VdAddImageList:SysEditorPropertyComponent<VdAddImageListProps> = (props) =
   /** 添加数据 */
   const handleAddClick = (record: VdSelectImageItem) => {
     if (Array.isArray(props.value)) {
-      const newValue = [...props.value, record];
+      const newRecord = Object.assign(record, {
+        jumpType: 'ALL',
+      });
+      const newValue = [...props.value, newRecord];
       props.onChange?.(newValue);
     }
   };
@@ -68,6 +73,6 @@ const VdAddImageList:SysEditorPropertyComponent<VdAddImageListProps> = (props) =
     ></VdAddList>
   );
 };
-VdAddImageList.valueType="VdAddImageList";
-registerEditorAttrCmp(VdAddImageList)
+VdAddImageList.valueType = 'VdAddImageList';
+registerEditorAttrCmp(VdAddImageList);
 export default VdAddImageList;

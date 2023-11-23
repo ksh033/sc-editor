@@ -6,11 +6,11 @@ export const items: MenuProps['items'] = [
     label: '商品',
     children: [
       {
-        key: 'single-goods',
+        key: 'GOODS',
         label: '单个商品',
       },
       {
-        key: 'all-goods',
+        key: 'ALL_GOODS',
         label: '全部商品',
       },
     ],
@@ -20,7 +20,7 @@ export const items: MenuProps['items'] = [
     label: '商品分组',
     children: [
       {
-        key: 'goods-group',
+        key: 'GOODS_GROUP',
         label: '商品分组',
       },
     ],
@@ -30,7 +30,7 @@ export const items: MenuProps['items'] = [
     label: '优惠券',
     children: [
       {
-        key: 'coupon',
+        key: 'COUPON',
         label: '优惠券',
       },
     ],
@@ -40,7 +40,7 @@ export const items: MenuProps['items'] = [
     label: '自定义链接',
     children: [
       {
-        key: 'custom-link',
+        key: 'PAGE',
         label: '自定义链接',
       },
     ],

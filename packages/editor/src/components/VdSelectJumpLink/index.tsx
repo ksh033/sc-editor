@@ -9,6 +9,7 @@ import { SysEditorPropertyComponent } from '../interface';
 import type { VdSelectJumpLinkProps } from './type';
 import { items } from './data';
 import './index.less';
+import { LinkSelectTypeEnum } from '../../interface/common';
 
 /** 选择跳转链接 */
 const VdSelectJumpLink: SysEditorPropertyComponent<VdSelectJumpLinkProps> = (
@@ -18,8 +19,8 @@ const VdSelectJumpLink: SysEditorPropertyComponent<VdSelectJumpLinkProps> = (
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const map: Record<string, () => void> = {
-    'single-goods': () => {
+  const map: Partial<Record<LinkSelectTypeEnum, () => void>> = {
+    GOODS: () => {
       CModal.show({
         title: '选择商品',
         content: SingleGoods,

@@ -4,7 +4,7 @@ export const baseUrl = 'https://test.yumcat.cn/images';
 
 export function imageUrl(url: string) {
   const str = RegExp('http');
-  let newUrl: string | null = null;
+  let newUrl: string | undefined = void 0;
   // 通过三元运算符进行判断该图片是否含有http域名，没有就拼接上去
   if (url) {
     if (str.test(url)) {

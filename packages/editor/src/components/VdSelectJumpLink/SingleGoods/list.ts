@@ -24,13 +24,6 @@ const pageConfig: PageConfig = {
   ],
   tableConfig: [
     {
-      title: '商品编码',
-      dataIndex: 'goodsCode',
-      key: 'goodsCode',
-      ellipsis: true,
-      width: 100,
-    },
-    {
       title: '商品名称',
       dataIndex: 'goodsName',
       key: 'goodsName',
@@ -38,9 +31,9 @@ const pageConfig: PageConfig = {
       width: 200,
     },
     {
-      title: '规格',
-      dataIndex: 'goodsSpecs',
-      key: 'goodsSpecs',
+      title: '描述',
+      dataIndex: 'goodsDesc',
+      key: 'goodsDesc',
       ellipsis: true,
       width: 200,
     },

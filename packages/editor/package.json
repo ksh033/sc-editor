@@ -59,6 +59,8 @@
     "react-sortable-hoc": "^2.0.0",
     "unstated-next": "^1.1.0",
     "use-media-antd-query": "^1.0.1",
+    "react-rnd": "^10.4.1",
+    "re-resizable": "^6.9.6",
     "@chenshuai2144/sketch-color":"^1.0.9"
   },
   "sideEffects": [

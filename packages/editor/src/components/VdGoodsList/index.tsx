@@ -1,32 +1,53 @@
 import { CloseCircleFilled, PlusOutlined } from '@ant-design/icons';
 import ScImage from '../../baseComponents/ScImage';
 import './index.less';
-import { goodsList } from './list';
 import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
 import type { SysEditorPropertyComponent } from '../interface';
+import { CModal } from '@scboson/sc-element';
+import SingleGoods from '../VdSelectJumpLink/SingleGoods';
+import { useRef } from 'react';
 
 type VdGoodsListProps = BaseFromItemProps<any[]> & {};
 
 const VdGoodsList: SysEditorPropertyComponent<VdGoodsListProps> = (props) => {
   const { value = [], onChange } = props;
 
-  const handleAddClick = () => {
-    if (Array.isArray(value) && value.length <= 20) {
-      var num = Math.floor(Math.random() * 20);
+  let temselectList = useRef<any[]>([]);
 
-      const item = goodsList[num];
-      if (item) {
-        const index = value.findIndex((it) => it.goodsId === item.goodsId);
-        if (index === -1) {
-          onChange?.([...value, item]);
-        } else {
-          handleAddClick();
-        }
-      } else {
-        handleAddClick();
-      }
+  const onHandleChange = (list: any) => {
+    if (Array.isArray(list) && list.length > 0) {
+      temselectList.current = list;
     }
+  };
+
+  const cmp = (
+    <SingleGoods
+      selectionType="checkbox"
+      value={value}
+      onChange={onHandleChange}
+    />
+  );
+
+  const handleAddClick = () => {
+    CModal.show({
+      title: '选择商品',
+      content: cmp,
+      width: '1000px',
+      onOk: () => {
+        if (
+          Array.isArray(temselectList.current) &&
+          temselectList.current.length > 0
+        ) {
+          const map = new Set(value);
+          const addValue = temselectList.current.filter(
+            (it) => !map.has(it.goodsId)
+          );
+          onChange && onChange([...addValue, ...value]);
+          temselectList.current = [];
+        }
+      },
+    });
   };
 
   const onHandleDetele = (key: string) => {

@@ -11,6 +11,7 @@
     "release": "node ./scripts/release.js --conventionalPrerelease=true",
     "test": "node ./scripts/dev.js",
     "build-center:dev": "pnpm --filter \"@sceditor/core\" dev",
+    "build-editor": "pnpm --filter \"@sceditor/editor\" dev",
     "build-element:dev": "pnpm --filter \"@sceditor/element\" dev",
     "build-core:dev": "pnpm --filter \"@sceditor/editor-core\" dev",
     "build:web-dev": "npm run build && cross-env  REACT_APP_ENV=dev APP_ROOT=packages/web umi build",
@@ -109,6 +110,9 @@
     "babel-plugin-import": "^1.13.8",
     "rc-field-form": "^1.38.2",
     "react-beautiful-dnd": "^13.1.1",
+    "react-draggable": "^4.4.6",
+    "react-rnd": "^10.4.1",
+    "re-resizable": "^6.9.6",
     "react-sortablejs": "^6.1.4",
     "sortablejs": "1.13.0"
   },

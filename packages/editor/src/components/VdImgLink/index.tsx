@@ -1,4 +1,4 @@
-import { Button, Input, Space } from 'antd';
+import { Button, Input, Radio, RadioChangeEvent, Space } from 'antd';
 import VdSelectImage from '../VdSelectImage';
 import './index.less';
 import { VdImgLinkProps } from './type';
@@ -17,6 +17,14 @@ const VdImgLink: SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
     });
   };
 
+  const onRadioChange = (e: RadioChangeEvent) => {
+    const newVal = value || {};
+    onChange({
+      ...newVal,
+      jumpType: e.target.value,
+    });
+  };
+
   return (
     <div className="vd-img-link">
       <div className="vd-img-link-choosed-image">
@@ -26,6 +34,10 @@ const VdImgLink: SysEditorPropertyComponent<VdImgLinkProps> = (props) => {
         <Space direction="vertical" className="vd-img-link-space">
           <span className="tag-item-warp-label">链接设置</span>
           <Input placeholder="图片提示信息(非必填)"></Input>
+          <Radio.Group onChange={onRadioChange} value={value.jumpType}>
+            <Radio value="ALL">整体跳转</Radio>
+            <Radio value="PART">分热区跳转</Radio>
+          </Radio.Group>
           {/* 链接跳转 */}
           <VdSelectJumpLink></VdSelectJumpLink>
         </Space>

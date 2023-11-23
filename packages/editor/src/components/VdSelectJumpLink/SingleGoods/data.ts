@@ -454,4 +454,4 @@ const goodsList = [
   },
 ];
 
-export { goodsList };
+export default goodsList;

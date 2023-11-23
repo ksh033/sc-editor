@@ -1,5 +1,5 @@
 import { ProFormColumnsType } from '@ant-design/pro-form';
-import {BaseSchemaEditor,registerEditor} from '@sceditor/editor-core';
+import { BaseSchemaEditor, registerEditor } from '@sceditor/editor-core';
 import { VdProFormColumnsType } from '../../interface';
 import { spellNamePath } from '../../utils';
 import propsConfig from './list';
@@ -31,8 +31,6 @@ class AdImage extends BaseSchemaEditor {
   }
 
   getInitialValue() {
-
-    
     return {
       show_method: 'single',
       image_style: 'normal',
@@ -41,7 +39,11 @@ class AdImage extends BaseSchemaEditor {
       page_margin: 0,
       image_fill_style: 'cover',
       count: 1,
-      list: [],
+      list: [
+        {
+          jumpType: 'ALL',
+        },
+      ],
     };
   }
 }
@@ -56,6 +58,5 @@ AdImage.info = {
   status: '',
 };
 
-
-registerEditor(AdImage)
+registerEditor(AdImage);
 export default AdImage;
