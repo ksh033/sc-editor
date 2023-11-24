@@ -9,13 +9,18 @@ import { BaseImage, JumpLink } from '../../../interface/common.d';
 import ScImage from '../../../baseComponents/ScImage';
 import VdSelectJumpLink from '../../VdSelectJumpLink';
 import './index.less';
+import { CModal } from '@scboson/sc-element';
+import { ModalPageContainer } from '@micro-frame/sc-runtime';
 
 const classPrefix = 'add-heatzone';
 
 type AddHeatZoneProps = {
-  data?: BaseImage;
-  value?: JumpLink[];
-  onChange?: (val: JumpLink[]) => void;
+  close: () => void;
+  pageProps: {
+    data?: BaseImage;
+    value?: JumpLink[];
+    onChange?: (val: JumpLink[]) => void;
+  };
 };
 
 type HotAreaLink = JumpLink & {
@@ -31,21 +36,27 @@ type AddHeatZoneState = {
   initMinHeight: number;
   initMinWidth: number;
   /** 图片区域大小 */
-  imgAreaHeight?: number;
+  imgAreaHeight: number;
   maxHeight: number;
   hotAreas: HotAreaLink[];
 };
 
+const defaultAreaImageHeight = 316;
+
 /** 添加热区 */
 const AddHeatZone: React.FC<AddHeatZoneProps> = (props) => {
-  const { data = {} } = props;
+  const { close, pageProps } = props;
+  const { data = {}, value = [], onChange } = pageProps;
+  const valueOldRef = useRef<string>('[]');
 
-  const valueRef = useRef<JumpLink[]>([]);
+  const valueStr = JSON.stringify(value);
+
   const [state, setState] = useSetState<AddHeatZoneState>({
     initMinHeight: 20,
     initMinWidth: 32,
     maxHeight: 375,
     hotAreas: [],
+    imgAreaHeight: defaultAreaImageHeight,
   });
 
   /** 添加区域 */
@@ -238,8 +249,6 @@ const AddHeatZone: React.FC<AddHeatZoneProps> = (props) => {
       }
     }
   };
-  /** 关闭弹窗 */
-  const triggerAllPopover = (v: boolean) => {};
 
   /** 监听图片数据 */
   useEffect(() => {
@@ -247,13 +256,87 @@ const AddHeatZone: React.FC<AddHeatZoneProps> = (props) => {
       const imageWidth = Number(data.imageWidth);
       const n = Math.floor((375 * Number(data.imageHeight)) / imageWidth);
       const o = window.innerHeight - 180;
-      const imgAreaHeight = Math.min(o, n) < 316 ? 316 : Math.min(o, n);
+      const imgAreaHeight =
+        Math.min(o, n) < defaultAreaImageHeight
+          ? defaultAreaImageHeight
+          : Math.min(o, n);
       setState({
         imgAreaHeight: imgAreaHeight,
         maxHeight: n,
       });
     }
   }, [JSON.stringify(data)]);
+  /** 选择链接 */
+  const onSelectLink = (index, it) => {
+    let hotAreas: HotAreaLink[] = state.hotAreas;
+    let item = hotAreas[index];
+    if (item) {
+      if (it) {
+        item = {
+          ...item,
+          ...it,
+        };
+        hotAreas.splice(index, 1, item);
+      } else {
+        hotAreas.splice(index, 1, {
+          startX: item.startX,
+          startY: item.startY,
+          endX: item.endX,
+          endY: item.endY,
+          showOptPopover: !1,
+        });
+      }
+    }
+    setState({
+      hotAreas: hotAreas,
+    });
+  };
+
+  const handleInitialHotAreas = () => {
+    let hotAreas: HotAreaLink[] = JSON.parse(JSON.stringify(value));
+    console.log('hotAreas', hotAreas);
+    if (data.imageWidth && data.imageHeight) {
+      const imageHeight = data.imageHeight;
+
+      const endY = imageHeight;
+
+      if (hotAreas.length === 0) {
+        hotAreas.push({
+          startX: 0,
+          startY: 0,
+          endX: 50,
+          endY: endY > 50 ? 50 : endY,
+          showOptPopover: !1,
+        });
+      } else {
+        hotAreas = hotAreas.map((it) => {
+          const startX = Number(it.x);
+          const startY = Number(it.y);
+          const endX = Number(it.x || 0) + Number(it.width || 0);
+          const endY = Number(it.y || 0) + Number(it.height || 0);
+
+          return Object.assign({}, it, {
+            startX: Math.round(startX),
+            startY: Math.round(startY),
+            endX: Math.round(endX),
+            endY: Math.round(endY),
+            showOptPopover: !1,
+          });
+        });
+      }
+    }
+    console.log('handleInitialHotAreas', hotAreas);
+    setState({
+      hotAreas: hotAreas,
+    });
+  };
+
+  /** 初始化 */
+  useEffect(() => {
+    if (Array.isArray(value)) {
+      handleInitialHotAreas();
+    }
+  }, [valueStr]);
 
   /** 移动完处理 */
   const handleHotAreaDragStop = (data: DraggableData, idx: number) => {
@@ -295,113 +378,164 @@ const AddHeatZone: React.FC<AddHeatZoneProps> = (props) => {
     });
   };
 
-  return (
-    <div className={classPrefix}>
-      <div className={`${classPrefix}-left`} id="dragview">
-        <div
-          className="image-content"
-          style={{
-            width: 375,
-            height: Number(state.imgAreaHeight || 0),
-          }}
-        >
-          <div className="image-area">
-            <ScImage
-              preview={false}
-              src={data?.imageUrl}
-              className="decorate-hot-area-image-editor__dialog-image"
-            ></ScImage>
+  const modalButtons = [
+    {
+      text: '取消',
+      onClick() {
+        close();
+      },
+    },
+    {
+      text: '确定',
+      type: 'primary',
+      onClick() {
+        const hotAreas = state.hotAreas.map((it) => {
+          return Object.assign({}, it, {
+            x: Math.round(it.startX),
+            y: Math.round(it.startY),
+            width: Math.round(it.endX - it.startX),
+            height: Math.round(it.endY - it.startY),
+          });
+        });
+        console.log('onChange shotAreas', hotAreas);
+        onChange?.(hotAreas);
+        close();
+      },
+    },
+  ];
 
-            {state.hotAreas.map((it, idx) => {
-              const width = it.endX - it.startX;
-              const height = it.endY - it.startY;
+  return (
+    <ModalPageContainer toolbar={modalButtons}>
+      <div className={classPrefix}>
+        <div className={`${classPrefix}-left`} id="dragview">
+          <div
+            className="image-content"
+            style={{
+              width: 375,
+              height: Number(state.imgAreaHeight || defaultAreaImageHeight),
+            }}
+          >
+            <div className="image-area">
+              <ScImage
+                preview={false}
+                src={data?.imageUrl}
+                className="decorate-hot-area-image-editor__dialog-image"
+                id="decorate-hot-area-image-editor__image"
+              ></ScImage>
+
+              {state.hotAreas.map((it, idx) => {
+                const width = it.endX - it.startX;
+                const height = it.endY - it.startY;
+                return (
+                  <Rnd
+                    key={`rn-${idx}`}
+                    bounds="#dragview"
+                    size={{
+                      width: Number(width || 0),
+                      height: Number(height || 0),
+                    }}
+                    // className="new-image-ad-hotarea-rnd"
+                    className={classnames('new-image-ad-hotarea-rnd', {
+                      active: it.showOptPopover,
+                    })}
+                    position={{
+                      x: Number(it.startX || 0),
+                      y: Number(it.startY || 0),
+                    }}
+                    maxWidth={375}
+                    maxHeight={state.maxHeight}
+                    minWidth={state.initMinWidth}
+                    minHeight={state.initMinHeight}
+                    onDragStop={(e: DraggableEvent, data: DraggableData) => {
+                      handleHotAreaDragStop(data, idx);
+                    }}
+                    onDragStart={() => {}}
+                    onDrag={() => {
+                      it.showOptPopover && handleHideHotAreaOptPopover();
+                    }}
+                    onResizeStop={() => {
+                      checkHotAreaPosition(idx);
+                    }}
+                    onResize={(
+                      e: MouseEvent | TouchEvent,
+                      dir: ResizeDirection,
+                      elementRef: HTMLElement
+                    ) => {
+                      handleHideHotAreaOptPopover();
+                      handleHotAreaResize(elementRef, dir, idx);
+                      // if (it.showOptPopover) {
+                      //   handleHideHotAreaOptPopover();
+                      //   handleHotAreaResize(elementRef, dir, idx);
+                      // }
+                    }}
+                  >
+                    <div className="area-index">123</div>
+                    <div className="border-area">
+                      <div className="border-area-top-left"></div>
+                      <div className="border-area-top-right"></div>
+                      <div className="border-area-bottom-left"></div>
+                      <div className="border-area-bottom-right"></div>
+                    </div>
+                  </Rnd>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <div className={`${classPrefix}-right`}>
+          <div className={`${classPrefix}-right-fixed-area`}>
+            <div className={`${classPrefix}-right-title`}>热区管理</div>
+            <div className="add-area" onClick={addHotArea}>
+              <PlusOutlined />
+              添加地区
+            </div>
+          </div>
+          <div
+            className={`${classPrefix}-content`}
+            style={{
+              maxHeight: Number(state.imgAreaHeight || defaultAreaImageHeight),
+            }}
+          >
+            {state.hotAreas.map((it, index) => {
               return (
-                <Rnd
-                  key={`rn-${idx}`}
-                  bounds="#dragview"
-                  size={{
-                    width: Number(width || 0),
-                    height: Number(height || 0),
-                  }}
-                  // className="new-image-ad-hotarea-rnd"
-                  className={classnames('new-image-ad-hotarea-rnd', {
-                    active: it.showOptPopover,
-                  })}
-                  position={{
-                    x: Number(it.startX || 0),
-                    y: Number(it.startY || 0),
-                  }}
-                  maxWidth={375}
-                  maxHeight={state.maxHeight}
-                  minWidth={state.initMinWidth}
-                  minHeight={state.initMinHeight}
-                  onDragStop={(e: DraggableEvent, data: DraggableData) => {
-                    handleHotAreaDragStop(data, idx);
-                  }}
-                  onDragStart={() => {}}
-                  onDrag={() => {
-                    it.showOptPopover && handleHideHotAreaOptPopover();
-                  }}
-                  onResizeStop={() => {
-                    checkHotAreaPosition(idx);
-                  }}
-                  onResize={(
-                    e: MouseEvent | TouchEvent,
-                    dir: ResizeDirection,
-                    elementRef: HTMLElement
-                  ) => {
-                    handleHideHotAreaOptPopover();
-                    handleHotAreaResize(elementRef, dir, idx);
-                    // if (it.showOptPopover) {
-                    //   handleHideHotAreaOptPopover();
-                    //   handleHotAreaResize(elementRef, dir, idx);
-                    // }
-                  }}
+                <div
+                  className={`${classPrefix}-area-item`}
+                  key={`arae-item-${index}`}
                 >
-                  <div className="area-index">123</div>
-                  <div className="border-area">
-                    <div className="border-area-top-left"></div>
-                    <div className="border-area-top-right"></div>
-                    <div className="border-area-bottom-left"></div>
-                    <div className="border-area-bottom-right"></div>
-                  </div>
-                </Rnd>
+                  <label>热区{index + 1}：</label>
+                  {/* 链接跳转 */}
+                  <VdSelectJumpLink
+                    value={it}
+                    onChange={(itm) => {
+                      console.log('onChange', itm);
+                      onSelectLink(index, itm);
+                    }}
+                  ></VdSelectJumpLink>
+                  <DeleteOutlined
+                    className="remove-icon"
+                    onClick={() => {
+                      onDelete(index);
+                    }}
+                  />
+                </div>
               );
             })}
           </div>
         </div>
       </div>
-      <div className={`${classPrefix}-right`}>
-        <div className={`${classPrefix}-right-fixed-area`}>
-          <div className={`${classPrefix}-right-title`}>热区管理</div>
-          <div className="add-area" onClick={addHotArea}>
-            <PlusOutlined />
-            添加地区
-          </div>
-        </div>
-        <div className={`${classPrefix}-content`}>
-          {state.hotAreas.map((it, index) => {
-            return (
-              <div
-                className={`${classPrefix}-area-item`}
-                key={`arae-item-${index}`}
-              >
-                <label>热区{index + 1}：</label>
-                {/* 链接跳转 */}
-                <VdSelectJumpLink></VdSelectJumpLink>
-                <DeleteOutlined
-                  className="remove-icon"
-                  onClick={() => {
-                    onDelete(index);
-                  }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+    </ModalPageContainer>
   );
+};
+
+export const onOpenHeatZone = (pageProps) => {
+  CModal.show({
+    title: pageProps.title ? pageProps.title : '编辑图片热区',
+    width: 800,
+    content: AddHeatZone,
+    okCancel: false,
+    footer: null,
+    pageProps: pageProps,
+  });
 };
 
 export default AddHeatZone;

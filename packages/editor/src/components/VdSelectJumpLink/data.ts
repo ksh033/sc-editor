@@ -1,5 +1,7 @@
 import type { MenuProps } from 'antd';
 
+const typeNameMap = {};
+
 export const items: MenuProps['items'] = [
   {
     key: 'goods',

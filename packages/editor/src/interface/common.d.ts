@@ -49,3 +49,8 @@ export type BaseImage = {
   /**图片高度 */
   imageHeight?: number;
 };
+
+export type CustomModal<T> = {
+  close: () => void;
+  pageProps: T;
+};

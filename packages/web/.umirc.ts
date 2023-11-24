@@ -53,4 +53,28 @@ export default defineConfig({
       },
     ],
   ],
+  cssLoader: {
+    // 这里的 modules 可以接受 getLocalIdent
+    modules: {
+      getLocalIdent: (
+        context: {
+          resourcePath: string;
+        },
+        _: string,
+        localName: string
+      ) => {
+        //  console.log(context.resourcePath)
+        if (
+          context.resourcePath.includes('node_modules') ||
+          context.resourcePath.includes('ant.design.pro.less') ||
+          // umi 的 global.less 约定不使用 css-module
+          context.resourcePath.includes('global.less')
+        ) {
+          return localName;
+        }
+
+        return localName;
+      },
+    },
+  },
 });

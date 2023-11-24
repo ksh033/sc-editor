@@ -1,9 +1,12 @@
+import { Fragment } from 'react';
 import { Button, Input, Radio, RadioChangeEvent, Space, message } from 'antd';
-import { CModal } from '@scboson/sc-element';
+import { EditOutlined } from '@ant-design/icons';
 import VdSelectImage from '../../VdSelectImage';
 import VdSelectJumpLink from '../../VdSelectJumpLink';
-import AddHeatZone from '../AddHeatZone';
+import { onOpenHeatZone } from '../AddHeatZone';
+import type { JumpLink } from '../../../interface/common.d';
 import type { AddImageItemProps } from '../type';
+import type { SelectJumpLinkValue } from '../../VdSelectJumpLink/type';
 import './index.less';
 
 const classPrefix = 'add-image-item';
@@ -26,27 +29,42 @@ const AddImageItem: React.FC<AddImageItemProps> = (props) => {
     onChange({
       ...newVal,
       jumpType: e.target.value,
+      link: e.target.value === 'ALL' ? void 0 : [],
     });
   };
 
-  const cmp = (
-    <AddHeatZone
-      data={value}
-      value={Array.isArray(value.link) ? value.link : []}
-    ></AddHeatZone>
-  );
-
   /** 打开添加热区 */
-  const onOpenHeatZone = () => {
+  const onOpenHeatZoneModal = () => {
     if (value.imageUrl) {
-      CModal.show({
-        title: '编辑图片热区',
-        content: cmp,
-        width: '750px',
-        onOk: () => {},
+      onOpenHeatZone({
+        data: value,
+        value: Array.isArray(value.link) ? value.link : [],
+        onChange: (val: JumpLink[]) => {
+          const newVal = Object.assign({}, value || {});
+          onChange({
+            ...newVal,
+            link: val,
+          });
+        },
       });
     } else {
       message.error('请先选择图片');
+    }
+  };
+  /** 选择链接 */
+  const onSelectLink = (val?: SelectJumpLinkValue) => {
+    const newVal = value || {};
+    if (val != null) {
+      const { innerContent, ...restVal } = val;
+      onChange({
+        ...newVal,
+        link: restVal,
+      });
+    } else {
+      onChange({
+        ...newVal,
+        link: void 0,
+      });
     }
   };
 
@@ -64,13 +82,25 @@ const AddImageItem: React.FC<AddImageItemProps> = (props) => {
             <Radio value="PART">分热区跳转</Radio>
           </Radio.Group>
           {/* 链接跳转 */}
-          {value.jumpType === 'ALL' && <VdSelectJumpLink></VdSelectJumpLink>}
+          {value.jumpType === 'ALL' && !Array.isArray(value.link) && (
+            <VdSelectJumpLink
+              value={value.link}
+              onChange={onSelectLink}
+            ></VdSelectJumpLink>
+          )}
 
           {/* 添加热区 */}
-          {value.jumpType === 'PART' && (
-            <Button type="primary" size="small" onClick={onOpenHeatZone}>
-              添加热区
-            </Button>
+          {value.jumpType === 'PART' &&
+            (!Array.isArray(value.link) || value.link.length === 0) && (
+              <Button type="primary" size="small" onClick={onOpenHeatZoneModal}>
+                添加热区
+              </Button>
+            )}
+          {Array.isArray(value.link) && value.link.length > 0 && (
+            <div className="has-hot-link" onClick={onOpenHeatZoneModal}>
+              <Fragment>已选{value.link.length}个热区</Fragment>
+              <EditOutlined className="has-hot-link-i" />
+            </div>
           )}
         </Space>
       </div>
