@@ -54,9 +54,7 @@ const VdAddImageList: SysEditorPropertyComponent<VdAddImageListProps> = (
           block
           icon={<PlusOutlined />}
         >
-          {typeof props.addBtnText === 'string'
-            ? props.addBtnText
-            : props.addBtnText?.(list)}
+          <span>{`添加图片（${list.length} / 10）`}</span>
         </Button>
       </VdSelectImage>
     );
@@ -66,7 +64,6 @@ const VdAddImageList: SysEditorPropertyComponent<VdAddImageListProps> = (
     <VdAddList
       {...props}
       max={10}
-      title="添加图片"
       renderItem={renderItem}
       content={contentCmp}
       addBtnRender={addBtnRender}

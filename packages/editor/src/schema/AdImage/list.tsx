@@ -45,9 +45,6 @@ const propsConfig: VdProFormColumnsType<any>[] = [
         },
       ],
     },
-    fieldProps: {
-      addBtnText: '添加背景图片',
-    },
   },
   {
     valueType: 'divider',

@@ -87,7 +87,7 @@ const SingleGoods: React.FC<CustomModal<SingleGoodsProps>> = (props) => {
 export const onOpenSingleGoods = (pageProps: SingleGoodsProps) => {
   CModal.show({
     title: '选择商品',
-    width: 800,
+    width: '1000px',
     content: SingleGoods,
     okCancel: false,
     footer: null,

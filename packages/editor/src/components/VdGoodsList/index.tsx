@@ -5,7 +5,9 @@ import { registerEditorAttrCmp } from '@sceditor/editor-core';
 import type { BaseFromItemProps } from '@sceditor/core';
 import type { SysEditorPropertyComponent } from '../interface';
 import { CModal } from '@scboson/sc-element';
-import SingleGoods from '../VdSelectJumpLink/SingleGoods';
+import SingleGoods, {
+  onOpenSingleGoods,
+} from '../VdSelectJumpLink/SingleGoods';
 import { useRef } from 'react';
 
 type VdGoodsListProps = BaseFromItemProps<any[]> & {};
@@ -17,36 +19,16 @@ const VdGoodsList: SysEditorPropertyComponent<VdGoodsListProps> = (props) => {
 
   const onHandleChange = (list: any) => {
     if (Array.isArray(list) && list.length > 0) {
-      temselectList.current = list;
+      const map = new Set(value);
+      const addValue = list.filter((it) => !map.has(it.goodsId));
+      onChange && onChange([...addValue, ...value]);
     }
   };
 
-  const cmp = (
-    <SingleGoods
-      selectionType="checkbox"
-      value={value}
-      onChange={onHandleChange}
-    />
-  );
-
   const handleAddClick = () => {
-    CModal.show({
-      title: '选择商品',
-      content: cmp,
-      width: '1000px',
-      onOk: () => {
-        if (
-          Array.isArray(temselectList.current) &&
-          temselectList.current.length > 0
-        ) {
-          const map = new Set(value);
-          const addValue = temselectList.current.filter(
-            (it) => !map.has(it.goodsId)
-          );
-          onChange && onChange([...addValue, ...value]);
-          temselectList.current = [];
-        }
-      },
+    onOpenSingleGoods({
+      value: value,
+      onChange: onHandleChange,
     });
   };
 
